@@ -104,7 +104,7 @@
     (setq sml/no-confirm-load-theme t) ; do not warn me for loading a theme
     (setq sml/theme 'dark)
     (sml/setup)
-    (setq sml/name-width 'full)
+    (setq sml/name-width 15)
     (setq rm-blacklist
           (format "^ \\(%s\\)$"
                   (mapconcat #'identity
