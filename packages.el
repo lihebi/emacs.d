@@ -79,6 +79,7 @@
   )
 
 (use-package powerline
+  :disabled t
   :init
   (progn
     (defvar sml/no-confirm-load-theme)
@@ -96,6 +97,28 @@
     (add-hook 'after-init-hook #'sml/setup)
     )
   )
+
+(use-package smart-mode-line
+  :init
+  (progn
+    (setq sml/no-confirm-load-theme t) ; do not warn me for loading a theme
+    (setq sml/theme 'dark)
+    (sml/setup)
+    (setq sml/name-width 'full)
+    (setq rm-blacklist
+          (format "^ \\(%s\\)$"
+                  (mapconcat #'identity
+                             '("FlyC.*"
+                               "Projectile.*"
+                               "hebi-keys"
+                               "PgLn"
+                               "company"
+                               "Undo-Tree"
+                               "yas"
+                               "GitGutter")
+                             "\\|")))
+    )
+  )
 (use-package smartparens
   :ensure t
   :diminish smartparens-mode
@@ -106,7 +129,7 @@
 
 (use-package markdown-mode
   :init
-  (add-hook 'markdown-mode-hook 'turn-on-orgtbl)  
+  (add-hook 'markdown-mode-hook 'turn-on-orgtbl)
   )
 
 (use-package projectile
@@ -219,3 +242,16 @@
   (
    ("M-x" . helm-M-x))
   )
+
+(use-package exec-path-from-shell
+  ;; when start emacs from desktop env instead of shell, the PATH is aweful.
+  :ensure t
+  :if window-system
+  :config
+  (progn
+    (exec-path-from-shell-initialize)
+    (message "%s: %s" "exec-path-from-shell post config" (getenv "PATH"))))
+
+(provide 'packages)
+;;; packages.el ends here
+

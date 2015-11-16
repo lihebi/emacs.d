@@ -18,9 +18,16 @@
 
 (load (emacs-d "packages"))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;; general config ;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(load-theme 'zenburn t)
+(load-theme 'ample t t)
+(load-theme 'ample-flat t t)
+(load-theme 'ample-light t t)
+(load-theme 'dracula t)
+(enable-theme 'ample)
+
+;;;; Environment
+(setq shell-file-name "zsh")
+(add-to-list 'exec-path "/usr/local/bin")
 
 ;; set nu
 (global-linum-mode 1)
@@ -54,37 +61,6 @@
 
 (when window-system
   (global-set-key (kbd "C-x C-c") 'ask-before-closing))
-
-
-
-
-(load-theme 'zenburn t)
-(load-theme 'ample t t)
-(load-theme 'ample-flat t t)
-(load-theme 'ample-light t t)
-(load-theme 'dracula t)
-(enable-theme 'ample)
-
-;; smooth scrolling
-;; comment out to see effect. Will turn on eventually
-;; (setq redisplay-dont-pause t
-;;       scroll-margin 1
-;;       scroll-step 1
-;;       scroll-conservatively 10000
-;;       scroll-preserve-screen-position 1)
-
-;; (setq scroll-conservatively 10)
-;; (setq scroll-margin 7)
-
-;; recent files
-(require 'recentf)
-(recentf-mode 1)
-(setq recentf-max-menu-items 25)
-;; (global-set-key "C-x C-r" 'recentf-open-files)
-(defun hebi/open-my-init ()
-  (interactive)
-  (find-file "~/.emacs.d/init.el"))
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;; key bindings ;;;;;;;;;;
@@ -196,7 +172,10 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("f5eb916f6bd4e743206913e6f28051249de8ccfd070eae47b5bde31ee813d55f" default))))
+    ("c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "f5eb916f6bd4e743206913e6f28051249de8ccfd070eae47b5bde31ee813d55f" default)))
+ '(git-gutter:added-sign "++")
+ '(git-gutter:deleted-sign "--")
+ '(git-gutter:modified-sign "  "))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
