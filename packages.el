@@ -161,8 +161,8 @@
     )
   :config
   (progn
-    (use-package persp-projectile)
-    (define-key projectile-mode-map (kbd "s-s") 'projectile-persp-switch-project)
+    ;; (use-package persp-projectile)
+    ;; (define-key projectile-mode-map (kbd "s-s") 'projectile-persp-switch-project)
     )
   )
 
@@ -251,6 +251,12 @@
   (progn
     (exec-path-from-shell-initialize)
     (message "%s: %s" "exec-path-from-shell post config" (getenv "PATH"))))
+
+(use-package browse-kill-ring
+  :ensure t
+  :defer t
+  :config
+  (browse-kill-ring-default-keybindings))
 
 (provide 'packages)
 ;;; packages.el ends here

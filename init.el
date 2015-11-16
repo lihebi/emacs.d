@@ -107,6 +107,13 @@
     (move-end-of-line 0)
     (newline)))
 
+(define-key hebi/keys-minor-mode-map (kbd "C-h")
+  (lambda ()
+    (interactive)
+    (backward-delete-char 1)))
+
+(define-key hebi/keys-minor-mode-map (kbd "<f1>") 'help-command)
+
 (define-minor-mode hebi/keys-minor-mode
   "A minor mode so that my key settings override annoying major modes."
   t " hebi-keys" 'hebi/keys-minor-mode-map)
