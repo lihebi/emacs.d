@@ -1,4 +1,11 @@
-*
-!init.el
-!packages.el
-!.gitignore
+.mc-lists.el
+ido.last
+*~
+recentf
+projectile*
+places
+
+backups
+bookmarks
+elpa
+eshell

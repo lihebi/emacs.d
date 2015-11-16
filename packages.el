@@ -237,7 +237,7 @@
 
 (use-package flycheck
   :init
-  (add-hook 'after-init-hook #'global-flycheck-mode)  
+  (add-hook 'after-init-hook #'global-flycheck-mode)
   )
 
 (use-package expand-region
@@ -247,6 +247,7 @@
   )
 
 (use-package helm
+  :disabled t
   :bind
   (
    ("M-x" . helm-M-x))
@@ -306,6 +307,11 @@
   :ensure t
   :defer t)
 
-(provide 'packages)
-;;; packages.el ends here
+(use-package magit
+  :defer t
+  :bind
+  (
+   ("C-x g" . magit-status))
+  )
 
+;;; packages.el ends here
