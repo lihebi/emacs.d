@@ -165,15 +165,19 @@
 
 (use-package perspective
   :init
-  (progn
-    (persp-mode)
-    )
   :config
   (progn
-    ;; (use-package persp-projectile)
-    ;; (define-key projectile-mode-map (kbd "s-s") 'projectile-persp-switch-project)
+    (persp-mode)
+    (setq projectile-switch-project-action 'projectile-dired)
     )
   )
+
+(use-package persp-projectile
+  :bind
+  (
+   ("s-s" . projectile-persp-switch-project))
+  )
+
 
 (use-package fill-column-indicator
   ;; 80 characters
@@ -312,6 +316,11 @@
   :bind
   (
    ("C-x g" . magit-status))
+  )
+
+(use-package ag
+  :ensure t
+  :defer t
   )
 
 ;;; packages.el ends here
