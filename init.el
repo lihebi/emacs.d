@@ -1,29 +1,22 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;; Package archives ;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; hebi-emacs-init --- What the hack of this line?
+;;; Commentary:
 
-(require 'package)
-(package-initialize)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
-(add-to-list 'package-archives
-             '("org" . "http://orgmode.org/elpa/"))
-;; (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
-;; (add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/") t)
 
-;; auto-update
-;; this should be called after adding these for the first time
-;; be CAREFUL, this will check if there exists the archive.
-;; If no, then it usually means I just clone from git.
-(when (not package-archive-contents)
-  (package-refresh-contents))
+;;; Code:
 
-; auto-install packages
-(defvar my-packages '(better-defaults magit))
+(defmacro hook-into-modes (function mode-hooks)
+  "Add FUNCTION to hooks in MODE-HOOKS."
+  `(dolist (hook ,mode-hooks)
+     (add-hook hook ,function)))
 
-(dolist (p my-packages)
-  (when (not (package-installed-p p))
-    (package-install p)))
+(defconst emacs-start-time (current-time))
+(setq message-log-max 16384)
 
+(defun emacs-d (filename)
+  "Expand FILENAME relative to `user-emacs-directory'."
+  (expand-file-name filename user-emacs-directory))
+
+(load (emacs-d "packages"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;; general config ;;;;
@@ -88,201 +81,11 @@
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
 ;; (global-set-key "C-x C-r" 'recentf-open-files)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;; packages ;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(require 'use-package)
-
-;; not sure if these wierd binding is what I want
-(use-package windmove
-  :defer t
-  :bind
-  (("<f2> <right>" . windmove-right)
-   ("<f2> <left>" . windmove-left)
-   ("<f2> <up>" . windmove-up)
-   ("<f2> <down>" . windmove-down)
-   ))
-
-(use-package org-mode
-  :defer t
-  :bind
-  (("C-c n" . org-capture)
-   ("C-c o" . org-open-at-point)
-   )
-  :init
-  (progn
-    (defvar org-startup-folded)
-    (defvar org-directory)
-    (defvar org-capture-templates)
-    (defvar org-agenda-files)
-    (setq org-startup-folded nil)
-    (setq org-directory "~/github/org")
-    ;; capture templates
-    (setq org-capture-templates
-          '(("t" "TODO" entry (file+headline (concat org-directory "/scratch.org") "Tasks")
-             "* TODO %?\n  %U")
-            ("n" "Note" entry (file (concat org-directory "/scratch.org"))
-             "* Notes on %U\n%?" :prepend t)
-            ("s" "Stack" entry (file (concat org-directory "/stack.org"))
-             "* New Stack on %U\n%?" :prepend t)
-            ))
-    (setq org-agenda-files (list org-directory))
-    )
-  )
-
-
-
-(defun hebi/open-my-stack ()
-  (interactive)
-  (find-file (concat org-directory "/stack.org")))
 (defun hebi/open-my-init ()
   (interactive)
   (find-file "~/.emacs.d/init.el"))
-(defun hebi/open-my-todo ()
-  (interactive)
-  (find-file (concat org-directory "/todo.org")))
-(defun hebi/open-my-note ()
-  (interactive)
-  (find-file (concat org-directory "/notes.org")))
-(defun hebi/open-my-scratch ()
-  (interactive)
-  (find-file (concat org-directory "/scratch.org")))
-
-;; smex: use ido in M-x
-(require 'smex)
-(smex-initialize)
-
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
-;; This is your old M-x.
-(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
-
-;; powerline
-;; (require 'smart-mode-line)
-;; (setq sml/no-confirm-load-theme t)
-;; (setq sml/theme nil)
-;; (setq sml/theme 'dark)
-;; (setq sml/theme 'light)
-;; (setq sml/theme 'respectful)
-;; (setq sml/theme 'powerline)
-;; (sml/setup)
-;; not sure why use this hook instead of
-;; using the official recommanded way above
-;; (add-hook 'after-init-hook #'sml/setup) 
-
-;; {}
-;; TODO how to enable smartparens-mode on default?
-(require 'smartparens-config)
-(define-globalized-minor-mode my-global-smartparens-mode smartparens-mode
-  (lambda () (smartparens-mode t)))
-(my-global-smartparens-mode t)                    ; enable smartparens-mode by default
 
 
-;; markdown-mode
-(require 'markdown-mode)
-(add-hook 'markdown-mode-hook 'turn-on-orgtbl)
-
-;; projectile
-(projectile-global-mode)
-(setq projectile-enable-caching t) ; enable catch
-
-;; neotree
-;; neotree is not using because it conflicts with perspective
-;; also, we have speedbar ^_^
-;; (require 'neotree)
-;; (global-set-key [f8] 'neotree-toggle)
-;; keybinding
-;; (define-key neotree-mode-map (kbd "i") #'neotree-enter-horizontal-split) ; TODO what's the #?
-;; (define-key neotree-mode-map (kbd "I") #'neotree-enter-vertical-split)
-;; when switch project, neotree change root automatically
-;; (setq projectile-switch-project-action 'neotree-projectile-action)
-
-;; perspective: use for manage multiple project in a frame
-;; Do not use because when switch project this way, I cannot make neotree change accordingly.
-(persp-mode)
-;; persp-projectil: use projectile together with perspective ; this should just be install...
-;; (require 'persp-projectile)
-(define-key projectile-mode-map (kbd "s-s") 'projectile-persp-switch-project)
-
-;; fill-column-indicator
-(define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
-(global-fci-mode 1)
-
-;; sublimity
-;; smooth-scrolling & minimap
-;; not good: no color. delay may need to config, not good performance. scroll is terrible.
-(require 'sublimity)
-;; (require 'sublimity-scroll)
-(require 'sublimity-map)
-(sublimity-map-set-delay nil)
-;; (require 'sublimity-attractive)
-;; (sublimity-mode 1) ; we do not open it by default because performance issue.
-
-;; company-mode
-(add-hook 'after-init-hook 'global-company-mode)
-(global-set-key (kbd "s-/") 'company-complete)
-
-;; yasnippet
-;; (yas-reload-all)
-;; (add-hook 'prog-mode-hook #'yas-minor-mode)
-(yas-global-mode 1)
-
-;; multiple-cursors
-(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines) ; add cursor for each line in region
-;; based on the current marked word
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-(global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click) ; mouse select
-
-;; git-gutter
-(require 'git-gutter)
-(global-git-gutter-mode t)
-(git-gutter:linum-setup)
-
-(global-set-key (kbd "C-x C-g") 'git-gutter:toggle)
-
-;; not working for live update ..
-;; (custom-set-variables
-;;  '(git-gutter:update-interval 1))
-
-(custom-set-variables
- '(git-gutter:modified-sign "  ") ;; two space
- '(git-gutter:added-sign "++")    ;; multiple character is OK
- '(git-gutter:deleted-sign "--"))
-
-;; (custom-set-variables
-;;  '(git-gutter:window-width 2)
-;;  '(git-gutter:modified-sign "☁")
-;;  '(git-gutter:added-sign "☀")
-;;  '(git-gutter:deleted-sign "☂"))
-
-(set-face-background 'git-gutter:modified "purple") ; background color
-(set-face-foreground 'git-gutter:added "green") ; foreground not working ...
-(set-face-foreground 'git-gutter:deleted "red")
-
-;; flycheck
-(add-hook 'after-init-hook #'global-flycheck-mode)
-
-;; expand-region
-(global-set-key (kbd "s-e") 'er/expand-region)
-
-;; helm
-(require 'helm-config)
-(global-set-key (kbd "M-x") 'helm-M-x)
-
-;; (setq helm-projectile-fuzzy-match nil)
-(require 'helm-projectile)
-(helm-projectile-on) ; enable key binding for helm-xxx
-
-;; fuzzy config for helm
-;; TODO no function?
-;; (helm-M-x-fuzzy-match t)
-
-;; helm-ag
-;; not working
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;; key bindings ;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
