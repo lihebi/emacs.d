@@ -63,6 +63,15 @@
             ))
     (setq org-agenda-files (list org-directory))
     )
+  :config
+  ;; what's this
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((awk . t)
+     (emacs-lisp . t)
+     (python . t)
+     (ruby . t)
+     (sh . t)))
   )
 
 (use-package smex
@@ -257,6 +266,45 @@
   :defer t
   :config
   (browse-kill-ring-default-keybindings))
+
+(use-package google-c-style
+  ;; c style used by google
+  :ensure t
+  :defer t)
+
+(use-package goto-chg
+  ;; goto last change in this buffer
+  :ensure t
+  :bind (("C-." . goto-last-change)
+         ("C-," . goto-last-change-reverse)))
+
+(use-package guide-key
+  ;; one key to rule them all
+  :ensure t
+  :diminish guide-key-mode
+  :config
+  (progn
+    (setq guide-key/popup-window-position 'bottom
+          guide-key/guide-key-sequence t  ; enable for all prefixes
+          guide-key/recursive-key-sequence-flag t)
+
+    (defun guide-key/org-mode-hook ()
+      (guide-key/add-local-highlight-command-regexp "org-"))
+    (add-hook 'org-mode-hook 'guide-key/org-mode-hook)
+
+    (guide-key-mode 1)))
+
+(use-package rainbow-delimiters
+  ;; different colors for different level of parens
+  :ensure t
+  :defer t
+  :init
+  (progn
+    (add-hook 'emacs-lisp-mode-hook #'rainbow-delimiters-mode)))
+
+(use-package regex-tool
+  :ensure t
+  :defer t)
 
 (provide 'packages)
 ;;; packages.el ends here
