@@ -18,7 +18,9 @@
 
 (load (emacs-d "packages"))
 (load (emacs-d "bindings"))
+(load (emacs-d "hebi-faces")) ; must be load before smart-scholar
 (load (emacs-d "smart-scholar"))
+(load (emacs-d "hebi"))
 
 (load-theme 'zenburn t)
 (load-theme 'ample t t)
@@ -86,14 +88,11 @@
 
 (winner-mode)
 
-(use-package yasnippet
-  :ensure t
-  :init
-  (progn
-    (defvar yas-snippet-dirs)
-    (setq yas-snippet-dirs
-      '("~/.emacs.d/snippets"                 ;; personal snippets
-        ))
-    (yas-global-mode 1)))
+;; Display completions vertically
+;; (setq ido-decorations (quote ("\n> " "" "\n  " "\n  ..." "[" "]"
+;;                               " [No Match]" " [Matched]" " [Not Readable]"
+;;                               " [Too Big]" " [Confirm]")))
+
+(setq ido-decorations '("{" "}" " | " " | ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]"))
 
 ;;; init.el ends here

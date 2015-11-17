@@ -195,11 +195,22 @@
    ("s-/" . company-complete))
   )
 
+;; (use-package yasnippet
+;;   :init
+;;   (progn
+;;     (yas-global-mode 1))
+;;   )
+
 (use-package yasnippet
+  :ensure t
   :init
   (progn
-    (yas-global-mode 1))
-  )
+    (defvar yas-snippet-dirs)
+    (setq yas-snippet-dirs
+          '("~/.emacs.d/snippets"                 ;; personal snippets
+            ))
+    (yas-global-mode 1)))
+
 
 (use-package multiple-cursors
   :bind
@@ -252,7 +263,7 @@
   )
 
 (use-package helm
-  :disabled t
+  ;; :disabled t
   :bind
   (
    ("M-x" . helm-M-x))
