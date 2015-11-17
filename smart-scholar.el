@@ -94,4 +94,9 @@
     (when font-lock-mode
       (with-no-warnings (font-lock-fontify-buffer)))))
 
+(defvar hebi-keywords
+  '(("\\bHEBI\\b.*" . 'smart-scholar-red)))
+
+(font-lock-add-keywords nil hebi-keywords)
+
 ;;; smart-scholar.el ends here
