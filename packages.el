@@ -42,7 +42,8 @@
   :defer t
   :bind
   (("C-c n" . org-capture)
-   ("C-c o" . org-open-at-point)
+   ;; ("C-c o" . org-open-at-point)
+   ("C-c o" . org-open-at-point-global)
    )
   :init
   (progn
@@ -153,7 +154,7 @@
 (use-package neotree
   ;; neotree is not using because it conflicts with perspective
   ;; also, we have speedbar ^_^
-  :disabled t
+  ;; :disabled t
   ;; (define-key neotree-mode-map (kbd "i") #'neotree-enter-horizontal-split) ; TODO what's the #?
   ;; (define-key neotree-mode-map (kbd "I") #'neotree-enter-vertical-split)
   ;; when switch project, neotree change root automatically
