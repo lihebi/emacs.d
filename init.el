@@ -18,6 +18,7 @@
 
 (load (emacs-d "packages"))
 (load (emacs-d "bindings"))
+(load (emacs-d "smart-scholar"))
 
 (load-theme 'zenburn t)
 (load-theme 'ample t t)
@@ -82,5 +83,17 @@
       (progn (bury-buffer) nil)
     t))
 (add-hook 'kill-buffer-query-functions 'dont-kill-but-bury-scratch)
+
+(winner-mode)
+
+(use-package yasnippet
+  :ensure t
+  :init
+  (progn
+    (defvar yas-snippet-dirs)
+    (setq yas-snippet-dirs
+      '("~/.emacs.d/snippets"                 ;; personal snippets
+        ))
+    (yas-global-mode 1)))
 
 ;;; init.el ends here

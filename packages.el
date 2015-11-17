@@ -322,5 +322,4 @@
   :ensure t
   :defer t
   )
-
 ;;; packages.el ends here
