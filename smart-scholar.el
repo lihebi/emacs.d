@@ -45,7 +45,7 @@
   '(("^AWORD\\b\\|^ALIAS\\b\\|^SS_BEGIN\\b" . smart-scholar-cyan)))
 
 (defvar ss-link-keywords
-  '(("PDF:[[:space:]]*\\([0-9a-zA-Z./:-]*\\)" . (1 'link))
+  '(("PDF:[[:space:]]*\\([0-9a-zA-Z./:_-]*\\)" . (1 'link))
     ))
 
 (define-minor-mode smart-scholar-minor-mode
