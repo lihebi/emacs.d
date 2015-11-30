@@ -10,7 +10,7 @@
 (defvar ss-green-keywords
   '(("^PROBLEM\\b\\|^CITE\\b\\|^CONF\\b" . hebi-green-face)
     ("^CONTRIB\\b\\|^TECHNIQUE\\b" . hebi-green-face)
-    ("^RELATED\\b\\|^POINT\\b" . hebi-green-face)))
+    ("^RELATED\\b\\|^POINT\\b\\|^DEFINITION\\b" . hebi-green-face)))
 
 (defvar ss-yellow-keywords
   '(("^BENCHMARK\\b\\|^TOOL\\b\\|^UNIV\\b" . hebi-yellow-face)))
@@ -24,7 +24,7 @@
 
 (define-minor-mode smart-scholar-minor-mode
   "Smart Scholar."
-  :lighter "smart-scholar"
+  :lighter " smart-scholar"
 
   ;; (font-lock-add-keywords nil ss-kwds)
   (font-lock-add-keywords nil ss-red-keywords "end")

@@ -58,6 +58,10 @@
 
 ;; other window
 (define-key hebi/keys-minor-mode-map (kbd "C-<return>") 'other-window)
+(define-key hebi/keys-minor-mode-map (kbd "<f5>") (lambda ()
+                                                    (interactive)
+                                                    (shell-command "make")
+                                                    ))
 
 (define-minor-mode hebi/keys-minor-mode
   "A minor mode so that my key settings override annoying major modes."

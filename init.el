@@ -17,10 +17,15 @@
   (expand-file-name filename user-emacs-directory))
 
 (load (emacs-d "packages"))
-(load (emacs-d "bindings"))
 (load (emacs-d "hebi-faces")) ; must be load before smart-scholar
 (load (emacs-d "smart-scholar"))
-(load (emacs-d "hebi"))
+;; (load (emacs-d "hebi"))
+(load (emacs-d "bindings"))
+(load (emacs-d "hebi-defun"))
+(load (emacs-d "fic-mode"))
+
+(add-hook 'prog-mode-hook 'fic-mode)
+(add-hook 'latex-mode-hook 'fix-mode)
 
 (load-theme 'zenburn t)
 (load-theme 'ample t t)
@@ -94,5 +99,9 @@
 ;;                               " [Too Big]" " [Confirm]")))
 
 (setq ido-decorations '("{" "}" " | " " | ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]"))
+
+(defvar man-notify-method)
+;; in man mode, push a link will open in current buffer
+(setq man-notify-method 'pushy)
 
 ;;; init.el ends here

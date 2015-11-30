@@ -22,16 +22,17 @@
   ;;          mode
   ;;          hebi-keyword-font-lock "end"))
   ;;       hebi-modes)
-  (font-lock-add-keywords nil hebi-keyword-font-lock)
+  (font-lock-add-keywords nil hebi-keyword-font-lock "end")
   )
 
 (defun hebi-remove-keywords ()
   "."
-  (mapc (lambda (mode)
-          (font-lock-remove-keywords
-           mode
-           hebi-keyword-font-lock))
-        hebi-modes))
+  ;; (mapc (lambda (mode)
+  ;;         (font-lock-remove-keywords
+  ;;          mode
+  ;;          hebi-keyword-font-lock))
+  ;;       hebi-modes)
+  )
 
 (defun hebi-reload-keywords ()
   "."
@@ -43,7 +44,7 @@
 ;;;###autoload(defvar hebi-mode nil)
 (define-minor-mode hebi-mode
   ""
-  :lighter "hebi"
+  :lighter " hebi"
   :global
   :group hebi-mode
   (if hebi-mode
@@ -51,7 +52,18 @@
   (hebi-remove-keywords))
   )
 
-(hook-into-modes 'hebi-mode '(prog-mode-hook))
+(hook-into-modes 'hebi-mode '(prog-mode-hook latex-mode-hook))
+
+;; (hebi-reload-keywords)
+
+;; (add-hook 'prog-mode-hook (lambda ()
+;;                             (hebi-reload-keywords)
+;;                             ))
+;; (add-hook 'latex-mode-hook (lambda ()
+;;                              (message "hook for latex")
+;;                              (hebi-reload-keywords)
+;;                              ))
+
 
 (provide 'hebi-mode)
 

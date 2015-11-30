@@ -15,7 +15,7 @@
   ""
   :group 'hebi-faces)
 
-(defface hebi-green-face-face
+(defface hebi-green-face
   '((t :background "black" :foreground "green"))
   ""
   :group 'hebi-faces)

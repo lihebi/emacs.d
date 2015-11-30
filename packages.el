@@ -185,7 +185,8 @@
   :ensure t
   :defer t
   :init
-  (hook-into-modes 'fci-mode '(prog-mode-hook)))
+  (hook-into-modes 'fci-mode '(prog-mode-hook LaTeX-mode-hook))
+  )
 
 (use-package company-mode
   :init
@@ -254,6 +255,16 @@
 (use-package flycheck
   :init
   (add-hook 'after-init-hook #'global-flycheck-mode)
+  )
+
+(use-package flyspell
+  :init
+  :config
+  (progn
+    ;; (add-hook 'LaTeX-mode-hook '(flyspell-mode t))
+    ;; TODO not working for flyspell-mode
+    (add-hook 'LaTeX-mode-hook #'turn-on-flyspell)
+    )
   )
 
 (use-package expand-region
