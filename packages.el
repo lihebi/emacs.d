@@ -24,6 +24,19 @@
   (message "`use-package' not found.  Installing...")
   (package-install 'use-package))
 
+(setq package-list '(
+		     helm smex smart-mode-line projectile git-gutter
+			  zenburn-theme ample-theme dracula-theme
+			  persp-projectile flycheck company
+			  markdown-mode neotree expand-region
+			  magit ag guide-key
+			  ))
+
+;; install the missing packages
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
+
 (require 'use-package)
 (setq use-package-minimum-reported-time 0
       use-package-verbose t)
