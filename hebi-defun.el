@@ -19,6 +19,12 @@
   (interactive)
   (insert (format-time-string "%Y-%m-%d %a %I:%M:%S %p")))
 
+(defun toggle-comment-on-line ()
+  "Comment or uncomment current line."
+  (interactive)
+  (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
+
+(global-set-key (kbd "M-;") 'toggle-comment-on-line)
 
 (provide 'hebi-defun)
 ;;; hebi-defun.el ends here
