@@ -14,5 +14,11 @@
 
 (global-set-key (kbd "<f6>") 'latexmk)
 
+(defun timestamp ()
+  "."
+  (interactive)
+  (insert (format-time-string "%Y-%m-%d %a %I:%M:%S %p")))
+
+
 (provide 'hebi-defun)
 ;;; hebi-defun.el ends here
