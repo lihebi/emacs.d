@@ -24,13 +24,27 @@
   (message "`use-package' not found.  Installing...")
   (package-install 'use-package))
 
-(setq package-list '(
-		     helm smex smart-mode-line projectile git-gutter
-			  zenburn-theme ample-theme dracula-theme
-			  persp-projectile flycheck company
-			  markdown-mode neotree expand-region
-			  magit ag guide-key
-			  ))
+(setq package-list
+      '(
+	; xxx
+	helm smex ; completion
+	     persp-projectile projectile neotree ; project manage
+	     smart-mode-line git-gutter ; appearance
+	     zenburn-theme ample-theme dracula-theme ; theme
+	     flycheck company expand-region guide-key better-defaults ; efficient editing
+	     markdown-mode ; mode
+	     magit ag ; 3rd party
+             exec-path-from-shell
+             fill-column-indicator
+             google-c-style
+             goto-chg
+             rainbow-delimiters
+             regex-tool
+             popwin
+             powerline
+             fic-mode
+             multiple-cursors
+	     ))
 
 ;; install the missing packages
 (dolist (package package-list)
@@ -185,6 +199,11 @@
     (setq projectile-switch-project-action 'projectile-dired)
     )
   )
+
+(global-set-key (kbd "s-`") (lambda()
+                              (interactive)
+                              (persp-switch nil)
+                              ))
 
 (use-package persp-projectile
   :bind
