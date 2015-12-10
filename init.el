@@ -22,17 +22,20 @@
 ;; (load (emacs-d "hebi"))
 (load (emacs-d "bindings"))
 (load (emacs-d "hebi-defun"))
-(load (emacs-d "fic-mode"))
+;; (load (emacs-d "fic-mode"))
+(load (emacs-d "env"))
 
 (add-hook 'prog-mode-hook 'fic-mode)
 (add-hook 'latex-mode-hook 'fix-mode)
+(add-hook 'markdown-mode-hook 'fic-mode)
 
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/emacs-livedown"))
-(custom-set-variables
- '(livedown:autostart nil) ; automatically open preview when opening markdown files
- '(livedown:open t)        ; automatically open the browser window
- '(livedown:port 1337))    ; port for livedown server
+
 (require 'livedown)
+
+(add-hook 'c-mode-common-hook
+          (lambda()
+            (local-set-key  (kbd "C-c h") 'ff-find-other-file)))
 
 (load-theme 'zenburn t)
 (load-theme 'ample t t)
@@ -112,3 +115,23 @@
 (setq man-notify-method 'pushy)
 
 ;;; init.el ends here
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(fic-highlighted-words (quote ("FIXME" "TODO" "BUG" "KLUDGE" "HEBI" "AGREE" "DENY" "REFER" "DEBUG")))
+ '(git-gutter:added-sign "++")
+ '(git-gutter:deleted-sign "--")
+ '(git-gutter:modified-sign "  ")
+ '(livedown:autostart nil)
+ '(livedown:open t)
+ '(livedown:port 1337))
+    ; port for livedown server
