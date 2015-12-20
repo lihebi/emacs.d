@@ -54,6 +54,8 @@
 (set-register ?p
               (cons 'file (emacs-d "packages.el")))
 
+
+(setq show-trailing-whitespace t)
 ;; set nu
 (global-linum-mode 1)
 ;; mode line settings
@@ -127,7 +129,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(fic-highlighted-words (quote ("FIXME" "TODO" "BUG" "KLUDGE" "HEBI" "AGREE" "DENY" "REFER" "DEBUG")))
+ '(fic-highlighted-words (quote ("FIXME" "TODO" "BUG" "KLUDGE" "HEBI" "AGREE" "DENY" "REFER" "DEBUG" "NOW")))
  '(git-gutter:added-sign "++")
  '(git-gutter:deleted-sign "--")
  '(git-gutter:modified-sign "  ")

@@ -5,7 +5,7 @@
 ;;; Code:
 
 (defvar ss-red-keywords
-  '(("^COMMENT\\b\\|^YEAR\\b\\|^AUTHOR\\b\\|^DOWN\\b" . hebi-red-face)))
+  '(("^COMMENT\\b\\|^YEAR\\b\\|^AUTHOR\\b\\|^DOWN\\b|^EVALUATION" . hebi-red-face)))
 
 (defvar ss-green-keywords
   '(("^PROBLEM\\b\\|^CITE\\b\\|^CONF\\b" . hebi-green-face)
@@ -16,7 +16,7 @@
   '(("^BENCHMARK\\b\\|^TOOL\\b\\|^UNIV\\b" . hebi-yellow-face)))
 
 (defvar ss-cyan-keywords
-  '(("^AWORD\\b\\|^ALIAS\\b\\|^SS_BEGIN\\b" . hebi-cyan-face)))
+  '(("^AWORD\\b.*\\|^ALIAS\\b.*\\|^SS_BEGIN\\b" . hebi-cyan-face)))
 
 (defvar ss-link-keywords
   '(("PDF:[[:space:]]*\\([0-9a-zA-Z./:_-]*\\)" . (1 'link))
@@ -38,6 +38,9 @@
     (when font-lock-mode
       (with-no-warnings (font-lock-fontify-buffer)))))
 
-(add-hook 'bibtex-mode-hook (lambda () (smart-scholar-minor-mode 1)))
+(add-hook 'bibtex-mode-hook
+          (lambda () (smart-scholar-minor-mode 1)))
+(add-hook 'markdown-mode-hook
+          (lambda () (smart-scholar-minor-mode 1)))
 
 ;;; smart-scholar.el ends here
