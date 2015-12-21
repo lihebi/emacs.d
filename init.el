@@ -150,6 +150,11 @@
 ;; in man mode, push a link will open in current buffer
 (setq man-notify-method 'pushy)
 
+;; will still keep highlight, until you do another search (C-s)
+(setq lazy-highlight-cleanup nil)
+
+;; when doing search, C-s then C-w mutiple times can search word at point
+
 (eshell)
 (set-face-foreground 'eshell-prompt "turquoise") ; only the prompt
 
