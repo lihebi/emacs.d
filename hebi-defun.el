@@ -55,5 +55,26 @@
 
 (global-set-key (kbd "C-x 9") 'toggle-window-split)
 
+(defun ask-before-closing ()
+  "Ask whether or not to close, and then close if y was pressed."
+  (interactive)
+  (if (y-or-n-p (format "Are you sure you want to exit Emacs? "))
+      (if (< emacs-major-version 22)
+          (save-buffers-kill-terminal)
+        (save-buffers-kill-emacs))
+    (message "Canceled exit")))
+
+(when window-system
+  (global-set-key (kbd "C-x C-c") 'ask-before-closing))
+
+;; Never kill, just bury
+(defun dont-kill-but-bury-scratch ()
+  "Don't kill but burry *scratch* buffer."
+  (if (equal (buffer-name (current-buffer)) "*scratch*")
+      (progn (bury-buffer) nil)
+    t))
+(add-hook 'kill-buffer-query-functions 'dont-kill-but-bury-scratch)
+
+
 (provide 'hebi-defun)
 ;;; hebi-defun.el ends here

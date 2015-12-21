@@ -384,19 +384,4 @@
   (popwin-mode 1)
   )
 
-(use-package evil
-  :disabled t
-  :config
-  (evil-mode t)
-  )
-
-(use-package evil-search-highlight-persist
-  ;; not working!!!
-  ;; only work with evil-mode
-  :disabled t
-  :config
-  (global-evil-search-highlight-persist t)
-  )
-
-
 ;;; packages.el ends here
