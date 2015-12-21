@@ -133,4 +133,7 @@
 ;; in man mode, push a link will open in current buffer
 (setq man-notify-method 'pushy)
 
+(eshell)
+(set-face-foreground 'eshell-prompt "turquoise") ; only the prompt
+
 ;;; init.el ends here

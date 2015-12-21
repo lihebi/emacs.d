@@ -1,0 +1,4 @@
+alias ll ls -l
+alias la ls -a
+alias l ls
+alias emacs find-file

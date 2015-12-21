@@ -8,5 +8,5 @@ places
 backups
 bookmarks
 elpa
-eshell
 tramp
+eshell/history
