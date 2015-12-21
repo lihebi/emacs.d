@@ -375,8 +375,6 @@
 (use-package dracula-theme
   :defer t)
 
-(use-package better-defaults
-  :defer t)
 (use-package popwin
   ;; use a separate window for buffers like *completion*,
   ;; close them use C-g
