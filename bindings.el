@@ -40,10 +40,10 @@
                   (newline)))
 
 ;; backspace
-(global-set-key (kbd "C-h")
-                (lambda ()
-                  (interactive)
-                  (backward-delete-char 1)))
+;; (global-set-key (kbd "C-h")
+;;                 (lambda ()
+;;                   (interactive)
+;;                   (backward-delete-char 1)))
 
 (global-set-key (kbd "<f1>") 'help-command)
 
@@ -59,5 +59,11 @@
                                (interactive)
                                (shell-command "make")
                                ))
+
+(global-set-key (kbd "C-x 3") (lambda ()
+                                (interactive)
+                                (split-window-right)
+                                (other-window 1)
+                                ))
 
 ;;; bindings.el ends here

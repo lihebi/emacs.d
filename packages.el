@@ -24,36 +24,23 @@
   (message "`use-package' not found.  Installing...")
   (package-install 'use-package))
 
-(setq package-list
-      '(
-	; xxx
-	helm smex ; completion
-	     persp-projectile projectile neotree ; project manage
-	     smart-mode-line git-gutter ; appearance
-	     zenburn-theme ample-theme dracula-theme ; theme
-	     flycheck company expand-region guide-key better-defaults ; efficient editing
-	     markdown-mode ; mode
-	     magit ag ; 3rd party
-             exec-path-from-shell
-             fill-column-indicator
-             google-c-style
-             goto-chg
-             rainbow-delimiters
-             regex-tool
-             popwin
-             powerline
-             fic-mode
-             multiple-cursors
-	     ))
-
-;; install the missing packages
-(dolist (package package-list)
-  (unless (package-installed-p package)
-    (package-install package)))
-
 (require 'use-package)
 (setq use-package-minimum-reported-time 0
       use-package-verbose t)
+
+;; we can use :ensure t to auto install package
+;; set the following to apply this globally
+(setq use-package-always-ensure t)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Common doc
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; :bind,mode,interpreter will imply :defer t
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Package list
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; not sure if these wierd binding is what I want
 (use-package windmove
@@ -65,7 +52,7 @@
    ("<f2> <down>" . windmove-down)
    ))
 
-(use-package org-mode
+(use-package org
   :defer t
   :bind
   (("C-c n" . org-capture)
@@ -157,7 +144,6 @@
     )
   )
 (use-package smartparens
-  :ensure t
   :diminish smartparens-mode
   :config
   (progn
@@ -214,13 +200,13 @@
 
 (use-package fill-column-indicator
   ;; 80 characters
-  :ensure t
   :defer t
   :init
-  (hook-into-modes 'fci-mode '(prog-mode-hook LaTeX-mode-hook))
+  (add-hook 'prog-mode-hook 'fci-mode)
+  (add-hook 'LaTeX-mode-hook 'fci-mode)
   )
 
-(use-package company-mode
+(use-package company
   :init
   (add-hook 'after-init-hook 'global-company-mode)
   :bind
@@ -229,7 +215,6 @@
   )
 
 (use-package yasnippet
-  :ensure t
   :init
   (progn
     (defvar yas-snippet-dirs)
@@ -302,7 +287,7 @@
   )
 
 (use-package helm
-  :disabled t
+  ;; :disabled t
   :bind
   (
    ("M-x" . helm-M-x))
@@ -310,7 +295,6 @@
 
 (use-package exec-path-from-shell
   ;; when start emacs from desktop env instead of shell, the PATH is aweful.
-  :ensure t
   :if window-system
   :config
   (progn
@@ -318,25 +302,21 @@
     (message "%s: %s" "exec-path-from-shell post config" (getenv "PATH"))))
 
 (use-package browse-kill-ring
-  :ensure t
   :defer t
   :config
   (browse-kill-ring-default-keybindings))
 
 (use-package google-c-style
   ;; c style used by google
-  :ensure t
   :defer t)
 
 (use-package goto-chg
   ;; goto last change in this buffer
-  :ensure t
   :bind (("C-." . goto-last-change)
          ("C-," . goto-last-change-reverse)))
 
 (use-package guide-key
   ;; one key to rule them all
-  :ensure t
   :diminish guide-key-mode
   :config
   (progn
@@ -352,14 +332,12 @@
 
 (use-package rainbow-delimiters
   ;; different colors for different level of parens
-  :ensure t
   :defer t
   :init
   (progn
     (add-hook 'emacs-lisp-mode-hook #'rainbow-delimiters-mode)))
 
 (use-package regex-tool
-  :ensure t
   :defer t)
 
 (use-package magit
@@ -370,7 +348,42 @@
   )
 
 (use-package ag
-  :ensure t
   :defer t
   )
+
+(use-package fic-mode
+  :init
+  (progn
+    (setq fic-highlighted-words
+          '("FIXME" "TODO" "BUG"
+            "KLUDGE" "HEBI" "AGREE" "DENY"
+            "REFER" "DEBUG" "NOW")
+          )
+    )
+  :config
+  (progn
+    (add-hook 'prog-mode-hook 'fic-mode)
+    (add-hook 'latex-mode-hook 'fic-mode)
+    (add-hook 'markdown-mode-hook 'fic-mode)
+    )
+  )
+
+(use-package zenburn-theme
+  :defer t)
+(use-package ample-theme
+  :defer t)
+(use-package dracula-theme
+  :defer t)
+
+(use-package better-defaults
+  :defer t)
+(use-package popwin
+  ;; use a separate window for buffers like *completion*,
+  ;; close them use C-g
+  :defer t
+  :config
+  (popwin-mode 1)
+  )
+
+
 ;;; packages.el ends here
