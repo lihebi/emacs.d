@@ -290,7 +290,8 @@
   ;; :disabled t
   :bind
   (
-   ("M-x" . helm-M-x))
+   ("M-x" . helm-M-x)
+   ("C-x C-f" . helm-find-files))
   )
 
 (use-package exec-path-from-shell
@@ -381,6 +382,20 @@
   :defer t
   :config
   (popwin-mode 1)
+  )
+
+(use-package evil
+  :disabled t
+  :config
+  (evil-mode t)
+  )
+
+(use-package evil-search-highlight-persist
+  ;; not working!!!
+  ;; only work with evil-mode
+  :disabled t
+  :config
+  (global-evil-search-highlight-persist t)
   )
 
 

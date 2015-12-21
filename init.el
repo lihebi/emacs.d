@@ -129,6 +129,23 @@
 
 (setq ido-decorations '("{" "}" " | " " | ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]"))
 
+;; HEBI I want to use vertical find, but I can't find a way to change the size.
+;; ;; Display ido results vertically, rather than horizontally
+;; (setq ido-decorations '("\n-> " "" "\n   " "\n   ..." "[" "]"
+;;                         " [No match]" " [Matched]" " [Not readable]"
+;;                         " [Too big]" " [Confirm]"))
+
+;; (add-hook 'ido-minibuffer-setup-hook
+;;           (defun ido-disable-line-truncation ()
+;;             (set (make-local-variable 'truncate-lines) nil)))
+
+;; (defun jf-ido-define-keys () ;; C-n/p is more intuitive in vertical layout
+;;   (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
+;;   (define-key ido-completion-map (kbd "C-p") 'ido-prev-match))
+
+;; (add-hook 'ido-setup-hook 'jf-ido-define-keys)
+
+
 (defvar man-notify-method)
 ;; in man mode, push a link will open in current buffer
 (setq man-notify-method 'pushy)
