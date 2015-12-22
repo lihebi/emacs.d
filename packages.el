@@ -100,17 +100,14 @@
 
 (use-package perspective
   :init
+  :bind
+  (("C-c s" . persp-switch))
   :config
   (progn
     (persp-mode)
     (setq projectile-switch-project-action 'projectile-dired)
     )
   )
-
-(global-set-key (kbd "s-`") (lambda()
-                              (interactive)
-                              (persp-switch nil)
-                              ))
 
 (use-package persp-projectile
   :bind
