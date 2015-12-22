@@ -369,12 +369,34 @@
     )
   )
 
+;; Themes
+
 (use-package zenburn-theme
-  :defer t)
+  :init
+  (load-theme 'zenburn t)
+  )
 (use-package ample-theme
-  :defer t)
+  :init
+  (load-theme 'ample t)
+  (load-theme 'ample-flat t)
+  (load-theme 'ample-light t)
+  )
 (use-package dracula-theme
-  :defer t)
+  :init
+  (load-theme 'dracula t)
+  )
+
+(use-package monokai-theme
+  :init
+  (load-theme 'monokai t)
+  )
+
+(use-package cyberpunk-theme
+  :init
+  (load-theme 'cyberpunk t)
+  )
+
+(enable-theme 'monokai)
 
 (use-package popwin
   ;; use a separate window for buffers like *completion*,

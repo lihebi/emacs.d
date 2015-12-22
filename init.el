@@ -27,12 +27,6 @@
 ;; Appearance
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(load-theme 'zenburn t)
-(load-theme 'ample t t)
-(load-theme 'ample-flat t t)
-(load-theme 'ample-light t t)
-(load-theme 'dracula t)
-(enable-theme 'ample)
 
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
@@ -67,7 +61,7 @@
 (setq ring-bell-function 'ignore)
 
 (setq save-place-file (concat user-emacs-directory "places"))
-(setq backup-directory-alist '(("." . ,(concat user-emacs-directory "backups"))))
+(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
