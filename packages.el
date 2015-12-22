@@ -42,6 +42,13 @@
 ;; Package list
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Window and frame
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; not sure if these wierd binding is what I want
 (use-package windmove
   :defer t
@@ -52,42 +59,9 @@
    ("<f2> <down>" . windmove-down)
    ))
 
-(use-package org
-  :defer t
-  :bind
-  (("C-c n" . org-capture)
-   ;; ("C-c o" . org-open-at-point)
-   ("C-c o" . org-open-at-point-global)
-   )
-  :init
-  (progn
-    (defvar org-startup-folded)
-    (defvar org-directory)
-    (defvar org-capture-templates)
-    (defvar org-agenda-files)
-    (setq org-startup-folded nil)
-    (setq org-directory "~/github/org")
-    ;; capture templates
-    (setq org-capture-templates
-          '(("t" "TODO" entry (file+headline (concat org-directory "/scratch.org") "Tasks")
-             "* TODO %?\n  %U")
-            ("n" "Note" entry (file (concat org-directory "/scratch.org"))
-             "* Notes on %U\n%?" :prepend t)
-            ("s" "Stack" entry (file (concat org-directory "/stack.org"))
-             "* New Stack on %U\n%?" :prepend t)
-            ))
-    (setq org-agenda-files (list org-directory))
-    )
-  :config
-  ;; what's this
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((awk . t)
-     (emacs-lisp . t)
-     (python . t)
-     (ruby . t)
-     (sh . t)))
-  )
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; productivity
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package smex
   ;; use ido in M-x
@@ -100,59 +74,6 @@
   :init
   (progn
     (smex-initialize))
-  )
-
-(use-package powerline
-  :disabled t
-  :init
-  (progn
-    (defvar sml/no-confirm-load-theme)
-    (defvar sml/theme)
-    (require 'smart-mode-line)
-    (setq sml/no-confirm-load-theme t)
-    ;; (setq sml/theme nil)
-    ;; (setq sml/theme 'dark)
-    ;; (setq sml/theme 'light)
-    ;; (setq sml/theme 'respectful)
-    (setq sml/theme 'powerline)
-    (sml/setup)
-    ;; not sure why use this hook instead of
-    ;; using the official recommanded way above
-    (add-hook 'after-init-hook #'sml/setup)
-    )
-  )
-
-(use-package smart-mode-line
-  :init
-  (progn
-    (setq sml/no-confirm-load-theme t) ; do not warn me for loading a theme
-    (setq sml/theme 'dark)
-    (sml/setup)
-    (setq sml/name-width 15)
-    (setq rm-blacklist
-          (format "^ \\(%s\\)$"
-                  (mapconcat #'identity
-                             '("FlyC.*"
-                               "Projectile.*"
-                               "hebi-keys"
-                               "PgLn"
-                               "company"
-                               "Undo-Tree"
-                               "yas"
-                               "GitGutter")
-                             "\\|")))
-    )
-  )
-(use-package smartparens
-  :diminish smartparens-mode
-  :config
-  (progn
-    (require 'smartparens-config)
-    (smartparens-global-mode 1)))
-
-(use-package markdown-mode
-  :init
-  (add-hook 'markdown-mode-hook 'turn-on-orgtbl)
   )
 
 (use-package projectile
@@ -236,35 +157,6 @@
    ("C-S-<mouse-1>" . mc/add-cursor-on-click)
    )
   )
-
-(use-package git-gutter
-  :init
-  (progn
-    (global-git-gutter-mode t)
-    (git-gutter:linum-setup)
-    )
-  :bind
-  (
-   ("C-x C-g" . git-gutter:toggle))
-  :config
-  (progn
-    (custom-set-variables
-     '(git-gutter:modified-sign "  ") ;; two space
-     '(git-gutter:added-sign "++")    ;; multiple character is OK
-     '(git-gutter:deleted-sign "--"))
-
-    ;; (custom-set-variables
-    ;;  '(git-gutter:window-width 2)
-    ;;  '(git-gutter:modified-sign "☁")
-    ;;  '(git-gutter:added-sign "☀")
-    ;;  '(git-gutter:deleted-sign "☂"))
-
-    (set-face-background 'git-gutter:modified "purple") ; background color
-    (set-face-foreground 'git-gutter:added "green") ; foreground not working ...
-    (set-face-foreground 'git-gutter:deleted "red")
-    )
-  )
-
 (use-package flycheck
   :init
   (add-hook 'after-init-hook #'global-flycheck-mode)
@@ -294,13 +186,6 @@
    ("C-x C-f" . helm-find-files))
   )
 
-(use-package exec-path-from-shell
-  ;; when start emacs from desktop env instead of shell, the PATH is aweful.
-  :if window-system
-  :config
-  (progn
-    (exec-path-from-shell-initialize)
-    (message "%s: %s" "exec-path-from-shell post config" (getenv "PATH"))))
 
 (use-package browse-kill-ring
   :defer t
@@ -331,12 +216,6 @@
 
     (guide-key-mode 1)))
 
-(use-package rainbow-delimiters
-  ;; different colors for different level of parens
-  :defer t
-  :init
-  (progn
-    (add-hook 'emacs-lisp-mode-hook #'rainbow-delimiters-mode)))
 
 (use-package regex-tool
   :defer t)
@@ -350,6 +229,62 @@
 
 (use-package ag
   :defer t
+  )
+
+
+(use-package popwin
+  ;; use a separate window for buffers like *completion*,
+  ;; close them use C-g
+  :defer t
+  :config
+  (popwin-mode 1)
+  )
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Mode
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package org
+  :defer t
+  :bind
+  (("C-c n" . org-capture)
+   ;; ("C-c o" . org-open-at-point)
+   ("C-c o" . org-open-at-point-global)
+   )
+  :init
+  (progn
+    (defvar org-startup-folded)
+    (defvar org-directory)
+    (defvar org-capture-templates)
+    (defvar org-agenda-files)
+    (setq org-startup-folded nil)
+    (setq org-directory "~/github/org")
+    ;; capture templates
+    (setq org-capture-templates
+          '(("t" "TODO" entry (file+headline (concat org-directory "/scratch.org") "Tasks")
+             "* TODO %?\n  %U")
+            ("n" "Note" entry (file (concat org-directory "/scratch.org"))
+             "* Notes on %U\n%?" :prepend t)
+            ("s" "Stack" entry (file (concat org-directory "/stack.org"))
+             "* New Stack on %U\n%?" :prepend t)
+            ))
+    (setq org-agenda-files (list org-directory))
+    )
+  :config
+  ;; what's this
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((awk . t)
+     (emacs-lisp . t)
+     (python . t)
+     (ruby . t)
+     (sh . t)))
+  )
+
+(use-package markdown-mode
+  :init
+  (add-hook 'markdown-mode-hook 'turn-on-orgtbl)
   )
 
 (use-package fic-mode
@@ -369,7 +304,116 @@
     )
   )
 
+(use-package polymode
+  ;; it works, but not so stable ..
+  :disabled t
+  :config
+  (require 'poly-markdown)
+  (add-to-list 'auto-mode-alist '("\\.md" . poly-markdown-mode))
+  )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Appearance
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package powerline
+  :disabled t
+  :init
+  (progn
+    (defvar sml/no-confirm-load-theme)
+    (defvar sml/theme)
+    (require 'smart-mode-line)
+    (setq sml/no-confirm-load-theme t)
+    ;; (setq sml/theme nil)
+    ;; (setq sml/theme 'dark)
+    ;; (setq sml/theme 'light)
+    ;; (setq sml/theme 'respectful)
+    (setq sml/theme 'powerline)
+    (sml/setup)
+    ;; not sure why use this hook instead of
+    ;; using the official recommanded way above
+    (add-hook 'after-init-hook #'sml/setup)
+    )
+  )
+
+(use-package smart-mode-line
+  :init
+  (progn
+    (setq sml/no-confirm-load-theme t) ; do not warn me for loading a theme
+    (setq sml/theme 'dark)
+    (sml/setup)
+    (setq sml/name-width 15)
+    (setq rm-blacklist
+          (format "^ \\(%s\\)$"
+                  (mapconcat #'identity
+                             '("FlyC.*"
+                               "Projectile.*"
+                               "hebi-keys"
+                               "PgLn"
+                               "company"
+                               "Undo-Tree"
+                               "yas"
+                               "GitGutter")
+                             "\\|")))
+    )
+  )
+(use-package smartparens
+  :diminish smartparens-mode
+  :config
+  (progn
+    (require 'smartparens-config)
+    (smartparens-global-mode 1)))
+
+
+
+(use-package git-gutter
+  :init
+  (progn
+    (global-git-gutter-mode t)
+    (git-gutter:linum-setup)
+    )
+  :bind
+  (
+   ("C-x C-g" . git-gutter:toggle))
+  :config
+  (progn
+    (custom-set-variables
+     '(git-gutter:modified-sign "  ") ;; two space
+     '(git-gutter:added-sign "++")    ;; multiple character is OK
+     '(git-gutter:deleted-sign "--"))
+
+    ;; (custom-set-variables
+    ;;  '(git-gutter:window-width 2)
+    ;;  '(git-gutter:modified-sign "☁")
+    ;;  '(git-gutter:added-sign "☀")
+    ;;  '(git-gutter:deleted-sign "☂"))
+
+    (set-face-background 'git-gutter:modified "purple") ; background color
+    (set-face-foreground 'git-gutter:added "green") ; foreground not working ...
+    (set-face-foreground 'git-gutter:deleted "red")
+    )
+  )
+
+
+(use-package exec-path-from-shell
+  ;; when start emacs from desktop env instead of shell, the PATH is aweful.
+  :if window-system
+  :config
+  (progn
+    (exec-path-from-shell-initialize)
+    (message "%s: %s" "exec-path-from-shell post config" (getenv "PATH"))))
+
+(use-package rainbow-delimiters
+  ;; different colors for different level of parens
+  :defer t
+  :init
+  (progn
+    (add-hook 'emacs-lisp-mode-hook #'rainbow-delimiters-mode)))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Themes
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package zenburn-theme
   :init
@@ -397,13 +441,5 @@
   )
 
 (enable-theme 'monokai)
-
-(use-package popwin
-  ;; use a separate window for buffers like *completion*,
-  ;; close them use C-g
-  :defer t
-  :config
-  (popwin-mode 1)
-  )
 
 ;;; packages.el ends here
