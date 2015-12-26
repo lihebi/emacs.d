@@ -34,8 +34,8 @@
   (scroll-bar-mode -1))
 
 ;; (set-frame-parameter (selected-frame) 'alpha '(<active> [<inactive>]))
-(set-frame-parameter (selected-frame) 'alpha '(90 70))
-(add-to-list 'default-frame-alist '(alpha 85 50))
+(set-frame-parameter (selected-frame) 'alpha '(90 90))
+(add-to-list 'default-frame-alist '(alpha 90 90))
 
 (defun toggle-transparency ()
   (interactive)
@@ -43,7 +43,7 @@
        (cadr (frame-parameter nil 'alpha))
        100)
       (set-frame-parameter nil 'alpha '(100 100))
-    (set-frame-parameter nil 'alpha '(85 50))))
+    (set-frame-parameter nil 'alpha '(90 90))))
 (global-set-key (kbd "C-c t") 'toggle-transparency)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -75,6 +75,18 @@
     t))
 (add-hook 'kill-buffer-query-functions 'dont-kill-but-bury-scratch)
 
+(defun unpop-to-mark-command ()
+  "Unpop off mark ring. Does nothing if mark ring is empty."
+  (interactive)
+  (when mark-ring
+    (setq mark-ring (cons (copy-marker (mark-marker)) mark-ring))
+    (set-marker (mark-marker) (car (last mark-ring)) (current-buffer))
+    (when (null (mark t)) (ding))
+    (setq mark-ring (nbutlast mark-ring))
+    (goto-char (marker-position (car (last mark-ring))))))
+
+(global-set-key (kbd "C-c C-SPC") 'unpop-to-mark-command)
+
 
 (provide 'hebi-defun)
 ;;; hebi-defun.el ends here

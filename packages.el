@@ -237,6 +237,34 @@
   (popwin-mode 1)
   )
 
+(use-package key-chord
+  ;; a "key chord" is two keys pressed simultaneously,
+  ;; or a single key quickly pressed twice.
+  :disabled t
+  )
+
+(use-package iy-go-to-char
+  ;; similar to vim's f and t
+  ;; don't really need it for now, because I can use just isearch
+  :disabled t
+  )
+
+(use-package ace-jump-mode
+  ;; jump to a char, can select by 'abcd..'
+  :disabled t
+  )
+
+
+;; Also, sgml-mode provide many utilities to edit html, such as closing tags
+(use-package emmet-mode
+  ;; generate html structures by '#myid>ul#ulid>li.clsli*4'
+  :disabled t
+  )
+
+(use-package restclient
+  ;; make http requests!
+  :disabled t
+  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Mode
@@ -307,6 +335,10 @@
   :config
   (require 'poly-markdown)
   (add-to-list 'auto-mode-alist '("\\.md" . poly-markdown-mode))
+  )
+
+(use-package go-mode
+  :defer t
   )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -438,5 +470,12 @@
   )
 
 (enable-theme 'monokai)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Other
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; check out swank-js when I want to develop web
 
 ;;; packages.el ends here
