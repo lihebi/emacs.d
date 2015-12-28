@@ -176,7 +176,7 @@
   )
 
 (use-package helm
-  ;; :disabled t
+  :disabled t
   :bind
   (
    ("M-x" . helm-M-x)
@@ -345,26 +345,6 @@
 ;; Appearance
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package powerline
-  :disabled t
-  :init
-  (progn
-    (defvar sml/no-confirm-load-theme)
-    (defvar sml/theme)
-    (require 'smart-mode-line)
-    (setq sml/no-confirm-load-theme t)
-    ;; (setq sml/theme nil)
-    ;; (setq sml/theme 'dark)
-    ;; (setq sml/theme 'light)
-    ;; (setq sml/theme 'respectful)
-    (setq sml/theme 'powerline)
-    (sml/setup)
-    ;; not sure why use this hook instead of
-    ;; using the official recommanded way above
-    (add-hook 'after-init-hook #'sml/setup)
-    )
-  )
-
 (use-package smart-mode-line
   :init
   (progn
@@ -477,5 +457,29 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; check out swank-js when I want to develop web
+
+(use-package elfeed
+  :disabled t
+  :config
+  (setq elfeed-feeds
+        '("http://nullprogram.com/feed/"
+          "http://www.terminally-incoherent.com/blog/feed/"
+          ("https://news.ycombinator.com/rss" hackernews)))
+  (progn
+    (defface important-elfeed-entry
+      '((t :foreground "#f77"))
+      "Marks an important Elfeed entry.")
+    (push '(important important-elfeed-entry)
+          elfeed-search-face-alist)
+    (push '(hackernews hebi-red-face)
+          elfeed-search-face-alist)
+    (push '(unread elfeed-search-unread-title-face)
+          elfeed-search-face-alist)
+    )
+  ;; (use-package elfeed-goodies
+  ;;   :config
+  ;;   (elfeed-goodies/setup)
+  ;;   )
+  )
 
 ;;; packages.el ends here

@@ -12,11 +12,11 @@
 ;; external files
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(load (emacs-d "hebi-faces")) ; must be load before smart-scholar
 (load (emacs-d "packages"))
 (load (emacs-d "bindings"))
 
 (load (emacs-d "hebi-defun"))
-(load (emacs-d "hebi-faces")) ; must be load before smart-scholar
 (load (emacs-d "smart-scholar"))
 
 (load (emacs-d "env"))
@@ -120,7 +120,5 @@
 (setq user-full-name "Hebi Li"
       user-mail-address "lihebi.com@gmail.com")
 
-(eshell)
-(set-face-foreground 'eshell-prompt "turquoise") ; only the prompt
 
 ;;; init.el ends here
