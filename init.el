@@ -108,6 +108,12 @@
 ;; match any item, any item containing the entered characters
 ;; in the given sequence will match.
 (setq ido-enable-flex-matching t)
+;; C-. and C-, is not correctly sent to emacs on terminal on Mac
+(defun ido-define-keys ()
+  (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
+  (define-key ido-completion-map (kbd "C-p") 'ido-prev-match))
+(add-hook 'ido-setup-hook 'ido-define-keys)
+
 (autoload 'zap-up-to-char "misc"
   "Kill up to, but not including ARGth occurrence of CHAR." t)
 
