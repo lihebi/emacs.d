@@ -28,6 +28,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
+(when (not window-system)
+  (menu-bar-mode -1)
+  )
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
 (when (fboundp 'scroll-bar-mode)
@@ -92,7 +95,7 @@
 (setq man-notify-method 'pushy)
 
 ;; will still keep highlight, until you do another search (C-s)
-(setq lazy-highlight-cleanup nil)
+;; (setq lazy-highlight-cleanup nil)
 
 ;; when doing search, C-s then C-w mutiple times can search word at point
 
@@ -120,5 +123,25 @@
 (setq user-full-name "Hebi Li"
       user-mail-address "lihebi.com@gmail.com")
 
+(set-register ?s '(file . "~/github/note/stack.org"))
+
+(add-to-list 'auto-mode-alist '("\\.cc\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+
 
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(flycheck-clang-args (quote ("--std=c++11")))
+ '(git-gutter:added-sign "++")
+ '(git-gutter:deleted-sign "--")
+ '(git-gutter:modified-sign "  "))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
