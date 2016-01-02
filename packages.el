@@ -482,4 +482,9 @@
   ;;   )
   )
 
+(use-package string-inflection
+  :bind
+  ("C-c m" . string-inflection-cycle)
+  )
+
 ;;; packages.el ends here
