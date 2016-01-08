@@ -42,6 +42,8 @@
 ;; switch between source and header file
 (global-set-key (kbd "C-x C-o") 'ff-find-other-file)
 
+(global-set-key (kbd "C-c r") 'replace-string)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Mode specific key bindings

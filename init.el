@@ -12,6 +12,8 @@
 ;; external files
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(add-to-list 'load-path "~/.emacs.d/packages/") ; packages downloaded from internet. Maybe outdated. No such package in elpa.
+
 (load (emacs-d "hebi-faces")) ; must be load before smart-scholar
 (load (emacs-d "packages"))
 (load (emacs-d "bindings"))
@@ -141,10 +143,20 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ecb-options-version "2.40")
  '(flycheck-clang-args (quote ("--std=c++11")))
  '(git-gutter:added-sign "++")
  '(git-gutter:deleted-sign "--")
- '(git-gutter:modified-sign "  "))
+ '(git-gutter:modified-sign "  ")
+ '(org-babel-load-languages
+   (quote
+    ((awk . t)
+     (emacs-lisp . t)
+     (python . t)
+     (ruby . t)
+     (sh . t)
+     (plantuml . t)
+     (C . t)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

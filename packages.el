@@ -157,6 +157,10 @@
 (use-package flycheck
   :init
   (add-hook 'after-init-hook #'global-flycheck-mode)
+  :bind
+  (
+   ("C-c c" . flycheck-buffer)
+   )
   )
 
 (use-package flyspell
@@ -297,6 +301,10 @@
     (setq org-agenda-files (list org-directory))
     )
   :config
+  ;; highlight
+  (setq org-src-fontify-natively t)
+  ;; my srcml converter
+  (require 'ob-srcml)
   ;; what's this
   (org-babel-do-load-languages
    'org-babel-load-languages
@@ -304,7 +312,33 @@
      (emacs-lisp . t)
      (python . t)
      (ruby . t)
-     (sh . t)))
+     (sh . t)
+     ;; other babel languages
+     (plantuml . t)
+     ;; this should be capital C, the same as in #+begin_src C
+     (C . t)
+     (srcml . t)
+     )
+   )
+  ;; to use plantuml in org-mode:
+  
+  ;; #+begin_src plantuml :file tryout.png
+  ;;   Alice -> Bob: synchronous call
+  ;;   Alice ->> Bob: asynchronous call
+  ;; #+end_src
+
+  ;; #+results:
+  ;; [[file:tryout.png]]
+
+  ;; org mode have a babel support for plantuml..., built-in!
+  ;; just go to the code, than press C-c C-c to evaluate it. The #+results section is gnerated by org-mode.
+  ;; not sure if I can use plantuml command itself instead of setting the following jar path.
+
+  ;; To load the image in to emacs:
+  ;; org-toggle-inline-images
+  ;; C-c C-x C-v
+  (setq org-plantuml-jar-path
+        (expand-file-name "~/bin/plantuml.jar"))
   )
 
 (use-package markdown-mode
@@ -318,7 +352,7 @@
     (setq fic-highlighted-words
           '("FIXME" "TODO" "BUG"
             "KLUDGE" "HEBI" "AGREE" "DENY"
-            "REFER" "DEBUG" "NOW")
+            "REFER" "DEBUG" "NOW" "CAUTION")
           )
     )
   :config
@@ -344,6 +378,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Appearance
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package dired+
+  :disabled t
+  )
 
 (use-package smart-mode-line
   :init
@@ -483,8 +521,34 @@
   )
 
 (use-package string-inflection
+  ;; cycle through CamelCase and under_line
   :bind
   ("C-c m" . string-inflection-cycle)
+  )
+
+(use-package ecb
+  :defer t
+  )
+
+(use-package etags-select
+  :defer t
+  )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; web
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package simple-httpd)
+(use-package js2-mode)
+
+(use-package skewer-mode
+  ;; interactive web development
+  ;; depend on simple-httpd and js2-mode
+  ;; use run-skewer to attach browser to emacs
+  :config
+  (add-hook 'js2-mode-hook 'skewer-mode)
+  (add-hook 'css-mode-hook 'skewer-css-mode)
+  (add-hook 'html-mode-hook 'skewer-html-mode)
   )
 
 ;;; packages.el ends here
