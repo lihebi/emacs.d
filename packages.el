@@ -139,7 +139,40 @@
     ;; (add-to-list 'yas-snippet-dirs
     ;;       '("~/.emacs.d/snippets"                 ;; personal snippets
     ;;         ))
-    (yas-global-mode 1)))
+    (yas-global-mode 1))
+  :config
+  ;;; use popup menu for yas-choose-value
+  ;; it seems to be installed by default. But it is not marked built-in
+  (use-package popup
+    :config
+    ;; (require 'popup)
+    ;; add some shotcuts in popup menu mode
+    (define-key popup-menu-keymap (kbd "M-n") 'popup-next)
+    (global-set-key (kbd "M-n") 'popup-next)
+    (define-key popup-menu-keymap (kbd "TAB") 'popup-next)
+    (define-key popup-menu-keymap (kbd "<tab>") 'popup-next)
+    (define-key popup-menu-keymap (kbd "<backtab>") 'popup-previous)
+    (define-key popup-menu-keymap (kbd "M-p") 'popup-previous)
+
+    (defun yas-popup-isearch-prompt (prompt choices &optional display-fn)
+      (when (featurep 'popup)
+        (popup-menu*
+         (mapcar
+          (lambda (choice)
+            (popup-make-item
+             (or (and display-fn (funcall display-fn choice))
+                 choice)
+             :value choice))
+          choices)
+         :prompt prompt
+         ;; start isearch mode immediately
+         :isearch t
+         )))
+
+    (setq yas-prompt-functions '(yas-popup-isearch-prompt yas-ido-prompt yas-no-prompt))
+    )
+
+    )
 
 ;; (setq yas-snippet-dirs (append yas-snippet-dirs
 ;; 			       '("~/Downloads/interesting-snippets")))
@@ -270,9 +303,58 @@
   :disabled t
   )
 
+(use-package dired-k
+  ;; k (https://github.com/rimraf/k) is a ls alternative to show git status
+  ;; dired-k is run in teh hook of dired, or as revert-buffer, so that when dired, it will load dired-k to show some fancy staff
+  :config
+  ;; You can use dired-k alternative to revert-buffer
+  (define-key dired-mode-map (kbd "g") 'dired-k)
+  ;; always execute dired-k when dired buffer is opened
+  (add-hook 'dired-initial-position-hook 'dired-k)
+  ;; (add-hook 'dired-after-readin-hook #'dired-k-no-revert)
+  )
+
+(use-package dash-at-point
+  ;; dash documentation browser
+  ;; this just take the string at point, and open it in Dash.app.
+  ;; No use at all
+  :disabled t
+  )
+
+(use-package helm-dash
+  ;; look up dash too
+  :config
+  ;; buffer local docsets
+  (defun c++-doc ()
+    (interactive)
+    (setq-local helm-dash-docsets '("C" "C++"))
+    )
+  (add-hook 'c++-mode-hook 'c++-doc)
+  (defun R-doc ()
+    (interactive)
+    (setq-local helm-dash-docsets '("R"))
+    )
+  (add-hook 'R-mode-hook 'R-doc)
+  ;; (setq helm-dash-browser-func 'eww)
+  )
+
+(use-package w3m
+  ;; emacs-w3m interface
+  ;; text based browser is not seemed to work very good.
+  ;; in particular, this one is not able to even "click link", without kill the "current process"
+  :disabled t
+  )
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package ess
+  ;; R
+  ;; but cannot be defered, or the command is not found.
+  ;; to use: M-x R
+  ;; R-mode
+  )
 
 (use-package org
   :defer t
@@ -305,14 +387,13 @@
   (setq org-src-fontify-natively t)
   ;; my srcml converter
   (require 'ob-srcml)
-  ;; what's this
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((awk . t)
      (emacs-lisp . t)
      (python . t)
      (ruby . t)
-     (sh . t)
+     ;; (shell . t)
      ;; other babel languages
      (plantuml . t)
      ;; this should be capital C, the same as in #+begin_src C
@@ -339,6 +420,57 @@
   ;; C-c C-x C-v
   (setq org-plantuml-jar-path
         (expand-file-name "~/bin/plantuml.jar"))
+  ;; latex templates
+  (require 'ox-latex)
+  ;; (setq org-export-latex-listings t)
+  (add-to-list 'org-latex-classes
+               '("fse"
+                 "\\documentclass{sig-alternate-05-2015}"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; org to latex
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; from 8.3, it TOC becomes a top-level option
+  ;; #+TOC: headlines 2
+  ;; #+TOC: tables
+  ;; #+TOC: listings
+  ;; to have correct bibtex citation, we need to remove the toc completely,
+  ;; because it will insert a strange \tableofcontent, which is not recognized by latex
+  ;; #+OPTIONS: toc:nil
+
+  ;; the org mode comes with emacs 24.5 is 8.2, but 8.3 introduce some new features.
+  ;; also, some community contrib package is not shipped with emacs, which need to be installed by org-plus-contrib
+  ;; to make it compitible, I also want to replace the default org with the one in melpa.
+  ;; there're two source of org I can install from: gnu and org.
+  ;; the org version, for some reason, will not compile for #:TITLE or #:AUTHOR.
+  ;; but the gnu version works just fine
+  ;; there's another method to install the most recent version of org: homebrew.
+  ;; I cannot manage the version of it from emacs, so this is just a backup plan, but it works too.
+
+  ;; this is needed to have #+BIBLIOGRAPHY: buffer-overflow plain works.
+  ;; insert it in the end of the page can put the reference at the end.
+  ;; it will do something else like change [[cite:xxx]] into \cite{xxx}
+
+  (require 'ox-bibtex)
+  ;; org-latex-pdf-process should also be customized, or it can not parse bibtex correctly
+  ;; the following works, but it's slow
+  ;; (setq org-latex-pdf-process
+  ;;       (quote ("texi2dvi --pdf --clean --verbose --batch %f"
+  ;;               "bibtex %b"
+  ;;               "texi2dvi --pdf --clean --verbose --batch %f"
+  ;;               "texi2dvi --pdf --clean --verbose --batch %f")))
+  ;; (setq org-latex-pdf-process
+  ;;       (list "latexmk -pdflatex='lualatex -shell-escape -interaction nonstopmode' -pdf -f  %f"))
+  ;; (setq org-latex-pdf-process (list "latexmk -pdf %f"))
+  ;; (setq org-latex-to-pdf-process 
+  ;;       '("pdflatex %f" "bibtex %b" "pdflatex %f" "pdflatex %f"))
+  ;; (setq org-latex-pdf-process (quote ("texi2dvi -p -b -V %f")))
+  ;; I add this one on my own based on my experience, and it seems to work well
+  (setq org-latex-pdf-process (list "latexmk -cd -quiet -pdf -shell-escape %f"))
   )
 
 (use-package markdown-mode

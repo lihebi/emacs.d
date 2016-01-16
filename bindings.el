@@ -49,7 +49,7 @@
 ;; Mode specific key bindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(eval-after-load 'dired
-  '(define-key dired-mode-map (kbd "C-u") 'dired-up-directory))
+;; (eval-after-load 'dired
+;;   '(define-key dired-mode-map (kbd "C-u") 'dired-up-directory))
 
 ;;; bindings.el ends here
