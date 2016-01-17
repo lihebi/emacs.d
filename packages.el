@@ -288,7 +288,12 @@
 
 (use-package ace-jump-mode
   ;; jump to a char, can select by 'abcd..'
-  :disabled t
+  ;; :disabled t
+  :bind
+  (
+   ("C-c SPC" . ace-jump-mode)
+   ("C-x SPC" . ace-jump-mode-pop-mark)
+   )
   )
 
 
