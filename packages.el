@@ -399,7 +399,7 @@
      (emacs-lisp . t)
      (python . t)
      (ruby . t)
-     ;; (shell . t)
+     (shell . t)
      ;; other babel languages
      (plantuml . t)
      ;; this should be capital C, the same as in #+begin_src C
