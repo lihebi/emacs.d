@@ -388,6 +388,7 @@
     (setq org-agenda-files (list org-directory))
     )
   :config
+  (use-package org-plus-contrib)
   ;; highlight
   (setq org-src-fontify-natively t)
   ;; my srcml converter
