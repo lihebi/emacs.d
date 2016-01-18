@@ -112,7 +112,7 @@ This function is called by `org-babel-execute-src-block'"
          ;; (full-body (org-babel-expand-body:srcml
          ;;             body params processed-params))
          (in-file (org-babel-temp-file "srcml-"))
-         (cmd (concat "src2srcml -lC -f empty --no-namespace-decl --no-xml-declaration "
+         (cmd (concat "srcml -lC -f empty --no-namespace-decl --no-xml-declaration "
                       (org-babel-process-file-name in-file)
                       " | tidy -qi -xml"
                       ;; " | xmllint --format -"
