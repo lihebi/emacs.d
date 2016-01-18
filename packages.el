@@ -592,7 +592,9 @@
   :defer t
   :init
   (progn
-    (add-hook 'emacs-lisp-mode-hook #'rainbow-delimiters-mode)))
+    (add-hook 'emacs-lisp-mode-hook #'rainbow-delimiters-mode)
+    (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
+    ))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -687,5 +689,15 @@
   (add-hook 'css-mode-hook 'skewer-css-mode)
   (add-hook 'html-mode-hook 'skewer-html-mode)
   )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; For piano overtone
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package clojure-mode)
+(use-package cider)
+;; for highlight flashing when evaluating
+(use-package eval-sexp-fu)
+(use-package cider-eval-sexp-fu)
 
 ;;; packages.el ends here
