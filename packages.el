@@ -695,10 +695,18 @@
 ;; For piano overtone
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package clojure-mode)
-(use-package cider)
+(use-package clojure-mode
+  :defer t
+  )
+(use-package cider
+  :defer t
+  )
 ;; for highlight flashing when evaluating
-(use-package eval-sexp-fu)
-(use-package cider-eval-sexp-fu)
+(use-package eval-sexp-fu
+  :defer t
+  )
+(use-package cider-eval-sexp-fu
+  :defer t
+  )
 
 ;;; packages.el ends here
