@@ -82,7 +82,8 @@
     (projectile-global-mode)
     (setq projectile-enable-caching t) ; enable catch
     )
-  
+  :config
+  (setq projectile-switch-project-action 'projectile-dired)
   )
 
 (use-package neotree
