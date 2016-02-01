@@ -111,8 +111,25 @@ This function is called by `org-babel-execute-src-block'"
          ;; ;; expand the body with `org-babel-expand-body:srcml'
          ;; (full-body (org-babel-expand-body:srcml
          ;;             body params processed-params))
+
+         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+         ;; doc for ob-srcml
+         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+         ;; how to write a ob-xxx.el file?
+         ;; search org-mode babel, you will get a link: http://orgmode.org/worg/org-contrib/babel/
+         ;; In this link, there's a "languages" link. http://orgmode.org/worg/org-contrib/babel/languages.html
+         ;; Under "Develop support for new languages" section, there's link to ob-template.el: http://orgmode.org/w/worg.git/blob/HEAD:/org-contrib/babel/ob-template.el
+         ;; follow instruction to modify it.
+
+         ;; some good example to look at: ob-plantuml.el, ob-C.el
+
+         ;; usage of ob-srcml
+         ;; #+BEGIN_SRC srcml :args --position
+         
          (in-file (org-babel-temp-file "srcml-"))
-         (cmd (concat "srcml -lC -f empty --no-namespace-decl --no-xml-declaration "
+         (args (cdr (assoc :args params)))
+         (cmd (concat "srcml -lC -f empty --no-namespace-decl --no-xml-declaration " args " "
                       (org-babel-process-file-name in-file)
                       " | tidy -qi -xml"
                       ;; " | xmllint --format -"
