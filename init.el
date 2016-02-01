@@ -145,6 +145,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ecb-options-version "2.40")
+ '(ecb-use-speedbar-instead-native-tree-buffer (quote dir))
+ '(ecb-windows-width 0.2)
  '(flycheck-clang-args (quote ("--std=c++11")))
  '(git-gutter:added-sign "++")
  '(git-gutter:deleted-sign "--")
