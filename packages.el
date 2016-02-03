@@ -362,6 +362,10 @@
   ;; R-mode
   )
 
+(use-package htmlize
+  ;; used for fontify code in exporting of org
+  :defer t
+  )
 (use-package org
   :defer t
   :bind
@@ -438,6 +442,18 @@
                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
                  ("\\paragraph{%s}" . "\\paragraph*{%s}")
                  ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; pdf code listing options
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; this will add color to pdf output from latex
+  ;; needs to install Pygments
+  ;; (require 'ox-latex)
+  (add-to-list 'org-latex-packages-alist '("newfloat" "minted"))
+  (setq org-latex-listings 'minted)
+
+
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; org to latex
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -478,6 +494,53 @@
   ;; (setq org-latex-pdf-process (quote ("texi2dvi -p -b -V %f")))
   ;; I add this one on my own based on my experience, and it seems to work well
   (setq org-latex-pdf-process (list "latexmk -cd -quiet -pdf -shell-escape %f"))
+
+
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; publishing blog
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+  ;; (setq org-publish-project-alist
+  ;;       '(
+  ;;         ("blog-org"
+  ;;          :base-directory "~/github/blog/org/"
+  ;;          :base-extension "org"
+  ;;          :publishing-directory "~/github/blog/jekyll/"
+  ;;          :recursive t
+  ;;          :publishing-function org-html-publish-to-html
+  ;;          :headline-levels 4
+  ;;          :html-extension "html"
+  ;;          :body-only t
+  ;;          )
+  ;;         ("static-assets"
+  ;;          :base-directory "~/github/blog/org/"
+  ;;          :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf\\|php"
+  ;;          :publishing-directory "~/github/blog/"
+  ;;          :recursive t
+  ;;          :publishing-function org-publish-attachment
+  ;;          )
+  ;;         ("blog"
+  ;;          :components ("blog-org" "static-assets")
+  ;;          )
+  ;;         )
+  ;;       )
+
+  (setq org-publish-project-alist
+        '(
+          ("wiki"
+           :base-directory "~/github/wiki-new/"
+           :base-extension "org"
+           :publishing-directory "~/github/wiki-new/dist/"
+           :recursive t
+           :publishing-function org-html-publish-to-html
+           :headline-levels 4
+           :html-extension "html"
+           )
+          )
+        )
+
+
+
   )
 
 (use-package markdown-mode
@@ -486,6 +549,16 @@
   )
 
 (use-package fic-mode
+  ;; this is buggy even if I disabled it...
+  ;; see here file:///Users/hebi/github/wiki-new/js.html
+  ;; basically when it is enabled, the exporting from org to html with htmlize to fontify the code will add three strange characters in the end of each line.
+  ;; it turns out that the fic-mode is the culprit
+  ;; to fix this, in ox-html.el file, add
+  ;; (when (require 'fill-column-indicator nil 'noerror)
+  ;;   (fci-mode -1))
+  ;; after line (funcall lang-mode) in defun org-html-fontify-code
+  ;; that should be around line 2048 ..
+  ;; remove the ox-html.elc to make it in effect!
   :init
   (progn
     (setq fic-highlighted-words
@@ -690,6 +763,10 @@
   (add-hook 'js2-mode-hook 'skewer-mode)
   (add-hook 'css-mode-hook 'skewer-css-mode)
   (add-hook 'html-mode-hook 'skewer-html-mode)
+  )
+
+(use-package scss-mode
+  :defer t
   )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

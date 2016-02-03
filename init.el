@@ -144,8 +144,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("8577da1641ed4bdf255341ca92e3d0e49c9f4d574458f09ce78159690442cade" "12b4427ae6e0eef8b870b450e59e75122d5080016a9061c9696959e50d578057" default)))
  '(ecb-options-version "2.40")
- '(ecb-use-speedbar-instead-native-tree-buffer (quote dir))
  '(ecb-windows-width 0.2)
  '(flycheck-clang-args (quote ("--std=c++11")))
  '(git-gutter:added-sign "++")
