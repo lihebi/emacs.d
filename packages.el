@@ -544,6 +544,10 @@
            )
           )
         )
+  ;; default is 'inline-css
+  ;; which will output the color inside html tags
+  ;; using 'css will only insert the class, and you need to provide you own css file.
+  ;; (setq org-html-htmlize-output-type 'css)
 
 
 

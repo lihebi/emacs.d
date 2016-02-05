@@ -1,0 +1,19 @@
+# Patches
+
+* fic-mode
+patch ~ox-html.el~ file in ~elpa/org-contrib~
+
+this is buggy even if I disabled it...
+see here file:///Users/hebi/github/wiki-new/js.html
+basically when it is enabled, the exporting from org to html with htmlize to fontify the code will add three strange characters in the end of each line.
+it turns out that the fic-mode is the culprit
+to fix this, in ox-html.el file, add
+
+#+begin_src elisp
+(when (require 'fill-column-indicator nil 'noerror)
+  (fci-mode -1))
+#+end_src
+
+after line ~(funcall lang-mode)~ in defun org-html-fontify-code
+that should be around line 2048 ..
+remove the ox-html.elc to make it in effect!

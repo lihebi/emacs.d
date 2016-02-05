@@ -1,0 +1,11 @@
+--- ox-html.el	2016-02-05 13:05:14.000000000 -0600
++++ ox-html.el.new	2016-02-05 13:00:47.000000000 -0600
+@@ -2045,6 +2045,8 @@
+ 		  (with-temp-buffer
+ 		    ;; Switch to language-specific mode.
+ 		    (funcall lang-mode)
++                    (when (require 'fill-column-indicator nil 'noerror)
++                      (fci-mode -1))
+ 		    (insert code)
+ 		    ;; Fontify buffer.
+ 		    (org-font-lock-ensure)
