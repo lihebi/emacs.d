@@ -362,6 +362,10 @@
   ;; R-mode
   )
 
+(use-package cmake-mode
+  :defer t
+  )
+
 (use-package htmlize
   ;; used for fontify code in exporting of org
   :defer t
@@ -450,8 +454,8 @@
   ;; this will add color to pdf output from latex
   ;; needs to install Pygments
   ;; (require 'ox-latex)
-  (add-to-list 'org-latex-packages-alist '("newfloat" "minted"))
-  (setq org-latex-listings 'minted)
+  ;; (add-to-list 'org-latex-packages-alist '("newfloat" "minted"))
+  ;; (setq org-latex-listings 'minted)
 
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -528,13 +532,15 @@
   (setq org-publish-project-alist
         '(
           ("wiki"
-           :base-directory "~/github/wiki-new/"
+           :base-directory "~/github/wiki/"
            :base-extension "org"
-           :publishing-directory "~/github/wiki-new/dist/"
+           :publishing-directory "~/github/wiki-dist/"
            :recursive t
            :publishing-function org-html-publish-to-html
            :headline-levels 4
            :html-extension "html"
+           ;; experimental
+           :auto-sitemap t
            )
           )
         )
