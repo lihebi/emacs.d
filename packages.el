@@ -711,6 +711,22 @@
   (load-theme 'cyberpunk t)
   )
 
+(use-package solarized-theme
+  :init
+  (load-theme 'solarized-dark t)
+  (load-theme 'solarized-light t)
+  )
+
+;; this seems to be a collection
+;; M-x color-theme-sanityinc-tomorrow-day
+;; M-x color-theme-sanityinc-tomorrow-night
+;; M-x color-theme-sanityinc-tomorrow-blue
+;; M-x color-theme-sanityinc-tomorrow-bright
+;; M-x color-theme-sanityinc-tomorrow-eighties
+;; in newer emacs
+;; M-x customize-themes
+(use-package color-theme-sanityinc-tomorrow)
+
 (enable-theme 'monokai)
 
 
