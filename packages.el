@@ -542,6 +542,17 @@
            ;; experimental
            :auto-sitemap t
            )
+          ("note"
+           :base-directory "~/github/note/"
+           :base-extension "org"
+           :publishing-directory "~/github/note-dist/"
+           :recursive t
+           :publishing-function org-html-publish-to-html
+           :headline-levels 4
+           :html-extension "html"
+           ;; experimental
+           :auto-sitemap t
+           )
           )
         )
   ;; default is 'inline-css
@@ -712,6 +723,8 @@
   )
 
 (use-package solarized-theme
+  ;; disabled because it will give a very bright foreground selection in magit buffer.
+  :disabled t
   :init
   (load-theme 'solarized-dark t)
   (load-theme 'solarized-light t)
