@@ -136,6 +136,18 @@
 (add-to-list 'auto-mode-alist '("\\.cc\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
+;; font
+;; see:
+;; http://zhuoqiang.me/torture-emacs.html#id1
+;; http://baohaojun.github.io/perfect-emacs-chinese-font.html
+;; https://github.com/tumashu/chinese-fonts-setup
+
+(set-face-attribute 'default nil :font "Source Code Pro")
+(set-fontset-font (frame-parameter nil 'font)
+                  'han (font-spec :family "司马彦简行修正版"
+                                  ))
+
+
 
 
 ;;; init.el ends here
@@ -162,9 +174,4 @@
      (sh . t)
      (plantuml . t)
      (C . t)))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
