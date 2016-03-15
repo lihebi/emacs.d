@@ -514,15 +514,13 @@
   (load-theme 'ample-light t)
   )
 (use-package dracula-theme
-  :disabled t
   :init
-  (load-theme 'dracula t)
+  (load-theme 'dracula t t)
   )
 
 (use-package monokai-theme
-  :disabled t
   :init
-  (load-theme 'monokai t)
+  (load-theme 'monokai t t)
   )
 
 (use-package cyberpunk-theme

@@ -30,9 +30,14 @@
 ;; Appearance
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(load-theme 'leuven)
+;; (load-theme 'leuven t t)
 ;; (enable-theme 'monokai)
-(enable-theme 'leuven)
+;; (enable-theme 'leuven)
+
+(if (not window-system)
+    (enable-theme 'monokai)
+  (load-theme 'leuven t t)
+  )
 
 (when (not window-system)
   (menu-bar-mode -1)
