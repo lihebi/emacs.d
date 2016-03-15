@@ -151,10 +151,12 @@
 ;; http://baohaojun.github.io/perfect-emacs-chinese-font.html
 ;; https://github.com/tumashu/chinese-fonts-setup
 
-(set-face-attribute 'default nil :font "Source Code Pro")
-(set-fontset-font (frame-parameter nil 'font)
-                  'han (font-spec :family "司马彦简行修正版"
-                                  ))
+(when window-system
+  (set-face-attribute 'default nil :font "Source Code Pro")
+  (set-fontset-font (frame-parameter nil 'font)
+                    'han (font-spec :family "司马彦简行修正版"
+                                    ))
+  )
 
 
 
