@@ -17,3 +17,10 @@ to fix this, in ox-html.el file, add
 after line ~(funcall lang-mode)~ in defun org-html-fontify-code
 that should be around line 2048 ..
 remove the ox-html.elc to make it in effect!
+
+So, to apply this patch:
+
+#+begin_src shell
+patch <ox-html.patch -d ../elpa/org-plus-contrib-20160307/
+rm ../elpa/org-plus-contrib-20160307/ox-html.elc
+#+end_src

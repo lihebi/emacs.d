@@ -204,6 +204,7 @@
     ;; (add-hook 'LaTeX-mode-hook '(flyspell-mode t))
     ;; TODO not working for flyspell-mode
     (add-hook 'LaTeX-mode-hook #'turn-on-flyspell)
+    (add-hook 'org-mode-hook #'turn-on-flyspell)
     )
   )
 
@@ -366,203 +367,6 @@
   :defer t
   )
 
-(use-package htmlize
-  ;; used for fontify code in exporting of org
-  :defer t
-  )
-(use-package org
-  :defer t
-  :bind
-  (("C-c n" . org-capture)
-   ;; ("C-c o" . org-open-at-point)
-   ("C-c o" . org-open-at-point-global)
-   )
-  :init
-  (progn
-    (defvar org-startup-folded)
-    (defvar org-directory)
-    (defvar org-capture-templates)
-    (defvar org-agenda-files)
-    (setq org-startup-folded nil)
-    (setq org-directory "~/github/org")
-    ;; capture templates
-    (setq org-capture-templates
-          '(("t" "TODO" entry (file+headline (concat org-directory "/scratch.org") "Tasks")
-             "* TODO %?\n  %U")
-            ("n" "Note" entry (file (concat org-directory "/scratch.org"))
-             "* Notes on %U\n%?" :prepend t)
-            ("s" "Stack" entry (file (concat org-directory "/stack.org"))
-             "* New Stack on %U\n%?" :prepend t)
-            ))
-    (setq org-agenda-files (list org-directory))
-    )
-  :config
-  (use-package org-plus-contrib)
-  ;; highlight
-  (setq org-src-fontify-natively t)
-  ;; my srcml converter
-  (require 'ob-srcml)
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((awk . t)
-     (emacs-lisp . t)
-     (python . t)
-     (ruby . t)
-     (shell . t)
-     ;; other babel languages
-     (plantuml . t)
-     ;; this should be capital C, the same as in #+begin_src C
-     (C . t)
-     (srcml . t)
-     )
-   )
-  ;; to use plantuml in org-mode:
-  
-  ;; #+begin_src plantuml :file tryout.png
-  ;;   Alice -> Bob: synchronous call
-  ;;   Alice ->> Bob: asynchronous call
-  ;; #+end_src
-
-  ;; #+results:
-  ;; [[file:tryout.png]]
-
-  ;; org mode have a babel support for plantuml..., built-in!
-  ;; just go to the code, than press C-c C-c to evaluate it. The #+results section is gnerated by org-mode.
-  ;; not sure if I can use plantuml command itself instead of setting the following jar path.
-
-  ;; To load the image in to emacs:
-  ;; org-toggle-inline-images
-  ;; C-c C-x C-v
-  (setq org-plantuml-jar-path
-        (expand-file-name "~/bin/plantuml.jar"))
-  ;; latex templates
-  (require 'ox-latex)
-  ;; (setq org-export-latex-listings t)
-  (add-to-list 'org-latex-classes
-               '("fse"
-                 "\\documentclass{sig-alternate-05-2015}"
-                 ("\\section{%s}" . "\\section*{%s}")
-                 ("\\subsection{%s}" . "\\subsection*{%s}")
-                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
-                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
-
-
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; pdf code listing options
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; this will add color to pdf output from latex
-  ;; needs to install Pygments
-  ;; (require 'ox-latex)
-  ;; (add-to-list 'org-latex-packages-alist '("newfloat" "minted"))
-  ;; (setq org-latex-listings 'minted)
-
-
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; org to latex
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; from 8.3, it TOC becomes a top-level option
-  ;; #+TOC: headlines 2
-  ;; #+TOC: tables
-  ;; #+TOC: listings
-  ;; to have correct bibtex citation, we need to remove the toc completely,
-  ;; because it will insert a strange \tableofcontent, which is not recognized by latex
-  ;; #+OPTIONS: toc:nil
-
-  ;; the org mode comes with emacs 24.5 is 8.2, but 8.3 introduce some new features.
-  ;; also, some community contrib package is not shipped with emacs, which need to be installed by org-plus-contrib
-  ;; to make it compitible, I also want to replace the default org with the one in melpa.
-  ;; there're two source of org I can install from: gnu and org.
-  ;; the org version, for some reason, will not compile for #:TITLE or #:AUTHOR.
-  ;; but the gnu version works just fine
-  ;; there's another method to install the most recent version of org: homebrew.
-  ;; I cannot manage the version of it from emacs, so this is just a backup plan, but it works too.
-
-  ;; this is needed to have #+BIBLIOGRAPHY: buffer-overflow plain works.
-  ;; insert it in the end of the page can put the reference at the end.
-  ;; it will do something else like change [[cite:xxx]] into \cite{xxx}
-
-  (require 'ox-bibtex)
-  ;; org-latex-pdf-process should also be customized, or it can not parse bibtex correctly
-  ;; the following works, but it's slow
-  ;; (setq org-latex-pdf-process
-  ;;       (quote ("texi2dvi --pdf --clean --verbose --batch %f"
-  ;;               "bibtex %b"
-  ;;               "texi2dvi --pdf --clean --verbose --batch %f"
-  ;;               "texi2dvi --pdf --clean --verbose --batch %f")))
-  ;; (setq org-latex-pdf-process
-  ;;       (list "latexmk -pdflatex='lualatex -shell-escape -interaction nonstopmode' -pdf -f  %f"))
-  ;; (setq org-latex-pdf-process (list "latexmk -pdf %f"))
-  ;; (setq org-latex-to-pdf-process 
-  ;;       '("pdflatex %f" "bibtex %b" "pdflatex %f" "pdflatex %f"))
-  ;; (setq org-latex-pdf-process (quote ("texi2dvi -p -b -V %f")))
-  ;; I add this one on my own based on my experience, and it seems to work well
-  (setq org-latex-pdf-process (list "latexmk -cd -quiet -pdf -shell-escape %f"))
-
-
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; publishing blog
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-  ;; (setq org-publish-project-alist
-  ;;       '(
-  ;;         ("blog-org"
-  ;;          :base-directory "~/github/blog/org/"
-  ;;          :base-extension "org"
-  ;;          :publishing-directory "~/github/blog/jekyll/"
-  ;;          :recursive t
-  ;;          :publishing-function org-html-publish-to-html
-  ;;          :headline-levels 4
-  ;;          :html-extension "html"
-  ;;          :body-only t
-  ;;          )
-  ;;         ("static-assets"
-  ;;          :base-directory "~/github/blog/org/"
-  ;;          :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf\\|php"
-  ;;          :publishing-directory "~/github/blog/"
-  ;;          :recursive t
-  ;;          :publishing-function org-publish-attachment
-  ;;          )
-  ;;         ("blog"
-  ;;          :components ("blog-org" "static-assets")
-  ;;          )
-  ;;         )
-  ;;       )
-
-  (setq org-publish-project-alist
-        '(
-          ("wiki"
-           :base-directory "~/github/wiki/"
-           :base-extension "org"
-           :publishing-directory "~/github/wiki-dist/"
-           :recursive t
-           :publishing-function org-html-publish-to-html
-           :headline-levels 4
-           :html-extension "html"
-           ;; experimental
-           :auto-sitemap t
-           )
-          ("note"
-           :base-directory "~/github/note/"
-           :base-extension "org"
-           :publishing-directory "~/github/note-dist/"
-           :recursive t
-           :publishing-function org-html-publish-to-html
-           :headline-levels 4
-           :html-extension "html"
-           ;; experimental
-           :auto-sitemap t
-           )
-          )
-        )
-  ;; default is 'inline-css
-  ;; which will output the color inside html tags
-  ;; using 'css will only insert the class, and you need to provide you own css file.
-  ;; (setq org-html-htmlize-output-type 'css)
-
-
-
-  )
 
 (use-package markdown-mode
   :init
@@ -698,26 +502,31 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package zenburn-theme
+  :disabled t
   :init
   (load-theme 'zenburn t)
   )
 (use-package ample-theme
+  :disabled t
   :init
   (load-theme 'ample t)
   (load-theme 'ample-flat t)
   (load-theme 'ample-light t)
   )
 (use-package dracula-theme
+  :disabled t
   :init
   (load-theme 'dracula t)
   )
 
 (use-package monokai-theme
+  :disabled t
   :init
   (load-theme 'monokai t)
   )
 
 (use-package cyberpunk-theme
+  :disabled t
   :init
   (load-theme 'cyberpunk t)
   )
@@ -738,10 +547,9 @@
 ;; M-x color-theme-sanityinc-tomorrow-eighties
 ;; in newer emacs
 ;; M-x customize-themes
-(use-package color-theme-sanityinc-tomorrow)
-
-(enable-theme 'monokai)
-
+(use-package color-theme-sanityinc-tomorrow
+  :disabled t
+  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Other
@@ -825,5 +633,7 @@
 (use-package cider-eval-sexp-fu
   :defer t
   )
+
+
 
 ;;; packages.el ends here
