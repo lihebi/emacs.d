@@ -17,6 +17,10 @@
 (load (emacs-d "hebi-faces")) ; must be load before smart-scholar
 (load (emacs-d "packages"))
 (load (emacs-d "org-conf"))
+(if (and (>= emacs-major-version 24)
+	     ;; FIXME 25.x
+	     (>= emacs-minor-version 4))
+    (load (meacs-d "org-ref-conf")))
 (load (emacs-d "bindings"))
 
 (load (emacs-d "hebi-defun"))
