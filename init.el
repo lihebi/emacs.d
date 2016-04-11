@@ -20,7 +20,7 @@
 (load (emacs-d "bindings"))
 
 (load (emacs-d "hebi-defun"))
-(load (emacs-d "smart-scholar"))
+;; (load (emacs-d "smart-scholar"))
 
 (load (emacs-d "env"))
 
@@ -31,12 +31,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; (load-theme 'leuven t t)
-;; (enable-theme 'monokai)
+;; (load-theme 'monokai)
 ;; (enable-theme 'leuven)
 
 (if (not window-system)
-    (enable-theme 'monokai)
-  (load-theme 'leuven t t)
+    (load-theme 'monokai t)
+  (load-theme 'leuven t)
   )
 
 (when (not window-system)
@@ -63,6 +63,30 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; General config
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; (add-to-list 'completion-ignored-extensions ".pdf")
+;; (add-to-list 'completion-ignored-extensions ".out")
+;; (add-to-list 'completion-ignored-extensions ".log")
+;; (add-to-list 'completion-ignored-extensions ".dvi")
+
+(dolist (item '(".pdf" ".out" ".log" ".dvi" ".DS_Store"))
+  (add-to-list 'completion-ignored-extensions item)
+  )
+
+(defun set-ff-directories()
+  (defvar cc-search-directories)
+  (setq cc-search-directories
+        '("." "/usr/include" "/usr/local/include/*" "$PROJECT/*/include" "../include/*/*/*" "../../include/*/*/*" "../lib" "../../lib/*/*/*" "../../../lib/*/*" "../*/src" "../../src/*/*/*"))
+  )
+
+(add-hook 'c++-mode-hook 'set-ff-directories)
+(add-hook 'c-mode-hook 'set-ff-directories)
+
+;; (defvar cc-search-directories)
+;; (setq cc-search-directories
+;;       (append
+;;        '("../include/*/*/*" "../../include/*/*/*" "../lib" "../../lib/*/*/*" "../../../lib/*/*" "../*/src" "../../src/*/*/*")
+;;        cc-search-directories))
+
 ;; use unique/prefix/name when buffer name conflict
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
@@ -133,6 +157,17 @@
 
 (winner-mode)
 
+;; C/C++
+;; hs-toggle-hiding
+;; hs-hide-all
+;; hs-show-all
+(add-hook 'c-mode-common-hook 'hs-minor-mode)
+
+;; narrow/widen
+;; narrow-to-defun
+;; narrow-to-region
+;; widen
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Other
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -158,44 +193,23 @@
                                     ))
   )
 
-
-
-
 ;;; init.el ends here
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default default default italic underline success warning error])
- '(ansi-color-names-vector
-   ["black" "red3" "ForestGreen" "yellow3" "blue" "magenta3" "DeepSkyBlue" "gray50"])
- '(cc-search-directories
-   (quote
-    ("." "/usr/include" "/usr/local/include/*" "$PROJECT/*/include" "../include/*/*/*" "../../include/*/*/*" "../lib" "../../lib/*/*/*" "../../../lib/*/*" "../*/src" "../../src/*/*/*")))
  '(custom-safe-themes
    (quote
-    ("f556acacd481f54e0cb5f7c0bd7b654dc5e9dd379db4a0d90da850ce5cabc7ec" "8787155a0c7beea10d98a50afd58eec0c13256d4fa87c6b5515138554a95c571" "c99155e3bfeb343041be12efab7b6401226261d01c0159ffde4ac325c71372aa" "be79f427295cde7630cd3705a94caf828bf2eaa956e55aa4708669ee57609062" "8577da1641ed4bdf255341ca92e3d0e49c9f4d574458f09ce78159690442cade" "12b4427ae6e0eef8b870b450e59e75122d5080016a9061c9696959e50d578057" default)))
- '(ecb-options-version "2.40")
- '(ecb-windows-width 0.2)
- '(flycheck-clang-args (quote ("--std=c++11")))
+    ("6c62b1cd715d26eb5aa53843ed9a54fc2b0d7c5e0f5118d4efafa13d7715c56e" default)))
  '(git-gutter:added-sign "++")
  '(git-gutter:deleted-sign "--")
  '(git-gutter:modified-sign "  ")
- '(org-babel-load-languages
-   (quote
-    ((awk . t)
-     (emacs-lisp . t)
-     (python . t)
-     (ruby . t)
-     (sh . t)
-     (plantuml . t)
-     (C . t)))))
-
+ '(send-mail-function (quote sendmail-send-it)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(nxml-element-local-name ((t (:background "textBackgroundColor" :foreground "#000088" :box nil)))))

@@ -1,4 +1,4 @@
-;;; ob-srcml.el --- org-babel functions for srcml evaluation
+;;; ob-ctags.el --- org-babel functions for ctags evaluation
 
 ;; Copyright (C) your name here
 
@@ -58,23 +58,23 @@
 ;; possibly require modes required for your language
 
 ;; optionally define a file extension for this language
-(add-to-list 'org-babel-tangle-lang-exts '("srcml" . "tmp"))
+(add-to-list 'org-babel-tangle-lang-exts '("ctags" . "tmp"))
 
 ;; optionally declare default header arguments for this language
-(defvar org-babel-default-header-args:srcml '())
+(defvar org-babel-default-header-args:ctags '())
 
 ;; This function expands the body of a source code block by doing
 ;; things like prepending argument definitions to the body, it should
-;; be called by the `org-babel-execute:srcml' function below.
-(defun org-babel-expand-body:srcml (body params &optional processed-params)
+;; be called by the `org-babel-execute:ctags' function below.
+(defun org-babel-expand-body:ctags (body params &optional processed-params)
   "Expand BODY according to PARAMS, return the expanded body."
-  (require 'inf-srcml)
+  (require 'inf-ctags)
   (let ((vars (nth 1 (or processed-params (org-babel-process-params params)))))
     (concat
      (mapconcat ;; define any variables
       (lambda (pair)
         (format "%s=%S"
-                (car pair) (org-babel-srcml-var-to-srcml (cdr pair))))
+                (car pair) (org-babel-ctags-var-to-ctags (cdr pair))))
       vars "\n") "\n" body "\n")))
 
 ;; This is the main function which is called to evaluate a code
@@ -96,39 +96,43 @@
 ;; "session" evaluation).  Also you are free to define any new header
 ;; arguments which you feel may be useful -- all header arguments
 ;; specified by the user will be available in the PARAMS variable.
-(defun org-babel-execute:srcml (body params)
-  "Execute a block of Srcml code with org-babel.
+(defun org-babel-execute:ctags (body params)
+  "Execute a block of Ctags code with org-babel.
 This function is called by `org-babel-execute-src-block'"
-  (message "executing Srcml source code block")
+  (message "executing Ctags source code block")
   (prin1 params t)
+  ;; ctags -f output.tags --languages=c,c++ -n --c-kinds=+x --exclude=heium_result -R /path/to/benchmark
   (let* ((processed-params (org-babel-process-params params))
          (lang (if (assoc :lang params)
                    (cdr (assoc :lang params))
-                 "C"
-                   ))
+                 "c"
+                 ))
+         (c-kinds (if (assoc :kinds params)
+                    (cdr (assoc :kinds params))
+                  "+x"
+                    ))
          ;; set the session if the session variable is non-nil
-         ;; (session (org-babel-srcml-initiate-session (first processed-params)))
+         ;; (session (org-babel-ctags-initiate-session (first processed-params)))
          ;; ;; variables assigned for use in the block
          ;; (vars (second processed-params))
          ;; (result-params (third processed-params))
          ;; ;; either OUTPUT or VALUE which should behave as described above
          ;; (result-type (fourth processed-params))
-         ;; ;; expand the body with `org-babel-expand-body:srcml'
-         ;; (full-body (org-babel-expand-body:srcml
+         ;; ;; expand the body with `org-babel-expand-body:ctags'
+         ;; (full-body (org-babel-expand-body:ctags
          ;;             body params processed-params))
 
          ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-         ;; doc for ob-srcml
+         ;; doc for ob-ctags
          ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-         ;; usage of ob-srcml
-         ;; #+BEGIN_SRC srcml :args --position :lang C++
+         ;; usage of ob-ctags
+         ;; #+BEGIN_SRC ctags :args --position :lang C++
          ;; default to C
-         (in-file (org-babel-temp-file "srcml-"))
+         (in-file (org-babel-temp-file "ctags-"))
          (args (cdr (assoc :args params)))
-         (cmd (concat "srcml -l" lang " -f empty --no-namespace-decl --no-xml-declaration " args " "
+         (cmd (concat "ctags -f - --language-force=" lang " -n --c-kinds=" c-kinds " "
                       (org-babel-process-file-name in-file)
-                      " | tidy -qi -xml"
                       ;; " | xmllint --format -"
                       ;; body
                       ))
@@ -154,25 +158,25 @@ This function is called by `org-babel-execute-src-block'"
 
 ;; This function should be used to assign any variables in params in
 ;; the context of the session environment.
-(defun org-babel-prep-session:srcml (session params)
+(defun org-babel-prep-session:ctags (session params)
   "Prepare SESSION according to the header arguments specified in PARAMS."
   )
 
-(defun org-babel-srcml-var-to-srcml (var)
-  "Convert an elisp var into a string of srcml source code
+(defun org-babel-ctags-var-to-ctags (var)
+  "Convert an elisp var into a string of ctags source code
 specifying a var of the same value."
   (format "%S" var))
 
-(defun org-babel-srcml-table-or-string (results)
+(defun org-babel-ctags-table-or-string (results)
   "If the results look like a table, then convert them into an
 Emacs-lisp table, otherwise return the results as a string."
   )
 
-(defun org-babel-srcml-initiate-session (&optional session)
+(defun org-babel-ctags-initiate-session (&optional session)
   "If there is not a current inferior-process-buffer in SESSION then create.
 Return the initialized session."
   (unless (string= session "none")
     ))
 
-(provide 'ob-srcml)
-;;; ob-srcml.el ends here
+(provide 'ob-ctags)
+;;; ob-ctags.el ends here

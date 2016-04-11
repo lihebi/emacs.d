@@ -76,6 +76,19 @@
     (smex-initialize))
   )
 
+
+;; Now I would love to summary the C++ IDE commonly used commands and features
+;; From my helm M-x history
+;; helm-projectile
+;; helm-register
+;; helm-all-mark-rings
+;; helm-man-woman
+;; helm-show-kill-ring
+
+;; helm-semantic-or-imenu
+;; srefactor-refactor-at-point
+
+
 (use-package projectile
   :init
   (progn
@@ -86,10 +99,11 @@
   (setq projectile-switch-project-action 'projectile-dired)
   )
 
+(use-package helm-projectile)
+
 (use-package neotree
   ;; neotree is not using because it conflicts with perspective
   ;; also, we have speedbar ^_^
-  ;; :disabled t
   ;; (define-key neotree-mode-map (kbd "i") #'neotree-enter-horizontal-split) ; TODO what's the #?
   ;; (define-key neotree-mode-map (kbd "I") #'neotree-enter-vertical-split)
   ;; when switch project, neotree change root automatically
@@ -113,26 +127,27 @@
 (use-package persp-projectile
   :bind
   (
-   ("s-s" . projectile-persp-switch-project))
+   ("C-c h s" . projectile-persp-switch-project))
   )
 
-
-(use-package fill-column-indicator
-  ;; 80 characters
-  :defer t
-  :init
-  (add-hook 'prog-mode-hook 'fci-mode)
-  (add-hook 'LaTeX-mode-hook 'fci-mode)
-  )
 
 (use-package company
   :init
   (add-hook 'after-init-hook 'global-company-mode)
   :bind
   (
-   ("s-/" . company-complete))
+   ("C-;" . company-complete)
+   )
+  :config
+  (define-key company-active-map (kbd "C-n") #'company-select-next)
+  (define-key company-active-map (kbd "C-p") #'company-select-previous)
   )
 
+;; These two packages are used in fuzzy complete
+(use-package fuzzy
+  )
+(use-package flx
+  )
 (use-package yasnippet
   :init
   (progn
@@ -195,6 +210,18 @@
   (
    ("C-c c" . flycheck-buffer)
    )
+  :config
+  ;; (setq flycheck-clang-args '"--std=c++11")
+  ;; (setq flycheck-clang-args nil)
+  ;; --std=c++11 is not working with C code.
+  ;; Instead, include this in .dir-locals.el
+  ;; ((c++-mode . ((flycheck-clang-args . ("--std=c++11")))))
+  (add-hook 'c++-mode-hook '(lambda()
+                              (setq flycheck-clang-args "--std=c++11")
+                              ))
+  (add-hook 'c-mode-hook '(lambda()
+                            (setq flycheck-clang-args "")
+                            ))
   )
 
 (use-package flyspell
@@ -215,11 +242,31 @@
   )
 
 (use-package helm
-  :disabled t
   :bind
   (
    ("M-x" . helm-M-x)
-   ("C-x C-f" . helm-find-files))
+   ;; C-j enter directory
+   ;; C-l up directory
+   ;; C-u C-x C-f open history
+   ("C-x C-f" . helm-find-files)
+   ("M-y" . helm-show-kill-ring)
+   ("C-x b" . helm-mini)
+   ("C-h SPC" . helm-all-mark-rings)
+   )
+  :config
+  ;; helm-semantic-or-imenu (C-x c i)
+  ;; it shows the outline!
+  ;; the actual worker is semantic, so be sure to enable it
+  (setq helm-semantic-fuzzy-match t
+        helm-imenu-fuzzy-match t)
+  (setq helm-M-x-fuzzy-match t)
+  (setq helm-buffers-fuzzy-matching t
+        helm-recentf-fuzzy-match t)
+  )
+
+(use-package helm-gtags
+  :bind
+  ("M-." . helm-gtags-dwim)
   )
 
 
@@ -276,21 +323,8 @@
   (popwin-mode 1)
   )
 
-(use-package key-chord
-  ;; a "key chord" is two keys pressed simultaneously,
-  ;; or a single key quickly pressed twice.
-  :disabled t
-  )
-
-(use-package iy-go-to-char
-  ;; similar to vim's f and t
-  ;; don't really need it for now, because I can use just isearch
-  :disabled t
-  )
-
 (use-package ace-jump-mode
   ;; jump to a char, can select by 'abcd..'
-  ;; :disabled t
   :bind
   (
    ("C-c SPC" . ace-jump-mode)
@@ -299,16 +333,6 @@
   )
 
 
-;; Also, sgml-mode provide many utilities to edit html, such as closing tags
-(use-package emmet-mode
-  ;; generate html structures by '#myid>ul#ulid>li.clsli*4'
-  :disabled t
-  )
-
-(use-package restclient
-  ;; make http requests!
-  :disabled t
-  )
 
 (use-package dired-k
   ;; k (https://github.com/rimraf/k) is a ls alternative to show git status
@@ -319,13 +343,6 @@
   ;; always execute dired-k when dired buffer is opened
   (add-hook 'dired-initial-position-hook 'dired-k)
   ;; (add-hook 'dired-after-readin-hook #'dired-k-no-revert)
-  )
-
-(use-package dash-at-point
-  ;; dash documentation browser
-  ;; this just take the string at point, and open it in Dash.app.
-  ;; No use at all
-  :disabled t
   )
 
 (use-package helm-dash
@@ -345,12 +362,6 @@
   ;; (setq helm-dash-browser-func 'eww)
   )
 
-(use-package w3m
-  ;; emacs-w3m interface
-  ;; text based browser is not seemed to work very good.
-  ;; in particular, this one is not able to even "click link", without kill the "current process"
-  :disabled t
-  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Mode
@@ -400,14 +411,6 @@
     )
   )
 
-(use-package polymode
-  ;; it works, but not so stable ..
-  :disabled t
-  :config
-  (require 'poly-markdown)
-  (add-to-list 'auto-mode-alist '("\\.md" . poly-markdown-mode))
-  )
-
 (use-package go-mode
   :defer t
   )
@@ -415,10 +418,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Appearance
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(use-package dired+
-  :disabled t
-  )
 
 (use-package smart-mode-line
   :init
@@ -501,83 +500,21 @@
 ;; Themes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package zenburn-theme
-  :disabled t
-  :init
-  (load-theme 'zenburn t)
-  )
-(use-package ample-theme
-  :disabled t
-  :init
-  (load-theme 'ample t)
-  (load-theme 'ample-flat t)
-  (load-theme 'ample-light t)
-  )
-(use-package dracula-theme
-  :init
-  (load-theme 'dracula t t)
-  )
+;; (use-package dracula-theme
+;;   :init
+;;   (load-theme 'dracula t t)
+;;   )
 
 (use-package monokai-theme
+  :defer t
   :init
-  (load-theme 'monokai t t)
+  ;; (load-theme 'monokai t t)
   )
 
-(use-package cyberpunk-theme
-  :disabled t
-  :init
-  (load-theme 'cyberpunk t)
-  )
-
-(use-package solarized-theme
-  ;; disabled because it will give a very bright foreground selection in magit buffer.
-  :disabled t
-  :init
-  (load-theme 'solarized-dark t)
-  (load-theme 'solarized-light t)
-  )
-
-;; this seems to be a collection
-;; M-x color-theme-sanityinc-tomorrow-day
-;; M-x color-theme-sanityinc-tomorrow-night
-;; M-x color-theme-sanityinc-tomorrow-blue
-;; M-x color-theme-sanityinc-tomorrow-bright
-;; M-x color-theme-sanityinc-tomorrow-eighties
-;; in newer emacs
-;; M-x customize-themes
-(use-package color-theme-sanityinc-tomorrow
-  :disabled t
-  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Other
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; check out swank-js when I want to develop web
-
-(use-package elfeed
-  :disabled t
-  :config
-  (setq elfeed-feeds
-        '("http://nullprogram.com/feed/"
-          "http://www.terminally-incoherent.com/blog/feed/"
-          ("https://news.ycombinator.com/rss" hackernews)))
-  (progn
-    (defface important-elfeed-entry
-      '((t :foreground "#f77"))
-      "Marks an important Elfeed entry.")
-    (push '(important important-elfeed-entry)
-          elfeed-search-face-alist)
-    (push '(hackernews hebi-red-face)
-          elfeed-search-face-alist)
-    (push '(unread elfeed-search-unread-title-face)
-          elfeed-search-face-alist)
-    )
-  ;; (use-package elfeed-goodies
-  ;;   :config
-  ;;   (elfeed-goodies/setup)
-  ;;   )
-  )
 
 (use-package string-inflection
   ;; cycle through CamelCase and under_line
@@ -614,6 +551,10 @@
   :defer t
   )
 
+(use-package edit-server
+  ;; Use this because I want to use "edit with emacs" chrome extension.
+  )
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; For piano overtone
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -630,6 +571,172 @@
   )
 (use-package cider-eval-sexp-fu
   :defer t
+  )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; disabled
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package srefactor
+  ;; it is disabeld because semantic parses all library header files, which is super slow.
+  ;; I will try this unless I find a way to not parse so many files
+  :disabled t
+  ;; semantic refactor
+  ;; https://github.com/tuhdo/semantic-refactor
+  :config
+  (semantic-mode 1) ;; -> this is optional for Lisp
+  (define-key c-mode-map (kbd "M-RET") 'srefactor-refactor-at-point)
+  (define-key c++-mode-map (kbd "M-RET") 'srefactor-refactor-at-point)
+  )
+
+
+;; check out swank-js when I want to develop web
+
+(use-package elfeed
+  :disabled t
+  :config
+  (setq elfeed-feeds
+        '("http://nullprogram.com/feed/"
+          "http://www.terminally-incoherent.com/blog/feed/"
+          ("https://news.ycombinator.com/rss" hackernews)))
+  (progn
+    (defface important-elfeed-entry
+      '((t :foreground "#f77"))
+      "Marks an important Elfeed entry.")
+    (push '(important important-elfeed-entry)
+          elfeed-search-face-alist)
+    (push '(hackernews hebi-red-face)
+          elfeed-search-face-alist)
+    (push '(unread elfeed-search-unread-title-face)
+          elfeed-search-face-alist)
+    )
+  ;; (use-package elfeed-goodies
+  ;;   :config
+  ;;   (elfeed-goodies/setup)
+  ;;   )
+  )
+
+
+;; this seems to be a collection
+;; M-x color-theme-sanityinc-tomorrow-day
+;; M-x color-theme-sanityinc-tomorrow-night
+;; M-x color-theme-sanityinc-tomorrow-blue
+;; M-x color-theme-sanityinc-tomorrow-bright
+;; M-x color-theme-sanityinc-tomorrow-eighties
+;; in newer emacs
+;; M-x customize-themes
+(use-package color-theme-sanityinc-tomorrow
+  :disabled t
+  )
+(use-package cyberpunk-theme
+  :disabled t
+  :init
+  (load-theme 'cyberpunk t)
+  )
+
+(use-package solarized-theme
+  ;; disabled because it will give a very bright foreground selection in magit buffer.
+  :disabled t
+  :init
+  (load-theme 'solarized-dark t)
+  (load-theme 'solarized-light t)
+  )
+
+(use-package zenburn-theme
+  :disabled t
+  :init
+  (load-theme 'zenburn t)
+  )
+(use-package ample-theme
+  :disabled t
+  :init
+  (load-theme 'ample t)
+  (load-theme 'ample-flat t)
+  (load-theme 'ample-light t)
+  )
+(use-package dired+
+  :disabled t
+  )
+(use-package polymode
+  ;; it works, but not so stable ..
+  :disabled t
+  :config
+  (require 'poly-markdown)
+  (add-to-list 'auto-mode-alist '("\\.md" . poly-markdown-mode))
+  )
+
+(use-package w3m
+  ;; emacs-w3m interface
+  ;; text based browser is not seemed to work very good.
+  ;; in particular, this one is not able to even "click link", without kill the "current process"
+  :disabled t
+  )
+(use-package function-args
+  :disabled t
+  ;; C++ completion
+  ;; fa-show
+  ;; fa-jump
+  ;; moo-complete
+  ;; moo-propose-virtual
+  ;; moo-propose-override
+  ;; moo-jump-local
+  ;; force refresh: semantic-force-refresh
+  :defer t
+  )
+
+;; I'm disabling this,
+;; because it has a bug causing OrgMode html exporter
+;; to have garbage string for code
+;; Also, I'm a little bit senior now and don't really need the indicator
+(use-package fill-column-indicator
+  ;; 80 characters
+  :disabled t
+  :defer t
+  :init
+  (add-hook 'prog-mode-hook 'fci-mode)
+  (add-hook 'LaTeX-mode-hook 'fci-mode)
+  )
+
+;; Disabled because I have no idea how to make its fuzzy matching working contineously.
+;; i.e. when I type something, I need to use the comand 'ac-fuzzy-complete again to show the reult
+(use-package auto-complete
+  :disabled t
+  :config
+  (ac-config-default)
+  (setq ac-use-fuzzy t)
+  ;; (define-key ac-complete-mode-map (kbd "C-;") 'auto-complete)
+  (define-key ac-complete-mode-map (kbd "C-;") 'ac-fuzzy-complete)
+  (define-key ac-complete-mode-map (kbd "C-n") 'ac-next)
+  (ac-set-trigger-key "TAB")
+  (define-key ac-complete-mode-map (kbd "C-p") 'ac-previous)
+  )
+
+(use-package key-chord
+  ;; a "key chord" is two keys pressed simultaneously,
+  ;; or a single key quickly pressed twice.
+  :disabled t
+  )
+
+(use-package iy-go-to-char
+  ;; similar to vim's f and t
+  ;; don't really need it for now, because I can use just isearch
+  :disabled t
+  )
+
+;; Also, sgml-mode provide many utilities to edit html, such as closing tags
+(use-package emmet-mode
+  ;; generate html structures by '#myid>ul#ulid>li.clsli*4'
+  :disabled t
+  )
+
+(use-package restclient
+  ;; make http requests!
+  :disabled t
+  )
+(use-package dash-at-point
+  ;; dash documentation browser
+  ;; this just take the string at point, and open it in Dash.app.
+  ;; No use at all
+  :disabled t
   )
 
 

@@ -20,3 +20,9 @@ smex-items
 # swap files
 
 \#*\#
+
+.cask
+.org-id-locations
+ac-comphist.dat
+semanticdb
+srecode-map.el
