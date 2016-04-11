@@ -327,7 +327,7 @@
   ;; jump to a char, can select by 'abcd..'
   :bind
   (
-   ("C-c SPC" . ace-jump-mode)
+   ("C-c h SPC" . ace-jump-mode)
    ("C-x SPC" . ace-jump-mode-pop-mark)
    )
   )
