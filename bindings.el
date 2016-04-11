@@ -32,6 +32,9 @@
                   (interactive)
                   (join-line -1)))
 
+;; (define-key global-map (kbd "RET") 'newline-and-indent)
+(global-set-key (kbd "RET") 'newline-and-indent)
+
 ;; when split window right, swith to that window
 (global-set-key (kbd "C-x 3") (lambda ()
                                 (interactive)
