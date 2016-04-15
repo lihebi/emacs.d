@@ -20,7 +20,7 @@
 (if (and (>= emacs-major-version 24)
 	     ;; FIXME 25.x
 	     (>= emacs-minor-version 4))
-    (load (meacs-d "org-ref-conf")))
+    (load (emacs-d "org-ref-conf")))
 (load (emacs-d "bindings"))
 
 (load (emacs-d "hebi-defun"))
@@ -55,7 +55,26 @@
 ;; (set-frame-parameter (selected-frame) 'alpha '(90 90))
 ;; (add-to-list 'default-frame-alist '(alpha 90 90))
 
+;; dired-x omiting
+
+;; (add-hook 'dired-load-hook
+;;           (lambda ()
+;;             (load "dired-x")
+;;             ;; Set dired-x global variables here.  For example:
+;;             ;; (setq dired-guess-shell-gnutar "gtar")
+;;             ;; (setq dired-x-hands-off-my-keys nil)
+;;             ))
+;; (add-hook 'dired-mode-hook
+;;           (lambda ()
+;;             ;; Set dired-x buffer-local variables here.  For example:
+;;             (dired-omit-mode 1)
+;;             ))
+
+
 (defun toggle-transparency ()
+  "Toggle the transparency of the frame."
+  ;; Since all interactive commands should have documentation,
+  ;; I'm adding this, but transparency for an editor is really a BAD idea.
   (interactive)
   (if (/=
        (cadr (frame-parameter nil 'alpha))

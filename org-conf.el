@@ -260,6 +260,5 @@ a:visited {color: red;}
   )
 
 
-
 (provide 'org-conf)
 ;;; org-conf.el ends here

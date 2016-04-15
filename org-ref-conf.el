@@ -38,21 +38,21 @@ to rescan the bib files and update pdf and notes notation."
 
 (use-package org-ref
   :config
-  ;; (let* ((bib-dir "~/github/bibliography")
-  ;;        (bib-files (directory-files bib-dir t ".*\.bib$"))
-  ;;        (bib-note-file (concat bib-dir "/notes.org"))
-  ;;        (bib-pdf-dir (concat bib-dir "/bibtex-pdfs/"))
-  ;;        )
-  ;;   (setq reftex-default-bibliography bib-files) ; reftex
-  ;;   (setq bibtex-completion-bibliography bib-files) ; bibtex
-  ;;   (setq org-ref-default-bibliography bib-files) ; org-ref
-  ;;   ;; notes
-  ;;   (setq org-ref-bibliography-notes bib-note-file)
-  ;;   (setq bibtex-completion-notes-path bib-note-file)
-  ;;   ;; pdf
-  ;;   (setq org-ref-pdf-directory bib-pdf-dir)
-  ;;   (setq bibtex-completion-library-path bib-pdf-dir)
-  ;;   )
+  (let* ((bib-dir "~/github/bibliography")
+         (bib-files (directory-files bib-dir t ".*\.bib$"))
+         (bib-note-file (concat bib-dir "/notes.org"))
+         (bib-pdf-dir (list (concat bib-dir "/bibtex-pdfs/") (concat bib-dir "/manual-pdfs/")))
+         )
+    (setq reftex-default-bibliography bib-files) ; reftex
+    (setq bibtex-completion-bibliography bib-files) ; bibtex
+    (setq org-ref-default-bibliography bib-files) ; org-ref
+    ;; notes
+    (setq org-ref-bibliography-notes bib-note-file)
+    (setq bibtex-completion-notes-path bib-note-file)
+    ;; pdf
+    (setq org-ref-pdf-directory bib-pdf-dir)
+    (setq bibtex-completion-library-path bib-pdf-dir)
+    )
   ;; (defvar bib-files)
   ;; (define-key bibtex-mode-map (kbd "C-c ]") 'org-ref-helm-insert-cite-link)
   ;; (setq bib-files (directory-files "~/github/bibliography/" t ".*\.bib$"))
@@ -75,16 +75,16 @@ to rescan the bib files and update pdf and notes notation."
   ;;   )
 
   ;; default condfiguration
-  (setq reftex-default-bibliography '("~/github/bibliography/refactor.bib"))
+  ;; (setq reftex-default-bibliography '("~/github/bibliography/refactor.bib"))
 
-  ;; see org-ref for use of these variables
-  (setq org-ref-bibliography-notes "~/github/bibliography/notes.org"
-        org-ref-default-bibliography '("~/github/bibliography/refactor.bib")
-        org-ref-pdf-directory "~/github/bibliography/bibtex-pdfs/")
+  ;; ;; see org-ref for use of these variables
+  ;; (setq org-ref-bibliography-notes "~/github/bibliography/notes.org"
+  ;;       org-ref-default-bibliography '("~/github/bibliography/refactor.bib")
+  ;;       org-ref-pdf-directory "~/github/bibliography/bibtex-pdfs/")
 
 
-  (setq bibtex-completion-bibliography "~/github/bibliography/refactor.bib")
-  (setq bibtex-completion-library-path "~/github/bibliography/bibtex-pdfs")
+  ;; (setq bibtex-completion-bibliography "~/github/bibliography/refactor.bib")
+  ;; (setq bibtex-completion-library-path "~/github/bibliography/bibtex-pdfs")
 
   ;; open pdf with system pdf viewer (works on mac)
   (setq bibtex-completion-pdf-open-function
@@ -94,13 +94,13 @@ to rescan the bib files and update pdf and notes notation."
   ;; alternative
   ;; (setq bibtex-completion-pdf-open-function 'org-open-file)
 
-  (setq bibtex-completion-notes-path "~/github/bibliography/bibtex-completion-notes")
+  ;; (setq bibtex-completion-notes-path "~/github/bibliography/bibtex-completion-notes")
   
 
   ;; my temporary patches
-  (defalias 'helm-bibtex-get-value 'bibtex-completion-get-value)
-  (defalias 'helm-bibtex-clean-string 'bibtex-completion-clean-string)
-  (defalias 'helm-bibtex-shorten-authors 'bibtex-completion-shorten-authors)
+  ;; (defalias 'helm-bibtex-get-value 'bibtex-completion-get-value)
+  ;; (defalias 'helm-bibtex-clean-string 'bibtex-completion-clean-string)
+  ;; (defalias 'helm-bibtex-shorten-authors 'bibtex-completion-shorten-authors)
 
   ;; "\n** ${year} - ${title}\n  :PROPERTIES:\n  :Custom_ID: ${=key=}\n  :AUTHOR: ${author}\n  :END:\n\n"
   (setq org-ref-note-title-format
@@ -117,7 +117,48 @@ to rescan the bib files and update pdf and notes notation."
 
   ;; To display more keywords, look into this defun:
   ;; bibtex-completion-candidates-formatter
+
+  (require 'org-ref-pdf)
+  (require 'org-ref-url-utils)
   )
+
+
+;; HEBI I'm using it to enlarge the keyword column in helm-bibtex interface
+;; The only change is a number in the second from the last line, from 7 to 15
+(defun bibtex-completion-candidates-formatter (candidates _source)
+  "Formats BibTeX entries for display in results list.
+Argument CANDIDATES helm candidates.
+Argument SOURCE the helm source.
+Adapted from the function in `helm-bibtex' to include additional
+fields, the keywords I think."
+  (cl-loop
+   with width = (with-helm-window (helm-bibtex-window-width))
+   for entry in candidates
+   for entry = (cdr entry)
+   for entry-key = (bibtex-completion-get-value "=key=" entry)
+   if (assoc-string "author" entry 'case-fold)
+   for fields = '("author" "title"  "year" "=has-pdf=" "=has-note=" "=type=")
+   else
+   for fields = '("editor" "title" "year" "=has-pdf=" "=has-note=" "=type=")
+   for fields = (--map (bibtex-completion-clean-string
+                        (bibtex-completion-get-value it entry " "))
+                       fields)
+   for fields = (-update-at 0 'bibtex-completion-shorten-authors fields)
+   for fields = (append fields
+                        (list (or (bibtex-completion-get-value "keywords" entry)
+                                  "")))
+   collect
+   (cons (s-format "$0 $1 $2 $3 $4$5 $6" 'elt
+                   (-zip-with (lambda (f w) (truncate-string-to-width f w 0 ?\s))
+                              fields (list 36 (- width 85) 4 1 1 7 15)))
+         entry-key)))
+
+(use-package gscholar-bibtex
+  :config
+  (setq gscholar-bibtex-default-source "Google Scholar")
+  (setq gscholar-bibtex-database-file "/Users/hebi/github/bibliography/tmp.bib")
+  )
+
 
 
 (provide 'org-ref-conf)

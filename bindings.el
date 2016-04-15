@@ -42,6 +42,8 @@
                                 (other-window 1)
                                 ))
 
+(global-set-key (kbd "C-c ]") 'org-ref-helm-insert-cite-link)
+
 ;; switch between source and header file
 (global-set-key (kbd "C-x C-o") 'ff-find-other-file)
 
