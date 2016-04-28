@@ -16,8 +16,7 @@
   :bind
   (("C-c n" . org-capture)
    ;; ("C-c o" . org-open-at-point)
-   ("C-c o" . org-open-at-point-global)
-   )
+   ("C-c o" . org-open-at-point-global))
   :init
   (progn
     (defvar org-startup-folded)
@@ -38,6 +37,9 @@
     (setq org-agenda-files (list org-directory))
     )
   :config
+  (define-key org-mode-map (kbd "C-j") (lambda()
+                                         (interactive)
+                                         (join-line -1)))
   (use-package org-plus-contrib)
   ;; highlight
   (setq org-src-fontify-natively t)
@@ -63,9 +65,10 @@
      )
    )
 
-  (defun my-org-confirm-babel-evaluate (lang body)
-    (not (string= lang "R")))  ; don't ask for ditaa
-  (setq org-confirm-babel-evaluate 'my-org-confirm-babel-evaluate)
+  ;; CAUTION The following lines will permit the execution of R code without a confirmation.
+  ;; (defun my-org-confirm-babel-evaluate (lang body)
+  ;;   (not (string= lang "R")))  ; don't ask for R
+  ;; (setq org-confirm-babel-evaluate 'my-org-confirm-babel-evaluate)
 
   ;; to use plantuml in org-mode:
   
@@ -181,6 +184,13 @@
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; publishing blog
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; set the default export headline toc level
+  ;; it can also be set by #+OPTIONS: H:6
+  ;; but it can NOT be set by #+OPTIONS: toc:6
+  ;; default is 3, but I want to show everything by default
+  ;; also note that in org-publish-project-alist, the headline is set to 4
+  ;; this may need some change in the future.
+  (setq org-export-headline-levels 6)
 
   (setq org-html-style "<style>
 a:visited {color: red;}
@@ -229,7 +239,7 @@ a:visited {color: red;}
            )
           ("wiki-static"
            :base-directory "~/github/wiki/"
-           :base-extension "ttf\\|js\\|css"
+           :base-extension "ttf\\|js\\|css\\|png"
            :recursive t
            :publishing-directory "~/github/wiki-dist/"
            :publishing-function org-publish-attachment

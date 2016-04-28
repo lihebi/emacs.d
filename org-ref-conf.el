@@ -38,12 +38,13 @@ to rescan the bib files and update pdf and notes notation."
 
 (use-package org-ref
   :config
-  (let* ((bib-dir "~/github/bibliography")
+  (let* ((bib-dir "~/github/note/bibliography")
          (bib-files (if (file-exists-p bib-dir)
                       (directory-files bib-dir t ".*\.bib$"))
                     )
          (bib-note-file (concat bib-dir "/notes.org"))
-         (bib-pdf-dir (list (concat bib-dir "/bibtex-pdfs/") (concat bib-dir "/manual-pdfs/")))
+         ;; (bib-pdf-dir (list (concat bib-dir "/bibtex-pdfs/") (concat bib-dir "/manual-pdfs/")))
+         (bib-pdf-dir (concat bib-dir "/pdfs/"))
          )
     (setq reftex-default-bibliography bib-files) ; reftex
     (setq bibtex-completion-bibliography bib-files) ; bibtex
@@ -55,54 +56,9 @@ to rescan the bib files and update pdf and notes notation."
     (setq org-ref-pdf-directory bib-pdf-dir)
     (setq bibtex-completion-library-path bib-pdf-dir)
     )
-  ;; (defvar bib-files)
-  ;; (define-key bibtex-mode-map (kbd "C-c ]") 'org-ref-helm-insert-cite-link)
-  ;; (setq bib-files (directory-files "~/github/bibliography/" t ".*\.bib$"))
-  ;; (setq reftex-default-bibliography bib-files)
-  ;; (setq bibtex-completion-bibliography bib-files)
-  ;; (setq org-ref-default-bibliography bib-files)
-  ;; (setq org-ref-bibliography-notes "~/github/bibliography/notes.org")
-  ;; (setq bibtex-completion-notes-path "~/github/bibliography/notes.org")
-  ;; (setq org-ref-pdf-directory "~/github/bibliography/bibtex-pdfs/")
-  ;; (setq bibtex-completion-library-path "~/github/bibliography/bibtex-pdfs")
-
-  ;; (let ((bib-dir "~/github/bibliography"))
-  ;;   (setq reftex-default-bibliography (concat bib-dir "/refacotr.bib"))
-  ;;   (setq bibtex-completion-bibliography (concat bib-dir "/refactor.bib"))
-  ;;   (setq org-ref-default-bibliography (concat bib-dir "/refactor.bib"))
-  ;;   (setq org-ref-bibliography-notes (concat bib-dir "/notes.org"))
-  ;;   (setq bibtex-completion-notes-path (concat bib-dir "/notes.org"))
-  ;;   (setq org-ref-pdf-directory (concat bib-dir "/bibtex-pdfs/"))
-  ;;   (setq bibtex-completion-library-path (concat bib-dir "/bibtex-pdfs"))
-  ;;   )
-
-  ;; default condfiguration
-  ;; (setq reftex-default-bibliography '("~/github/bibliography/refactor.bib"))
-
-  ;; ;; see org-ref for use of these variables
-  ;; (setq org-ref-bibliography-notes "~/github/bibliography/notes.org"
-  ;;       org-ref-default-bibliography '("~/github/bibliography/refactor.bib")
-  ;;       org-ref-pdf-directory "~/github/bibliography/bibtex-pdfs/")
-
-
-  ;; (setq bibtex-completion-bibliography "~/github/bibliography/refactor.bib")
-  ;; (setq bibtex-completion-library-path "~/github/bibliography/bibtex-pdfs")
-
-  ;; open pdf with system pdf viewer (works on mac)
   (setq bibtex-completion-pdf-open-function
         (lambda (fpath)
           (start-process "open" "*open*" "open" fpath)))
-
-  ;; alternative
-  ;; (setq bibtex-completion-pdf-open-function 'org-open-file)
-
-  ;; (setq bibtex-completion-notes-path "~/github/bibliography/bibtex-completion-notes")
-  
-
-  ;; my temporary patches
-  ;; (defalias 'helm-bibtex-get-value 'bibtex-completion-get-value)
-  ;; (defalias 'helm-bibtex-clean-string 'bibtex-completion-clean-string)
-  ;; (defalias 'helm-bibtex-shorten-authors 'bibtex-completion-shorten-authors)
 
   ;; "\n** ${year} - ${title}\n  :PROPERTIES:\n  :Custom_ID: ${=key=}\n  :AUTHOR: ${author}\n  :END:\n\n"
   (setq org-ref-note-title-format

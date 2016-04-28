@@ -376,10 +376,15 @@
   ;; but cannot be defered, or the command is not found.
   ;; to use: M-x R
   ;; R-mode
+  ;; :disabled t
   )
 
 (use-package cmake-mode
   :defer t
+  )
+
+(use-package tuareg
+  ;; The ocaml mode
   )
 
 
