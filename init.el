@@ -24,6 +24,9 @@
 (load (emacs-d "bindings"))
 
 (load (emacs-d "hebi-defun"))
+
+(load "helium-slice-highlighter")
+
 ;; (load (emacs-d "smart-scholar"))
 (load (emacs-d "env"))
 ;; (load (emacs-d "livedown"))
