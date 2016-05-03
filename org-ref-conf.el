@@ -39,7 +39,9 @@ to rescan the bib files and update pdf and notes notation."
 (use-package org-ref
   :config
   (let* ((bib-dir "~/github/note/bibliography")
-         (bib-files (directory-files bib-dir t ".*\.bib$"))
+         (bib-files (if (file-exists-p bib-dir)
+                      (directory-files bib-dir t ".*\.bib$"))
+                    )
          (bib-note-file (concat bib-dir "/notes.org"))
          ;; (bib-pdf-dir (list (concat bib-dir "/bibtex-pdfs/") (concat bib-dir "/manual-pdfs/")))
          (bib-pdf-dir (concat bib-dir "/pdfs/"))
