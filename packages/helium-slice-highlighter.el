@@ -52,7 +52,7 @@
   (cl-loop for linum in linums
            collect (progn
                      (goto-char (point-min))
-                     (forward-line linum)
+                     (forward-line (- linum 1))
                      (make-overlay (point) (line-end-position)))))
 
 (defface slice-highlight-face '((((min-colors 88) (class color))
@@ -65,15 +65,15 @@
   )
 
 
-(defvar helium-slice-overlay)
-(setq helium-slice-overlay ())
 
 ;; face to use: custom-changed
 (defun helium-highlight-slice()
   "highlight lines in slice."
   (interactive)
   (helium-hightlight-dismiss)
-  ;; (make-local-variable 'helium-slice-overlay)
+  (defvar helium-slice-overlay)
+  (make-local-variable 'helium-slice-overlay)
+  (setq helium-slice-overlay ())
   (let ((slices (helium-get-slice-linums)))
     ;; (print slices)
     (setq helium-slice-overlay (create-overlays slices))
