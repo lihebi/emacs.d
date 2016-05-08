@@ -43,6 +43,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
+(use-package auctex
+  ;; no document installed? ;; seems to have error when compiling
+  :disabled t
+  )
 
 
 
@@ -91,18 +95,6 @@
 ;; helm-semantic-or-imenu
 ;; srefactor-refactor-at-point
 
-
-(use-package projectile
-  :init
-  (progn
-    (projectile-global-mode)
-    (setq projectile-enable-caching t) ; enable catch
-    )
-  :config
-  (setq projectile-switch-project-action 'projectile-dired)
-  )
-
-(use-package helm-projectile)
 
 (use-package neotree
   ;; neotree is not using because it conflicts with perspective
@@ -245,6 +237,7 @@
   )
 
 (use-package helm
+  :disabled t
   :bind
   (
    ("M-x" . helm-M-x)
@@ -266,6 +259,30 @@
   (setq helm-buffers-fuzzy-matching t
         helm-recentf-fuzzy-match t)
   )
+
+
+(use-package projectile
+  :init
+  (progn
+    (projectile-global-mode)
+    (setq projectile-enable-caching t) ; enable catch
+    )
+  :config
+  (setq projectile-switch-project-action 'projectile-dired)
+  )
+
+(use-package helm-projectile
+  :disabled t
+  )
+
+(use-package ess
+  ;; R
+  ;; but cannot be defered, or the command is not found.
+  ;; to use: M-x R
+  ;; R-mode
+  :disabled t
+  )
+
 
 (use-package helm-gtags
   :bind
@@ -371,13 +388,6 @@
 ;; Mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package ess
-  ;; R
-  ;; but cannot be defered, or the command is not found.
-  ;; to use: M-x R
-  ;; R-mode
-  ;; :disabled t
-  )
 
 (use-package cmake-mode
   :defer t
