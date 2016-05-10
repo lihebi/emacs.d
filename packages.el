@@ -226,6 +226,7 @@
     ;; (add-hook 'LaTeX-mode-hook '(flyspell-mode t))
     ;; TODO not working for flyspell-mode
     (add-hook 'LaTeX-mode-hook #'turn-on-flyspell)
+    (add-hook 'latex-mode-hook #'turn-on-flyspell)
     (add-hook 'org-mode-hook #'turn-on-flyspell)
     )
   )
@@ -237,7 +238,7 @@
   )
 
 (use-package helm
-  :disabled t
+  ;; :disabled t
   :bind
   (
    ("M-x" . helm-M-x)
@@ -272,7 +273,7 @@
   )
 
 (use-package helm-projectile
-  :disabled t
+  ;; :disabled t
   )
 
 (use-package ess
@@ -280,7 +281,7 @@
   ;; but cannot be defered, or the command is not found.
   ;; to use: M-x R
   ;; R-mode
-  :disabled t
+  ;; :disabled t
   )
 
 

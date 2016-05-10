@@ -9,6 +9,7 @@
   ;; used for fontify code in exporting of org
   :defer t
   )
+
 (use-package org
   :init
   (setq org-plain-list-ordered-item-terminator '?.) ; remove using ?) causing a listing
