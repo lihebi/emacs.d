@@ -76,8 +76,8 @@ to rescan the bib files and update pdf and notes notation."
   ;; To display more keywords, look into this defun:
   ;; bibtex-completion-candidates-formatter
 
-  (require 'org-ref-pdf)
-  (require 'org-ref-url-utils)
+  ;; (require 'org-ref-pdf)
+  ;; (require 'org-ref-url-utils)
   )
 
 

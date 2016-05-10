@@ -5,6 +5,8 @@
 
 ;;; Code:
 
+
+
 (use-package htmlize
   ;; used for fontify code in exporting of org
   :defer t
@@ -269,6 +271,11 @@ a:visited {color: red;}
   ;; (setq org-html-htmlize-output-type 'css)
 
   )
+
+(if (and (>= emacs-major-version 24)
+	     ;; FIXME 25.x
+	     (>= emacs-minor-version 4))
+    (load (emacs-d "org-ref-conf")))
 
 
 (provide 'org-conf)

@@ -42,6 +42,7 @@
 ;; Package list
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(load (emacs-d "org-conf"))
 
 (use-package auctex
   ;; no document installed? ;; seems to have error when compiling
@@ -526,9 +527,9 @@
 ;;   )
 
 (use-package monokai-theme
-  :defer t
+  ;; monokai
   :init
-  ;; (load-theme 'monokai t t)
+  (load-theme 'monokai t t)
   )
 
 
