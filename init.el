@@ -31,7 +31,7 @@
 (if (not window-system)
     ;; load theme for terminal emacs
     ;; should use a dark theme
-    ;; (load-theme 'monokai t)
+    (load-theme 'monokai t)
     ;; monokai theme cause error in command line by the new release 2.0.0,
     ;; as of 2016-05-10 Tue 12:24:40 AM
     ;; disabled for now
@@ -242,6 +242,9 @@
      ("#A41F99" . 85)
      ("#3E3D31" . 100))))
  '(magit-diff-use-overlays nil)
+ '(org-agenda-files
+   (quote
+    ("~/github/Helium-POPL17/assets/table-org-files/table.org" "~/github/org")))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
  '(send-mail-function (quote sendmail-send-it))

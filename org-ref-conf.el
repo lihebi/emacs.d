@@ -38,8 +38,9 @@ to rescan the bib files and update pdf and notes notation."
 
 (use-package org-ref
   :config
-  (let* ((bib-dir "~/github/note/bibliography")
+  (let* ((bib-dir "~/github/bibliography")
          (bib-files (if (file-exists-p bib-dir)
+                        ;; TODO recursive search sub-dirs for bib files
                       (directory-files bib-dir t ".*\.bib$"))
                     )
          (bib-note-file (concat bib-dir "/notes.org"))
@@ -95,9 +96,9 @@ fields, the keywords I think."
    for entry = (cdr entry)
    for entry-key = (bibtex-completion-get-value "=key=" entry)
    if (assoc-string "author" entry 'case-fold)
-   for fields = '("author" "title"  "year" "=has-pdf=" "=has-note=" "=type=")
+   for fields = '("=key="  "title" "author"  "year" "=has-pdf=" "=has-note=" "=type=")
    else
-   for fields = '("editor" "title" "year" "=has-pdf=" "=has-note=" "=type=")
+   for fields = '("=key=" "title" "editor" "year" "=has-pdf=" "=has-note=" "=type=" "=key=")
    for fields = (--map (bibtex-completion-clean-string
                         (bibtex-completion-get-value it entry " "))
                        fields)
@@ -106,9 +107,9 @@ fields, the keywords I think."
                         (list (or (bibtex-completion-get-value "keywords" entry)
                                   "")))
    collect
-   (cons (s-format "$0 $1 $2 $3 $4$5 $6" 'elt
+   (cons (s-format "$0 $1 $2 $3 $4$5 $6 $7" 'elt
                    (-zip-with (lambda (f w) (truncate-string-to-width f w 0 ?\s))
-                              fields (list 36 (- width 85) 4 1 1 7 15)))
+                              fields (list 18 (- width 85) 30 4 1 1 7 15)))
          entry-key)))
 
 (use-package gscholar-bibtex

@@ -421,7 +421,11 @@
     (setq fic-highlighted-words
           '("FIXME" "TODO" "BUG"
             "KLUDGE" "HEBI" "AGREE" "DENY"
-            "REFER" "DEBUG" "NOW" "CAUTION")
+            "REFER" "DEBUG" "NOW" "CAUTION"
+            "DEPRECATED"
+            "BUGSIG" "INVARIANT" "PRECONDITION" "TRANSFER"
+            "STEP"
+            )
           )
     )
   :config
