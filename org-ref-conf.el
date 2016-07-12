@@ -36,13 +36,54 @@ to rescan the bib files and update pdf and notes notation."
 
 ;; (directory-files "~/github/bibliography/" t ".*\.bib$")
 
+(require 'cl)
+
+(defun folder-dirs (folder)
+  "find the folders inside another folder, except . and .."
+  (delete-if-not 'file-directory-p
+    (mapcar (lambda(arg) (file-name-as-directory (concat (file-name-as-directory folder) arg)))
+      (delete-if (lambda (arg) (or (string= ".." arg) (string= "." arg)))
+                 (directory-files folder)))))
+
+;; (folder-dirs "~/Downloads")
+
+(defun find-bib-files-1 (folder)
+  "find the folder/*.bib files"
+  (if (file-exists-p folder)
+      (directory-files folder t ".*\.bib$")))
+
+(defun find-bib-files-2 (folder)
+  "level 2 find bib files
+  will find folder/*.bib and folder/*/*.bib"
+  (let ((l_folders (folder-dirs folder)))
+    (-flatten (mapcar 'find-bib-files-1 l_folders))
+    ))
+  
+(defun find-bib-files (folder)
+  "find both level 1 and level 2 bib files"
+  (let*
+      ((f1 (find-bib-files-1 folder))
+       (f2 (find-bib-files-2 folder))
+       )
+    (append f1 f2)))
+
+;; (find-bib-files-1 "~/tmptmp")
+;; (find-bib-files-2 "~/tmptmp")
+;; (find-bib-files "~/tmptmp")
+
+(list "dd" "nnn")
+
+;; use your function instead of print
+;; (recursively-run-on-every-dir 'print "/your/initial/path/")
+
 (use-package org-ref
   :config
   (let* ((bib-dir "~/github/bibliography")
-         (bib-files (if (file-exists-p bib-dir)
-                        ;; TODO recursive search sub-dirs for bib files
-                      (directory-files bib-dir t ".*\.bib$"))
-                    )
+         ;; (bib-files (if (file-exists-p bib-dir)
+         ;;                ;; TODO recursive search sub-dirs for bib files
+         ;;              (directory-files bib-dir t ".*\.bib$"))
+         ;;            )
+         (bib-files (find-bib-files bib-dir))
          (bib-note-file (concat bib-dir "/notes.org"))
          ;; (bib-pdf-dir (list (concat bib-dir "/bibtex-pdfs/") (concat bib-dir "/manual-pdfs/")))
          (bib-pdf-dir (concat bib-dir "/pdfs/"))
