@@ -40,6 +40,7 @@ to rescan the bib files and update pdf and notes notation."
 
 (defun folder-dirs (folder)
   "find the folders inside another folder, except . and .."
+  "FIXME throw error if folder does not exist"
   (delete-if-not 'file-directory-p
     (mapcar (lambda(arg) (file-name-as-directory (concat (file-name-as-directory folder) arg)))
       (delete-if (lambda (arg) (or (string= ".." arg) (string= "." arg)))
@@ -58,20 +59,25 @@ to rescan the bib files and update pdf and notes notation."
   (let ((l_folders (folder-dirs folder)))
     (-flatten (mapcar 'find-bib-files-1 l_folders))
     ))
+
+;; (find-bib-files "~/github")
+;; (folder-dirs "~/github")
+;; (file-exists-p "~/github")
   
 (defun find-bib-files (folder)
   "find both level 1 and level 2 bib files"
-  (let*
-      ((f1 (find-bib-files-1 folder))
-       (f2 (find-bib-files-2 folder))
-       )
-    (append f1 f2)))
+  (if (file-exists-p folder)
+      (let*
+          ((f1 (find-bib-files-1 folder))
+           (f2 (find-bib-files-2 folder))
+           )
+        (append f1 f2))))
 
 ;; (find-bib-files-1 "~/tmptmp")
 ;; (find-bib-files-2 "~/tmptmp")
 ;; (find-bib-files "~/tmptmp")
 
-(list "dd" "nnn")
+;; (list "dd" "nnn")
 
 ;; use your function instead of print
 ;; (recursively-run-on-every-dir 'print "/your/initial/path/")

@@ -56,14 +56,14 @@
      (python . t)
      (ruby . t)
      (shell . t)
-     ;; other babel languages
+  ;;    ;; other babel languages
      (plantuml . t)
-     ;; this should be capital C, the same as in #+begin_src C
+  ;;    ;; this should be capital C, the same as in #+begin_src C
      (C . t)
      (srcml . t)
      (ctags . t)
      (dot . t)
-     (R . t)
+     ;; (R . t)
      (sqlite . t)
      )
    )
