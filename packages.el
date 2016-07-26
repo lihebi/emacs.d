@@ -218,6 +218,11 @@
   (add-hook 'c-mode-hook '(lambda()
                             (setq flycheck-clang-args "")
                             ))
+  ;; Add include path
+  ;; I found this information by:
+  ;; M-x describe-checker => found c/c++-clang
+  ;; Click on it, goes to the description, along with the configurable part.
+  (setq flycheck-clang-include-path (list ".."))
   )
 
 (use-package flyspell
@@ -405,6 +410,18 @@
   (add-hook 'markdown-mode-hook 'turn-on-orgtbl)
   )
 
+
+;; (defun hebi-highlight ()
+;;   "."
+;;   (font-lock-add-keywords nil
+;;                           '(("\\<\\(HEBI\\)\\>" . fic-face))
+;;                           'append)
+;;   ;; (font-lock-remove-keywords nil kwlist))
+;;   (font-lock-fontify-buffer)
+;;   )
+
+
+
 (use-package fic-mode
   ;; this is buggy even if I disabled it...
   ;; see here file:///Users/hebi/github/wiki-new/js.html
@@ -425,6 +442,8 @@
             "DEPRECATED"
             "BUGSIG" "INVARIANT" "PRECONDITION" "TRANSFER"
             "STEP"
+            "IMPORTANT" "HERE"
+            "UPDATE"
             )
           )
     )
