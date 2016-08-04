@@ -294,6 +294,7 @@
 (use-package helm-gtags
   :bind
   ("M-." . helm-gtags-dwim)
+  ("M-," . helm-gtags-pop-stack)
   )
 
 
