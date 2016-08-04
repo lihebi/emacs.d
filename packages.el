@@ -37,6 +37,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; :bind,mode,interpreter will imply :defer t
+(use-package dash)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Package list
