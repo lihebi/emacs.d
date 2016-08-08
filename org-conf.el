@@ -40,6 +40,7 @@
     (setq org-agenda-files (list org-directory))
     )
   :config
+  (setq org-export-backends (append '(man) org-export-backends))
   (define-key org-mode-map (kbd "C-j") (lambda()
                                          (interactive)
                                          (join-line -1)))
