@@ -28,17 +28,21 @@
 ;; (load-theme 'monokai)
 ;; (enable-theme 'leuven)
 
-(if (not window-system)
-    ;; load theme for terminal emacs
-    ;; should use a dark theme
-    (load-theme 'monokai t)
-    ;; monokai theme cause error in command line by the new release 2.0.0,
-    ;; as of 2016-05-10 Tue 12:24:40 AM
-    ;; disabled for now
-    ()
-  ;; theme for window system
-  (load-theme 'leuven t)
-  )
+;; (if (not window-system)
+;;     (progn
+;;       ;; load theme for terminal emacs
+;;       ;; should use a dark theme
+;;       ;; (load-theme 'monokai t)
+;;       (enable-theme 'cyberpunk))
+;;   ;; theme for window system
+;;   (load-theme 'leuven t)
+;;   )
+
+;; Theme
+(use-package cyberpunk-theme
+  :init
+  (load-theme 'cyberpunk t))
+
 
 (when (not window-system)
   (menu-bar-mode -1)
@@ -232,9 +236,6 @@ Optional argument FONTS font names to check."
  '(ansi-color-names-vector
    ["#272822" "#F92672" "#A6E22E" "#E6DB74" "#66D9EF" "#FD5FF0" "#A1EFE4" "#F8F8F2"])
  '(compilation-message-face (quote default))
- '(custom-safe-themes
-   (quote
-    ("1bacdd5d24f187f273f488a23c977f26452dffbc82d4ac57250aa041f14159da" "1b46826ed71b40396e3eee3a8a8adb0b4e2bf4edeff271116a1926e5c20eede0" "6c62b1cd715d26eb5aa53843ed9a54fc2b0d7c5e0f5118d4efafa13d7715c56e" default)))
  '(fci-rule-color "#3E3D31")
  '(git-gutter:added-sign "++")
  '(git-gutter:deleted-sign "--")

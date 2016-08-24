@@ -50,7 +50,11 @@
   :disabled t
   )
 
-
+(use-package slime
+  :config
+  (setq inferior-lisp-program "/usr/bin/sbcl")
+  (setq slime-contribs '(slime-fancy))
+  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -551,11 +555,24 @@
 ;;   (load-theme 'dracula t t)
 ;;   )
 
-(use-package monokai-theme
-  ;; monokai
-  :init
-  (load-theme 'monokai t t)
-  )
+;; (use-package monokai-theme
+;;   ;; monokai
+;;   :init
+;;   (load-theme 'monokai t t))
+
+
+
+;; This is theme is not clear! So bad.
+;; (use-package zenburn-theme
+;;   :init
+;;   (load-theme 'zenburn t t))
+
+;; Not so clear either
+;; (use-package ample-theme
+;;   :init
+;;   (load-theme 'ample t t)
+;;   (load-theme 'ample-flat t t)
+;;   (load-theme 'ample-light t t))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -673,11 +690,6 @@
 (use-package color-theme-sanityinc-tomorrow
   :disabled t
   )
-(use-package cyberpunk-theme
-  :disabled t
-  :init
-  (load-theme 'cyberpunk t)
-  )
 
 (use-package solarized-theme
   ;; disabled because it will give a very bright foreground selection in magit buffer.
@@ -687,11 +699,6 @@
   (load-theme 'solarized-light t)
   )
 
-(use-package zenburn-theme
-  :disabled t
-  :init
-  (load-theme 'zenburn t)
-  )
 (use-package ample-theme
   :disabled t
   :init
