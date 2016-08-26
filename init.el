@@ -84,6 +84,10 @@
     (set-frame-parameter nil 'alpha '(90 90))))
 (global-set-key (kbd "C-c t") 'toggle-transparency)
 
+
+(setq browse-url-browser-function 'browse-url-generic
+      browse-url-generic-program "conkeror")
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; General config
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
