@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# name: leetcode
+# key: leet
+# --
+#include <iostream>
+#include <vector>
+#include <map>
+#include <set>
+#include <stack>
+#include <algorithm>
+#include <string>
+#include <climits>
+
+using std::vector;
+using std::string;
+using std::set;
+using std::map;
+using std::stack;
+using std::pair;
+
+$1
