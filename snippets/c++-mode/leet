@@ -10,6 +10,8 @@
 #include <algorithm>
 #include <string>
 #include <climits>
+#include <list>
+#include <cassert>
 
 using std::vector;
 using std::string;
@@ -17,5 +19,6 @@ using std::set;
 using std::map;
 using std::stack;
 using std::pair;
+// using std::list;
 
 $1
