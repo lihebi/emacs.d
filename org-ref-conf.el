@@ -19,9 +19,9 @@
   ;; helm-bibtex-notes-template-multiple-files
   :config
   ;; open pdf with system pdf viewer (works on mac)
-  (setq bibtex-completion-pdf-open-function
-        (lambda (fpath)
-          (start-process "open" "*open*" "open" fpath)))
+  ;; (setq bibtex-completion-pdf-open-function
+  ;;       (lambda (fpath)
+  ;;         (start-process "open" "*open*" "open" fpath)))
   ;; alternative
   ;; (setq helm-bibtex-pdf-open-function 'org-open-file)
   ;; (setq helm-bibtex-notes-path "~/github/bibliography/helm-bibtex-notes")
@@ -92,7 +92,8 @@ to rescan the bib files and update pdf and notes notation."
          (bib-files (find-bib-files bib-dir))
          (bib-note-file (concat bib-dir "/notes.org"))
          ;; (bib-pdf-dir (list (concat bib-dir "/bibtex-pdfs/") (concat bib-dir "/manual-pdfs/")))
-         (bib-pdf-dir (concat bib-dir "/pdfs/"))
+         (bib-pdf-dir "~/github/papers")
+         ;; (bib-pdf-dir (concat bib-dir "/pdfs/"))
          )
     (setq reftex-default-bibliography bib-files) ; reftex
     (setq bibtex-completion-bibliography bib-files) ; bibtex
@@ -104,9 +105,9 @@ to rescan the bib files and update pdf and notes notation."
     (setq org-ref-pdf-directory bib-pdf-dir)
     (setq bibtex-completion-library-path bib-pdf-dir)
     )
-  (setq bibtex-completion-pdf-open-function
-        (lambda (fpath)
-          (start-process "open" "*open*" "open" fpath)))
+  ;; (setq bibtex-completion-pdf-open-function
+  ;;       (lambda (fpath)
+  ;;         (start-process "open" "*open*" "open" fpath)))
 
   ;; "\n** ${year} - ${title}\n  :PROPERTIES:\n  :Custom_ID: ${=key=}\n  :AUTHOR: ${author}\n  :END:\n\n"
   (setq org-ref-note-title-format
