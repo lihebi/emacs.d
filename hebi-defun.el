@@ -157,5 +157,22 @@
     (reload-image-at-point)))
 
 
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Some functions useful for leetcode
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; get the binary format of an integer
+(defun hebi-get-binary(num)
+  (reverse (cl-loop
+   until (= num 0)
+   collect (logand num 1)
+   do
+   (setq num (lsh num -1)))))
+
+;; (hebi-get-binary 6) ; => (1 1 0)
+
+
 (provide 'hebi-defun)
 ;;; hebi-defun.el ends here
