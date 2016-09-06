@@ -291,4 +291,5 @@ Optional argument FONTS font names to check."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(fic-face ((t (:background "black" :foreground "red" :weight bold))))
  '(nxml-element-local-name ((t (:background "textBackgroundColor" :foreground "#000088" :box nil)))))
