@@ -92,7 +92,7 @@ to rescan the bib files and update pdf and notes notation."
          (bib-files (find-bib-files bib-dir))
          (bib-note-file (concat bib-dir "/notes.org"))
          ;; (bib-pdf-dir (list (concat bib-dir "/bibtex-pdfs/") (concat bib-dir "/manual-pdfs/")))
-         (bib-pdf-dir "~/github/papers")
+         (bib-pdf-dir '("~/github/papers/" "~/github/books/"))
          ;; (bib-pdf-dir (concat bib-dir "/pdfs/"))
          )
     (setq reftex-default-bibliography bib-files) ; reftex
