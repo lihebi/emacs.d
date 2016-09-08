@@ -259,6 +259,12 @@ Optional argument FONTS font names to check."
  '(org-agenda-files
    (quote
     ("~/github/Helium-POPL17/assets/table-org-files/table.org" "~/github/org")))
+ '(org-file-apps
+   (quote
+    ((auto-mode . emacs)
+     ("\\.mm\\'" . default)
+     ("\\.x?html?\\'" . default)
+     ("\\.pdf\\'" . emacs))))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
  '(send-mail-function (quote sendmail-send-it))
