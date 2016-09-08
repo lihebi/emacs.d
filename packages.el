@@ -39,6 +39,11 @@
 ;; :bind,mode,interpreter will imply :defer t
 (use-package dash)
 
+;; May cause problem in a clean install, manual installation of pdf-tools may be necessary
+(use-package pdf-tools
+  :config
+  (pdf-tools-install))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Package list
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
