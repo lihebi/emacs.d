@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: homework
+# key: hw
+# --
+#+TITLE: $1
+#+OPTIONS: toc:nil
+#+LATEX_CLASS: article
+#+LATEX_HEADER: \usepackage{geometry}
+#+LATEX_HEADER: \geometry{margin=1in}
+#+LATEX_HEADER: \usepackage{indentfirst}
+#+LATEX_HEADER: \usepackage{fancyhdr}
+#+LATEX_HEADER: \pagestyle{fancy}
+#+LATEX_HEADER: \fancyhf{}
+#+LATEX_HEADER: \rhead{${2:572 HW1}}
+#+LATEX_HEADER: \lhead{Hebi Li}
