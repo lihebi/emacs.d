@@ -58,6 +58,14 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(use-package linum-off
+  :config
+  (setq linum-disabled-modes-list (append linum-disabled-modes-list '(doc-view-mode))))
+ ;; '(linum-disabled-modes-list
+ ;;   (quote
+ ;;    (eshell-mode wl-summary-mode compilation-mode org-mode text-mode dired-mode pdf-view-mode doc-view-mode)))
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Window and frame
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
