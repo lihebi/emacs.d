@@ -20,6 +20,9 @@
 (load "helium-slice-highlighter")
 (load (emacs-d "env"))
 
+
+(load (emacs-d "exp"))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Appearance
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
