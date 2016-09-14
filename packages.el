@@ -44,6 +44,8 @@
   :config
   (pdf-tools-install))
 
+(use-package csv-mode)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Package list
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
