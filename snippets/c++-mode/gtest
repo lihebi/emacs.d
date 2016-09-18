@@ -6,6 +6,7 @@
 
 TEST(TestSuite, TestCase) {
   EXPECT_TRUE(true);
+  $1
 }
 
 int main(int argc, char* argv[]) {
