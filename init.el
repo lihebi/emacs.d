@@ -42,9 +42,15 @@
 ;;   )
 
 ;; Theme
-(use-package cyberpunk-theme
+;; (use-package cyberpunk-theme
+;;   :init
+;;   (load-theme 'cyberpunk t))
+
+(use-package monokai-theme
   :init
-  (load-theme 'cyberpunk t))
+  (load-theme 'monokai t t)
+  (enable-theme 'monokai)
+  )
 
 
 (when (not window-system)
@@ -243,6 +249,9 @@ Optional argument FONTS font names to check."
  '(ansi-color-names-vector
    ["#272822" "#F92672" "#A6E22E" "#E6DB74" "#66D9EF" "#FD5FF0" "#A1EFE4" "#F8F8F2"])
  '(compilation-message-face (quote default))
+ '(custom-safe-themes
+   (quote
+    ("a800120841da457aa2f86b98fb9fd8df8ba682cebde033d7dbf8077c1b7d677a" "71ecffba18621354a1be303687f33b84788e13f40141580fa81e7840752d31bf" default)))
  '(fci-rule-color "#3E3D31")
  '(git-gutter:added-sign "++")
  '(git-gutter:deleted-sign "--")
