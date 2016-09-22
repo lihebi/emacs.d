@@ -106,8 +106,12 @@ background of code to whatever theme I'm using's background"
   ;; To load the image in to emacs:
   ;; org-toggle-inline-images
   ;; C-c C-x C-v
-  (setq org-plantuml-jar-path
-        (expand-file-name "~/bin/plantuml.jar"))
+
+  ;; this sets the plantuml.jar path
+  ;; (setq org-plantuml-jar-path
+  ;;       (expand-file-name "~/bin/plantuml.jar"))
+  ;; But I found debian has plantuml in its repo, so why not?
+  (setq org-plantuml-jar-path "/usr/share/plantuml/plantuml.jar")
   ;; latex templates
   (require 'ox-latex)
   ;; (setq org-export-latex-listings t)

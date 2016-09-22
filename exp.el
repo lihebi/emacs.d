@@ -28,6 +28,12 @@
 (setq erc-user-full-name "Hebi Li")
 
 
+
+
+
+;; GNUS
+
+(setq gnus-default-nntp-server "news.gmane.org")
 (setq gnus-select-method '(nntp "news.gmane.org"))
 (setq gnus-use-adaptive-scoring t)
 (add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
