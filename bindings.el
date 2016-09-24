@@ -27,7 +27,7 @@
                   (indent-according-to-mode)))
 
 ;; join line
-(global-set-key (kbd "C-j")
+(global-set-key (kbd "C-^")
                 (lambda()
                   (interactive)
                   (join-line -1)))

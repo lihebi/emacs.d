@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: gtest-f
+# key: gf
+# --
+EXPECT_FALSE($1, $2);

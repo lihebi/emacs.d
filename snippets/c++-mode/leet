@@ -11,6 +11,7 @@
 #include <string>
 #include <climits>
 #include <list>
+#include <queue>
 #include <cassert>
 #include <sstream>
 #include <unordered_map>

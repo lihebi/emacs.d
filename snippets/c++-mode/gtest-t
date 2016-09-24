@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: gtest-t
+# key: gt
+# --
+EXPECT_TRUE($1, $2);

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: gtest-eq
+# key: ge
+# --
+EXPECT_EQ($1, $2);

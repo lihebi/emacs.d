@@ -41,10 +41,12 @@
 ;;   (load-theme 'leuven t)
 ;;   )
 
-;; Theme
+
 ;; (use-package cyberpunk-theme
 ;;   :init
-;;   (load-theme 'cyberpunk t))
+;;   (load-theme 'cyberpunk t t)
+;;   (enable-theme 'cyberpunk)
+;;   )
 
 (use-package monokai-theme
   :init
