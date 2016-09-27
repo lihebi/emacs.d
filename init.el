@@ -114,8 +114,12 @@
 (defun set-ff-directories()
   (defvar cc-search-directories)
   (setq cc-search-directories
-        '("." "/usr/include" "/usr/local/include/*" "$PROJECT/*/include" "../include/*/*/*" "../../include/*/*/*" "../lib" "../../lib/*/*/*" "../../../lib/*/*" "../*/src" "../../src/*/*/*"))
-  )
+        '("." "/usr/include" "/usr/local/include/*" "$PROJECT/*/include"
+          "../include/*/*/*" "../../include/*/*/*"
+          "../lib" "../../lib/*/*/*" "../../../lib/*/*"
+          ;; FIXME the include for the higher order imbeded function is not found
+          "../*/src" "../../src/*/*/*" "../../../src/*/*/*/*" "../../../src/*/*/*"
+          ".." "...")))
 
 (add-hook 'c++-mode-hook 'set-ff-directories)
 (add-hook 'c-mode-hook 'set-ff-directories)

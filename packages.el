@@ -465,6 +465,7 @@
             "STEP"
             "IMPORTANT" "HERE"
             "UPDATE"
+            "CONFIRM"
             )
           )
     )

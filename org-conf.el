@@ -16,7 +16,9 @@
   "Insert custom inline css to automatically set the
 background of code to whatever theme I'm using's background"
   (when (eq exporter 'html)
-    (let* ((my-pre-bg (face-background 'default))
+    (let* (
+           ;; (my-pre-bg (face-background 'default))
+           (my-pre-bg "darkslategrey")
            (my-pre-fg (face-foreground 'default)))
       (setq
        org-html-head-extra
