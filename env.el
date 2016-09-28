@@ -4,6 +4,6 @@
 ;; exec-path-from-shell only set $PATH, but I need more, say, $HELIUME_HOME
 
 ;;; Code:
-(setenv "HELIUM_HOME" "/Users/hebi/github/Helium")
+;; (setenv "HELIUM_HOME" "/home/hebi/github/helium")
 
 ;;; env.el ends here
