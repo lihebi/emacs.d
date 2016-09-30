@@ -515,6 +515,7 @@
 
 
 
+
 (use-package git-gutter
   :init
   (progn
@@ -546,10 +547,11 @@
 
 (use-package exec-path-from-shell
   ;; when start emacs from desktop env instead of shell, the PATH is aweful.
-  :if window-system
+  ;; :if window-system
   :config
   (progn
-    (exec-path-from-shell-initialize)
+    (exec-path-from-shell-copy-env "INFOPATH") ;; load $INFOPATH
+    (exec-path-from-shell-initialize) ;; by default only load $PATH $MANPATH
     (message "%s: %s" "exec-path-from-shell post config" (getenv "PATH"))))
 
 (use-package rainbow-delimiters
