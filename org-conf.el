@@ -37,9 +37,11 @@ background of code to whatever theme I'm using's background"
   (("C-c n" . org-capture)
    ;; ("C-c o" . org-open-at-point)
    ("C-c o" . org-open-at-point-global)
-   ("C-c t" . org-todo))
+   ("C-c t" . org-todo)
+   ("C-c a" . org-agenda))
   :init
   :config
+  (setq org-startup-folded nil)
   ;; the forbidden, by default, is ,'", but I want all of them actually. By the way why these are forbidden?
   (setcar (nthcdr 2 org-emphasis-regexp-components) " \t\r\n")
   (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
