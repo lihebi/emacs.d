@@ -18,7 +18,7 @@ background of code to whatever theme I'm using's background"
   (when (eq exporter 'html)
     (let* (
            ;; (my-pre-bg (face-background 'default))
-           (my-pre-bg "darkslategrey")
+           (my-pre-bg "#01331c")
            (my-pre-fg (face-foreground 'default)))
       (setq
        org-html-head-extra
@@ -36,27 +36,13 @@ background of code to whatever theme I'm using's background"
   :bind
   (("C-c n" . org-capture)
    ;; ("C-c o" . org-open-at-point)
-   ("C-c o" . org-open-at-point-global))
+   ("C-c o" . org-open-at-point-global)
+   ("C-c t" . org-todo))
   :init
-  (progn
-    (defvar org-startup-folded)
-    (defvar org-directory)
-    (defvar org-capture-templates)
-    (defvar org-agenda-files)
-    (setq org-startup-folded nil)
-    (setq org-directory "~/github/org")
-    ;; capture templates
-    (setq org-capture-templates
-          '(("t" "TODO" entry (file+headline (concat org-directory "/scratch.org") "Tasks")
-             "* TODO %?\n  %U")
-            ("n" "Note" entry (file (concat org-directory "/scratch.org"))
-             "* Notes on %U\n%?" :prepend t)
-            ("s" "Stack" entry (file (concat org-directory "/stack.org"))
-             "* New Stack on %U\n%?" :prepend t)
-            ))
-    (setq org-agenda-files (list org-directory))
-    )
   :config
+  ;; the forbidden, by default, is ,'", but I want all of them actually. By the way why these are forbidden?
+  (setcar (nthcdr 2 org-emphasis-regexp-components) " \t\r\n")
+  (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
   (setq org-export-backends (append '(man) org-export-backends))
   (define-key org-mode-map (kbd "C-j") (lambda()
                                          (interactive)

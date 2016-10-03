@@ -83,18 +83,6 @@
 ;;             ))
 
 
-(defun toggle-transparency ()
-  "Toggle the transparency of the frame."
-  ;; Since all interactive commands should have documentation,
-  ;; I'm adding this, but transparency for an editor is really a BAD idea.
-  (interactive)
-  (if (/=
-       (cadr (frame-parameter nil 'alpha))
-       100)
-      (set-frame-parameter nil 'alpha '(100 100))
-    (set-frame-parameter nil 'alpha '(90 90))))
-(global-set-key (kbd "C-c t") 'toggle-transparency)
-
 
 (setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "conkeror")
@@ -274,9 +262,7 @@ Optional argument FONTS font names to check."
      ("#A41F99" . 85)
      ("#3E3D31" . 100))))
  '(magit-diff-use-overlays nil)
- '(org-agenda-files
-   (quote
-    ("~/github/Helium-POPL17/assets/table-org-files/table.org" "~/github/org")))
+ '(org-agenda-files (quote ("~/github/wiki/org.org")))
  '(org-file-apps
    (quote
     ((auto-mode . emacs)
