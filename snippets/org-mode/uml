@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: plantuml
+# key: plantuml
+# --
+plantuml :file wikitmp_$1.png :exports results

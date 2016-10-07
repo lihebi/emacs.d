@@ -416,6 +416,7 @@
 ;; Mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(use-package bison-mode)
 
 (use-package cmake-mode
   :defer t

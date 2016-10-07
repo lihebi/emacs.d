@@ -39,8 +39,7 @@
 (global-set-key (kbd "C-x 3") (lambda ()
                                 (interactive)
                                 (split-window-right)
-                                (other-window 1)
-                                ))
+                                (other-window 1)))
 
 (global-set-key (kbd "C-c ]") 'org-ref-helm-insert-cite-link)
 
