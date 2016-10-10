@@ -22,6 +22,7 @@
 
 
 (load (emacs-d "exp"))
+(load (emacs-d "hebi"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Appearance
@@ -246,6 +247,7 @@ Optional argument FONTS font names to check."
  '(custom-safe-themes
    (quote
     ("a800120841da457aa2f86b98fb9fd8df8ba682cebde033d7dbf8077c1b7d677a" "71ecffba18621354a1be303687f33b84788e13f40141580fa81e7840752d31bf" default)))
+ '(ecb-options-version "2.40")
  '(fci-rule-color "#3E3D31")
  '(git-gutter:added-sign "++")
  '(git-gutter:deleted-sign "--")
@@ -262,7 +264,9 @@ Optional argument FONTS font names to check."
      ("#A41F99" . 85)
      ("#3E3D31" . 100))))
  '(magit-diff-use-overlays nil)
- '(org-agenda-files (quote ("~/github/wiki/hebi.org" "~/github/wiki/org.org")))
+ '(org-agenda-files
+   (quote
+    ("~/github/wiki/todo.org" "~/github/wiki/hebi.org" "~/github/wiki/org.org")))
  '(org-file-apps
    (quote
     ((auto-mode . emacs)

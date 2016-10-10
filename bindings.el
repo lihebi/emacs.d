@@ -19,6 +19,9 @@
 ;; efficiency
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; stop using suspend-frame
+(global-unset-key (kbd "C-z"))
+
 ;; kill lines backward
 (global-set-key (kbd "C-<backspace>")
                 (lambda ()

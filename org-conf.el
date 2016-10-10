@@ -24,7 +24,8 @@ background of code to whatever theme I'm using's background"
        org-html-head-extra
        (concat
         org-html-head-extra
-        (format "<style type=\"text/css\">\n pre.src {background-color: %s; color: %s;}</style>\n"
+        (format (concat "<style type=\"text/css\">\n pre.src {background-color: %s; color: %s;}</style>\n"
+                        "<style type=\"text/css\">\n code {background-color: lightgrey;}</style>\n")
                 my-pre-bg my-pre-fg))))))
 
 (add-hook 'org-export-before-processing-hook 'my/org-inline-css-hook)

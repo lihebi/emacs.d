@@ -459,7 +459,7 @@
   (progn
     (setq fic-highlighted-words
           '("FIXME" "TODO" "BUG"
-            "KLUDGE" "HEBI" "AGREE" "DENY"
+            "KLUDGE" "AGREE" "DENY"
             "REFER" "DEBUG" "NOW" "CAUTION"
             "DEPRECATED"
             "BUGSIG" "INVARIANT" "PRECONDITION" "TRANSFER"
