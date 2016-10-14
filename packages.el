@@ -235,6 +235,7 @@
   (add-hook 'c++-mode-hook '(lambda()
                               (setq flycheck-clang-args "--std=c++11")
                               ))
+  (add-hook 'c++-mode-hook #'(lambda () (setq flycheck-gcc-language-standard "c++11")))
   (add-hook 'c-mode-hook '(lambda()
                             (setq flycheck-clang-args "")
                             ))
