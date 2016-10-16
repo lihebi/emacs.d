@@ -73,6 +73,7 @@ background of code to whatever theme I'm using's background"
      (dot . t)
      ;; (R . t)
      (sqlite . t)
+     (lisp . t)
      )
    )
 
