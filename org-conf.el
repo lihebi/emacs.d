@@ -51,6 +51,12 @@ background of code to whatever theme I'm using's background"
   (define-key org-mode-map (kbd "C-j") (lambda()
                                          (interactive)
                                          (join-line -1)))
+  (setq org-todo-keywords
+        '((sequence "TODO" "STARTED" "|" "DONE" "CANCELED")))
+  (setq org-todo-keyword-faces
+        '(("TODO" . org-todo) ("CANCELED" . org-warning) ("STARTED" . (:foreground "white" :background "red"))))
+
+
   (use-package org-plus-contrib)
   ;; highlight
   (setq org-src-fontify-natively t)
@@ -73,6 +79,7 @@ background of code to whatever theme I'm using's background"
      (dot . t)
      ;; (R . t)
      (sqlite . t)
+     (lisp . t)
      )
    )
 

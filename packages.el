@@ -63,6 +63,16 @@
   (setq slime-contribs '(slime-fancy))
   )
 
+(use-package z3-mode
+  :config
+  ;; add-hook will keep adding ... consider reset it when debugging
+  ;; (setq z3-mode-hook nil)
+  (add-hook 'z3-mode-hook #'(lambda()
+                              (prin1 "hello")
+                              ;; turn off slime mode
+                              (slime-mode 0)
+                              (prin1 "done"))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package linum-off
@@ -235,6 +245,7 @@
   (add-hook 'c++-mode-hook '(lambda()
                               (setq flycheck-clang-args "--std=c++11")
                               ))
+  (add-hook 'c++-mode-hook #'(lambda () (setq flycheck-gcc-language-standard "c++11")))
   (add-hook 'c-mode-hook '(lambda()
                             (setq flycheck-clang-args "")
                             ))
@@ -562,6 +573,7 @@
   (progn
     (add-hook 'emacs-lisp-mode-hook #'rainbow-delimiters-mode)
     (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
+    (add-hook 'lisp-mode-hook #'rainbow-delimiters-mode)
     ))
 
 
