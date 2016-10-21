@@ -6,11 +6,16 @@
 ;;; Code:
 
 
+;; the headerline bullets
+(use-package org-bullets
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
 (use-package htmlize
   ;; used for fontify code in exporting of org
   :defer t
   )
+
 
 (defun my/org-inline-css-hook (exporter)
   "Insert custom inline css to automatically set the
@@ -51,6 +56,21 @@ background of code to whatever theme I'm using's background"
   (define-key org-mode-map (kbd "C-j") (lambda()
                                          (interactive)
                                          (join-line -1)))
+
+  ;; better bullets for lists
+  ;; must have and only have one or more space at the beginning
+  ;; the - will be turned into a utf8 Unicode bullet!
+  ;; damn beautiful
+  (font-lock-add-keywords 'org-mode
+                          '(("^ +\\([-*]\\) "
+                             (0 (prog1 ()
+                                  (compose-region
+                                   (match-beginning 1)
+                                   (match-end 1) "•"))))))
+  ;; hide the // for slant
+  ;; insert \ on them is the common trick to edit the hidden part
+  (setq org-hide-emphasis-markers t)
+
   (setq org-todo-keywords
         '((sequence "TODO" "STARTED" "|" "DONE" "CANCELED")))
   (setq org-todo-keyword-faces
