@@ -63,6 +63,16 @@
   (setq slime-contribs '(slime-fancy))
   )
 
+(use-package z3-mode
+  :config
+  ;; add-hook will keep adding ... consider reset it when debugging
+  ;; (setq z3-mode-hook nil)
+  (add-hook 'z3-mode-hook #'(lambda()
+                              (prin1 "hello")
+                              ;; turn off slime mode
+                              (slime-mode 0)
+                              (prin1 "done"))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package linum-off
