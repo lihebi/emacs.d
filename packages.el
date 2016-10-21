@@ -46,6 +46,12 @@
 
 (use-package csv-mode)
 
+;; insert-pair-alist
+(use-package wrap-region
+  :config
+  (wrap-region-add-wrapper "=" "=")
+  (add-hook 'org-mode-hook 'wrap-region-mode))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Package list
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
