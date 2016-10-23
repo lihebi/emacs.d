@@ -47,6 +47,7 @@ background of code to whatever theme I'm using's background"
    ("C-c a" . org-agenda))
   :init
   :config
+  (setq org-log-done 'time)
   (setq org-startup-folded nil)
   (setq org-yank-folded-subtrees nil)
   ;; the forbidden, by default, is ,'", but I want all of them actually. By the way why these are forbidden?
@@ -72,7 +73,7 @@ background of code to whatever theme I'm using's background"
   (setq org-hide-emphasis-markers t)
 
   (setq org-todo-keywords
-        '((sequence "TODO" "STARTED" "|" "DONE" "CANCELED")))
+        '((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d)" "CANCELED(c)")))
   (setq org-todo-keyword-faces
         '(("TODO" . org-todo) ("CANCELED" . org-warning) ("STARTED" . (:foreground "white" :background "red"))))
 

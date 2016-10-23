@@ -52,6 +52,8 @@
   (wrap-region-add-wrapper "=" "=")
   (add-hook 'org-mode-hook 'wrap-region-mode))
 
+(use-package paredit)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Package list
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
