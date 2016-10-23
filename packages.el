@@ -362,13 +362,10 @@
 (use-package regex-tool
   :defer t)
 
-(if (and (>= emacs-major-version 24)
-	     ;; FIXME 25.x
-	     (>= emacs-minor-version 4))
-  (use-package magit
-    :defer t
-    :bind (
-     ("C-x g" . magit-status))))
+(use-package magit
+  :defer t
+  :bind (
+         ("C-x g" . magit-status)))
 
 (use-package ag
   :defer t
