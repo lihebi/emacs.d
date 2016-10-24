@@ -18,6 +18,9 @@
 (add-hook 'prog-mode-hook 'hebi-add-keyword)
 (add-hook 'latex-mode-hook 'hebi-add-keyword)
 (add-hook 'markdown-mode-hook 'hebi-add-keyword)
+;; R mode is not a prog-mode ..
+(add-hook 'R-mode-hook 'hebi-add-keyword)
+(add-hook 'org-mode-hook 'hebi-add-keyword)
 
 (provide 'hebi)
 ;;; hebi.el ends here

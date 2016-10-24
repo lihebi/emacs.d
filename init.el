@@ -31,6 +31,11 @@
 (load (emacs-d "exp"))
 (load (emacs-d "hebi"))
 
+
+;; stop adding newlines automatically.
+;; This cause my scripts to add newlines everytime I insert them.
+(setq require-final-newline nil)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Appearance
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
