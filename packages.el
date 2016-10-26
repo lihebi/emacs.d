@@ -83,6 +83,9 @@
   :config
   ;; add-hook will keep adding ... consider reset it when debugging
   ;; (setq z3-mode-hook nil)
+  (setq z3-solver-cmd "/usr/bin/z3")
+  ;; the actual command running:
+  ;; z3 -v:1 -smt2 xxx.smt
   (add-hook 'z3-mode-hook #'(lambda()
                               (prin1 "hello")
                               ;; turn off slime mode
