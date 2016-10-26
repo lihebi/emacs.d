@@ -59,6 +59,9 @@
 
 (use-package paredit)
 
+(use-package edbi)
+(use-package edbi-sqlite)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Package list
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
