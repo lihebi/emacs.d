@@ -129,37 +129,6 @@ to rescan the bib files and update pdf and notes notation."
   ;; (require 'org-ref-url-utils)
   )
 
-
-;; HEBI I'm using it to enlarge the keyword column in helm-bibtex interface
-;; The only change is a number in the second from the last line, from 7 to 15
-(defun bibtex-completion-candidates-formatter (candidates _source)
-  "Formats BibTeX entries for display in results list.
-Argument CANDIDATES helm candidates.
-Argument SOURCE the helm source.
-Adapted from the function in `helm-bibtex' to include additional
-fields, the keywords I think."
-  (cl-loop
-   with width = (with-helm-window (helm-bibtex-window-width))
-   for entry in candidates
-   for entry = (cdr entry)
-   for entry-key = (bibtex-completion-get-value "=key=" entry)
-   if (assoc-string "author" entry 'case-fold)
-   for fields = '("=key="  "title" "author"  "year" "=has-pdf=" "=has-note=" "=type=")
-   else
-   for fields = '("=key=" "title" "editor" "year" "=has-pdf=" "=has-note=" "=type=" "=key=")
-   for fields = (--map (bibtex-completion-clean-string
-                        (bibtex-completion-get-value it entry " "))
-                       fields)
-   for fields = (-update-at 0 'bibtex-completion-shorten-authors fields)
-   for fields = (append fields
-                        (list (or (bibtex-completion-get-value "keywords" entry)
-                                  "")))
-   collect
-   (cons (s-format "$0 $1 $2 $3 $4$5 $6 $7" 'elt
-                   (-zip-with (lambda (f w) (truncate-string-to-width f w 0 ?\s))
-                              fields (list 18 (- width 85) 30 4 1 1 7 15)))
-         entry-key)))
-
 (use-package gscholar-bibtex
   :config
   (setq gscholar-bibtex-default-source "Google Scholar")

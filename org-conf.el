@@ -47,6 +47,7 @@ background of code to whatever theme I'm using's background"
    ("C-c a" . org-agenda))
   :init
   :config
+  (add-hook 'org-mode-hook 'turn-on-auto-fill)
   (setq org-log-done 'time)
   (setq org-startup-folded nil)
   (setq org-yank-folded-subtrees nil)
@@ -168,6 +169,13 @@ background of code to whatever theme I'm using's background"
                  ("\\paragraph{%s}" . "\\paragraph*{%s}")
                  ("\\subparagraph{%s}" . "\\subparagraph*{%s}")
                  ))
+  (add-to-list 'org-latex-classes
+               '("pldi" "\\documentclass[preprint]{sigplanconf}"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -177,6 +185,12 @@ background of code to whatever theme I'm using's background"
   ;; needs to install Pygments
   (require 'ox-latex)
   ;; (setq org-latex-packages-alist nil)
+  ;; in init.el, I also use customize to add float before hyperef
+  ;; the correct order can be:
+  ;; 1. float hyperef algorithm
+  ;; 2. algorithm hyperref
+  ;; But cannot be:
+  ;; 3. hyperef algorithm
   (add-to-list 'org-latex-packages-alist '("" "listings"))
   (add-to-list 'org-latex-packages-alist '("" "color"))
   ;; (add-to-list 'org-latex-packages-alist '("newfloat" "minted"))

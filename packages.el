@@ -47,7 +47,8 @@
 ;; May cause problem in a clean install, manual installation of pdf-tools may be necessary
 (use-package pdf-tools
   :config
-  (pdf-tools-install))
+  (pdf-tools-install)
+  (setq pdf-view-resize-factor 1.03))
 
 (use-package csv-mode)
 
@@ -55,6 +56,10 @@
 (use-package wrap-region
   :config
   (wrap-region-add-wrapper "=" "=")
+  (wrap-region-add-wrapper "/" "/")
+  (wrap-region-add-wrapper "*" "*")
+  (wrap-region-add-wrapper "$" "$")
+  (wrap-region-add-wrapper "~" "~")
   (add-hook 'org-mode-hook 'wrap-region-mode))
 
 (use-package paredit)
@@ -590,7 +595,7 @@
     (add-hook 'emacs-lisp-mode-hook #'rainbow-delimiters-mode)
     (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
     (add-hook 'lisp-mode-hook #'rainbow-delimiters-mode)
-    (add-hook 'org-mode-hook #'rainbow-delimiters-mode)
+    ;; (add-hook 'org-mode-hook #'rainbow-delimiters-mode)
     (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
     ))
 
