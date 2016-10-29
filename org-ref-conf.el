@@ -83,18 +83,18 @@ to rescan the bib files and update pdf and notes notation."
 ;; (recursively-run-on-every-dir 'print "/your/initial/path/")
 
 (use-package org-ref
+  ;; do not automatically download for this, because I want to use the git version
+  :ensure nil
+  ;; use this path, so that I can test the github version of org-ref
+  ;; I think this path is just added to the front of the load path,
+  ;; so if it is not there, use-package will still find it in the elpa folder
+  :load-path "packages/org-ref"
+  :init
   :config
   (let* ((bib-dir "~/github/bibliography")
-         ;; (bib-files (if (file-exists-p bib-dir)
-         ;;                ;; TODO recursive search sub-dirs for bib files
-         ;;              (directory-files bib-dir t ".*\.bib$"))
-         ;;            )
          (bib-files (find-bib-files bib-dir))
          (bib-note-file (concat bib-dir "/notes.org"))
-         ;; (bib-pdf-dir (list (concat bib-dir "/bibtex-pdfs/") (concat bib-dir "/manual-pdfs/")))
-         (bib-pdf-dir '("~/github/papers/" "~/github/books/"))
-         ;; (bib-pdf-dir (concat bib-dir "/pdfs/"))
-         )
+         (bib-pdf-dir '("~/github/papers/" "~/github/books/")))
     (setq reftex-default-bibliography bib-files) ; reftex
     (setq bibtex-completion-bibliography bib-files) ; bibtex
     (setq org-ref-default-bibliography bib-files) ; org-ref
@@ -103,31 +103,22 @@ to rescan the bib files and update pdf and notes notation."
     (setq bibtex-completion-notes-path bib-note-file)
     ;; pdf
     (setq org-ref-pdf-directory bib-pdf-dir)
-    (setq bibtex-completion-library-path bib-pdf-dir)
-    )
-  ;; (setq bibtex-completion-pdf-open-function
-  ;;       (lambda (fpath)
-  ;;         (start-process "open" "*open*" "open" fpath)))
+    (setq bibtex-completion-library-path bib-pdf-dir)))
 
-  ;; "\n** ${year} - ${title}\n  :PROPERTIES:\n  :Custom_ID: ${=key=}\n  :AUTHOR: ${author}\n  :END:\n\n"
-  (setq org-ref-note-title-format
-        "** %y - %t
- :PROPERTIES:
- :Custom_ID: %k
- :AUTHOR: %a
- :END:
-")
-  (setq bibtex-completion-notes-template-one-file
-        ;; "\n* ${author} (${year}): ${title}\n  :PROPERTIES:\n  :Custom_ID: ${=key=}\n  :END:\n\n"
-        "\n** ${year} - ${title}\n  :PROPERTIES:\n  :Custom_ID: ${=key=}\n  :AUTHOR: ${author}\n  :END:\n\n"
-        )
 
-  ;; To display more keywords, look into this defun:
-  ;; bibtex-completion-candidates-formatter
 
-  ;; (require 'org-ref-pdf)
-  ;; (require 'org-ref-url-utils)
-  )
+;; "\n** ${year} - ${title}\n  :PROPERTIES:\n  :Custom_ID: ${=key=}\n  :AUTHOR: ${author}\n  :END:\n\n"
+;;   (setq org-ref-note-title-format
+;;         "** %y - %t
+;;  :PROPERTIES:
+;;  :Custom_ID: %k
+;;  :AUTHOR: %a
+;;  :END:
+;; ")
+;; (setq bibtex-completion-notes-template-one-file
+;;       ;; "\n* ${author} (${year}): ${title}\n  :PROPERTIES:\n  :Custom_ID: ${=key=}\n  :END:\n\n"
+;;       "\n** ${year} - ${title}\n  :PROPERTIES:\n  :Custom_ID: ${=key=}\n  :AUTHOR: ${author}\n  :END:\n\n"
+;;       ))
 
 (use-package gscholar-bibtex
   :config
