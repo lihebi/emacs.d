@@ -67,6 +67,20 @@
 (use-package edbi)
 (use-package edbi-sqlite)
 
+(use-package irony
+  :config
+  (add-hook 'c++-mode-hook 'irony-mode)
+  (add-hook 'c-mode-hook 'irony-mode)
+  (defun my-irony-mode-hook ()
+    (define-key irony-mode-map [remap completion-at-point]
+      'irony-completion-at-point-async)
+    (define-key irony-mode-map [remap complete-symbol]
+      'irony-completion-at-point-async))
+  (add-hook 'irony-mode-hook 'my-irony-mode-hook)
+  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
+
+(use-package irony-eldoc)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Package list
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
