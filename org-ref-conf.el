@@ -7,31 +7,6 @@
 ;;; Code:
 
 
-(use-package helm-bibtex
-  ;; this is used by org-ref
-  ;; I do not really need to "use" it here,
-  ;; since I guess org-ref requries it,
-  ;; and it is automatically installed when I install org-ref.
-  ;; So maybe I'd better move this into "org-ref"
-  ;; I just want to do some configuration for it here.
-  
-  ;; helm-bibtex-notes-template-one-file
-  ;; helm-bibtex-notes-template-multiple-files
-  :config
-  ;; open pdf with system pdf viewer (works on mac)
-  ;; (setq bibtex-completion-pdf-open-function
-  ;;       (lambda (fpath)
-  ;;         (start-process "open" "*open*" "open" fpath)))
-  ;; alternative
-  ;; (setq helm-bibtex-pdf-open-function 'org-open-file)
-  ;; (setq helm-bibtex-notes-path "~/github/bibliography/helm-bibtex-notes")
-  (defun hebi-bibtex-rehash()
-    "Invalidate the helm-bibtex bibliograph cache by clear the hash.
-Do it will cause the next C-c ] in org-ref (or helm-bibtex)
-to rescan the bib files and update pdf and notes notation."
-    (interactive)
-    (setq bibtex-completion-bibliography-hash "")
-    ))
 
 
 ;; (directory-files "~/github/bibliography/" t ".*\.bib$")
@@ -73,15 +48,6 @@ to rescan the bib files and update pdf and notes notation."
            )
         (append f1 f2))))
 
-;; (find-bib-files-1 "~/tmptmp")
-;; (find-bib-files-2 "~/tmptmp")
-;; (find-bib-files "~/tmptmp")
-
-;; (list "dd" "nnn")
-
-;; use your function instead of print
-;; (recursively-run-on-every-dir 'print "/your/initial/path/")
-
 (use-package org-ref
   ;; do not automatically download for this, because I want to use the git version
   :ensure nil
@@ -91,6 +57,15 @@ to rescan the bib files and update pdf and notes notation."
   :load-path "packages/org-ref"
   :init
   :config
+  (use-package helm-bibtex
+    :config
+    (defun hebi-bibtex-rehash()
+      "Invalidate the helm-bibtex bibliograph cache by clear the hash.
+Do it will cause the next C-c ] in org-ref (or helm-bibtex)
+to rescan the bib files and update pdf and notes notation."
+      (interactive)
+      (setq bibtex-completion-bibliography-hash "")
+      ))
   (let* ((bib-dir "~/github/bibliography")
          (bib-files (find-bib-files bib-dir))
          (bib-note-file (concat bib-dir "/notes.org"))
@@ -103,7 +78,26 @@ to rescan the bib files and update pdf and notes notation."
     (setq bibtex-completion-notes-path bib-note-file)
     ;; pdf
     (setq org-ref-pdf-directory bib-pdf-dir)
-    (setq bibtex-completion-library-path bib-pdf-dir)))
+    (setq bibtex-completion-library-path bib-pdf-dir))
+  (defun helm-bibtex-candidates-formatter (candidates _)
+    (cl-loop
+     with width = (with-helm-window (helm-bibtex-window-width))
+     for entry in candidates
+     for entry = (cdr entry)
+     for entry-key = (bibtex-completion-get-value "=key=" entry)
+     collect (cons (bibtex-completion-format-entry entry width) entry-key)))
+  (defun bibtex-completion-format-entry (entry width)
+    "Formats a BibTeX entry for display in results list."
+    (let* ((fields (list (if (assoc-string "author" entry 'case-fold) "author" "editor")
+                         "title" "year" "=has-pdf=" "=has-note=" "=type="))
+           (fields (-map (lambda (it)
+                           (bibtex-completion-clean-string
+                            (bibtex-completion-get-value it entry " ")))
+                         fields))
+           (fields (-update-at 0 'bibtex-completion-shorten-authors fields)))
+      (s-format "$0 $1 $2 $3$4 $5" 'elt
+                (-zip-with (lambda (f w) (truncate-string-to-width f w 0 ?\s))
+                           fields (list 36 (- width 58) 4 1 1 7))))))
 
 
 
@@ -120,13 +114,11 @@ to rescan the bib files and update pdf and notes notation."
 ;;       "\n** ${year} - ${title}\n  :PROPERTIES:\n  :Custom_ID: ${=key=}\n  :AUTHOR: ${author}\n  :END:\n\n"
 ;;       ))
 
-(use-package gscholar-bibtex
-  :config
-  (setq gscholar-bibtex-default-source "Google Scholar")
-  (setq gscholar-bibtex-database-file "/Users/hebi/github/bibliography/tmp.bib")
-  )
-
-
+;; (use-package gscholar-bibtex
+;;   :config
+;;   (setq gscholar-bibtex-default-source "Google Scholar")
+;;   (setq gscholar-bibtex-database-file "/Users/hebi/github/bibliography/tmp.bib")
+;;   )
 
 (provide 'org-ref-conf)
 ;;; org-ref-conf.el ends here

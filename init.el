@@ -279,7 +279,7 @@ Optional argument FONTS font names to check."
  '(magit-diff-use-overlays nil)
  '(org-agenda-files
    (quote
-    ("~/github/wiki/todo.org" "~/github/wiki/hebi.org" "~/github/wiki/org.org")))
+    ("~/github/note/research/idea.org" "~/github/wiki/todo.org" "~/github/wiki/hebi.org" "~/github/wiki/org.org")))
  '(org-file-apps
    (quote
     ((auto-mode . emacs)
