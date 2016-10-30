@@ -17,99 +17,8 @@
   )
 
 
-(defun my/org-inline-css-hook (exporter)
-  "Insert custom inline css to automatically set the
-background of code to whatever theme I'm using's background"
-  (when (eq exporter 'html)
-    (let* (
-           ;; (my-pre-bg (face-background 'default))
-           (my-pre-bg "#01331c")
-           (my-pre-fg (face-foreground 'default)))
-      (setq
-       org-html-head-extra
-       (concat
-        org-html-head-extra
-        (format (concat "<style type=\"text/css\">\n pre.src {background-color: %s; color: %s;}</style>\n"
-                        "<style type=\"text/css\">\n code {background-color: lightgrey;}</style>\n")
-                my-pre-bg my-pre-fg))))))
-
-(add-hook 'org-export-before-processing-hook 'my/org-inline-css-hook)
-
-(use-package org
-  :init
-  (setq org-plain-list-ordered-item-terminator '?.) ; remove using ?) causing a listing
-  :defer t
-  :bind
-  (("C-c n" . org-capture)
-   ;; ("C-c o" . org-open-at-point)
-   ("C-c o" . org-open-at-point-global)
-   ("C-c t" . org-todo)
-   ("C-c a" . org-agenda))
-  :init
-  :config
-  (add-hook 'org-mode-hook 'turn-on-auto-fill)
-  (setq org-log-done 'time)
-  (setq org-startup-folded nil)
-  (setq org-yank-folded-subtrees nil)
-  ;; the forbidden, by default, is ,'", but I want all of them actually. By the way why these are forbidden?
-  (setcar (nthcdr 2 org-emphasis-regexp-components) " \t\r\n")
-  (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
-  (setq org-export-backends (append '(man) org-export-backends))
-  (define-key org-mode-map (kbd "C-j") (lambda()
-                                         (interactive)
-                                         (join-line -1)))
-
-  ;; better bullets for lists
-  ;; must have and only have one or more space at the beginning
-  ;; the - will be turned into a utf8 Unicode bullet!
-  ;; damn beautiful
-  (font-lock-add-keywords 'org-mode
-                          '(("^ +\\([-*]\\) "
-                             (0 (prog1 ()
-                                  (compose-region
-                                   (match-beginning 1)
-                                   (match-end 1) "•"))))))
-  ;; hide the // for slant
-  ;; insert \ on them is the common trick to edit the hidden part
-  (setq org-hide-emphasis-markers t)
-
-  (setq org-todo-keywords
-        '((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d)" "CANCELED(c)")))
-  (setq org-todo-keyword-faces
-        '(("TODO" . org-todo) ("CANCELED" . org-warning) ("STARTED" . (:foreground "white" :background "red"))))
-
-
-  (use-package org-plus-contrib)
-  ;; highlight
-  (setq org-src-fontify-natively t)
-  ;; my srcml converter
-  (require 'ob-srcml)
-  (require 'ob-ctags)
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((awk . t)
-     (emacs-lisp . t)
-     (python . t)
-     (ruby . t)
-     (shell . t)
-  ;;    ;; other babel languages
-     (plantuml . t)
-  ;;    ;; this should be capital C, the same as in #+begin_src C
-     (C . t)
-     (srcml . t)
-     (ctags . t)
-     (dot . t)
-     ;; (R . t)
-     (sqlite . t)
-     (lisp . t)
-     )
-   )
-
-  ;; CAUTION The following lines will permit the execution of R code without a confirmation.
-  ;; (defun my-org-confirm-babel-evaluate (lang body)
-  ;;   (not (string= lang "R")))  ; don't ask for R
-  ;; (setq org-confirm-babel-evaluate 'my-org-confirm-babel-evaluate)
-
+(defun setup-plantuml()
+  "Set Up plantuml"
   ;; to use plantuml in org-mode:
   
   ;; #+begin_src plantuml :file tryout.png
@@ -133,7 +42,42 @@ background of code to whatever theme I'm using's background"
   ;;       (expand-file-name "~/bin/plantuml.jar"))
   ;; But I found debian has plantuml in its repo, so why not?
   (setq org-plantuml-jar-path "/usr/share/plantuml/plantuml.jar")
-  ;; latex templates
+
+  (require 'iimage)
+  (autoload 'iimage-mode "iimage" "Support Inline image minor mode." t)
+  (autoload 'turn-on-iimage-mode "iimage" "Turn on Inline image minor mode." t)
+  (add-to-list 'iimage-mode-image-regex-alist '("@startuml\s+\\(.+\\)" . 1))
+
+  ;; Rendering plantuml
+  (defun plantuml-render-buffer ()
+    (interactive)
+    (message "PLANTUML Start rendering")
+    ;; (shell-command (concat "java -jar ~/Downloads/plantuml.jar " 
+    ;;                        buffer-file-name))
+    (shell-command (concat "plantuml "  ; on mac, I use homebrew to install it.
+                           buffer-file-name))
+    (message (concat "PLANTUML Rendered:  " (buffer-name))))
+
+  ;; Image reloading
+  (defun reload-image-at-point ()
+    (interactive)
+    (message "reloading image at point in the current buffer...")
+    (image-refresh (get-text-property (point) 'display)))
+
+  ;; Image resizing and reloading
+  (defun resize-image-at-point ()
+    (interactive)
+    (message "resizing image at point in the current buffer123...")
+    (let* ((image-spec (get-text-property (point) 'display))
+           (file (cadr (member :file image-spec))))
+      (message (concat "resizing image..." file))
+      (shell-command (format "convert -resize %d %s %s " 
+                             (* (window-width (selected-window)) (frame-char-width))
+                             file file))
+      (reload-image-at-point))))
+
+(defun setup-latex()
+    ;; latex templates
   (require 'ox-latex)
   ;; (setq org-export-latex-listings t)
   (add-to-list 'org-latex-classes
@@ -236,9 +180,10 @@ background of code to whatever theme I'm using's background"
   ;;       '("pdflatex %f" "bibtex %b" "pdflatex %f" "pdflatex %f"))
   ;; (setq org-latex-pdf-process (quote ("texi2dvi -p -b -V %f")))
   ;; I add this one on my own based on my experience, and it seems to work well
-  (setq org-latex-pdf-process (list "latexmk -cd -quiet -pdf -shell-escape %f"))
+  (setq org-latex-pdf-process (list "latexmk -cd -quiet -pdf -shell-escape %f")))
 
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun setup-publish()
+    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; publishing blog
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; set the default export headline toc level
@@ -323,8 +268,115 @@ a:visited {color: red;}
   ;; which will output the color inside html tags
   ;; using 'css will only insert the class, and you need to provide you own css file.
   ;; (setq org-html-htmlize-output-type 'css)
-
   )
+
+
+(defun setup-ob()
+    ;; my srcml converter
+  (require 'ob-srcml)
+  (require 'ob-ctags)
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((awk . t)
+     (emacs-lisp . t)
+     (python . t)
+     (ruby . t)
+     (shell . t)
+  ;;    ;; other babel languages
+     (plantuml . t)
+  ;;    ;; this should be capital C, the same as in #+begin_src C
+     (C . t)
+     (srcml . t)
+     (ctags . t)
+     (dot . t)
+     ;; (R . t)
+     (sqlite . t)
+     (lisp . t)
+     )
+   )
+
+  ;; CAUTION The following lines will permit the execution of R code without a confirmation.
+  ;; (defun my-org-confirm-babel-evaluate (lang body)
+  ;;   (not (string= lang "R")))  ; don't ask for R
+  ;; (setq org-confirm-babel-evaluate 'my-org-confirm-babel-evaluate)
+)
+
+
+(defun my/org-inline-css-hook (exporter)
+  "Insert custom inline css to automatically set the
+background of code to whatever theme I'm using's background"
+  (when (eq exporter 'html)
+    (let* (
+           ;; (my-pre-bg (face-background 'default))
+           (my-pre-bg "#01331c")
+           (my-pre-fg (face-foreground 'default)))
+      (setq
+       org-html-head-extra
+       (concat
+        org-html-head-extra
+        (format (concat "<style type=\"text/css\">\n pre.src {background-color: %s; color: %s;}</style>\n"
+                        "<style type=\"text/css\">\n code {background-color: lightgrey;}</style>\n")
+                my-pre-bg my-pre-fg))))))
+
+(add-hook 'org-export-before-processing-hook 'my/org-inline-css-hook)
+
+
+
+
+
+
+
+(use-package org
+  :init
+  (setq org-plain-list-ordered-item-terminator '?.) ; remove using ?) causing a listing
+  :defer t
+  :bind
+  (("C-c n" . org-capture)
+   ;; ("C-c o" . org-open-at-point)
+   ("C-c o" . org-open-at-point-global)
+   ("C-c t" . org-todo)
+   ("C-c a" . org-agenda))
+  :init
+  :config
+  (setup-ob)
+  (setup-plantuml)
+  (setup-latex)
+  (setup-publish)
+  
+  (add-hook 'org-mode-hook 'turn-on-auto-fill)
+  (setq org-log-done 'time)
+  (setq org-startup-folded nil)
+  (setq org-yank-folded-subtrees nil)
+  ;; the forbidden, by default, is ,'", but I want all of them actually. By the way why these are forbidden?
+  (setcar (nthcdr 2 org-emphasis-regexp-components) " \t\r\n")
+  (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
+  (setq org-export-backends (append '(man) org-export-backends))
+  (define-key org-mode-map (kbd "C-j") (lambda()
+                                         (interactive)
+                                         (join-line -1)))
+
+  ;; better bullets for lists
+  ;; must have and only have one or more space at the beginning
+  ;; the - will be turned into a utf8 Unicode bullet!
+  ;; damn beautiful
+  (font-lock-add-keywords 'org-mode
+                          '(("^ +\\([-*]\\) "
+                             (0 (prog1 ()
+                                  (compose-region
+                                   (match-beginning 1)
+                                   (match-end 1) "•"))))))
+  ;; hide the // for slant
+  ;; insert \ on them is the common trick to edit the hidden part
+  (setq org-hide-emphasis-markers t)
+
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d)" "CANCELED(c)")))
+  (setq org-todo-keyword-faces
+        '(("TODO" . org-todo) ("CANCELED" . org-warning) ("STARTED" . (:foreground "white" :background "red"))))
+
+  (use-package org-plus-contrib)
+  ;; highlight
+  (setq org-src-fontify-natively t))
 
 (if (and (>= emacs-major-version 24)
 	     ;; FIXME 25.x

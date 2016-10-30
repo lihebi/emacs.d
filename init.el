@@ -22,14 +22,9 @@
 (add-to-list 'load-path "~/.emacs.d/packages/") ; packages downloaded from internet. Maybe outdated. No such package in elpa.
 
 (load (emacs-d "packages"))
-(load (emacs-d "bindings"))
-(load (emacs-d "hebi-defun"))
 (load "helium-slice-highlighter")
-(load (emacs-d "env"))
-
-
-(load (emacs-d "exp"))
 (load (emacs-d "hebi"))
+(load (emacs-d "exp"))
 
 
 ;; stop adding newlines automatically.
@@ -62,16 +57,16 @@
 ;;   (enable-theme 'cyberpunk)
 ;;   )
 
-(use-package monokai-theme
-  :init
-  (load-theme 'monokai t t)
-  (enable-theme 'monokai)
-  )
+;; (use-package monokai-theme
+;;   :init
+;;   (load-theme 'monokai t t)
+;;   (enable-theme 'monokai)
+;;   )
 
 
-(when (not window-system)
-  (menu-bar-mode -1)
-  )
+;; (when (not window-system)
+;;   (menu-bar-mode -1)
+;;   )
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
 (when (fboundp 'scroll-bar-mode)
@@ -100,6 +95,51 @@
 
 (setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "conkeror")
+
+
+
+
+;; key bindings
+(global-set-key (kbd "C-=") 'text-scale-increase)
+(global-set-key (kbd "C--") 'text-scale-decrease)
+(global-set-key (kbd "C-x O")
+                (lambda ()
+                  (interactive)
+                  (other-window -1)))
+
+
+;; stop using suspend-frame
+(global-unset-key (kbd "C-z"))
+
+;; kill lines backward
+(global-set-key (kbd "C-<backspace>")
+                (lambda ()
+                  (interactive)
+                  (kill-line 0)
+                  (indent-according-to-mode)))
+
+;; join line
+(global-set-key (kbd "C-^")
+                (lambda()
+                  (interactive)
+                  (join-line -1)))
+
+;; (define-key global-map (kbd "RET") 'newline-and-indent)
+(global-set-key (kbd "RET") 'newline-and-indent)
+
+;; when split window right, swith to that window
+(global-set-key (kbd "C-x 3") (lambda ()
+                                (interactive)
+                                (split-window-right)
+                                (other-window 1)))
+
+(global-set-key (kbd "C-c ]") 'org-ref-helm-insert-cite-link)
+
+;; switch between source and header file
+(global-set-key (kbd "C-x C-o") 'ff-find-other-file)
+
+
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; General config
@@ -216,6 +256,98 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Other
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun ask-before-closing ()
+  "Ask whether or not to close, and then close if y was pressed."
+  (interactive)
+  (if (y-or-n-p (format "Are you sure you want to exit Emacs? "))
+      (if (< emacs-major-version 22)
+          (save-buffers-kill-terminal)
+        (save-buffers-kill-emacs))
+    (message "Canceled exit")))
+
+(when window-system
+  (global-set-key (kbd "C-x C-c") 'ask-before-closing))
+
+
+
+(defun toggle-window-split ()
+  "."
+  (interactive)
+  (if (= (count-windows) 2)
+      (let* ((this-win-buffer (window-buffer))
+             (next-win-buffer (window-buffer (next-window)))
+             (this-win-edges (window-edges (selected-window)))
+             (next-win-edges (window-edges (next-window)))
+             (this-win-2nd (not (and (<= (car this-win-edges)
+                                         (car next-win-edges))
+                                     (<= (cadr this-win-edges)
+                                         (cadr next-win-edges)))))
+             (splitter
+              (if (= (car this-win-edges)
+                     (car (window-edges (next-window))))
+                  'split-window-horizontally
+                'split-window-vertically)))
+        (delete-other-windows)
+        (let ((first-win (selected-window)))
+          (funcall splitter)
+          (if this-win-2nd (other-window 1))
+          (set-window-buffer (selected-window) this-win-buffer)
+          (set-window-buffer (next-window) next-win-buffer)
+          (select-window first-win)
+          (if this-win-2nd (other-window 1))))))
+
+(global-set-key (kbd "C-x 9") 'toggle-window-split)
+
+(defun toggle-comment-on-line ()
+  "Comment or uncomment current line."
+  (interactive)
+  (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
+
+(global-set-key (kbd "C-M-;") 'toggle-comment-on-line)
+
+(defun move-line-up ()
+  (interactive)
+  (transpose-lines 1)
+  (forward-line -2))
+
+(defun move-line-down ()
+  (interactive)
+  (forward-line 1)
+  (transpose-lines 1)
+  (forward-line -1))
+
+(global-set-key (kbd "M-<up>") 'move-line-up)
+(global-set-key (kbd "M-<down>") 'move-line-down)
+
+(defun open-line-below ()
+  (interactive)
+  (end-of-line)
+  (newline)
+  (indent-for-tab-command))
+
+(defun open-line-above ()
+  (interactive)
+  (beginning-of-line)
+  (newline)
+  (forward-line -1)
+  (indent-for-tab-command))
+
+
+(global-set-key (kbd "<C-return>") 'open-line-below)
+(global-set-key (kbd "<C-S-return>") 'open-line-above)
+
+(defun unpop-to-mark-command ()
+  "Unpop off mark ring. Does nothing if mark ring is empty."
+  (interactive)
+  (when mark-ring
+    (setq mark-ring (cons (copy-marker (mark-marker)) mark-ring))
+    (set-marker (mark-marker) (car (last mark-ring)) (current-buffer))
+    (when (null (mark t)) (ding))
+    (setq mark-ring (nbutlast mark-ring))
+    (goto-char (marker-position (car (last mark-ring))))))
+
+(global-set-key (kbd "C-c C-SPC") 'unpop-to-mark-command)
 
 (setq user-full-name "Hebi Li"
       user-mail-address "lihebi.emacs@gmail.com")

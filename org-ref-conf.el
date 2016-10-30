@@ -88,17 +88,24 @@ to rescan the bib files and update pdf and notes notation."
      collect (cons (bibtex-completion-format-entry entry width) entry-key)))
   (defun bibtex-completion-format-entry (entry width)
     "Formats a BibTeX entry for display in results list."
-    (let* ((fields (list (if (assoc-string "author" entry 'case-fold) "author" "editor")
-                         "title" "year" "=has-pdf=" "=has-note=" "=type="))
+    (let* ((fields (list
+                    "=key=" "title"
+                    (if (assoc-string "author" entry 'case-fold) "author" "editor")
+                    "year" "=has-pdf=" "=has-note=" "=type="))
            (fields (-map (lambda (it)
                            (bibtex-completion-clean-string
                             (bibtex-completion-get-value it entry " ")))
                          fields))
            (fields (-update-at 0 'bibtex-completion-shorten-authors fields)))
-      (s-format "$0 $1 $2 $3$4 $5" 'elt
+      (s-format "$0 $1 $2 $3 $4$5 $6" 'elt
                 (-zip-with (lambda (f w) (truncate-string-to-width f w 0 ?\s))
-                           fields (list 36 (- width 58) 4 1 1 7))))))
-
+                           fields
+                           (mapcar 'floor (list (* width 0.1)
+                                                   (* width 0.5)
+                                                   (* width 0.25)
+                                                   4 1 1 7))
+                           ;; (list 20 (- width 108) 46 4 1 1 7)
+                           )))))
 
 
 ;; "\n** ${year} - ${title}\n  :PROPERTIES:\n  :Custom_ID: ${=key=}\n  :AUTHOR: ${author}\n  :END:\n\n"

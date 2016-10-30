@@ -42,13 +42,25 @@
 ;; use
 ;; vr/query-replace
 ;; vr/replace
-(use-package visual-regexp)
+(use-package visual-regexp
+  :config
+  (define-key global-map (kbd "C-c r") 'vr/replace)
+  (define-key global-map (kbd "C-c q") 'vr/query-replace)
+  ;; if you use multiple-cursors, this is for you:
+  (define-key global-map (kbd "C-c m") 'vr/mc-mark))
 
 ;; May cause problem in a clean install, manual installation of pdf-tools may be necessary
 (use-package pdf-tools
   :config
   (pdf-tools-install)
-  (setq pdf-view-resize-factor 1.03))
+  (setq pdf-view-resize-factor 1.03)
+  (defun pdf-view-fit-paper()
+    (interactive)
+    (setq pdf-view-display-size 1.53)
+    (image-set-window-vscroll 6)
+    (pdf-view-redisplay t)
+    )
+  (define-key pdf-view-mode-map (kbd "P") 'pdf-view-fit-paper))
 
 (use-package csv-mode)
 
