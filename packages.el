@@ -54,12 +54,20 @@
   :config
   (pdf-tools-install)
   (setq pdf-view-resize-factor 1.03)
-  (defun pdf-view-fit-paper()
-    (interactive)
-    (setq pdf-view-display-size 1.53)
-    (image-set-window-vscroll 6)
-    (pdf-view-redisplay t)
-    )
+  (defun pdf-view-fit-paper(number)
+    ;; using P for horizontal reading
+    ;; using C-u P for vertical reading
+    (interactive "p")
+    (if (= number 1)
+        (progn
+          ;; landscape
+          (setq pdf-view-display-size 1.53)
+          (image-set-window-vscroll 6))
+      (progn
+        ;; portrait
+        (setq pdf-view-display-size 2.05)
+        (image-set-window-hscroll 11)))
+    (pdf-view-redisplay t))
   (define-key pdf-view-mode-map (kbd "P") 'pdf-view-fit-paper))
 
 (use-package csv-mode)

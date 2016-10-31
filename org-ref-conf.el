@@ -50,11 +50,11 @@
 
 (use-package org-ref
   ;; do not automatically download for this, because I want to use the git version
-  :ensure nil
+  ;; :ensure nil
   ;; use this path, so that I can test the github version of org-ref
   ;; I think this path is just added to the front of the load path,
   ;; so if it is not there, use-package will still find it in the elpa folder
-  :load-path "packages/org-ref"
+  ;; :load-path "packages/org-ref"
   :init
   :config
   (use-package helm-bibtex
