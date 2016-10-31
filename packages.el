@@ -436,7 +436,7 @@
   :defer t
   :config
   (popwin-mode 1)
-  )
+  (push '("*Hebi Output*" :noselect t :tail t) popwin:special-display-config))
 
 (use-package ace-jump-mode
   ;; jump to a char, can select by 'abcd..'

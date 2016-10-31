@@ -23,29 +23,31 @@
 
 ;; (folder-dirs "~/Downloads")
 
-(defun find-bib-files-1 (folder)
-  "find the folder/*.bib files"
+(defun find-files-by-ext-1 (folder ext)
+  "find the folder/*.ext files"
   (if (file-exists-p folder)
-      (directory-files folder t ".*\.bib$")))
+      (directory-files folder t (concat ".*\." ext "$"))))
 
-(defun find-bib-files-2 (folder)
+(defun find-files-by-ext-2 (folder ext)
   "level 2 find bib files
-  will find folder/*.bib and folder/*/*.bib"
+  will find folder/*.ext and folder/*/*.ext"
   (let ((l_folders (folder-dirs folder)))
-    (-flatten (mapcar 'find-bib-files-1 l_folders))
+    (-flatten (mapcar (lambda (folder)
+                        (find-files-by-ext-1 folder ext))
+                      l_folders))
     ))
 
-;; (find-bib-files "~/github")
 ;; (folder-dirs "~/github")
 ;; (file-exists-p "~/github")
+;; (find-files-by-ext "~/github" "bib")
+;; (find-files-by-ext-1 "~/github" "bib")
+;; (find-files-by-ext-2 "~/github" "bib")
   
-(defun find-bib-files (folder)
-  "find both level 1 and level 2 bib files"
+(defun find-files-by-ext (folder ext)
+  "find both level 1 and level 2 files"
   (if (file-exists-p folder)
-      (let*
-          ((f1 (find-bib-files-1 folder))
-           (f2 (find-bib-files-2 folder))
-           )
+      (let* ((f1 (find-files-by-ext-1 folder ext))
+             (f2 (find-files-by-ext-2 folder ext)))
         (append f1 f2))))
 
 (use-package org-ref
@@ -67,9 +69,9 @@ to rescan the bib files and update pdf and notes notation."
       (setq bibtex-completion-bibliography-hash "")
       ))
   (let* ((bib-dir "~/github/bibliography")
-         (bib-files (find-bib-files bib-dir))
+         (bib-files (find-files-by-ext bib-dir "bib"))
          (bib-note-file (concat bib-dir "/notes.org"))
-         (bib-pdf-dir '("~/github/papers/" "~/github/books/")))
+         (bib-pdf-dir `("~/github/papers/" "~/github/books/" ,@(folder-dirs "~/github/proceeding-papers"))))
     (setq reftex-default-bibliography bib-files) ; reftex
     (setq bibtex-completion-bibliography bib-files) ; bibtex
     (setq org-ref-default-bibliography bib-files) ; org-ref
