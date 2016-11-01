@@ -15,13 +15,17 @@
 
 (defun folder-dirs (folder)
   "find the folders inside another folder, except . and .."
-  "FIXME throw error if folder does not exist"
-  (delete-if-not 'file-directory-p
-    (mapcar (lambda(arg) (file-name-as-directory (concat (file-name-as-directory folder) arg)))
-      (delete-if (lambda (arg) (or (string= ".." arg) (string= "." arg)))
-                 (directory-files folder)))))
+  (when (file-exists-p folder)
+    (delete-if-not
+     'file-directory-p
+     (mapcar (lambda(arg)
+               (file-name-as-directory
+                (concat (file-name-as-directory folder) arg)))
+             (delete-if (lambda (arg)
+                          (or (string= ".." arg) (string= "." arg)))
+                        (directory-files folder))))))
 
-;; (folder-dirs "~/Downloads")
+;; (folder-dirs "~/")
 
 (defun find-files-by-ext-1 (folder ext)
   "find the folder/*.ext files"
