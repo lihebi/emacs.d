@@ -378,10 +378,6 @@ background of code to whatever theme I'm using's background"
   ;; highlight
   (setq org-src-fontify-natively t))
 
-(if (and (>= emacs-major-version 24)
-	     ;; FIXME 25.x
-	     (>= emacs-minor-version 4))
-    (load (emacs-d "org-ref-conf")))
 
 
 (provide 'org-conf)

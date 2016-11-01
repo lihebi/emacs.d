@@ -63,6 +63,7 @@
   ;; :load-path "packages/org-ref"
   :init
   :config
+  (global-set-key (kbd "C-c ]") 'org-ref-helm-insert-cite-link)
   (use-package helm-bibtex
     :config
     (defun hebi-bibtex-rehash()

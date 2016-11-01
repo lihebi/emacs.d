@@ -105,7 +105,6 @@
 ;; Package list
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(load (emacs-d "org-conf"))
 
 (use-package auctex
   ;; no document installed? ;; seems to have error when compiling
