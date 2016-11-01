@@ -106,10 +106,14 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-(use-package auctex
-  ;; no document installed? ;; seems to have error when compiling
-  :disabled t
-  )
+(use-package tex
+  :ensure auctex)
+;; (use-package auctex
+;;   ;; no document installed? ;; seems to have error when compiling
+;;   ;; :disabled t
+;;   :config
+;;   (require 'tex)
+;;   )
 
 (use-package slime
   :config
