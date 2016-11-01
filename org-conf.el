@@ -165,7 +165,7 @@
   ;; insert it in the end of the page can put the reference at the end.
   ;; it will do something else like change [[cite:xxx]] into \cite{xxx}
 
-  (require 'ox-bibtex)
+  ;; (require 'ox-bibtex)
   ;; org-latex-pdf-process should also be customized, or it can not parse bibtex correctly
   ;; the following works, but it's slow
   ;; (setq org-latex-pdf-process
@@ -180,7 +180,8 @@
   ;;       '("pdflatex %f" "bibtex %b" "pdflatex %f" "pdflatex %f"))
   ;; (setq org-latex-pdf-process (quote ("texi2dvi -p -b -V %f")))
   ;; I add this one on my own based on my experience, and it seems to work well
-  (setq org-latex-pdf-process (list "latexmk -cd -quiet -pdf -shell-escape %f")))
+  ;; (setq org-latex-pdf-process (list "latexmk -cd -quiet -pdf -shell-escape %f")))
+  )
 
 (defun setup-publish()
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -281,7 +282,7 @@ a:visited {color: red;}
      (emacs-lisp . t)
      (python . t)
      (ruby . t)
-     (shell . t)
+     ;; (shell . t)
   ;;    ;; other babel languages
      (plantuml . t)
   ;;    ;; this should be capital C, the same as in #+begin_src C
