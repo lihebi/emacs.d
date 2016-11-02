@@ -71,6 +71,7 @@
   (define-key pdf-view-mode-map (kbd "P") 'pdf-view-fit-paper))
 
 (use-package csv-mode)
+(use-package json-mode)
 
 ;; insert-pair-alist
 (use-package wrap-region
@@ -107,7 +108,9 @@
 
 
 (use-package tex
-  :ensure auctex)
+  :ensure auctex
+  :config
+  (setq-default TeX-master "helium"))
 ;; (use-package auctex
 ;;   ;; no document installed? ;; seems to have error when compiling
 ;;   ;; :disabled t
