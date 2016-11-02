@@ -318,7 +318,8 @@ background of code to whatever theme I'm using's background"
                         "<style type=\"text/css\">\n code {background-color: lightgrey;}</style>\n")
                 my-pre-bg my-pre-fg))))))
 
-(add-hook 'org-export-before-processing-hook 'my/org-inline-css-hook)
+;; (setq org-export-before-processing-hook nil)
+;; (add-hook 'org-export-before-processing-hook 'my/org-inline-css-hook)
 
 
 
