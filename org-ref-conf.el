@@ -54,6 +54,17 @@
              (f2 (find-files-by-ext-2 folder ext)))
         (append f1 f2))))
 
+(use-package helm-bibtex
+  :config
+  (setq bibtex-completion-cite-prompt-for-optional-arguments nil)
+  ;; (setq bibtex-completion-cite-default-as-initial-input t)
+  (defun hebi-bibtex-rehash()
+    "Invalidate the helm-bibtex bibliograph cache by clear the hash.
+Do it will cause the next C-c ] in org-ref (or helm-bibtex)
+to rescan the bib files and update pdf and notes notation."
+    (interactive)
+    (setq bibtex-completion-bibliography-hash "")
+    ))
 (use-package org-ref
   ;; do not automatically download for this, because I want to use the git version
   ;; :ensure nil
@@ -64,15 +75,6 @@
   :init
   :config
   (global-set-key (kbd "C-c ]") 'org-ref-helm-insert-cite-link)
-  (use-package helm-bibtex
-    :config
-    (defun hebi-bibtex-rehash()
-      "Invalidate the helm-bibtex bibliograph cache by clear the hash.
-Do it will cause the next C-c ] in org-ref (or helm-bibtex)
-to rescan the bib files and update pdf and notes notation."
-      (interactive)
-      (setq bibtex-completion-bibliography-hash "")
-      ))
   (let* ((bib-dir "~/github/bibliography")
          (bib-files (find-files-by-ext bib-dir "bib"))
          (bib-note-file (concat bib-dir "/notes.org"))

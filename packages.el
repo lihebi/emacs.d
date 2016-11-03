@@ -110,6 +110,9 @@
 (use-package tex
   :ensure auctex
   :config
+  (add-hook 'LaTeX-mode-hook
+            '(lambda()
+               (define-key LaTeX-mode-map (kbd "C-c ]") 'helm-bibtex)))
   (setq-default TeX-master "helium"))
 ;; (use-package auctex
 ;;   ;; no document installed? ;; seems to have error when compiling
