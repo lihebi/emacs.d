@@ -113,7 +113,9 @@
   (add-hook 'LaTeX-mode-hook
             '(lambda()
                (define-key LaTeX-mode-map (kbd "C-c ]") 'helm-bibtex)))
-  (setq-default TeX-master "helium"))
+  (add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
+  ;; (setq-default TeX-master "helium")
+  )
 ;; (use-package auctex
 ;;   ;; no document installed? ;; seems to have error when compiling
 ;;   ;; :disabled t
