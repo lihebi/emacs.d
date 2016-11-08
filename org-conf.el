@@ -323,11 +323,8 @@ background of code to whatever theme I'm using's background"
 ;; (add-hook 'org-export-before-processing-hook 'my/org-inline-css-hook)
 
 
-
-
-
-
-
+;; this org might not be installed automatically, don't know why
+;; but install it from elpa manually. There're gnu and org version, use the org one.
 (use-package org
   :init
   (setq org-plain-list-ordered-item-terminator '?.) ; remove using ?) causing a listing
@@ -338,7 +335,6 @@ background of code to whatever theme I'm using's background"
    ("C-c o" . org-open-at-point-global)
    ("C-c t" . org-todo)
    ("C-c a" . org-agenda))
-  :init
   :config
   (setup-ob)
   (setup-plantuml)
