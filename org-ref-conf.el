@@ -88,6 +88,12 @@ to rescan the bib files and update pdf and notes notation."
     ;; pdf
     (setq org-ref-pdf-directory bib-pdf-dir)
     (setq bibtex-completion-library-path bib-pdf-dir))
+
+  (if (string= system-type "darwin")
+      (setq bibtex-completion-pdf-open-function
+            (lambda (fpath)
+              (start-process "open" "*open*" "open" fpath))))
+  
   (defun helm-bibtex-candidates-formatter (candidates _)
     (cl-loop
      with width = (with-helm-window (helm-bibtex-window-width))
@@ -115,26 +121,6 @@ to rescan the bib files and update pdf and notes notation."
                                                    4 1 1 7))
                            ;; (list 20 (- width 108) 46 4 1 1 7)
                            )))))
-
-
-;; "\n** ${year} - ${title}\n  :PROPERTIES:\n  :Custom_ID: ${=key=}\n  :AUTHOR: ${author}\n  :END:\n\n"
-;;   (setq org-ref-note-title-format
-;;         "** %y - %t
-;;  :PROPERTIES:
-;;  :Custom_ID: %k
-;;  :AUTHOR: %a
-;;  :END:
-;; ")
-;; (setq bibtex-completion-notes-template-one-file
-;;       ;; "\n* ${author} (${year}): ${title}\n  :PROPERTIES:\n  :Custom_ID: ${=key=}\n  :END:\n\n"
-;;       "\n** ${year} - ${title}\n  :PROPERTIES:\n  :Custom_ID: ${=key=}\n  :AUTHOR: ${author}\n  :END:\n\n"
-;;       ))
-
-;; (use-package gscholar-bibtex
-;;   :config
-;;   (setq gscholar-bibtex-default-source "Google Scholar")
-;;   (setq gscholar-bibtex-database-file "/Users/hebi/github/bibliography/tmp.bib")
-;;   )
 
 (provide 'org-ref-conf)
 ;;; org-ref-conf.el ends here
