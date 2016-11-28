@@ -114,14 +114,10 @@
             '(lambda()
                (define-key LaTeX-mode-map (kbd "C-c ]") 'helm-bibtex)))
   (add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
-  ;; (setq-default TeX-master "helium")
-  )
-;; (use-package auctex
-;;   ;; no document installed? ;; seems to have error when compiling
-;;   ;; :disabled t
-;;   :config
-;;   (require 'tex)
-;;   )
+  (if (string= system-type "darwin")
+      (progn
+        (setq TeX-view-program-selection '((output-pdf "Skim"))))
+    (setq TeX-view-program-selection '((output-pdf "PDF Tools")))))
 
 (use-package slime
   :config
