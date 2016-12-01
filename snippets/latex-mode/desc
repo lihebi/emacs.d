@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: desciption
+# key: desc
+# --
+\begin{description}
+$1
+\end{description}
