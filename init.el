@@ -187,6 +187,16 @@
 (setq global-auto-revert-non-file-buffers t)
 (setq auto-revert-verbose nil)
 
+
+
+(setq-default auto-revert-interval 1
+              auto-revert-use-notify nil
+              auto-revert-verbose nil
+              global-auto-revert-mode t
+              magit-auto-revert-mode t
+              global-auto-revert-non-file-buffers t)
+
+
 (show-paren-mode 1)
 (setq-default indent-tabs-mode nil)	; indention should not insert tab
 
