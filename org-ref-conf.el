@@ -75,6 +75,9 @@ to rescan the bib files and update pdf and notes notation."
   :init
   :config
   (global-set-key (kbd "C-c ]") 'org-ref-helm-insert-cite-link)
+  ;; open pdf directly in bib file
+  (define-key bibtex-mode-map (kbd "C-c h o")
+    'org-ref-bibtex-hydra/org-ref-open-bibtex-pdf-and-exit)
   (let* ((bib-dir "~/github/bibliography")
          (bib-files (find-files-by-ext bib-dir "bib"))
          (bib-note-file (concat bib-dir "/notes.org"))
