@@ -114,7 +114,10 @@
             '(lambda()
                (define-key LaTeX-mode-map (kbd "C-c ]") 'helm-bibtex)))
   (add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
-  (add-to-list 'LaTeX-verbatim-environments "lstlisting")
+  (add-hook 'LaTeX-mode-hook
+            '(lambda()
+               (add-to-list 'LaTeX-verbatim-environments "lstlisting")))
+  
   (if (string= system-type "darwin")
       (progn
         (setq TeX-view-program-selection '((output-pdf "Skim"))))
