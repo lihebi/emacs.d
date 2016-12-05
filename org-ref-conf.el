@@ -77,7 +77,8 @@ to rescan the bib files and update pdf and notes notation."
   (global-set-key (kbd "C-c ]") 'org-ref-helm-insert-cite-link)
   ;; open pdf directly in bib file
   (define-key bibtex-mode-map (kbd "C-c h o")
-    'org-ref-bibtex-hydra/org-ref-open-bibtex-pdf-and-exit)
+    ;; 'org-ref-bibtex-hydra/org-ref-open-bibtex-pdf-and-exit)
+    'org-ref-open-bibtex-pdf-open)
   (let* ((bib-dir "~/github/bibliography")
          (bib-files (find-files-by-ext bib-dir "bib"))
          (bib-note-file (concat bib-dir "/notes.org"))
@@ -92,8 +93,33 @@ to rescan the bib files and update pdf and notes notation."
     (setq org-ref-pdf-directory bib-pdf-dir)
     (setq bibtex-completion-library-path bib-pdf-dir))
 
-  (if (string= system-type "darwin")
+
+
+  (defun org-ref-open-bibtex-pdf-open ()
+    "Open pdf for a bibtex entry"
+    (interactive)
+    (save-excursion
+      (bibtex-beginning-of-entry)
+      (let* ((bibtex-expand-strings t)
+             (entry (bibtex-parse-entry t))
+             (key (reftex-get-bib-field "=key=" entry))
+             (pdf (-first 'f-file?
+                          (--map (f-join it (concat key ".pdf"))
+                                 (-flatten (list org-ref-pdf-directory))))))
+        (message "%s" pdf)
+        (if (file-exists-p pdf)
+            ;; if mac, using open
+            (if (string= system-type "darwin")
+                (shell-command (concat "open " pdf))
+              (org-open-link-from-string (format "[[file:%s]]" pdf)))
+            
+          (ding)))))
+
+  (when (string= system-type "darwin")
       (setq bibtex-completion-pdf-open-function
+            (lambda (fpath)
+              (start-process "open" "*open*" "open" fpath)))
+      (setq org-ref-open-pdf-function
             (lambda (fpath)
               (start-process "open" "*open*" "open" fpath))))
   
@@ -124,6 +150,9 @@ to rescan the bib files and update pdf and notes notation."
                                                    4 1 1 7))
                            ;; (list 20 (- width 108) 46 4 1 1 7)
                            )))))
+
+
+
 
 (provide 'org-ref-conf)
 ;;; org-ref-conf.el ends here
