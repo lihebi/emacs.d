@@ -86,6 +86,18 @@
 
 
 
+;; copy region as single line
+(defun hebi-copy-as-single-line()
+  (interactive)
+  (kill-ring-save 0 0 t)
+  (with-temp-buffer
+    (yank)
+    (goto-char (point-min))
+    (while (search-forward "\n" nil t)
+      (replace-match ""))
+    (kill-ring-save (point-min) (point-max))
+    ))
+
 
 (provide 'hebi)
 ;;; hebi.el ends here

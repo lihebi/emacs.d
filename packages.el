@@ -117,7 +117,7 @@
   (add-hook 'LaTeX-mode-hook
             '(lambda()
                (add-to-list 'LaTeX-verbatim-environments "lstlisting")))
-  
+  ;; (define-key LaTeX-mode-map (kbd "C-c t") 'reftex-toc)
   (if (string= system-type "darwin")
       (progn
         (setq TeX-view-program-selection '((output-pdf "Skim"))))
