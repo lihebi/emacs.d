@@ -58,11 +58,10 @@
 ;;   (enable-theme 'cyberpunk)
 ;;   )
 
-;; (use-package monokai-theme
-;;   :init
-;;   (load-theme 'monokai t t)
-;;   (enable-theme 'monokai)
-;;   )
+(use-package monokai-theme
+  :init
+  (load-theme 'monokai t t)
+  (enable-theme 'monokai))
 
 
 ;; (when (not window-system)
@@ -95,7 +94,18 @@
 
 
 (setq browse-url-browser-function 'browse-url-generic
-      browse-url-generic-program "conkeror")
+      browse-url-generic-program
+      ;; "conkeror"
+      "chromium"
+      )
+
+
+
+
+;; tooltip
+(setq tooltip-delay 0.01)
+(setq tooltip-recent-seconds 1)
+(setq tooltip-short-delay 0.01)
 
 
 
@@ -475,6 +485,7 @@ Optional argument FONTS font names to check."
  '(vc-annotate-very-old-color nil)
  '(weechat-color-list
    (unspecified "#272822" "#3E3D31" "#A20C41" "#F92672" "#67930F" "#A6E22E" "#968B26" "#E6DB74" "#21889B" "#66D9EF" "#A41F99" "#FD5FF0" "#349B8D" "#A1EFE4" "#F8F8F2" "#F8F8F0"))
+ '(x-gtk-use-system-tooltips nil)
  '(z3-solver-cmd "/usr/bin/z3"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
