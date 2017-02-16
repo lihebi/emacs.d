@@ -429,9 +429,6 @@ Optional argument FONTS font names to check."
      ("#A41F99" . 85)
      ("#3E3D31" . 100))))
  '(magit-diff-use-overlays nil)
- '(org-agenda-files
-   (quote
-    ("~/github/note/research/idea.org" "~/github/wiki/todo.org" "~/github/wiki/hebi.org" "~/github/wiki/org.org")))
  '(org-file-apps
    (quote
     ((auto-mode . emacs)

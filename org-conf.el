@@ -372,6 +372,10 @@ background of code to whatever theme I'm using's background"
   (setq org-todo-keyword-faces
         '(("TODO" . org-todo) ("CANCELED" . org-warning) ("STARTED" . (:foreground "white" :background "red"))))
 
+  (setq org-agenda-files
+        '("~/github/note/TODO.org"))
+
+  
   (use-package org-plus-contrib)
   ;; highlight
   (setq org-src-fontify-natively t))
