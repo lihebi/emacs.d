@@ -73,6 +73,12 @@
 (use-package csv-mode)
 (use-package json-mode)
 
+
+(use-package elpy
+  :config
+  (elpy-enable))
+
+
 ;; insert-pair-alist
 (use-package wrap-region
   :config
