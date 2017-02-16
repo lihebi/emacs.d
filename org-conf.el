@@ -303,12 +303,14 @@ a:visited {color: red;}
 )
 
 
+;; used for dark theme
 (defun my/org-inline-css-hook (exporter)
   "Insert custom inline css to automatically set the
 background of code to whatever theme I'm using's background"
   (when (eq exporter 'html)
     (let* (
            ;; (my-pre-bg (face-background 'default))
+           ;; dark background
            (my-pre-bg "#01331c")
            (my-pre-fg (face-foreground 'default)))
       (setq
@@ -316,11 +318,15 @@ background of code to whatever theme I'm using's background"
        (concat
         org-html-head-extra
         (format (concat "<style type=\"text/css\">\n pre.src {background-color: %s; color: %s;}</style>\n"
-                        "<style type=\"text/css\">\n code {background-color: lightgrey;}</style>\n")
+                        "<style type=\"text/css\">\n code {background-color: lightgrey;}</style>\n"
+                        ;; used for displaying the language
+                        ;; in org file, should use cpp instead of C++ for the language
+                        "<style type=\"text/css\">\n pre[class*=\"src-\"] {color: black;}</style>\n")
                 my-pre-bg my-pre-fg))))))
 
 ;; (setq org-export-before-processing-hook nil)
-;; (add-hook 'org-export-before-processing-hook 'my/org-inline-css-hook)
+;; need to add this hook for it to work
+(add-hook 'org-export-before-processing-hook 'my/org-inline-css-hook)
 
 
 ;; this org might not be installed automatically, don't know why
