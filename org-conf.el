@@ -321,7 +321,7 @@ background of code to whatever theme I'm using's background"
                         "<style type=\"text/css\">\n code {background-color: lightgrey;}</style>\n"
                         ;; used for displaying the language
                         ;; in org file, should use cpp instead of C++ for the language
-                        "<style type=\"text/css\">\n pre[class*=\"src-\"] {color: black;}</style>\n")
+                        "<style type=\"text/css\">\n pre[class*=\"src-\"]:before {color: black;}</style>\n")
                 my-pre-bg my-pre-fg))))))
 
 ;; (setq org-export-before-processing-hook nil)
