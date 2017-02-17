@@ -8,11 +8,11 @@
  ;; research
  "~/github/bibliography/" "~/github/papers/" "~/github/proceedings/" "~/github/proceeding-papers/" "~/github/books/"
  ;; helium
- "~/github/helium-paper/" "~/github/helium/" "~/github/benchmark/"
+ "~/github/helium-paper/" "~/github/helium/" "~/github/benchmark/" "~/github/helium-el/"
  ;; programming
  "~/github/leetcode/"
  ;; class
  "~/github/cs342/" "~/github/class/" "~/github/cs342-typelang/" "~/github/cs572-project/" "~/github/cs342-reflang/"
  ;; others
- "~/github/Deckard/" "~/github/llvm" "~/github/llvm/tools/clang" "~/github/daikon/"
+ "~/github/Deckard/" "~/github/llvm" "~/github/llvm/tools/clang" "~/github/daikon/" "~/github/rtags/"
  )
