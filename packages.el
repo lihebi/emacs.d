@@ -36,6 +36,16 @@
 ;; Common doc
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; rtags frontend
+(use-package rtags
+  ;; start rdm by rtags-start-process-unless-running
+  ;; needs to build and install rtags first
+  ;; TODO how to get this in my setup debian script?
+  ;; how to index the current project and how to switch project?
+  :bind
+  (("C-c h r" . rtags-find-symbol-at-point)
+   ("C-c h b" . rtags-location-stack-back)))
+
 ;; :bind,mode,interpreter will imply :defer t
 (use-package dash)
 
