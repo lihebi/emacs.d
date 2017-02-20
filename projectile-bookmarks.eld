@@ -14,5 +14,5 @@
  ;; class
  "~/github/cs342/" "~/github/class/" "~/github/cs342-typelang/" "~/github/cs572-project/" "~/github/cs342-reflang/"
  ;; others
- "~/github/Deckard/" "~/github/llvm" "~/github/llvm/tools/clang" "~/github/daikon/" "~/github/rtags/" "~/github/srcml/"
+ "~/github/Deckard/" "~/github/llvm" "~/github/llvm/tools/clang" "~/github/daikon/" "~/github/rtags/" "~/github/srcml/" "~/github/magit/"
  )

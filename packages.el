@@ -36,16 +36,6 @@
 ;; Common doc
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; rtags frontend
-(use-package rtags
-  ;; start rdm by rtags-start-process-unless-running
-  ;; needs to build and install rtags first
-  ;; TODO how to get this in my setup debian script?
-  ;; how to index the current project and how to switch project?
-  :bind
-  (("C-c h r" . rtags-find-symbol-at-point)
-   ("C-c h b" . rtags-location-stack-back)))
-
 ;; :bind,mode,interpreter will imply :defer t
 (use-package dash)
 
@@ -114,9 +104,18 @@
     (define-key irony-mode-map [remap complete-symbol]
       'irony-completion-at-point-async))
   (add-hook 'irony-mode-hook 'my-irony-mode-hook)
+  (add-hook 'irony-mode-hook 'irony-eldoc)
   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
 
 (use-package irony-eldoc)
+
+;; show the change after undo, yank, etc.
+(use-package volatile-highlights
+  :init
+  (volatile-highlights-mode t))
+
+;; a must-have package, show the position you are in this buffer
+(use-package nyan-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Package list
@@ -415,6 +414,35 @@
   ("M-." . helm-gtags-dwim)
   ("M-," . helm-gtags-pop-stack)
   )
+
+
+;; rtags frontend
+(use-package rtags
+  ;; start rdm by rtags-start-process-unless-running
+  ;; needs to build and install rtags first
+  ;; TODO how to get this in my setup debian script?
+  ;; how to index the current project and how to switch project?
+  :bind
+  ((
+    "C-c h r"
+    ;; "M-."
+    . rtags-find-symbol-at-point)
+   (
+    "C-c h b"
+    ;; "M-,"
+    . rtags-location-stack-back))
+  )
+
+(use-package sr-speedbar
+  ;; in-frame speedbar
+  ;; will not be closed by C-x 1
+  ;; use sr-speedbar-toggle to toggle it
+  :config
+  ;; left side
+  (setq sr-speedbar-right-side nil)
+  ;; skip other window
+  (setq sr-speedbar-skip-other-window-p t))
+
 
 
 (use-package browse-kill-ring
