@@ -423,14 +423,8 @@
   ;; TODO how to get this in my setup debian script?
   ;; how to index the current project and how to switch project?
   :bind
-  ((
-    "C-c h r"
-    ;; "M-."
-    . rtags-find-symbol-at-point)
-   (
-    "C-c h b"
-    ;; "M-,"
-    . rtags-location-stack-back))
+  (("C-M-." . rtags-find-symbol-at-point)
+   ("C-M-," . rtags-location-stack-back))
   )
 
 (use-package sr-speedbar
