@@ -275,6 +275,7 @@ a:visited {color: red;}
 (defun setup-ob()
     ;; my srcml converter
   (require 'ob-srcml)
+  (require 'ob-clang)
   (require 'ob-ctags)
   (org-babel-do-load-languages
    'org-babel-load-languages
@@ -287,12 +288,13 @@ a:visited {color: red;}
      (plantuml . t)
   ;;    ;; this should be capital C, the same as in #+begin_src C
      (C . t)
-     (srcml . t)
      (ctags . t)
      (dot . t)
      ;; (R . t)
      (sqlite . t)
      (lisp . t)
+     (srcml . t)
+     (clang . t)
      )
    )
 

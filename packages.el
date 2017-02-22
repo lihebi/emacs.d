@@ -115,7 +115,9 @@
   (volatile-highlights-mode t))
 
 ;; a must-have package, show the position you are in this buffer
-(use-package nyan-mode)
+(use-package nyan-mode
+  :config
+  (nyan-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Package list
@@ -933,6 +935,11 @@
   :disabled t
   )
 
+
+
+;; tmp
+
+(use-package clang-format)
 
 
 ;;; packages.el ends here
