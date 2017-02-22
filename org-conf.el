@@ -310,21 +310,25 @@ a:visited {color: red;}
   "Insert custom inline css to automatically set the
 background of code to whatever theme I'm using's background"
   (when (eq exporter 'html)
-    (let* (
-           ;; (my-pre-bg (face-background 'default))
-           ;; dark background
-           (my-pre-bg "#01331c")
-           (my-pre-fg (face-foreground 'default)))
-      (setq
-       org-html-head-extra
-       (concat
-        org-html-head-extra
-        (format (concat "<style type=\"text/css\">\n pre.src {background-color: %s; color: %s;}</style>\n"
-                        "<style type=\"text/css\">\n code {background-color: lightgrey;}</style>\n"
-                        ;; used for displaying the language
-                        ;; in org file, should use cpp instead of C++ for the language
-                        "<style type=\"text/css\">\n pre[class*=\"src-\"]:before {color: black;}</style>\n")
-                my-pre-bg my-pre-fg))))))
+    ;; FIXME setting this variable is not very safe
+    (setq org-html-head-extra
+          "<link href=\"http://thomasf.github.io/solarized-css/solarized-light.min.css\" rel=\"stylesheet\"></link>")
+    ;; (let* (
+    ;;        ;; (my-pre-bg (face-background 'default))
+    ;;        ;; dark background
+    ;;        (my-pre-bg "#01331c")
+    ;;        (my-pre-fg (face-foreground 'default)))
+    ;;   (setq
+    ;;    org-html-head-extra
+    ;;    (concat
+    ;;     org-html-head-extra
+    ;;     (format (concat "<style type=\"text/css\">\n pre.src {background-color: %s; color: %s;}</style>\n"
+    ;;                     "<style type=\"text/css\">\n code {background-color: lightgrey;}</style>\n"
+    ;;                     ;; used for displaying the language
+    ;;                     ;; in org file, should use cpp instead of C++ for the language
+    ;;                     "<style type=\"text/css\">\n pre[class*=\"src-\"]:before {color: black;}</style>\n")
+    ;;             my-pre-bg my-pre-fg))))
+    ))
 
 ;; (setq org-export-before-processing-hook nil)
 ;; need to add this hook for it to work
