@@ -675,6 +675,7 @@
 
 (use-package rainbow-delimiters
   ;; different colors for different level of parens
+  :disabled t
   :defer t
   :init
   (progn

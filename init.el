@@ -28,6 +28,8 @@
 (load (emacs-d "exp"))
 
 
+(load (emacs-d "theme"))
+
 ;; stop adding newlines automatically.
 ;; This cause my scripts to add newlines everytime I insert them.
 (setq require-final-newline nil)
@@ -35,34 +37,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Appearance
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-;; (load-theme 'leuven t t)
-;; (load-theme 'monokai)
-;; (enable-theme 'leuven)
-
-;; (if (not window-system)
-;;     (progn
-;;       ;; load theme for terminal emacs
-;;       ;; should use a dark theme
-;;       ;; (load-theme 'monokai t)
-;;       (enable-theme 'cyberpunk))
-;;   ;; theme for window system
-;;   (load-theme 'leuven t)
-;;   )
-
-
-;; (use-package cyberpunk-theme
-;;   :init
-;;   (load-theme 'cyberpunk t t)
-;;   (enable-theme 'cyberpunk)
-;;   )
-
-(use-package monokai-theme
-  :init
-  (load-theme 'monokai t t)
-  (enable-theme 'monokai))
-
 
 ;; (when (not window-system)
 ;;   (menu-bar-mode -1)
@@ -398,8 +372,9 @@ Optional argument FONTS font names to check."
 
 (when window-system
   ;; (set-face-attribute 'default nil :font "Source Code Pro")
-  (set-face-attribute 'default nil :font
-                      (font-candidate "Source Code Pro" "DejaVu Sans Mono"))
+  (set-face-attribute 'default nil
+                      :font (font-candidate "Source Code Pro" "DejaVu Sans Mono")
+                      :height 180)
   (set-fontset-font (frame-parameter nil 'font)
                     'han (font-spec :family "司马彦简行修正版"
                                     )))
@@ -416,7 +391,7 @@ Optional argument FONTS font names to check."
  '(compilation-message-face (quote default))
  '(custom-safe-themes
    (quote
-    ("a800120841da457aa2f86b98fb9fd8df8ba682cebde033d7dbf8077c1b7d677a" "71ecffba18621354a1be303687f33b84788e13f40141580fa81e7840752d31bf" default)))
+    ("a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "c7a9a68bd07e38620a5508fef62ec079d274475c8f92d75ed0c33c45fbe306bc" "a800120841da457aa2f86b98fb9fd8df8ba682cebde033d7dbf8077c1b7d677a" "71ecffba18621354a1be303687f33b84788e13f40141580fa81e7840752d31bf" default)))
  '(ecb-options-version "2.40")
  '(fci-rule-color "#3E3D31")
  '(git-gutter:added-sign "++")
@@ -459,7 +434,7 @@ Optional argument FONTS font names to check."
      ("" "hyperref" nil))))
  '(package-selected-packages
    (quote
-    (sr-speedbar nyan-mode volatile-highlights rtags elpy org visual-regexp virtual-regexp magit org-bullets yasnippet use-package tuareg string-inflection smex smartparens smart-mode-line slime skewer-mode scss-mode regex-tool rainbow-delimiters persp-projectile pdf-tools org-plus-contrib neotree multiple-cursors monokai-theme markdown-mode linum-off htmlize helm-projectile helm-gtags helm-dash guide-key goto-chg google-c-style go-mode git-gutter fuzzy flycheck flx fic-mode expand-region exec-path-from-shell etags-select ess edit-server ecb dired-k csv-mode company cmake-mode cider-eval-sexp-fu cider browse-kill-ring bison-mode ag ace-jump-mode)))
+    (zenburn-theme solarized-theme sr-speedbar nyan-mode volatile-highlights rtags elpy org visual-regexp virtual-regexp magit org-bullets yasnippet use-package tuareg string-inflection smex smartparens smart-mode-line slime skewer-mode scss-mode regex-tool rainbow-delimiters persp-projectile pdf-tools org-plus-contrib neotree multiple-cursors monokai-theme markdown-mode linum-off htmlize helm-projectile helm-gtags helm-dash guide-key goto-chg google-c-style go-mode git-gutter fuzzy flycheck flx fic-mode expand-region exec-path-from-shell etags-select ess edit-server ecb dired-k csv-mode company cmake-mode cider-eval-sexp-fu cider browse-kill-ring bison-mode ag ace-jump-mode)))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
  '(send-mail-function (quote sendmail-send-it))
