@@ -374,7 +374,7 @@ Optional argument FONTS font names to check."
   ;; (set-face-attribute 'default nil :font "Source Code Pro")
   (set-face-attribute 'default nil
                       :font (font-candidate "Source Code Pro" "DejaVu Sans Mono")
-                      :height 150)
+                      :height 135)
   (set-fontset-font (frame-parameter nil 'font)
                     'han (font-spec :family "司马彦简行修正版"
                                     )))
