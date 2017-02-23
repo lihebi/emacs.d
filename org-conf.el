@@ -195,7 +195,7 @@
   ;; this may need some change in the future.
   (setq org-export-headline-levels 6)
 
-  (setq org-html-style "<style>
+  (setq org-html-style "<style type=\"text/css\">
 a:visited {color: red;}
 </style>
 "
