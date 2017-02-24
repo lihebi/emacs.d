@@ -78,6 +78,9 @@
   :config
   (elpy-enable))
 
+;; have to use this for org mode to find "pylint" when exporting html
+(use-package pylint)
+
 
 ;; insert-pair-alist
 (use-package wrap-region
