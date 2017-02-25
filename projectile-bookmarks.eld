@@ -8,7 +8,7 @@
  ;; research
  "~/github/bibliography/" "~/github/papers/" "~/github/proceedings/" "~/github/proceeding-papers/" "~/github/books/"
  ;; helium
- "~/github/helium-paper/" "~/github/helium/" "~/github/benchmark/" "~/github/helium-el/"
+ "~/github/helium-paper/" "~/github/helium/" "~/github/benchmark/" "~/github/helium-el/" "~/github/builder-paper/"
  ;; programming
  "~/github/leetcode/" "~/github/scratch/"
  ;; class
