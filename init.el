@@ -38,9 +38,13 @@
 ;; Appearance
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; (when (not window-system)
-;;   (menu-bar-mode -1)
-;;   )
+(when (not window-system)
+  (menu-bar-mode -1))
+
+;; But I want to turn off the menu bar sometimes ... like now
+(menu-bar-mode -1)
+
+
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
 (when (fboundp 'scroll-bar-mode)
