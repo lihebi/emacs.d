@@ -133,7 +133,7 @@
   (add-hook 'LaTeX-mode-hook
             '(lambda()
                (define-key LaTeX-mode-map (kbd "C-c ]") 'helm-bibtex)))
-  (add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
+  ;; (add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
   (add-hook 'LaTeX-mode-hook
             '(lambda()
                (add-to-list 'LaTeX-verbatim-environments "lstlisting")))

@@ -337,7 +337,7 @@ background of code to whatever theme I'm using's background"
   (setup-latex)
   (setup-publish)
   
-  (add-hook 'org-mode-hook 'turn-on-auto-fill)
+  ;; (add-hook 'org-mode-hook 'turn-on-auto-fill)
   (setq org-log-done 'time)
   (setq org-startup-folded nil)
   (setq org-yank-folded-subtrees nil)
