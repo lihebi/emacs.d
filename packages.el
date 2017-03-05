@@ -74,9 +74,29 @@
 (use-package json-mode)
 
 
+
 (use-package elpy
+  :init
+  (setq python-shell-interpreter "ipython3"
+        ;; must use simple prompt to avoid encoding problem for ipython
+        python-shell-interpreter-args "--simple-prompt -i")
+  (setq python-shell-prompt-detect-failure-warning nil)
+  ;; this fix the python3 warnning problem
+  (setq python-shell-completion-native-enable nil)
+  (defun hebi-elpy-use-python2 ()
+      (interactive)
+      (setq python-shell-interpreter "ipython"
+            python-shell-interpreter-args "--simple-prompt -i"))
+
+  (defun hebi-elpy-use-python3 ()
+      (interactive)
+      (setq python-shell-interpreter "ipython3"
+            python-shell-interpreter-args "--simple-prompt -i"))
   :config
+  ;; (setq python-shell-interpreter "python3")
   (elpy-enable))
+
+
 
 ;; have to use this for org mode to find "pylint" when exporting html
 (use-package pylint)

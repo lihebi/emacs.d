@@ -85,13 +85,6 @@
 (setq tooltip-recent-seconds 1)
 (setq tooltip-short-delay 0.01)
 
-;; (setq python-shell-interpreter "python3")
-(setq python-shell-interpreter "ipython3"
-      ;; must use simple prompt to avoid encoding problem for ipython
-      python-shell-interpreter-args "--simple-prompt -i")
-(setq python-shell-prompt-detect-failure-warning nil)
-;; this fix the python3 warnning problem
-(setq python-shell-completion-native-enable nil)
 
 ;; key bindings
 (global-set-key (kbd "C-=") 'text-scale-increase)
