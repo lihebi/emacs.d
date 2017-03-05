@@ -76,7 +76,17 @@
 
 
 (use-package elpy
+  ;; C-c C-z (elpy-shell-switch-to-shell)
+  ;; C-c C-c (elpy-shell-send-region-or-buffer)
+  ;; C-c RET (elpy-shell-send-current-statement)
+  ;; C-M-x (python-shell-send-defun)
+  ;; C-c C-k (elpy-shell-kill)
+  ;; C-c C-K (elpy-shell-kill-all)
   :init
+  (defvar python-shell-interpreter)
+  (defvar python-shell-interpreter-args)
+  (defvar python-shell-prompt-detect-failure-warning)
+  (defvar python-shell-completion-native-enable)
   (setq python-shell-interpreter "ipython3"
         ;; must use simple prompt to avoid encoding problem for ipython
         python-shell-interpreter-args "--simple-prompt -i")
@@ -84,14 +94,16 @@
   ;; this fix the python3 warnning problem
   (setq python-shell-completion-native-enable nil)
   (defun hebi-elpy-use-python2 ()
-      (interactive)
-      (setq python-shell-interpreter "ipython"
-            python-shell-interpreter-args "--simple-prompt -i"))
+    "Change python shell to python2.
+You need to kill the current *Python* buffer to take effect."
+    (interactive)
+    (setq python-shell-interpreter "ipython"
+          python-shell-interpreter-args "--simple-prompt -i"))
 
   (defun hebi-elpy-use-python3 ()
-      (interactive)
-      (setq python-shell-interpreter "ipython3"
-            python-shell-interpreter-args "--simple-prompt -i"))
+    (interactive)
+    (setq python-shell-interpreter "ipython3"
+          python-shell-interpreter-args "--simple-prompt -i"))
   :config
   ;; (setq python-shell-interpreter "python3")
   (elpy-enable))
@@ -187,9 +199,9 @@
 (use-package linum-off
   :config
   (setq linum-disabled-modes-list (append linum-disabled-modes-list '(doc-view-mode))))
- ;; '(linum-disabled-modes-list
- ;;   (quote
- ;;    (eshell-mode wl-summary-mode compilation-mode org-mode text-mode dired-mode pdf-view-mode doc-view-mode)))
+;; '(linum-disabled-modes-list
+;;   (quote
+;;    (eshell-mode wl-summary-mode compilation-mode org-mode text-mode dired-mode pdf-view-mode doc-view-mode)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -323,7 +335,7 @@
     (setq yas-prompt-functions '(yas-popup-isearch-prompt yas-ido-prompt yas-no-prompt))
     )
 
-    )
+  )
 
 ;; (setq yas-snippet-dirs (append yas-snippet-dirs
 ;; 			       '("~/Downloads/interesting-snippets")))
