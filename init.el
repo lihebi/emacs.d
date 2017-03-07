@@ -10,9 +10,9 @@
 ;; You may delete these explanatory comments.
 (package-initialize)
 
-(defun emacs-d (filename)
-  "Expand FILENAME relative to `user-emacs-directory'."
-  (expand-file-name filename user-emacs-directory))
+;; (defun emacs-d (filename)
+;;   "Expand FILENAME relative to `user-emacs-directory'."
+;;   (expand-file-name filename user-emacs-directory))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; external files
@@ -20,15 +20,23 @@
 
 (add-to-list 'load-path "~/.emacs.d/packages/") ; packages downloaded from internet. Maybe outdated. No such package in elpa.
 
-(load (emacs-d "packages"))
-(load (emacs-d "org-conf"))
-(load (emacs-d "org-ref-conf"))
-(load "helium-slice-highlighter")
-(load (emacs-d "hebi"))
-(load (emacs-d "exp"))
+(load "~/.emacs.d/packages.el")
+(load "~/.emacs.d/org-conf.el")
+(load "~/.emacs.d/org-ref-conf")
+(load "~/.emacs.d/packages/helium-slice-highlighter.el")
+(load "~/.emacs.d/hebi.el")
+(load "~/.emacs.d/erc.el")
+(load "~/.emacs.d/theme.el")
+
+(defvar gnus-init-file)
+(defvar gnus-startup-file)
+(setq gnus-init-file "~/.emacs.d/gnus.el")
+(setq gnus-startup-file "~/.emacs.d/newsrc")
+(setq user-full-name "Hebi Li"
+      user-mail-address "lihebi.emacs@gmail.com")
 
 
-(load (emacs-d "theme"))
+;; (load "~/.emacs.d/gnus.el")
 
 ;; stop adding newlines automatically.
 ;; This cause my scripts to add newlines everytime I insert them.
@@ -345,8 +353,6 @@
 
 (global-set-key (kbd "C-c C-SPC") 'unpop-to-mark-command)
 
-(setq user-full-name "Hebi Li"
-      user-mail-address "lihebi.emacs@gmail.com")
 
 (set-register ?s '(file . "~/github/note/stack.org"))
 
