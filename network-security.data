@@ -1,0 +1,4 @@
+(
+ (:id "sha1:706608f9b7fcfdea563351d49047f296d74a5a76" :fingerprint "sha1:17:93:6b:04:2d:59:10:c9:49:62:e6:a5:62:86:3b:16:fc:d7:be:2f")
+ (:id "sha1:ac7feb949147490ee549b5b6c3ae7edd929ea335" :fingerprint "sha1:d2:1a:01:45:2b:5a:9b:06:10:69:46:93:0e:64:71:78:69:ff:7a:e0" :host "news.gmane.org:nntp" :conditions (:self-signed :unknown-ca :invalid))
+)
