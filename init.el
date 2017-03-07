@@ -437,7 +437,7 @@ Optional argument FONTS font names to check."
      ("" "hyperref" nil))))
  '(package-selected-packages
    (quote
-    (pylint org clang-format zenburn-theme solarized-theme sr-speedbar nyan-mode volatile-highlights rtags elpy visual-regexp virtual-regexp magit org-bullets yasnippet use-package tuareg string-inflection smex smartparens smart-mode-line slime skewer-mode scss-mode regex-tool rainbow-delimiters persp-projectile pdf-tools org-plus-contrib neotree multiple-cursors monokai-theme markdown-mode linum-off htmlize helm-projectile helm-gtags helm-dash guide-key goto-chg google-c-style go-mode git-gutter fuzzy flycheck flx fic-mode expand-region exec-path-from-shell etags-select ess edit-server ecb dired-k csv-mode company cmake-mode cider-eval-sexp-fu cider browse-kill-ring bison-mode ag ace-jump-mode)))
+    (bbdb pylint org clang-format zenburn-theme solarized-theme sr-speedbar nyan-mode volatile-highlights rtags elpy visual-regexp virtual-regexp magit org-bullets yasnippet use-package tuareg string-inflection smex smartparens smart-mode-line slime skewer-mode scss-mode regex-tool rainbow-delimiters persp-projectile pdf-tools org-plus-contrib neotree multiple-cursors monokai-theme markdown-mode linum-off htmlize helm-projectile helm-gtags helm-dash guide-key goto-chg google-c-style go-mode git-gutter fuzzy flycheck flx fic-mode expand-region exec-path-from-shell etags-select ess edit-server ecb dired-k csv-mode company cmake-mode cider-eval-sexp-fu cider browse-kill-ring bison-mode ag ace-jump-mode)))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
  '(send-mail-function (quote sendmail-send-it))
