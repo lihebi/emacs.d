@@ -9,11 +9,39 @@
 (defvar gnus-select-method)
 (defvar gnus-use-adaptive-scoring)
 (defvar gnus-secondary-select-methods)
+
+
+;; gmail
+
+(setq user-mail-address "lihebi.emacs@gmail.com"
+      user-full-name "Hebi Li")
+
 (setq gnus-select-method
-      '(nntp "news.gmane.org"))
+      '(nnimap "gmail"
+	       (nnimap-address "imap.gmail.com")  ; it could also be imap.googlemail.com if that's your server.
+	       (nnimap-server-port "imaps")
+	       (nnimap-stream ssl)))
+
+(setq smtpmail-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-service 587
+      gnus-ignored-newsgroups "^to\\.\\|^[0-9. ]+\\( \\|$\\)\\|^[\"]\"[#'()]")
+
+
+;; send mail using gmail smtp, no require for installation of sendmail or something
+(setq message-send-mail-function 'smtpmail-send-it
+      smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
+      smtpmail-auth-credentials '(("smtp.gmail.com" 587 "lihebi.emacs@gmail.com" nil))
+      smtpmail-default-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-service 587
+      starttls-use-gnutls t)
+
+;; gmane
+;; (setq gnus-select-method
+;;       '(nntp "news.gmane.org"))
 (setq gnus-secondary-select-methods
       '((nntp "news.gmane.org")))
-(setq gnus-default-nntp-server "news.gmane.org")
+;; (setq gnus-default-nntp-server "news.gmane.org")
 (setq gnus-use-adaptive-scoring t)
 (add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
 (add-hook 'gnus-group-mode-hook 'hl-line-mode)
@@ -70,5 +98,7 @@
        "%1{%B%}"
        "%s\n"))
 (setq gnus-summary-display-arrow t)
+
+
 
 ;;; gnus.el ends here
