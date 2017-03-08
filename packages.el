@@ -923,15 +923,17 @@ You need to kill the current *Python* buffer to take effect."
   ;; mode line indicator
   (defun c/god-mode-update-cursor ()
     (let ((limited-colors-p (> 257 (length (defined-colors)))))
-      (cond (god-local-mode (progn
-                              ;; dark red
-                              ;; dark green
-                              ;; chocolate4
-                              (set-face-background 'mode-line "dark red")
-                              (set-face-background 'mode-line-inactive "dark red")))
+      (cond (god-local-mode
+             (progn
+               (set-face-attribute 'mode-line nil
+                                   :box '(:line-width 1 :color "red"))
+               (set-face-attribute 'mode-line-inactive nil
+                                   :box '(:line-width 1 :color "red"))
+               ))
             (t (progn
-                 (set-face-background 'mode-line (if limited-colors-p "black" "#0a2832"))
-                 (set-face-background 'mode-line-inactive (if limited-colors-p "black" "#0a2832")))))))
+                 (set-face-attribute 'mode-line nil :box nil)
+                 (set-face-attribute 'mode-line-inactive nil :box nil)
+                 )))))
 
   (add-hook 'god-mode-enabled-hook 'c/god-mode-update-cursor)
   (add-hook 'god-mode-disabled-hook 'c/god-mode-update-cursor)
