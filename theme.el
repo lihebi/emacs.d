@@ -56,22 +56,17 @@
   :init
   ;; must load this first
   (use-package color-theme)
-  ;; (add-hook 'after-make-frame-functions
-  ;;           (lambda (frame)
-  ;;             (message "changing ...")
-  ;;             (let ((mode (if (display-graphic-p frame) 'light 'dark)))
-  ;;               (setq mode 'light)
-  ;;               (set-frame-parameter frame 'background-mode mode)
-  ;;               (set-terminal-parameter frame 'background-mode mode))
-  ;;             (enable-theme 'solarized)))
   :config
   ;; (set-frame-parameter nil 'background-mode 'light)
   ;; (set-terminal-parameter nil 'background-mode 'light)
   ;; light theme in GUI and dark in terminal
   (load-theme 'solarized t t)
-  (let ((mode (if (display-graphic-p) 'light 'dark)))
-    (set-frame-parameter nil 'background-mode mode)
-    (set-terminal-parameter nil 'background-mode mode))
+  (add-hook 'after-make-frame-functions
+            (lambda (frame)
+              (let ((mode (if (display-graphic-p frame) 'light 'dark)))
+                (set-frame-parameter frame 'background-mode mode)
+                (set-terminal-parameter frame 'background-mode mode))
+              (enable-theme 'solarized)))
   (enable-theme 'solarized))
 
 ;; (use-package zenburn-theme)
