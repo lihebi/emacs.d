@@ -911,6 +911,7 @@ You need to kill the current *Python* buffer to take effect."
 (use-package god-mode
   :config
   (global-set-key (kbd "<escape>") 'god-local-mode)
+  (global-set-key (kbd "M-'") 'god-local-mode)
   ;; (global-set-key (kbd "<escape>") 'god-mode-all)
   ;; cursor style indicator
   (defun my-update-cursor ()
