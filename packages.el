@@ -925,14 +925,18 @@ You need to kill the current *Python* buffer to take effect."
     (let ((limited-colors-p (> 257 (length (defined-colors)))))
       (cond (god-local-mode
              (progn
-               (set-face-attribute 'mode-line nil
-                                   :box '(:line-width 1 :color "red"))
-               (set-face-attribute 'mode-line-inactive nil
-                                   :box '(:line-width 1 :color "red"))
+               ;; (set-face-attribute 'mode-line nil
+               ;;                     :box '(:line-width 1 :color "red"))
+               ;; (set-face-attribute 'mode-line-inactive nil
+               ;;                     :box '(:line-width 1 :color "red"))
+               (set-face-background 'mode-line "dark green")
+               (set-face-background 'mode-line-inactive "dark green")
                ))
             (t (progn
-                 (set-face-attribute 'mode-line nil :box nil)
-                 (set-face-attribute 'mode-line-inactive nil :box nil)
+                 ;; (set-face-attribute 'mode-line nil :box nil)
+                 ;; (set-face-attribute 'mode-line-inactive nil :box nil)
+                 (set-face-background 'mode-line "black")
+                 (set-face-background 'mode-line-inactive "black")
                  )))))
 
   (add-hook 'god-mode-enabled-hook 'c/god-mode-update-cursor)
