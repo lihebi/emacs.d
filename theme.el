@@ -54,6 +54,8 @@
 
 (use-package color-theme-solarized
   :init
+  ;; must load this first
+  (use-package color-theme)
   ;; (add-hook 'after-make-frame-functions
   ;;           (lambda (frame)
   ;;             (message "changing ...")
