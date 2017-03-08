@@ -30,23 +30,47 @@
 ;;   (load-theme 'monokai t t)
 ;;   (enable-theme 'monokai))
 
-(use-package solarized-theme
+
+;; This is not the official one!
+;; Use the color-theme-solarized instead!
+;; (use-package solarized-theme
+;;   :disabled t
+;;   :config
+;;   ;; make the fringe stand out from the background
+;;   ;; (setq solarized-distinct-fringe-background t)
+;;   ;; Don't change the font for some headings and titles
+;;   ;; (setq solarized-use-variable-pitch nil)
+;;   ;; Use less bolding
+;;   ;; (setq solarized-use-less-bold t)
+;;   ;; Use more italics
+;;   ;; (setq solarized-use-more-italic t)
+;;   ;; Use less colors for indicators such as git:gutter, flycheck and similar
+;;   ;; (setq solarized-emphasize-indicators nil)
+;;   (load-theme 'solarized-light t)
+;;   ;; (load-theme 'solarized-dark t)
+;;   ;; (enable-theme 'solarized-light)
+;;   ;; (load-theme 'solarized-light t)
+;;   )
+
+(use-package color-theme-solarized
+  :init
+  ;; (add-hook 'after-make-frame-functions
+  ;;           (lambda (frame)
+  ;;             (message "changing ...")
+  ;;             (let ((mode (if (display-graphic-p frame) 'light 'dark)))
+  ;;               (setq mode 'light)
+  ;;               (set-frame-parameter frame 'background-mode mode)
+  ;;               (set-terminal-parameter frame 'background-mode mode))
+  ;;             (enable-theme 'solarized)))
   :config
-  ;; make the fringe stand out from the background
-  ;; (setq solarized-distinct-fringe-background t)
-  ;; Don't change the font for some headings and titles
-  ;; (setq solarized-use-variable-pitch nil)
-  ;; Use less bolding
-  ;; (setq solarized-use-less-bold t)
-  ;; Use more italics
-  ;; (setq solarized-use-more-italic t)
-  ;; Use less colors for indicators such as git:gutter, flycheck and similar
-  ;; (setq solarized-emphasize-indicators nil)
-  (load-theme 'solarized-light t t)
-  (load-theme 'solarized-dark t t)
-  (enable-theme 'solarized-dark)
-  ;; (load-theme 'solarized-light t)
-  )
+  ;; (set-frame-parameter nil 'background-mode 'light)
+  ;; (set-terminal-parameter nil 'background-mode 'light)
+  ;; light theme in GUI and dark in terminal
+  (load-theme 'solarized t t)
+  (let ((mode (if (display-graphic-p) 'light 'dark)))
+    (set-frame-parameter nil 'background-mode mode)
+    (set-terminal-parameter nil 'background-mode mode))
+  (enable-theme 'solarized))
 
 ;; (use-package zenburn-theme)
 
