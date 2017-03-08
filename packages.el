@@ -461,8 +461,15 @@ You need to kill the current *Python* buffer to take effect."
   ;; how to index the current project and how to switch project?
   :bind
   (("C-M-." . rtags-find-symbol-at-point)
-   ("C-M-," . rtags-location-stack-back))
-  )
+   ("C-M-," . rtags-location-stack-back)))
+
+;; TODO not setup yet
+(use-package cmake-ide
+  :config
+  ;; well I should move the above use-package here?
+  (use-package rtags)
+  (cmake-ide-setup))
+
 
 (use-package sr-speedbar
   ;; in-frame speedbar
@@ -953,6 +960,5 @@ You need to kill the current *Python* buffer to take effect."
   (global-set-key (kbd "C-x C-3") 'split-window-right)
   (global-set-key (kbd "C-x C-0") 'delete-window)
   )
-
 
 ;;; packages.el ends here
