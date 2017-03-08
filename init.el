@@ -394,7 +394,7 @@ Optional argument FONTS font names to check."
  '(compilation-message-face (quote default))
  '(custom-safe-themes
    (quote
-    ("a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "c7a9a68bd07e38620a5508fef62ec079d274475c8f92d75ed0c33c45fbe306bc" "a800120841da457aa2f86b98fb9fd8df8ba682cebde033d7dbf8077c1b7d677a" "71ecffba18621354a1be303687f33b84788e13f40141580fa81e7840752d31bf" default)))
+    ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(ecb-options-version "2.40")
  '(fci-rule-color "#3E3D31")
  '(git-gutter:added-sign "++")
@@ -467,10 +467,3 @@ Optional argument FONTS font names to check."
    (unspecified "#272822" "#3E3D31" "#A20C41" "#F92672" "#67930F" "#A6E22E" "#968B26" "#E6DB74" "#21889B" "#66D9EF" "#A41F99" "#FD5FF0" "#349B8D" "#A1EFE4" "#F8F8F2" "#F8F8F0"))
  '(x-gtk-use-system-tooltips nil)
  '(z3-solver-cmd "/usr/bin/z3"))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(fic-face ((t (:background "black" :foreground "red" :weight bold))))
- '(nxml-element-local-name ((t (:background "textBackgroundColor" :foreground "#000088" :box nil)))))

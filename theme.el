@@ -42,8 +42,9 @@
   ;; (setq solarized-use-more-italic t)
   ;; Use less colors for indicators such as git:gutter, flycheck and similar
   ;; (setq solarized-emphasize-indicators nil)
-
-  (load-theme 'solarized-dark t)
+  (load-theme 'solarized-light t t)
+  (load-theme 'solarized-dark t t)
+  (enable-theme 'solarized-dark)
   ;; (load-theme 'solarized-light t)
   )
 

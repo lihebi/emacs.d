@@ -587,18 +587,6 @@ You need to kill the current *Python* buffer to take effect."
   (add-hook 'markdown-mode-hook 'turn-on-orgtbl)
   )
 
-
-;; (defun hebi-highlight ()
-;;   "."
-;;   (font-lock-add-keywords nil
-;;                           '(("\\<\\(HEBI\\)\\>" . fic-face))
-;;                           'append)
-;;   ;; (font-lock-remove-keywords nil kwlist))
-;;   (font-lock-fontify-buffer)
-;;   )
-
-
-
 (use-package fic-mode
   ;; this is buggy even if I disabled it...
   ;; see here file:///Users/hebi/github/wiki-new/js.html
