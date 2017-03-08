@@ -171,8 +171,12 @@
 (setq uniquify-buffer-name-style 'forward)
 
 ;; cursor goes to the same place when you last visit
-(require 'saveplace)
-(setq-default save-place t)
+;; This is for 24.5 and older setup
+;; (require 'saveplace)
+;; (setq-default save-place t)
+;; 25 setup
+(save-place-mode 1)
+
 ;; auto refresh buffers when file changes
 (global-auto-revert-mode 1)
 
@@ -378,7 +382,7 @@ Optional argument FONTS font names to check."
   ;; (set-face-attribute 'default nil :font "Source Code Pro")
   (set-face-attribute 'default nil
                       :font (font-candidate "Source Code Pro" "DejaVu Sans Mono")
-                      :height 135)
+                      :height 110)
   (set-fontset-font (frame-parameter nil 'font)
                     'han (font-spec :family "司马彦简行修正版"
                                     )))
@@ -439,7 +443,7 @@ Optional argument FONTS font names to check."
      ("" "hyperref" nil))))
  '(package-selected-packages
    (quote
-    (god-mode bbdb pylint org clang-format zenburn-theme solarized-theme sr-speedbar nyan-mode volatile-highlights rtags elpy visual-regexp virtual-regexp magit org-bullets yasnippet use-package tuareg string-inflection smex smartparens smart-mode-line slime skewer-mode scss-mode regex-tool rainbow-delimiters persp-projectile pdf-tools org-plus-contrib neotree multiple-cursors monokai-theme markdown-mode linum-off htmlize helm-projectile helm-gtags helm-dash guide-key goto-chg google-c-style go-mode git-gutter fuzzy flycheck flx fic-mode expand-region exec-path-from-shell etags-select ess edit-server ecb dired-k csv-mode company cmake-mode cider-eval-sexp-fu cider browse-kill-ring bison-mode ag ace-jump-mode)))
+    (color-theme-solarized god-mode bbdb pylint org clang-format zenburn-theme solarized-theme sr-speedbar nyan-mode volatile-highlights rtags elpy visual-regexp virtual-regexp magit org-bullets yasnippet use-package tuareg string-inflection smex smartparens smart-mode-line slime skewer-mode scss-mode regex-tool rainbow-delimiters persp-projectile pdf-tools org-plus-contrib neotree multiple-cursors monokai-theme markdown-mode linum-off htmlize helm-projectile helm-gtags helm-dash guide-key goto-chg google-c-style go-mode git-gutter fuzzy flycheck flx fic-mode expand-region exec-path-from-shell etags-select ess edit-server ecb dired-k csv-mode company cmake-mode cider-eval-sexp-fu cider browse-kill-ring bison-mode ag ace-jump-mode)))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
  '(send-mail-function (quote sendmail-send-it))
