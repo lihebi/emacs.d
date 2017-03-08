@@ -723,36 +723,6 @@ You need to kill the current *Python* buffer to take effect."
     (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
     ))
 
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Themes
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; (use-package dracula-theme
-;;   :init
-;;   (load-theme 'dracula t t)
-;;   )
-
-;; (use-package monokai-theme
-;;   ;; monokai
-;;   :init
-;;   (load-theme 'monokai t t))
-
-
-
-;; This is theme is not clear! So bad.
-;; (use-package zenburn-theme
-;;   :init
-;;   (load-theme 'zenburn t t))
-
-;; Not so clear either
-;; (use-package ample-theme
-;;   :init
-;;   (load-theme 'ample t t)
-;;   (load-theme 'ample-flat t t)
-;;   (load-theme 'ample-light t t))
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Other
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -857,33 +827,6 @@ You need to kill the current *Python* buffer to take effect."
   )
 
 
-;; this seems to be a collection
-;; M-x color-theme-sanityinc-tomorrow-day
-;; M-x color-theme-sanityinc-tomorrow-night
-;; M-x color-theme-sanityinc-tomorrow-blue
-;; M-x color-theme-sanityinc-tomorrow-bright
-;; M-x color-theme-sanityinc-tomorrow-eighties
-;; in newer emacs
-;; M-x customize-themes
-(use-package color-theme-sanityinc-tomorrow
-  :disabled t
-  )
-
-(use-package solarized-theme
-  ;; disabled because it will give a very bright foreground selection in magit buffer.
-  :disabled t
-  :init
-  (load-theme 'solarized-dark t)
-  (load-theme 'solarized-light t)
-  )
-
-(use-package ample-theme
-  :disabled t
-  :init
-  (load-theme 'ample t)
-  (load-theme 'ample-flat t)
-  (load-theme 'ample-light t)
-  )
 (use-package dired+
   :disabled t
   )
