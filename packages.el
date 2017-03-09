@@ -468,13 +468,25 @@ You need to kill the current *Python* buffer to take effect."
   ;; (rtags-find-references-at-point)
   ;; (rtags-find-symbol)
   ;; (rtags-find-references)
+  ;; (rtags-location-stack-back)
   :config
   (add-hook 'c-mode-common-hook 'rtags-start-process-unless-running)
   (add-hook 'c++-mode-common-hook 'rtags-start-process-unless-running)
+  ;; this open the keybinding with prefix C-c r
   (rtags-enable-standard-keybindings)
-  :bind
-  (("C-M-." . rtags-find-symbol-at-point)
-   ("C-M-," . rtags-location-stack-back)))
+
+  ;; company
+  ;; not tested
+  (setq rtags-autostart-diagnostics t)
+  (rtags-diagnostics)
+  (setq rtags-completions-enabled t)
+  (push 'company-rtags company-backends)
+  (global-company-mode)
+  
+  ;; :bind
+  ;; (("C-M-." . rtags-find-symbol-at-point)
+  ;;  ("C-M-," . rtags-location-stack-back))
+  )
 
 ;; TODO not setup yet
 (use-package cmake-ide
