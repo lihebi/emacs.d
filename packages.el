@@ -482,6 +482,9 @@ You need to kill the current *Python* buffer to take effect."
   (setq rtags-completions-enabled t)
   (push 'company-rtags company-backends)
   (global-company-mode)
+
+  ;; flycheck
+  (require 'flycheck-rtags)
   
   ;; :bind
   ;; (("C-M-." . rtags-find-symbol-at-point)
