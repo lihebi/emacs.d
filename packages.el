@@ -54,7 +54,7 @@
 
 ;; May cause problem in a clean install, manual installation of pdf-tools may be necessary
 (use-package pdf-tools
-  :defer t
+  ;; :defer t
   :config
   (pdf-tools-install)
   (setq pdf-view-resize-factor 1.03)
