@@ -17,6 +17,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; external files
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(require 'dash)
 
 (add-to-list 'load-path "~/.emacs.d/packages/") ; packages downloaded from internet. Maybe outdated. No such package in elpa.
 
@@ -370,22 +371,6 @@
 ;; http://baohaojun.github.io/perfect-emacs-chinese-font.html
 ;; https://github.com/tumashu/chinese-fonts-setup
 
-(require 'dash)
-
-(defun font-candidate (&rest fonts)
-  "Return the first available font.
-Optional argument FONTS font names to check."
-  (--first (find-font (font-spec :name it)) fonts))
-
-
-(when window-system
-  ;; (set-face-attribute 'default nil :font "Source Code Pro")
-  (set-face-attribute 'default nil
-                      :font (font-candidate "Source Code Pro" "DejaVu Sans Mono")
-                      :height 100)
-  (set-fontset-font (frame-parameter nil 'font)
-                    'han (font-spec :family "司马彦简行修正版"
-                                    )))
 
 ;;; init.el ends here
 

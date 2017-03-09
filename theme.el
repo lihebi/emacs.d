@@ -67,10 +67,17 @@
                 (set-frame-parameter frame 'background-mode mode)
                 (set-terminal-parameter frame 'background-mode mode))
               (enable-theme 'solarized)))
+  ;; have this because if start directly by grahpic, the hook will not execute
+  (if (display-graphic-p)
+      (progn
+        (set-frame-parameter nil 'background-mode 'light)
+        (set-terminal-parameter nil 'background-mode 'light)
+        (enable-theme 'solarized)))
   (enable-theme 'solarized))
 
-;; (use-package zenburn-theme)
+(setq default-frame-alist '((font . "Source Code Pro-10")))
 
+;; (use-package zenburn-theme)
 
 ;; (load-theme 'adwaita)
 ;; (load-theme 'deeper-blue)
