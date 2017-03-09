@@ -44,10 +44,13 @@
 ;; vr/replace
 (use-package visual-regexp
   :config
-  (define-key global-map (kbd "C-c r") 'vr/replace)
-  (define-key global-map (kbd "C-c q") 'vr/query-replace)
-  ;; if you use multiple-cursors, this is for you:
-  (define-key global-map (kbd "C-c m") 'vr/mc-mark))
+  ;; commenting out these keybindings
+  ;; need to remember to use vr/xxx when doing replacing
+  ;; (define-key global-map (kbd "C-c r") 'vr/replace)
+  ;; (define-key global-map (kbd "C-c q") 'vr/query-replace)
+  ;; ;; if you use multiple-cursors, this is for you:
+  ;; (define-key global-map (kbd "C-c m") 'vr/mc-mark)
+  )
 
 ;; May cause problem in a clean install, manual installation of pdf-tools may be necessary
 (use-package pdf-tools
@@ -460,6 +463,15 @@ You need to kill the current *Python* buffer to take effect."
   ;; needs to build and install rtags first
   ;; TODO how to get this in my setup debian script?
   ;; how to index the current project and how to switch project?
+  ;; Useful Commands
+  ;; (rtags-find-symbol-at-point)
+  ;; (rtags-find-references-at-point)
+  ;; (rtags-find-symbol)
+  ;; (rtags-find-references)
+  :config
+  (add-hook 'c-mode-common-hook 'rtags-start-process-unless-running)
+  (add-hook 'c++-mode-common-hook 'rtags-start-process-unless-running)
+  (rtags-enable-standard-keybindings)
   :bind
   (("C-M-." . rtags-find-symbol-at-point)
    ("C-M-," . rtags-location-stack-back)))
