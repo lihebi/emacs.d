@@ -666,25 +666,26 @@ You need to kill the current *Python* buffer to take effect."
 
 (use-package smart-mode-line
   :init
-  (progn
-    (setq sml/no-confirm-load-theme t) ; do not warn me for loading a theme
-    (setq sml/theme 'dark)
-    (sml/setup)
-    (setq sml/name-width 15)
-    (setq rm-blacklist
-          (format "^ \\(%s\\)$"
-                  (mapconcat #'identity
-                             '("FlyC.*"
-                               "Projectile.*"
-                               "hebi-keys"
-                               "PgLn"
-                               "company"
-                               "Undo-Tree"
-                               "yas"
-                               "GitGutter")
-                             "\\|")))
-    )
-  )
+  :config
+  (setq sml/no-confirm-load-theme t) ; do not warn me for loading a theme
+  ;; (setq sml/theme 'dark)
+  ;; (setq sml/theme 'light)
+  ;; i want it to select for me
+  (sml/setup)
+  (set-face-background 'mode-line-inactive "gray40")
+  (setq sml/name-width 15)
+  (setq rm-blacklist
+        (format "^ \\(%s\\)$"
+                (mapconcat #'identity
+                           '("FlyC.*"
+                             "Projectile.*"
+                             "hebi-keys"
+                             "PgLn"
+                             "company"
+                             "Undo-Tree"
+                             "yas"
+                             "GitGutter")
+                           "\\|"))))
 (use-package smartparens
   :diminish smartparens-mode
   :config
@@ -966,13 +967,13 @@ You need to kill the current *Python* buffer to take effect."
                ;; (set-face-attribute 'mode-line-inactive nil
                ;;                     :box '(:line-width 1 :color "red"))
                (set-face-background 'mode-line "dark green")
-               (set-face-background 'mode-line-inactive "dark green")
+               (set-face-background 'mode-line-inactive "forest green")
                ))
             (t (progn
                  ;; (set-face-attribute 'mode-line nil :box nil)
                  ;; (set-face-attribute 'mode-line-inactive nil :box nil)
                  (set-face-background 'mode-line "black")
-                 (set-face-background 'mode-line-inactive "black")
+                 (set-face-background 'mode-line-inactive "gray40")
                  )))))
 
   (add-hook 'god-mode-enabled-hook 'c/god-mode-update-cursor)
