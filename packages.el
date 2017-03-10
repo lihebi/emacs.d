@@ -668,11 +668,8 @@ You need to kill the current *Python* buffer to take effect."
   :init
   :config
   (setq sml/no-confirm-load-theme t) ; do not warn me for loading a theme
-  ;; (setq sml/theme 'dark)
-  ;; (setq sml/theme 'light)
-  ;; i want it to select for me
+  (setq sml/theme 'dark)
   (sml/setup)
-  (set-face-background 'mode-line-inactive "gray40")
   (setq sml/name-width 15)
   (setq rm-blacklist
         (format "^ \\(%s\\)$"
@@ -959,21 +956,21 @@ You need to kill the current *Python* buffer to take effect."
   (add-hook 'god-mode-disabled-hook 'my-update-cursor)
   ;; mode line indicator
   (defun c/god-mode-update-cursor ()
+    (defvar back-mode-line-background)
+    (defvar back-mode-line-inactive-background)
     (let ((limited-colors-p (> 257 (length (defined-colors)))))
       (cond (god-local-mode
              (progn
-               ;; (set-face-attribute 'mode-line nil
-               ;;                     :box '(:line-width 1 :color "red"))
-               ;; (set-face-attribute 'mode-line-inactive nil
-               ;;                     :box '(:line-width 1 :color "red"))
+               (setq back-mode-line-background (face-attribute 'mode-line :background))
+               (setq back-mode-line-inactive-background (face-attribute 'mode-line-inactive :background))
                (set-face-background 'mode-line "dark green")
                (set-face-background 'mode-line-inactive "forest green")
                ))
             (t (progn
-                 ;; (set-face-attribute 'mode-line nil :box nil)
-                 ;; (set-face-attribute 'mode-line-inactive nil :box nil)
-                 (set-face-background 'mode-line "black")
-                 (set-face-background 'mode-line-inactive "gray40")
+                 (set-face-background 'mode-line
+                                      back-mode-line-background)
+                 (set-face-background 'mode-line-inactive
+                                      back-mode-line-inactive-background)
                  )))))
 
   (add-hook 'god-mode-enabled-hook 'c/god-mode-update-cursor)
