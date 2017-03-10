@@ -361,7 +361,7 @@ background of code to whatever theme I'm using's background"
                                    (match-end 1) "•"))))))
   ;; hide the // for slant
   ;; insert \ on them is the common trick to edit the hidden part
-  (setq org-hide-emphasis-markers t)
+  ;; (setq org-hide-emphasis-markers t)
 
   (setq org-todo-keywords
         '((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d)" "CANCELED(c)")))
