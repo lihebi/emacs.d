@@ -666,11 +666,19 @@ You need to kill the current *Python* buffer to take effect."
 
 (use-package smart-mode-line
   :init
+  ;; this is actually required by smart-mode-line
+  ;; don't need to explicitly load use-package it, just as a reference
+  ;; actually the rm-blacklist is offered by it
+  ;; it also offers the rm-text-properties variable
+  ;; (use-package rich-minority)
   :config
   (setq sml/no-confirm-load-theme t) ; do not warn me for loading a theme
   (setq sml/theme 'dark)
   (sml/setup)
   (setq sml/name-width 15)
+  ;; highlight God-mode in minor mode
+  (add-to-list 'rm-text-properties
+               '("\\` God\\'" 'face 'font-lock-warning-face))
   (setq rm-blacklist
         (format "^ \\(%s\\)$"
                 (mapconcat #'identity
@@ -954,27 +962,31 @@ You need to kill the current *Python* buffer to take effect."
 
   (add-hook 'god-mode-enabled-hook 'my-update-cursor)
   (add-hook 'god-mode-disabled-hook 'my-update-cursor)
-  ;; mode line indicator
-  (defun c/god-mode-update-cursor ()
-    (defvar back-mode-line-background)
-    (defvar back-mode-line-inactive-background)
-    (let ((limited-colors-p (> 257 (length (defined-colors)))))
-      (cond (god-local-mode
-             (progn
-               (setq back-mode-line-background (face-attribute 'mode-line :background))
-               (setq back-mode-line-inactive-background (face-attribute 'mode-line-inactive :background))
-               (set-face-background 'mode-line "dark green")
-               (set-face-background 'mode-line-inactive "forest green")
-               ))
-            (t (progn
-                 (set-face-background 'mode-line
-                                      back-mode-line-background)
-                 (set-face-background 'mode-line-inactive
-                                      back-mode-line-inactive-background)
-                 )))))
 
-  (add-hook 'god-mode-enabled-hook 'c/god-mode-update-cursor)
-  (add-hook 'god-mode-disabled-hook 'c/god-mode-update-cursor)
+
+  ;; disabling this. When changing buffer, god mode is not active,
+  ;; and the backup solution does not work
+  ;; mode line indicator
+  ;; (defun c/god-mode-update-cursor ()
+  ;;   (defvar back-mode-line-background)
+  ;;   (defvar back-mode-line-inactive-background)
+  ;;   (let ((limited-colors-p (> 257 (length (defined-colors)))))
+  ;;     (cond (god-local-mode
+  ;;            (progn
+  ;;              (setq back-mode-line-background (face-attribute 'mode-line :background))
+  ;;              (setq back-mode-line-inactive-background (face-attribute 'mode-line-inactive :background))
+  ;;              (set-face-background 'mode-line "dark green")
+  ;;              (set-face-background 'mode-line-inactive "forest green")
+  ;;              ))
+  ;;           (t (progn
+  ;;                (set-face-background 'mode-line
+  ;;                                     back-mode-line-background)
+  ;;                (set-face-background 'mode-line-inactive
+  ;;                                     back-mode-line-inactive-background)
+  ;;                )))))
+
+  ;; (add-hook 'god-mode-enabled-hook 'c/god-mode-update-cursor)
+  ;; (add-hook 'god-mode-disabled-hook 'c/god-mode-update-cursor)
 
   ;; keybindings
   ;; (define-key god-local-mode-map (kbd "z") 'repeat)
