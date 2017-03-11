@@ -99,5 +99,40 @@
     ))
 
 
+;; mouse-1 in dired-file-file
+;; click in Dired buffer would open a new window for both dir and files
+;; this function would change it to be in the same window
+;; the file is copied from dired-mouse-find-file-other-window
+;; the only changed part is the find-file-other-window and dired-other-window calls near the end
+;; to handle file and directory respectively
+(defun dired-mouse-find-file (event)
+  "In Dired, visit the file or directory name you click on."
+  (interactive "e")
+  (let (window pos file)
+    (save-excursion
+      (setq window (posn-window (event-end event))
+	    pos (posn-point (event-end event)))
+      (if (not (windowp window))
+	  (error "No file chosen"))
+      (set-buffer (window-buffer window))
+      (goto-char pos)
+      (setq file (dired-get-file-for-visit)))
+    (if (file-directory-p file)
+	(or (and (cdr dired-subdir-alist)
+		 (dired-goto-subdir file))
+	    (progn
+	      (select-window window)
+	      ;; (dired-other-window file)
+              (dired-find-file)
+              ))
+      (select-window window)
+      (find-file (file-name-sans-versions file t)))))
+
+;; although the event is mouse-1, the command called is not this
+;; it is an "up event" that calls the dired-mouse-find-file
+;; and that is bound to mouse-2, not know why, but this works
+(define-key dired-mode-map [mouse-2] 'dired-mouse-find-file)
+
+
 (provide 'hebi)
 ;;; hebi.el ends here
