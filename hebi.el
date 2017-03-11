@@ -126,7 +126,7 @@
               (dired-find-file)
               ))
       (select-window window)
-      (find-file (file-name-sans-versions file t)))))
+      (find-file-other-window (file-name-sans-versions file t)))))
 
 ;; although the event is mouse-1, the command called is not this
 ;; it is an "up event" that calls the dired-mouse-find-file
