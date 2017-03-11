@@ -474,6 +474,9 @@ You need to kill the current *Python* buffer to take effect."
   (add-hook 'c++-mode-common-hook 'rtags-start-process-unless-running)
   ;; this open the keybinding with prefix C-c r
   (rtags-enable-standard-keybindings)
+  (defvar antlr-mode-map)
+  (rtags-enable-standard-keybindings antlr-mode-map)
+  (define-key c-mode-base-map (kbd "C-c r n") 'rtags-next-match)
 
   ;; company
   ;; not tested
@@ -485,6 +488,7 @@ You need to kill the current *Python* buffer to take effect."
 
   ;; flycheck
   (require 'flycheck-rtags)
+
   
   ;; :bind
   ;; (("C-M-." . rtags-find-symbol-at-point)
