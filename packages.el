@@ -495,13 +495,12 @@ You need to kill the current *Python* buffer to take effect."
   ;;  ("C-M-," . rtags-location-stack-back))
   )
 
-;; TODO not setup yet
+;; anoying auto runing of rc -J, too slow
+;; and I don't need those features at all
 (use-package cmake-ide
+  :disabled
   :config
-  ;; well I should move the above use-package here?
-  (use-package rtags)
   (cmake-ide-setup))
-
 
 (use-package sr-speedbar
   ;; in-frame speedbar
