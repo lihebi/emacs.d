@@ -124,6 +124,9 @@ This function is called by `org-babel-execute-src-block'"
          ;; usage of ob-srcml
          ;; #+BEGIN_SRC srcml :args --position :lang C++
          ;; default to C
+
+         ;; for the best result, set the :results html parameter
+         ;; #+BEGIN_SRC srcml :results html
          (in-file (org-babel-temp-file "srcml-"))
          (args (cdr (assoc :args params)))
          (cmd (concat "srcml -l" lang " -f empty --no-namespace-decl --no-xml-declaration " args " "
