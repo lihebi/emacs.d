@@ -1003,4 +1003,23 @@ You need to kill the current *Python* buffer to take effect."
   (global-set-key (kbd "C-x C-0") 'delete-window)
   )
 
+;; attempting to get a animated scrolling (less than 1 line per step)
+;; but failed to find one
+
+(use-package smooth-scrolling
+  :disabled t
+  :config
+  (smooth-scrolling-mode 1))
+
+(use-package sublimity
+  :disabled t
+  :config
+  (require 'sublimity-scroll)
+  (setq sublimity-scroll-weight 10
+        sublimity-scroll-drift-length 5)
+  (setq sublimity-scroll-weight 4
+        sublimity-scroll-drift-length 1)
+  (sublimity-mode 1))
+
+
 ;;; packages.el ends here
