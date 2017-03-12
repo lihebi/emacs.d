@@ -134,6 +134,11 @@
 (define-key dired-mode-map [mouse-2] 'dired-mouse-find-file)
 
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; hebi-check-git-repo
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (define-derived-mode hebi-repo-mode org-mode "HebiRepo"
   "A mode for displaying the status of repos I care.")
 
@@ -142,9 +147,18 @@
   :group 'hebi-repo
   :type '(repeat (file)))
 
-(defun hebi-check-git-repos()
-  ;; checking of the status of a list of git repos
+
+(defun hebi-check-git-repos-hard()
+  ;; checking of the status of a list of git repos, with update of remote
   (interactive)
+  (hebi-check-git-repos-helper t))
+
+(defun hebi-check-git-repos()
+  ;; checking of the status of a list of git repos, without update of remote
+  (interactive)
+  (hebi-check-git-repos-helper))
+
+(defun hebi-check-git-repos-helper(&optional hard)
   ;; check two things
   ;; 1. anything to stage, commmit, push?
   ;; 2. anything to pull?
@@ -152,17 +166,22 @@
   (let ((buf (get-buffer-create "*hebi-repo*")))
     (switch-to-buffer-other-window buf)
     (hebi-repo-mode)
-    (read-only-mode)
+    ;; (read-only-mode)
     (erase-buffer)
     (dolist (repo hebi-repo-list)
       (insert "* Status for repo: " repo "\n")
-      (insert (shell-command-to-string (concat "cd " repo "&& git status --porcelain")))
+      (when (file-exists-p repo)
+        (insert (shell-command-to-string (concat "cd " repo "&& git status --porcelain")))
+        (if hard
+            (shell-command (concat "cd " repo " && git remote update")))
+        (insert (shell-command-to-string (concat "cd " repo "&& git status -uno | grep -E 'behind|diverge'"))))
       (insert "\n"))))
 
 (setq hebi-repo-list
       '("~/github/note"
         "~/github/wiki"
-        "~/github/test-dirty"
+        ;; "~/github/test-dirty"
+        ;; "~/github/test-stage"
         "~/github/bibliography"
         "~/github/helium"
         "~/github/builder-paper"
