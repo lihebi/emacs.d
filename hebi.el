@@ -163,6 +163,9 @@
   ;; 1. anything to stage, commmit, push?
   ;; 2. anything to pull?
   ;; (setq repo "~/github/test-dirty")
+  ;; TODO make the buffer readonly just like magit buffer
+  ;; TODO allow refresh by g
+  ;; TODO allow better switch buffer support
   (let ((buf (get-buffer-create "*hebi-repo*")))
     (switch-to-buffer-other-window buf)
     (hebi-repo-mode)
