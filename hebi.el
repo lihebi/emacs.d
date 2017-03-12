@@ -134,5 +134,39 @@
 (define-key dired-mode-map [mouse-2] 'dired-mouse-find-file)
 
 
+(define-derived-mode hebi-repo-mode org-mode "HebiRepo"
+  "A mode for displaying the status of repos I care.")
+
+(defcustom hebi-repo-list ()
+  "A list of repos to check."
+  :group 'hebi-repo
+  :type '(repeat (file)))
+
+(defun hebi-check-git-repos()
+  ;; checking of the status of a list of git repos
+  (interactive)
+  ;; check two things
+  ;; 1. anything to stage, commmit, push?
+  ;; 2. anything to pull?
+  ;; (setq repo "~/github/test-dirty")
+  (let ((buf (get-buffer-create "*hebi-repo*")))
+    (switch-to-buffer-other-window buf)
+    (hebi-repo-mode)
+    (read-only-mode)
+    (erase-buffer)
+    (dolist (repo hebi-repo-list)
+      (insert "* Status for repo: " repo "\n")
+      (insert (shell-command-to-string (concat "cd " repo "&& git status --porcelain")))
+      (insert "\n"))))
+
+(setq hebi-repo-list
+      '("~/github/note"
+        "~/github/wiki"
+        "~/github/test-dirty"
+        "~/github/bibliography"
+        "~/github/helium"
+        "~/github/builder-paper"
+        "~/github/helium-paper"))
+
 (provide 'hebi)
 ;;; hebi.el ends here
