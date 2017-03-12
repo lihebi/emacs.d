@@ -292,7 +292,8 @@ You need to kill the current *Python* buffer to take effect."
   :config
   (define-key company-active-map (kbd "C-n") #'company-select-next)
   (define-key company-active-map (kbd "C-p") #'company-select-previous)
-  )
+  (eval-after-load 'company
+    '(add-to-list 'company-backends 'company-irony)))
 
 ;; These two packages are used in fuzzy complete
 (use-package fuzzy
@@ -476,7 +477,7 @@ You need to kill the current *Python* buffer to take effect."
   (rtags-enable-standard-keybindings)
   (defvar antlr-mode-map)
   ;; (rtags-enable-standard-keybindings antlr-mode-map)
-  ;; (define-key c-mode-base-map (kbd "C-c r n") 'rtags-next-match)
+  (define-key c-mode-base-map (kbd "C-c r n") 'rtags-next-match)
 
   ;; company
   ;; not tested
@@ -488,6 +489,13 @@ You need to kill the current *Python* buffer to take effect."
 
   ;; flycheck
   (require 'flycheck-rtags)
+
+  (defun my-flycheck-rtags-setup ()
+    (flycheck-select-checker 'rtags)
+    (setq-local flycheck-highlighting-mode nil) ;; RTags creates more accurate overlays.
+    (setq-local flycheck-check-syntax-automatically nil))
+  ;; c-mode-common-hook is also called by c++-mode
+  (add-hook 'c-mode-common-hook #'my-flycheck-rtags-setup)
 
   
   ;; :bind
