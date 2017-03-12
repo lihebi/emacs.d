@@ -191,7 +191,7 @@
         "~/github/helium-paper"
         "~/.emacs.d"
         "~/.hebi"
-        "~/.stumpwm"))
+        "~/.stumpwm.d"))
 
 (provide 'hebi)
 ;;; hebi.el ends here
