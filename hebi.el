@@ -188,7 +188,10 @@
         "~/github/bibliography"
         "~/github/helium"
         "~/github/builder-paper"
-        "~/github/helium-paper"))
+        "~/github/helium-paper"
+        "~/.emacs.d"
+        "~/.hebi"
+        "~/.stumpwm"))
 
 (provide 'hebi)
 ;;; hebi.el ends here
