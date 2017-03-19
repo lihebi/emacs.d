@@ -191,7 +191,8 @@
         "~/github/helium-paper"
         "~/.emacs.d"
         "~/.hebi"
-        "~/.stumpwm.d"))
+        "~/.stumpwm.d"
+        "~/github/leetcode"))
 
 (provide 'hebi)
 ;;; hebi.el ends here
