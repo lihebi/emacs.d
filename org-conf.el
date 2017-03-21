@@ -42,6 +42,8 @@
   ;;       (expand-file-name "~/bin/plantuml.jar"))
   ;; But I found debian has plantuml in its repo, so why not?
   (setq org-plantuml-jar-path "/usr/share/plantuml/plantuml.jar")
+  ;; this is for arch via AUR
+  (setq org-plantuml-jar-path "/opt/plantuml/plantuml.jar")
 
   (require 'iimage)
   (autoload 'iimage-mode "iimage" "Support Inline image minor mode." t)
