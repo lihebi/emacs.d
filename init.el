@@ -17,7 +17,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; external files
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(require 'dash)
+;; (require 'dash)
 
 (add-to-list 'load-path "~/.emacs.d/packages/") ; packages downloaded from internet. Maybe outdated. No such package in elpa.
 
