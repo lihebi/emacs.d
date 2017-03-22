@@ -129,12 +129,18 @@ This function is called by `org-babel-execute-src-block'"
          ;; #+BEGIN_SRC srcml :results html
          (in-file (org-babel-temp-file "srcml-"))
          (args (cdr (assoc :args params)))
-         (cmd (concat "srcml -l" lang " -f empty --no-namespace-decl --no-xml-declaration " args " "
-                      (org-babel-process-file-name in-file)
-                      " | tidy -qi -xml"
-                      ;; " | xmllint --format -"
-                      ;; body
-                      ))
+         (cmd (concat
+               ;; "srcml -l" lang " -f empty --no-namespace-decl --no-xml-declaration " args " "
+               ;; "helium-srcml --simple "
+               ;; (org-babel-process-file-name in-file)
+
+               "helium-srcml --simple "
+               (org-babel-process-file-name in-file)
+               " | tidy -qi -xml"
+               
+               ;; " | xmllint --format -"
+               ;; body
+               ))
          )
     ;; actually execute the source-code block either in a session or
     ;; possibly by dropping it to a temporary file and evaluating the
