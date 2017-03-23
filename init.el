@@ -43,6 +43,11 @@
 ;; This cause my scripts to add newlines everytime I insert them.
 (setq require-final-newline nil)
 
+;; compilation buffer always follow
+(defvar compilation-scroll-output)
+;; (setq compilation-scroll-output t)
+(setq compilation-scroll-output 'first-error)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Appearance
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
