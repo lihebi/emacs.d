@@ -57,6 +57,17 @@
   ;; must load this first
   (use-package color-theme)
   :config
+  (defun hebi-dark()
+    (interactive)
+    (set-frame-parameter nil 'background-mode 'dark)
+    (set-terminal-parameter nil 'background-mode 'dark)
+    (enable-theme 'solarized))
+
+  (defun hebi-light()
+    (interactive)
+    (set-frame-parameter nil 'background-mode 'light)
+    (set-terminal-parameter nil 'background-mode 'light)
+    (enable-theme 'solarized))
   ;; (set-frame-parameter nil 'background-mode 'light)
   ;; (set-terminal-parameter nil 'background-mode 'light)
   ;; light theme in GUI and dark in terminal
@@ -74,6 +85,7 @@
         (set-terminal-parameter nil 'background-mode 'light)
         (enable-theme 'solarized)))
   (enable-theme 'solarized))
+
 
 (setq default-frame-alist '((font . "Source Code Pro-10")))
 
