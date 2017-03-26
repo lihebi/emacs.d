@@ -10,7 +10,7 @@
  ;; helium
  "~/github/helium-paper/" "~/github/helium/" "~/github/benchmark/" "~/github/helium-el/" "~/github/builder-paper/"
  ;; programming
- "~/github/leetcode/" "~/github/scratch/"
+ "~/github/leetcode/" "~/github/scratch/" "~/github/docker-files/"
  ;; class
  "~/github/cs342/" "~/github/class/" "~/github/cs342-typelang/" "~/github/cs572-project/" "~/github/cs342-reflang/"
  ;; others

@@ -192,7 +192,8 @@
         "~/.emacs.d"
         "~/.hebi"
         "~/.stumpwm.d"
-        "~/github/leetcode"))
+        "~/github/leetcode"
+        "~/github/docker-files"))
 
 (provide 'hebi)
 ;;; hebi.el ends here
