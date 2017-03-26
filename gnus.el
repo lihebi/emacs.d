@@ -16,15 +16,15 @@
 (setq user-mail-address "lihebi.emacs@gmail.com"
       user-full-name "Hebi Li")
 
-(setq gnus-select-method
-      '(nnimap "gmail"
-	       (nnimap-address "imap.gmail.com")  ; it could also be imap.googlemail.com if that's your server.
-	       (nnimap-server-port "imaps")
-	       (nnimap-stream ssl)))
+;; (setq gnus-select-method
+;;       '(nnimap "gmail"
+;; 	       (nnimap-address "imap.gmail.com")  ; it could also be imap.googlemail.com if that's your server.
+;; 	       (nnimap-server-port "imaps")
+;; 	       (nnimap-stream ssl)))
 
-(setq smtpmail-smtp-server "smtp.gmail.com"
-      smtpmail-smtp-service 587
-      gnus-ignored-newsgroups "^to\\.\\|^[0-9. ]+\\( \\|$\\)\\|^[\"]\"[#'()]")
+;; (setq smtpmail-smtp-server "smtp.gmail.com"
+;;       smtpmail-smtp-service 587
+;;       gnus-ignored-newsgroups "^to\\.\\|^[0-9. ]+\\( \\|$\\)\\|^[\"]\"[#'()]")
 
 
 ;; send mail using gmail smtp, no require for installation of sendmail or something
@@ -38,10 +38,10 @@
 
 ;; gmane
 
-;; (setq gnus-select-method
-;;       '(nntp "news.gmane.org"))
+(setq gnus-select-method
+      '(nntp "news.gmane.org"))
 
-(add-to-list 'gnus-secondary-select-methods '(nntp "news.gmane.org"))
+;; (add-to-list 'gnus-secondary-select-methods '(nntp "news.gmane.org"))
 ;; (setq gnus-default-nntp-server "news.gmane.org")
 (setq gnus-use-adaptive-scoring t)
 (add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
