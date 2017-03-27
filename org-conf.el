@@ -197,11 +197,13 @@
   ;; this may need some change in the future.
   (setq org-export-headline-levels 6)
 
-  (setq org-html-style "<style type=\"text/css\">
-a:visited {color: red;}
-</style>
-"
-        )
+  (defvar org-html-head)
+  (setq org-html-head
+        (concat
+         ;; "<style type=\"text/css\"> a:visited {color: red;} </style>"
+         ;; "<style type=\"text/css\"> code {color: red;} </style>"
+         "<link rel=\"stylesheet\" type=\"text/css\" href=\"assets/hebi.css\" />"
+         ))
 
   ;; (setq org-publish-project-alist
   ;;       '(
@@ -305,21 +307,6 @@ a:visited {color: red;}
   ;;   (not (string= lang "R")))  ; don't ask for R
   ;; (setq org-confirm-babel-evaluate 'my-org-confirm-babel-evaluate)
 )
-
-
-;; used for dark theme
-;; (defun my/org-inline-css-hook (exporter)
-;;   "Insert custom inline css to automatically set the
-;; background of code to whatever theme I'm using's background"
-;;   (when (eq exporter 'html)
-;;     ;; FIXME setting this variable is not very safe
-;;     (setq org-html-head-extra
-;;           "<link href=\"http://thomasf.github.io/solarized-css/solarized-light.min.css\" rel=\"stylesheet\"></link>")))
-
-;; (setq org-export-before-processing-hook nil)
-;; need to add this hook for it to work
-;; (add-hook 'org-export-before-processing-hook 'my/org-inline-css-hook)
-;; (remove-hook 'org-export-before-processing-hook 'my/org-inline-css-hook)
 
 
 ;; this org might not be installed automatically, don't know why
