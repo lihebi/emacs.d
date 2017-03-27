@@ -308,17 +308,18 @@ a:visited {color: red;}
 
 
 ;; used for dark theme
-(defun my/org-inline-css-hook (exporter)
-  "Insert custom inline css to automatically set the
-background of code to whatever theme I'm using's background"
-  (when (eq exporter 'html)
-    ;; FIXME setting this variable is not very safe
-    (setq org-html-head-extra
-          "<link href=\"http://thomasf.github.io/solarized-css/solarized-light.min.css\" rel=\"stylesheet\"></link>")))
+;; (defun my/org-inline-css-hook (exporter)
+;;   "Insert custom inline css to automatically set the
+;; background of code to whatever theme I'm using's background"
+;;   (when (eq exporter 'html)
+;;     ;; FIXME setting this variable is not very safe
+;;     (setq org-html-head-extra
+;;           "<link href=\"http://thomasf.github.io/solarized-css/solarized-light.min.css\" rel=\"stylesheet\"></link>")))
 
 ;; (setq org-export-before-processing-hook nil)
 ;; need to add this hook for it to work
-(add-hook 'org-export-before-processing-hook 'my/org-inline-css-hook)
+;; (add-hook 'org-export-before-processing-hook 'my/org-inline-css-hook)
+;; (remove-hook 'org-export-before-processing-hook 'my/org-inline-css-hook)
 
 
 ;; this org might not be installed automatically, don't know why
