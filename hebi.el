@@ -193,7 +193,8 @@
         "~/.hebi"
         "~/.stumpwm.d"
         "~/github/leetcode"
-        "~/github/docker-files"))
+        "~/github/docker-files"
+        "~/github/benchmark"))
 
 (provide 'hebi)
 ;;; hebi.el ends here
