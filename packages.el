@@ -53,26 +53,29 @@
   )
 
 ;; May cause problem in a clean install, manual installation of pdf-tools may be necessary
-(use-package pdf-tools
-  ;; :defer t
-  :config
-  (pdf-tools-install)
-  (setq pdf-view-resize-factor 1.03)
-  (defun pdf-view-fit-paper(number)
-    ;; using P for horizontal reading
-    ;; using C-u P for vertical reading
-    (interactive "p")
-    (if (= number 1)
+
+(when (window-system)
+  (use-package pdf-tools
+    ;; :defer t
+    :config
+    (pdf-tools-install)
+    (setq pdf-view-resize-factor 1.03)
+    (defun pdf-view-fit-paper(number)
+      ;; using P for horizontal reading
+      ;; using C-u P for vertical reading
+      (interactive "p")
+      (if (= number 1)
+          (progn
+            ;; landscape
+            (setq pdf-view-display-size 1.53)
+            (image-set-window-vscroll 6))
         (progn
-          ;; landscape
-          (setq pdf-view-display-size 1.53)
-          (image-set-window-vscroll 6))
-      (progn
-        ;; portrait
-        (setq pdf-view-display-size 2.05)
-        (image-set-window-hscroll 11)))
-    (pdf-view-redisplay t))
-  (define-key pdf-view-mode-map (kbd "P") 'pdf-view-fit-paper))
+          ;; portrait
+          (setq pdf-view-display-size 2.05)
+          (image-set-window-hscroll 11)))
+      (pdf-view-redisplay t))
+    (define-key pdf-view-mode-map (kbd "P") 'pdf-view-fit-paper)))
+
 
 (use-package csv-mode)
 (use-package json-mode)
@@ -134,6 +137,7 @@ You need to kill the current *Python* buffer to take effect."
 (use-package edbi-sqlite)
 
 (use-package irony
+  :disabled t
   :config
   (add-hook 'c++-mode-hook 'irony-mode)
   (add-hook 'c-mode-hook 'irony-mode)
@@ -281,8 +285,9 @@ You need to kill the current *Python* buffer to take effect."
    ("C-c h s" . projectile-persp-switch-project))
   )
 
-
 (use-package company
+  ;; my auto completion is freezing emacs!
+  :disabled t
   :init
   (add-hook 'after-init-hook 'global-company-mode)
   :bind
@@ -485,9 +490,11 @@ You need to kill the current *Python* buffer to take effect."
   ;; not tested
   (setq rtags-autostart-diagnostics t)
   (rtags-diagnostics)
-  (setq rtags-completions-enabled t)
-  (push 'company-rtags company-backends)
-  (global-company-mode)
+
+  ;; FIXME this code is outside company block, but it starts company mode
+  ;; (setq rtags-completions-enabled t)
+  ;; (push 'company-rtags company-backends)
+  ;; (global-company-mode)
 
   ;; flycheck
   (require 'flycheck-rtags)
@@ -1029,6 +1036,8 @@ You need to kill the current *Python* buffer to take effect."
   (setq sublimity-scroll-weight 4
         sublimity-scroll-drift-length 1)
   (sublimity-mode 1))
+
+(use-package dockerfile-mode)
 
 
 ;;; packages.el ends here
