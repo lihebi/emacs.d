@@ -4,11 +4,13 @@
 ;; .newsrc file (if you have one), touch .newsrc instead.
 (setq gnus-newsrc-file-version "Gnus v5.13")
 
-(setq gnus-newsrc-last-checked-date '"Sat, 25 Mar 2017 22:10:56 -0500")
+(setq gnus-newsrc-last-checked-date '"Wed, 05 Apr 2017 10:23:27 -0500")
 
-(setq gnus-newsrc-alist '(("nndraft:drafts" 1 nil nil (nndraft "") ((gnus-dummy (gnus-draft-mode)))) ("gmane.comp.compilers.llvm.announce" 6 nil) ("gmane.comp.compilers.llvm.devel" 3 nil) ("gmane.comp.compilers.llvm.klee" 3 nil) ("gmane.comp.compilers.clang.devel" 3 nil) ("gmane.comp.compilers.clang.user" 3 nil) ("gmane.comp.java.clojure.user" 3 nil) ("gmane.linux.kernel" 3 nil)))
+(setq gnus-newsrc-alist '(("nndraft:drafts" 1 nil nil (nndraft "") ((gnus-dummy (gnus-draft-mode)))) ("gmane.comp.compilers.llvm.announce" 6 nil) ("gmane.comp.compilers.llvm.devel" 3 ((1 . 111031)) ((unexist) (seen (110742 . 110759) (110762 . 110768) (110770 . 110786) (110790 . 110793) 110795 (110797 . 110799) (110801 . 110805) (110807 . 110915) (110917 . 110936) (110938 . 110967) (110969 . 111031)))) ("gmane.comp.compilers.llvm.klee" 3 ((1 . 2417)) ((unexist) (seen (2401 . 2417)))) ("gmane.comp.compilers.clang.devel" 3 ((1 . 53224)) ((unexist) (seen (53120 . 53224)))) ("gmane.comp.compilers.clang.user" 3 ((1 . 1004))) ("gmane.comp.java.clojure.user" 3 ((1 . 103715)) ((unexist) (seen (103622 . 103715)))) ("gmane.linux.kernel" 3 ((1 . 2449363)) ((unexist) (seen (2441045 . 2441144) (2449346 . 2449363))))))
 
 (setq gnus-server-alist '(("archive" nnfolder "archive" (nnfolder-directory "~/Mail/archive") (nnfolder-active-file "~/Mail/archive/active") (nnfolder-get-new-mail nil) (nnfolder-inhibit-expiry t))))
+
+(setq gnus-zombie-list '("gwene.com.bealers" "gwene.com.alexvermeer" "gwene.com.ebgconsulting.blog" "gwene.flickr.deutschland" "gwene.com.data.science.central.analytics.courses.discussions" "gwene.phys-all" "gwene.flickr.france.paris" "gwene.io.taiga.blog" "gwene.blog.erikkwakkel" "gwene.com.data.science.central.resources.discussions" "gwene.com.reddit.r.xboxone" "gwene.com.wordpress.patternsinfp" "gwene.com.feedburner.blogspot.tea.masters" "gwene.de.open-access.berlin" "gwene.com.reddit.r.thimbleweedpar" "gwene.com.data.science.central.new.books.and.journals.discussions" "gwene.org.tmplab" "gwene.com.alwaysrainingh" "gmane.org.wikimedia.northern-europe" "gwene.ru.yandex.news" "gwene.org.infrequently.blog" "gwene.uk.co.marcjenkins" "gwene.org.podcast.scotthorton" "gwene.com.data.science.central.research.discussions" "gwene.com.theadhdnerd" "gwene.com.dataartisans" "gwene.fr.cloudfrancois.blog" "gwene.com.podcast.johnbatchelor" "gwene.com.super.mega.comics"))
 
 (setq gnus-topic-topology '(("Gnus" visible) (("misc" visible))))
 
