@@ -665,6 +665,7 @@ You need to kill the current *Python* buffer to take effect."
             "IMPORTANT" "HERE"
             "UPDATE"
             "CONFIRM"
+            "TRICK" "HACK"
             )
           )
     )
