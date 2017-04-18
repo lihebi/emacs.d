@@ -194,7 +194,23 @@
         "~/.stumpwm.d"
         "~/github/leetcode"
         "~/github/docker-files"
-        "~/github/benchmark"))
+        "~/github/benchmark"
+        "~/github/papers"))
+
+
+(defun hebi-build-rate()
+  "calculate build rate"
+  (interactive)
+  (let ((suc (count-matches "Success"))
+        (fail (count-matches "Failure")))
+    (goto-char (point-min))
+    (insert "Build Rate: ")
+    (insert (format "(/ %d.0 (+ %d %d))" suc suc fail))
+    (insert " => ")
+    ;; (insert (/ suc (+ suc fail)))
+    (insert (format "%f" (/ (float suc) (+ suc fail))))
+    (insert "\n")
+    ))
 
 (provide 'hebi)
 ;;; hebi.el ends here
