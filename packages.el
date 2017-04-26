@@ -96,7 +96,10 @@
   (defvar python-shell-completion-native-enable)
   (setq python-shell-interpreter "ipython3"
         ;; must use simple prompt to avoid encoding problem for ipython
-        python-shell-interpreter-args "--simple-prompt -i")
+        python-shell-interpreter-args
+        ;; "-i"
+        "--simple-prompt -i"
+        )
   (setq python-shell-prompt-detect-failure-warning nil)
   ;; this fix the python3 warnning problem
   (setq python-shell-completion-native-enable nil)
@@ -104,7 +107,7 @@
     "Change python shell to python2.
 You need to kill the current *Python* buffer to take effect."
     (interactive)
-    (setq python-shell-interpreter "ipython"
+    (setq python-shell-interpreter "ipython2"
           python-shell-interpreter-args "--simple-prompt -i"))
 
   (defun hebi-elpy-use-python3 ()
@@ -388,6 +391,9 @@ You need to kill the current *Python* buffer to take effect."
   )
 
 (use-package flyspell
+  ;; disabling because Starting new Ispell process ... all the time
+  ;; when exporting html
+  ;; :disabled t
   :init
   :config
   (progn
@@ -453,7 +459,11 @@ You need to kill the current *Python* buffer to take effect."
   ;; to use: M-x R
   ;; R-mode
   ;; :disabled t
-  )
+  :config
+  (setq comint-prompt-read-only t)
+  (setq comint-scroll-to-bottom-on-input t)
+  (setq comint-scroll-to-bottom-on-output t)
+  (setq comint-move-point-for-output t))
 
 
 (use-package helm-gtags
@@ -1039,6 +1049,10 @@ You need to kill the current *Python* buffer to take effect."
   (sublimity-mode 1))
 
 (use-package dockerfile-mode)
+
+(use-package shell-switcher
+  :config
+  (setq shell-switcher-mode t))
 
 
 ;;; packages.el ends here
