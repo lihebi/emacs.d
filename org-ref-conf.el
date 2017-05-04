@@ -76,9 +76,12 @@ to rescan the bib files and update pdf and notes notation."
   :config
   (global-set-key (kbd "C-c ]") 'org-ref-helm-insert-cite-link)
   ;; open pdf directly in bib file
-  (define-key bibtex-mode-map (kbd "C-c h o")
-    ;; 'org-ref-bibtex-hydra/org-ref-open-bibtex-pdf-and-exit)
-    'org-ref-open-bibtex-pdf-open)
+  ;; (define-key bibtex-mode-map
+  ;;   (kbd "C-c h o")
+  ;;   'org-ref-open-bibtex-pdf)
+  (define-key bibtex-mode-map
+    (kbd "C-c b")
+    'org-ref-bibtex)
   (let* ((bib-dir "~/github/bibliography")
          (bib-files (find-files-by-ext bib-dir "bib"))
          (bib-note-file (concat bib-dir "/notes.org"))
@@ -93,28 +96,6 @@ to rescan the bib files and update pdf and notes notation."
     (setq org-ref-pdf-directory bib-pdf-dir)
     (setq bibtex-completion-library-path bib-pdf-dir))
 
-
-
-  (defun org-ref-open-bibtex-pdf-open ()
-    "Open pdf for a bibtex entry"
-    (interactive)
-    (save-excursion
-      (bibtex-beginning-of-entry)
-      (let* ((bibtex-expand-strings t)
-             (entry (bibtex-parse-entry t))
-             (key (reftex-get-bib-field "=key=" entry))
-             (pdf (-first 'f-file?
-                          (--map (f-join it (concat key ".pdf"))
-                                 (-flatten (list org-ref-pdf-directory))))))
-        (message "%s" pdf)
-        (if (file-exists-p pdf)
-            ;; if mac, using open
-            (if (string= system-type "darwin")
-                (shell-command (concat "open " pdf))
-              (org-open-link-from-string (format "[[file:%s]]" pdf)))
-            
-          (ding)))))
-
   (when (string= system-type "darwin")
       (setq bibtex-completion-pdf-open-function
             (lambda (fpath)
@@ -122,34 +103,11 @@ to rescan the bib files and update pdf and notes notation."
       (setq org-ref-open-pdf-function
             (lambda (fpath)
               (start-process "open" "*open*" "open" fpath))))
-  
-  (defun helm-bibtex-candidates-formatter (candidates _)
-    (cl-loop
-     with width = (with-helm-window (helm-bibtex-window-width))
-     for entry in candidates
-     for entry = (cdr entry)
-     for entry-key = (bibtex-completion-get-value "=key=" entry)
-     collect (cons (bibtex-completion-format-entry entry width) entry-key)))
-  (defun bibtex-completion-format-entry (entry width)
-    "Formats a BibTeX entry for display in results list."
-    (let* ((fields (list
-                    "=key=" "title"
-                    (if (assoc-string "author" entry 'case-fold) "author" "editor")
-                    "year" "=has-pdf=" "=has-note=" "=type="))
-           (fields (-map (lambda (it)
-                           (bibtex-completion-clean-string
-                            (bibtex-completion-get-value it entry " ")))
-                         fields))
-           (fields (-update-at 0 'bibtex-completion-shorten-authors fields)))
-      (s-format "$0 $1 $2 $3 $4$5 $6" 'elt
-                (-zip-with (lambda (f w) (truncate-string-to-width f w 0 ?\s))
-                           fields
-                           (mapcar 'floor (list (* width 0.1)
-                                                   (* width 0.5)
-                                                   (* width 0.25)
-                                                   4 1 1 7))
-                           ;; (list 20 (- width 108) 46 4 1 1 7)
-                           )))))
+
+  (setq bibtex-completion-display-formats
+        '((t . "${year:4} ${conf:8} ${author:36} ${title:*} ${=has-pdf=:1}${=has-note=:1} ${=type=:7} ${keywords:18}")))
+  (setq bibtex-completion-additional-search-fields '(keywords))
+  )
 
 
 

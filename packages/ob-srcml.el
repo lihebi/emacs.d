@@ -135,6 +135,7 @@ This function is called by `org-babel-execute-src-block'"
                ;; (org-babel-process-file-name in-file)
 
                "helium-srcml --simple "
+               ;; "helium-srcml --simple --position "
                (org-babel-process-file-name in-file)
                " | tidy -qi -xml"
                

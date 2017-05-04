@@ -499,7 +499,7 @@ You need to kill the current *Python* buffer to take effect."
   ;; company
   ;; not tested
   (setq rtags-autostart-diagnostics t)
-  (rtags-diagnostics)
+  ;; (rtags-diagnostics)
 
   ;; FIXME this code is outside company block, but it starts company mode
   ;; (setq rtags-completions-enabled t)
@@ -507,7 +507,7 @@ You need to kill the current *Python* buffer to take effect."
   ;; (global-company-mode)
 
   ;; flycheck
-  (require 'flycheck-rtags)
+  (use-package flycheck-rtags)
 
   (defun my-flycheck-rtags-setup ()
     (flycheck-select-checker 'rtags)
