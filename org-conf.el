@@ -326,6 +326,15 @@
   (setup-plantuml)
   (setup-latex)
   (setup-publish)
+
+  (setq org-file-apps
+        (quote
+         ((auto-mode . emacs)
+          ("\\.mm\\'" . default)
+          ;; have to use this to open in browser
+          ;; otherwise will open in emacs
+          ("\\.x?html?\\'" . "/usr/bin/chromium %s")
+          ("\\.pdf\\'" . default))))
   
   ;; (add-hook 'org-mode-hook 'turn-on-auto-fill)
   (setq org-log-done 'time)

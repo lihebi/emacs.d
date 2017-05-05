@@ -653,6 +653,7 @@ You need to kill the current *Python* buffer to take effect."
   )
 
 (use-package fic-mode
+  ;; :disabled t
   ;; this is buggy even if I disabled it...
   ;; see here file:///Users/hebi/github/wiki-new/js.html
   ;; basically when it is enabled, the exporting from org to html with htmlize to fontify the code will add three strange characters in the end of each line.
@@ -923,8 +924,8 @@ You need to kill the current *Python* buffer to take effect."
 ;; Also, I'm a little bit senior now and don't really need the indicator
 (use-package fill-column-indicator
   ;; 80 characters
-  :disabled t
-  :defer t
+  ;; :disabled t
+  ;; :defer t
   :init
   (add-hook 'prog-mode-hook 'fci-mode)
   (add-hook 'LaTeX-mode-hook 'fci-mode)

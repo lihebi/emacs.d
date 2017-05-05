@@ -212,5 +212,35 @@
     (insert "\n")
     ))
 
+
+;; (defface scroll-highlight-line-face
+;;   '((t (:background "cadetblue4" :foreground "white" :weight bold)))
+;;   "Font Lock mode face used to highlight line."
+;;   :group 'scroll-screen)
+
+;; (defun scroll-highlight (beg end delay)
+;;   "Highlight a region temporarily."
+;;   (let ((ov (make-overlay beg end)))
+;;     (overlay-put ov 'face 'scroll-highlight-line-face)
+;;     (sit-for delay)
+;;     (delete-overlay ov)))
+
+;; (defun my-highlight-advice (oldfunc &optional arg)
+;;   "highlight first and last line."
+;;   ;; get current position
+;;   (let ((vscroll (window-vscroll)))
+;;     ;; apply the scroll up and down function
+;;     (apply oldfunc arg)
+;;     ;; temporarily highlight
+;;     (scroll-highlight begin end 0.5)))
+
+;; ;; pdf tools scroll first/last line
+;; (advice-add 'pdf-view-scroll-up-or-next-page :around
+;;             #'my-highlight-advice)
+;; (advice-add 'pdf-view-scroll-down-or-previous-page :around
+;;             #'my-highlight-advice)
+
+
+
 (provide 'hebi)
 ;;; hebi.el ends here
