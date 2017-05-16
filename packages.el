@@ -1055,5 +1055,11 @@ You need to kill the current *Python* buffer to take effect."
   :config
   (setq shell-switcher-mode t))
 
+(use-package bing-dict
+  :bind
+  (("C-c d" . bing-dict-brief)))
+
+(use-package firefox-controller)
+
 
 ;;; packages.el ends here
