@@ -393,7 +393,7 @@ You need to kill the current *Python* buffer to take effect."
 (use-package flyspell
   ;; disabling because Starting new Ispell process ... all the time
   ;; when exporting html
-  ;; :disabled t
+  :disabled t
   :init
   :config
   (progn
@@ -476,7 +476,7 @@ You need to kill the current *Python* buffer to take effect."
 ;; rtags frontend
 (use-package rtags
   ;; if I don't disable it, the org mode export of java will stop the process ..
-  ;; :disabled t
+  :disabled t
   ;; start rdm by rtags-start-process-unless-running
   ;; needs to build and install rtags first
   ;; TODO how to get this in my setup debian script?
@@ -653,6 +653,7 @@ You need to kill the current *Python* buffer to take effect."
   )
 
 (use-package fic-mode
+  ;; :disabled t
   ;; this is buggy even if I disabled it...
   ;; see here file:///Users/hebi/github/wiki-new/js.html
   ;; basically when it is enabled, the exporting from org to html with htmlize to fontify the code will add three strange characters in the end of each line.
@@ -923,8 +924,8 @@ You need to kill the current *Python* buffer to take effect."
 ;; Also, I'm a little bit senior now and don't really need the indicator
 (use-package fill-column-indicator
   ;; 80 characters
-  :disabled t
-  :defer t
+  ;; :disabled t
+  ;; :defer t
   :init
   (add-hook 'prog-mode-hook 'fci-mode)
   (add-hook 'LaTeX-mode-hook 'fci-mode)
@@ -1053,6 +1054,12 @@ You need to kill the current *Python* buffer to take effect."
 (use-package shell-switcher
   :config
   (setq shell-switcher-mode t))
+
+(use-package bing-dict
+  :bind
+  (("C-c d" . bing-dict-brief)))
+
+(use-package firefox-controller)
 
 
 ;;; packages.el ends here
