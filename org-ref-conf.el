@@ -104,6 +104,17 @@ to rescan the bib files and update pdf and notes notation."
             (lambda (fpath)
               (start-process "open" "*open*" "open" fpath))))
 
+  (setq bibtex-completion-pdf-open-function
+        (lambda (fpath)
+          (start-process "open" "*open*" "open" fpath)))
+  (setq org-ref-open-pdf-function
+        (lambda (fpath)
+          (start-process "open" "*open*" "open" fpath)))
+
+  ;; (setq bibtex-completion-pdf-open-function
+  ;;       (lambda (fpath)
+  ;;         (call-process "open" nil 0 nil "-a" "/Applications/Skim.app" fpath)))
+
   (setq bibtex-completion-display-formats
         '((t . "${year:4} ${conf:8} ${author:36} ${title:*} ${=has-pdf=:1}${=has-note=:1} ${=type=:7} ${keywords:18}")))
   (setq bibtex-completion-additional-search-fields '(keywords))
