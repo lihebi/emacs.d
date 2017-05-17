@@ -335,6 +335,16 @@
           ;; otherwise will open in emacs
           ("\\.x?html?\\'" . "/usr/bin/chromium %s")
           ("\\.pdf\\'" . default))))
+
+  (when (string= system-type "darwin")
+    (setq org-file-apps
+          (quote
+           ((auto-mode . emacs)
+            ("\\.mm\\'" . default)
+            ;; have to use this to open in browser
+            ;; otherwise will open in emacs
+            ("\\.x?html?\\'" . "open %s")
+            ("\\.pdf\\'" . "open %s")))))
   
   ;; (add-hook 'org-mode-hook 'turn-on-auto-fill)
   (setq org-log-done 'time)

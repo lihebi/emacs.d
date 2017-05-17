@@ -96,20 +96,20 @@ to rescan the bib files and update pdf and notes notation."
     (setq org-ref-pdf-directory bib-pdf-dir)
     (setq bibtex-completion-library-path bib-pdf-dir))
 
-  (when (string= system-type "darwin")
-      (setq bibtex-completion-pdf-open-function
-            (lambda (fpath)
-              (start-process "open" "*open*" "open" fpath)))
-      (setq org-ref-open-pdf-function
-            (lambda (fpath)
-              (start-process "open" "*open*" "open" fpath))))
+  ;; (when (string= system-type "darwin")
+  ;;     (setq bibtex-completion-pdf-open-function
+  ;;           (lambda (fpath)
+  ;;             (start-process "open" "*open*" "open" fpath)))
+  ;;     (setq org-ref-open-pdf-function
+  ;;           (lambda (fpath)
+  ;;             (start-process "open" "*open*" "open" fpath))))
 
   (setq bibtex-completion-pdf-open-function
         (lambda (fpath)
           (start-process "open" "*open*" "open" fpath)))
-  (setq org-ref-open-pdf-function
-        (lambda (fpath)
-          (start-process "open" "*open*" "open" fpath)))
+  ;; (setq org-ref-open-pdf-function
+  ;;       (lambda (fpath)
+  ;;         (start-process "open" "*open*" "open" fpath)))
 
   ;; (setq bibtex-completion-pdf-open-function
   ;;       (lambda (fpath)
