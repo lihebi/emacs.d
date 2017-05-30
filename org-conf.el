@@ -314,7 +314,7 @@
 (use-package org
   :init
   (setq org-plain-list-ordered-item-terminator '?.) ; remove using ?) causing a listing
-  :defer t
+  ;; :defer t
   :bind
   (("C-c n" . org-capture)
    ;; ("C-c o" . org-open-at-point)
