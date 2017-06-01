@@ -139,6 +139,24 @@
 (global-set-key (kbd "C-x C-o") 'ff-find-other-file)
 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Mac Setting
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; use command as meta
+(setq mac-command-modifier 'meta)
+;; (setq mac-option-modifier 'super)
+;; use option as hyper
+;; option still use as meta
+;; (setq mac-option-modifier 'hyper)
+;; (setq ns-function-modifier 'hyper)
+
+
+
+;; hyper-r
+(global-set-key (kbd "s-r") 'replace-string)
+
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
