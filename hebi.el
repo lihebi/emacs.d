@@ -14,7 +14,8 @@
   "Add keyword for current buffer."
   (font-lock-add-keywords
    nil
-   '(("(HEBI: .*)" 0 'my-face prepend))))
+   '(("(HEBI: .*)" 0 'my-face prepend)
+     )))
 
 (add-hook 'prog-mode-hook 'hebi-add-keyword)
 (add-hook 'latex-mode-hook 'hebi-add-keyword)
@@ -239,6 +240,7 @@
 ;;             #'my-highlight-advice)
 ;; (advice-add 'pdf-view-scroll-down-or-previous-page :around
 ;;             #'my-highlight-advice)
+
 
 
 

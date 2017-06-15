@@ -476,7 +476,7 @@ You need to kill the current *Python* buffer to take effect."
 ;; rtags frontend
 (use-package rtags
   ;; if I don't disable it, the org mode export of java will stop the process ..
-  :disabled t
+  ;; :disabled t
   ;; start rdm by rtags-start-process-unless-running
   ;; needs to build and install rtags first
   ;; TODO how to get this in my setup debian script?
@@ -654,16 +654,6 @@ You need to kill the current *Python* buffer to take effect."
 
 (use-package fic-mode
   ;; :disabled t
-  ;; this is buggy even if I disabled it...
-  ;; see here file:///Users/hebi/github/wiki-new/js.html
-  ;; basically when it is enabled, the exporting from org to html with htmlize to fontify the code will add three strange characters in the end of each line.
-  ;; it turns out that the fic-mode is the culprit
-  ;; to fix this, in ox-html.el file, add
-  ;; (when (require 'fill-column-indicator nil 'noerror)
-  ;;   (fci-mode -1))
-  ;; after line (funcall lang-mode) in defun org-html-fontify-code
-  ;; that should be around line 2048 ..
-  ;; remove the ox-html.elc to make it in effect!
   :init
   (progn
     (setq fic-highlighted-words
@@ -924,7 +914,7 @@ You need to kill the current *Python* buffer to take effect."
 ;; Also, I'm a little bit senior now and don't really need the indicator
 (use-package fill-column-indicator
   ;; 80 characters
-  ;; :disabled t
+  :disabled t
   ;; :defer t
   :init
   (add-hook 'prog-mode-hook 'fci-mode)
@@ -1060,6 +1050,10 @@ You need to kill the current *Python* buffer to take effect."
   (("C-c d" . bing-dict-brief)))
 
 (use-package firefox-controller)
+
+(use-package helpful
+  ;; try this with helpful-function then -map
+  )
 
 
 ;;; packages.el ends here
