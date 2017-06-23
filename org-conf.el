@@ -320,7 +320,7 @@
    ;; ("C-c n" . org-capture)
    ;; ("C-c o" . org-open-at-point)
    ("C-c o" . org-open-at-point-global)
-   ;; ("C-c t" . org-todo)
+   ("C-c t" . org-todo)
    ;; ("C-c a" . org-agenda)
    )
   :config
