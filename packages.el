@@ -825,7 +825,11 @@ You need to kill the current *Python* buffer to take effect."
   :defer t
   )
 (use-package cider
-  :defer t
+  ;; :defer t
+  ;; :bind
+  ;; (("C-c C-t" . cider-test-run-test))
+  :config
+  (add-hook 'cider-repl-mode-hook #'eldoc-mode)
   )
 ;; for highlight flashing when evaluating
 (use-package eval-sexp-fu
