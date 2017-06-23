@@ -316,11 +316,13 @@
   (setq org-plain-list-ordered-item-terminator '?.) ; remove using ?) causing a listing
   ;; :defer t
   :bind
-  (("C-c n" . org-capture)
+  (
+   ;; ("C-c n" . org-capture)
    ;; ("C-c o" . org-open-at-point)
    ("C-c o" . org-open-at-point-global)
-   ("C-c t" . org-todo)
-   ("C-c a" . org-agenda))
+   ;; ("C-c t" . org-todo)
+   ;; ("C-c a" . org-agenda)
+   )
   :config
   (setup-ob)
   (setup-plantuml)
