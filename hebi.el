@@ -196,7 +196,11 @@
         "~/github/leetcode"
         "~/github/docker-files"
         "~/github/benchmark"
-        "~/github/papers"))
+        "~/github/papers"
+        "~/github/arch-server"
+        "~/github/arch-desktop"
+        "~/github/arch-helium"
+        ))
 
 
 (defun hebi-build-rate()
