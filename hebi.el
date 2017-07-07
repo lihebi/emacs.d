@@ -181,6 +181,8 @@
         (insert (shell-command-to-string (concat "cd " repo "&& git status -uno | grep -E 'behind|diverge'"))))
       (insert "\n"))))
 
+;; TODO these repos and projectile bookmarks are duplicate, should
+;; only get one copy
 (setq hebi-repo-list
       '("~/github/note"
         "~/github/wiki"
