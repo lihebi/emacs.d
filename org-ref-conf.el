@@ -104,9 +104,12 @@ to rescan the bib files and update pdf and notes notation."
   ;;           (lambda (fpath)
   ;;             (start-process "open" "*open*" "open" fpath))))
 
-  (setq bibtex-completion-pdf-open-function
-        (lambda (fpath)
-          (start-process "open" "*open*" "open" fpath)))
+  ;; disable to work on linux
+  ;; (setq bibtex-completion-pdf-open-function
+  ;;       (lambda (fpath)
+  ;;         (start-process "open" "*open*" "open" fpath)))
+
+  
   ;; (setq org-ref-open-pdf-function
   ;;       (lambda (fpath)
   ;;         (start-process "open" "*open*" "open" fpath)))
