@@ -54,28 +54,26 @@
 
 ;; May cause problem in a clean install, manual installation of pdf-tools may be necessary
 
-(when (window-system)
-  (use-package pdf-tools
-    ;; :defer t
-    :config
-    (pdf-tools-install)
-    (setq pdf-view-resize-factor 1.03)
-    (defun pdf-view-fit-paper(number)
-      ;; using P for horizontal reading
-      ;; using C-u P for vertical reading
-      (interactive "p")
-      (if (= number 1)
-          (progn
-            ;; landscape
-            (setq pdf-view-display-size 1.53)
-            (image-set-window-vscroll 6))
-        (progn
-          ;; portrait
-          (setq pdf-view-display-size 2.05)
-          (image-set-window-hscroll 11)))
-      (pdf-view-redisplay t))
-    (define-key pdf-view-mode-map (kbd "P") 'pdf-view-fit-paper)))
-
+(use-package pdf-tools
+  ;; :defer t
+  :config
+  (pdf-tools-install)
+  (setq pdf-view-resize-factor 1.03)
+  (defun pdf-view-fit-paper(number)
+    ;; using P for horizontal reading
+    ;; using C-u P for vertical reading
+    (interactive "p")
+    (if (= number 1)
+	(progn
+	  ;; landscape
+	  (setq pdf-view-display-size 1.53)
+	  (image-set-window-vscroll 6))
+      (progn
+	;; portrait
+	(setq pdf-view-display-size 2.05)
+	(image-set-window-hscroll 11)))
+    (pdf-view-redisplay t))
+  (define-key pdf-view-mode-map (kbd "P") 'pdf-view-fit-paper))
 
 (use-package csv-mode)
 (use-package json-mode)
@@ -1059,5 +1057,19 @@ You need to kill the current *Python* buffer to take effect."
   ;; try this with helpful-function then -map
   )
 
+(use-package android-mode
+  ;; some useful commends
+  ;; 1. download android SDK and add the tools into PATH
+  ;; 2. android sdk, and select version to download
+  ;; 3. android avd, to create virtual device
+  ;; 4. android-create-project
+  ;; Inside emacs
+  ;; - android-start-emulator
+  ;; - android-ant: compile and install
+  )
+
+(use-package gradle-mode)
+(use-package groovy-mode)
+(use-package yaml-mode)
 
 ;;; packages.el ends here
