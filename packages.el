@@ -1072,4 +1072,7 @@ You need to kill the current *Python* buffer to take effect."
 (use-package groovy-mode)
 (use-package yaml-mode)
 
+(use-package rust-mode)
+;; (use-package racer)
+
 ;;; packages.el ends here
