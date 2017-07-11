@@ -248,9 +248,10 @@
 ;;             #'my-highlight-advice)
 
 
-(defun hebi-load-pdf-tools()
-  "load pdf-tools package. This package must be load on demand."
+(defun hebi-load-scholar-packages()
+  "Load scholar packages"
   (interactive)
+  (load "~/.emacs.d/org-ref-conf")
   (use-package pdf-tools
     :disabled t
     ;; :defer t
@@ -272,7 +273,6 @@
           (image-set-window-hscroll 11)))
       (pdf-view-redisplay t))
     (define-key pdf-view-mode-map (kbd "P") 'pdf-view-fit-paper)))
-
 
 
 (provide 'hebi)

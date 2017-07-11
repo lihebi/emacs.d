@@ -23,7 +23,6 @@
 
 (load "~/.emacs.d/packages.el")
 (load "~/.emacs.d/org-conf.el")
-(load "~/.emacs.d/org-ref-conf")
 (load "~/.emacs.d/packages/helium-slice-highlighter.el")
 (load "~/.emacs.d/hebi.el")
 (load "~/.emacs.d/erc.el")
