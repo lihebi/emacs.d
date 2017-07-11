@@ -43,9 +43,14 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; modes
-(use-package csv-mode)
-(use-package json-mode)
+(use-package csv-mode
+  :mode)
+(use-package json-mode
+  :mode)
+
+
 (use-package z3-mode
+  :defer t
   :config
   ;; add-hook will keep adding ... consider reset it when debugging
   ;; (setq z3-mode-hook nil)
@@ -57,25 +62,18 @@
                               ;; turn off slime mode
                               (slime-mode 0)
                               (prin1 "done"))))
-(use-package bison-mode)
 
+
+(use-package bison-mode
+  :defer t
+  )
 (use-package cmake-mode
   :defer t
   )
-(use-package dockerfile-mode)
-
-(use-package tuareg
-  ;; The ocaml mode
-  )
-
-
-(use-package markdown-mode
-  :init
-  (add-hook 'markdown-mode-hook 'turn-on-orgtbl)
-  )
+(use-package dockerfile-mode
+  :defer t)
 
 (use-package fic-mode
-  ;; :disabled t
   :init
   (progn
     (setq fic-highlighted-words
@@ -103,11 +101,15 @@
 (use-package go-mode
   :defer t
   )
-(use-package gradle-mode)
-(use-package groovy-mode)
-(use-package yaml-mode)
+(use-package gradle-mode
+  :mode)
+(use-package groovy-mode
+  :mode)
+(use-package yaml-mode
+  :mode)
 
-(use-package rust-mode)
+(use-package rust-mode
+  :mode)
 ;; (use-package racer)
 
 (use-package ess
@@ -115,7 +117,8 @@
   ;; but cannot be defered, or the command is not found.
   ;; to use: M-x R
   ;; R-mode
-  ;; :disabled t
+  ;; this is disabled because very slow on startup, but it is very useful
+  :disabled t
   :config
   (setq comint-prompt-read-only t)
   (setq comint-scroll-to-bottom-on-input t)
@@ -125,6 +128,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; lisp
 (use-package slime
+  :defer t
   :config
   (setq inferior-lisp-program "/usr/bin/sbcl")
   (setq slime-contribs '(slime-fancy))
@@ -354,9 +358,6 @@
   ;; (setq projectile-known-projects-file "/home/hebi/.emacs.d/projectile-bookmarks.eld")
   )
 
-(use-package helm-projectile
-  ;; :disabled t
-  )
 (use-package perspective
   :init
   :bind
@@ -374,13 +375,6 @@
    ("C-c h s" . projectile-persp-switch-project))
   )
 
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; app
-(use-package edbi)
-(use-package edbi-sqlite)
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; python
 (use-package elpy
@@ -390,6 +384,8 @@
   ;; C-M-x (python-shell-send-defun)
   ;; C-c C-k (elpy-shell-kill)
   ;; C-c C-K (elpy-shell-kill-all)
+  ;; very slow on startup
+  :disabled
   :init
   (defvar python-shell-interpreter)
   (defvar python-shell-interpreter-args)
@@ -421,6 +417,7 @@ You need to kill the current *Python* buffer to take effect."
 
 (use-package pylint
   ;; have to use this for org mode to find "pylint" when exporting html
+  :disabled t
 )
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helm
@@ -435,8 +432,6 @@ You need to kill the current *Python* buffer to take effect."
 
   ;; helm-semantic-or-imenu
   ;; srefactor-refactor-at-point
-  
-  ;; :disabled t
   :bind
   (
    ("M-x" . helm-M-x)
@@ -527,11 +522,6 @@ You need to kill the current *Python* buffer to take effect."
   ;; M-x describe-checker => found c/c++-clang
   ;; Click on it, goes to the description, along with the configurable part.
   (setq flycheck-clang-include-path (list ".."))
-  )
-(use-package helm-gtags
-  :bind
-  ("M-." . helm-gtags-dwim)
-  ("M-," . helm-gtags-pop-stack)
   )
 
 ;; rtags frontend

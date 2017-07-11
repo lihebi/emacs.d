@@ -358,5 +358,37 @@
 (use-package etags-select
   :disabled
   )
+(use-package tuareg
+  ;; The ocaml mode
+  ;; disabled because slow on startup
+  :disabled
+  )
+(use-package markdown-mode
+  ;; disabled because slow on start up
+  ;; And I don't use markdown except reading readmes
+  :disabled
+  :init
+  ;; (add-hook 'markdown-mode-hook 'turn-on-orgtbl)
+  )
+
+;; edbi pretty slow on start up
+(use-package edbi
+  :disabled
+  )
+(use-package edbi-sqlite
+  :disabled
+  )
+
+(use-package helm-projectile
+  ;; I didn't use this at all, and it is very slow on startup
+  :disabled
+  )
+(use-package helm-gtags
+  :disabled
+  :bind
+  ("M-." . helm-gtags-dwim)
+  ("M-," . helm-gtags-pop-stack)
+  )
+
 
 ;;; packages-disabled.el ends here
