@@ -36,6 +36,12 @@
 ;; Common doc
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(use-package benchmark-init
+  ;; enable only when i want to debug the init time
+  :disabled t
+  :config
+  (benchmark-init/activate))
+
 ;; :bind,mode,interpreter will imply :defer t
 (use-package dash)
 
@@ -775,12 +781,17 @@ You need to kill the current *Python* buffer to take effect."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package simple-httpd)
-(use-package js2-mode)
+
+(use-package js2-mode
+  ;; disable because slow on startup
+  :disabled t)
 
 (use-package skewer-mode
   ;; interactive web development
   ;; depend on simple-httpd and js2-mode
   ;; use run-skewer to attach browser to emacs
+  ;; disable because slow on startup for js2
+  :disabled t
   :config
   (add-hook 'js2-mode-hook 'skewer-mode)
   (add-hook 'css-mode-hook 'skewer-css-mode)
@@ -1054,5 +1065,8 @@ You need to kill the current *Python* buffer to take effect."
 
 (use-package rust-mode)
 ;; (use-package racer)
+
+
+
 
 ;;; packages.el ends here

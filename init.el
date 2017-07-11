@@ -25,7 +25,8 @@
 (load "~/.emacs.d/org-conf.el")
 (load "~/.emacs.d/packages/helium-slice-highlighter.el")
 (load "~/.emacs.d/hebi.el")
-(load "~/.emacs.d/erc.el")
+;; disabling erc because it is slow on startup
+;; (load "~/.emacs.d/erc.el")
 (load "~/.emacs.d/theme.el")
 
 (defvar gnus-init-file)
@@ -454,7 +455,7 @@
      ("" "hyperref" nil))))
  '(package-selected-packages
    (quote
-    (rust-mode yaml-mode groovy-mode gradle-mode android-mode helpful firefox-controller bing-dict org fill-column-indicator flycheck-rtags shell-switcher dockerfile-mode srefactor sublimity smooth-scrolling cmake-ide color-theme-solarized god-mode bbdb pylint clang-format zenburn-theme solarized-theme sr-speedbar nyan-mode volatile-highlights rtags elpy visual-regexp virtual-regexp magit org-bullets yasnippet use-package tuareg string-inflection smex smartparens smart-mode-line slime skewer-mode scss-mode regex-tool rainbow-delimiters persp-projectile pdf-tools org-plus-contrib neotree multiple-cursors monokai-theme markdown-mode linum-off htmlize helm-projectile helm-gtags helm-dash guide-key goto-chg google-c-style go-mode git-gutter fuzzy flycheck flx fic-mode expand-region exec-path-from-shell etags-select ess edit-server ecb dired-k csv-mode company cmake-mode cider-eval-sexp-fu cider browse-kill-ring bison-mode ag ace-jump-mode)))
+    (benchmark-init rust-mode yaml-mode groovy-mode gradle-mode android-mode helpful firefox-controller bing-dict org fill-column-indicator flycheck-rtags shell-switcher dockerfile-mode srefactor sublimity smooth-scrolling cmake-ide color-theme-solarized god-mode bbdb pylint clang-format zenburn-theme solarized-theme sr-speedbar nyan-mode volatile-highlights rtags elpy visual-regexp virtual-regexp magit org-bullets yasnippet use-package tuareg string-inflection smex smartparens smart-mode-line slime skewer-mode scss-mode regex-tool rainbow-delimiters persp-projectile pdf-tools org-plus-contrib neotree multiple-cursors monokai-theme markdown-mode linum-off htmlize helm-projectile helm-gtags helm-dash guide-key goto-chg google-c-style go-mode git-gutter fuzzy flycheck flx fic-mode expand-region exec-path-from-shell etags-select ess edit-server ecb dired-k csv-mode company cmake-mode cider-eval-sexp-fu cider browse-kill-ring bison-mode ag ace-jump-mode)))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
  '(send-mail-function (quote sendmail-send-it))
