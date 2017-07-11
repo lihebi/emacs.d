@@ -22,12 +22,33 @@
 (add-to-list 'load-path "~/.emacs.d/packages/") ; packages downloaded from internet. Maybe outdated. No such package in elpa.
 
 (load "~/.emacs.d/packages.el")
+
+(defun hebi-load-scholar-packages()
+  "Load scholar packages"
+  (interactive)
+  (load "~/.emacs.d/scholar.el"))
+
+
+;; not sure if i want to load them. They should already have disabled
+;; entry, so loading them should have no effect
+;; (load "~/.emacs.d/packages-disabled.el")
+
+
 (load "~/.emacs.d/org-conf.el")
+
 (load "~/.emacs.d/packages/helium-slice-highlighter.el")
+
 (load "~/.emacs.d/hebi.el")
+
 ;; disabling erc because it is slow on startup
 ;; (load "~/.emacs.d/erc.el")
-(load "~/.emacs.d/theme.el")
+
+;; disabling theme
+;; (load "~/.emacs.d/theme.el")
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Configuration
 
 (defvar gnus-init-file)
 (defvar gnus-startup-file)
