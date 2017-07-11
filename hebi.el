@@ -248,6 +248,31 @@
 ;;             #'my-highlight-advice)
 
 
+(defun hebi-load-pdf-tools()
+  "load pdf-tools package. This package must be load on demand."
+  (interactive)
+  (use-package pdf-tools
+    :disabled t
+    ;; :defer t
+    :config
+    (pdf-tools-install)
+    (setq pdf-view-resize-factor 1.03)
+    (defun pdf-view-fit-paper(number)
+      ;; using P for horizontal reading
+      ;; using C-u P for vertical reading
+      (interactive "p")
+      (if (= number 1)
+          (progn
+            ;; landscape
+            (setq pdf-view-display-size 1.53)
+            (image-set-window-vscroll 6))
+        (progn
+          ;; portrait
+          (setq pdf-view-display-size 2.05)
+          (image-set-window-hscroll 11)))
+      (pdf-view-redisplay t))
+    (define-key pdf-view-mode-map (kbd "P") 'pdf-view-fit-paper)))
+
 
 
 (provide 'hebi)
