@@ -53,6 +53,7 @@
 ;;   )
 
 (use-package color-theme-solarized
+  :disabled t
   :init
   ;; must load this first
   (use-package color-theme)
