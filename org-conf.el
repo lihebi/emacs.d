@@ -7,9 +7,9 @@
 
 
 ;; the headerline bullets
-(use-package org-bullets
-  :config
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+;; (use-package org-bullets
+;;   :config
+;;   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
 (use-package htmlize
   ;; used for fontify code in exporting of org
@@ -203,6 +203,7 @@
          ;; "<style type=\"text/css\"> a:visited {color: red;} </style>"
          ;; "<style type=\"text/css\"> code {color: red;} </style>"
          "<link rel=\"stylesheet\" type=\"text/css\" href=\"assets/hebi.css\" />"
+         "<link rel=\"stylesheet\" type=\"text/css\" href=\"assets/test.css\" />"
          ))
 
   ;; (setq org-publish-project-alist
