@@ -281,54 +281,10 @@
    ("C-x SPC" . ace-jump-mode-pop-mark)
    )
   )
-(use-package god-mode
-  :config
-  (global-set-key (kbd "<escape>") 'god-local-mode)
-  (global-set-key (kbd "M-'") 'god-local-mode)
-  ;; (global-set-key (kbd "<escape>") 'god-mode-all)
-  ;; cursor style indicator
-  (defun my-update-cursor ()
-    (setq cursor-type (if (or god-local-mode buffer-read-only)
-                          'box
-                        'bar)))
-
-  (add-hook 'god-mode-enabled-hook 'my-update-cursor)
-  (add-hook 'god-mode-disabled-hook 'my-update-cursor)
-
-
-  ;; disabling this. When changing buffer, god mode is not active,
-  ;; and the backup solution does not work
-  ;; mode line indicator
-  ;; (defun c/god-mode-update-cursor ()
-  ;;   (defvar back-mode-line-background)
-  ;;   (defvar back-mode-line-inactive-background)
-  ;;   (let ((limited-colors-p (> 257 (length (defined-colors)))))
-  ;;     (cond (god-local-mode
-  ;;            (progn
-  ;;              (setq back-mode-line-background (face-attribute 'mode-line :background))
-  ;;              (setq back-mode-line-inactive-background (face-attribute 'mode-line-inactive :background))
-  ;;              (set-face-background 'mode-line "dark green")
-  ;;              (set-face-background 'mode-line-inactive "forest green")
-  ;;              ))
-  ;;           (t (progn
-  ;;                (set-face-background 'mode-line
-  ;;                                     back-mode-line-background)
-  ;;                (set-face-background 'mode-line-inactive
-  ;;                                     back-mode-line-inactive-background)
-  ;;                )))))
-
-  ;; (add-hook 'god-mode-enabled-hook 'c/god-mode-update-cursor)
-  ;; (add-hook 'god-mode-disabled-hook 'c/god-mode-update-cursor)
-
-  ;; keybindings
-  ;; (define-key god-local-mode-map (kbd "z") 'repeat)
-  (define-key god-local-mode-map (kbd "i") 'god-local-mode)
-  (define-key god-local-mode-map (kbd ".") 'repeat)
-
-  (global-set-key (kbd "C-x C-1") 'delete-other-windows)
-  (global-set-key (kbd "C-x C-2") 'split-window-below)
-  (global-set-key (kbd "C-x C-3") 'split-window-right)
-  (global-set-key (kbd "C-x C-0") 'delete-window)
+(use-package ace-window
+  :bind
+  (
+   ("M-p" . ace-window))
   )
 
 (use-package helpful
@@ -591,7 +547,7 @@ You need to kill the current *Python* buffer to take effect."
   ;; (use-package rich-minority)
   :config
   (setq sml/no-confirm-load-theme t) ; do not warn me for loading a theme
-  (setq sml/theme 'dark)
+  (setq sml/theme 'light)
   (sml/setup)
   (setq sml/name-width 15)
   ;; highlight God-mode in minor mode
