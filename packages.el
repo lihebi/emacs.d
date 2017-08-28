@@ -284,7 +284,7 @@
 (use-package ace-window
   :bind
   (
-   ("M-p" . ace-window))
+   ("C-c h w" . ace-window))
   )
 
 (use-package helpful
