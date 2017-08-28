@@ -16,6 +16,8 @@
             '(lambda()
                (add-to-list 'LaTeX-verbatim-environments "lstlisting")))
   ;; (define-key LaTeX-mode-map (kbd "C-c t") 'reftex-toc)
+  (setq TeX-open-quote "\"")
+  (setq TeX-close-quote "\"")
   (if (string= system-type "darwin")
       (progn
         (setq TeX-view-program-selection '((output-pdf "Skim"))))
@@ -24,7 +26,7 @@
 (load "~/.emacs.d/org-ref-conf")
 
 (use-package pdf-tools
-  :disabled t
+  ;; :disabled t
   ;; :defer t
   :config
   (pdf-tools-install)
