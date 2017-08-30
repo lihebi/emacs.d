@@ -450,9 +450,7 @@
      ("#A41F99" . 85)
      ("#3E3D31" . 100))))
  '(magit-diff-use-overlays nil)
- '(org-agenda-files
-   (quote
-    ("~/github/bibliography/newdir/dynamic.org" "~/github/bibliography/newdir/similarity.org" "~/github/note/TODO.org")))
+ '(org-agenda-files nil)
  '(org-file-apps
    (quote
     ((auto-mode . emacs)
