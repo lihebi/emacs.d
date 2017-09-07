@@ -88,7 +88,7 @@
   (enable-theme 'solarized))
 
 
-(setq default-frame-alist '((font . "Source Code Pro-10")))
+
 
 ;; (use-package zenburn-theme)
 
