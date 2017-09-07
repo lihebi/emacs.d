@@ -300,6 +300,7 @@
      (lisp . t)
      (srcml . t)
      (clang . t)
+     (latex . t)
      )
    )
 
