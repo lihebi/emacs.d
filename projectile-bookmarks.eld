@@ -12,7 +12,7 @@
  ;; programming
  "~/github/leetcode/" "~/github/scratch/" "~/github/docker-files/" "~/github/arch-desktop" "~/github/arch-server" "~/github/arch-helium"
  ;; class
- "~/github/cs342/" "~/github/class/" "~/github/cs342-typelang/" "~/github/cs572-project/" "~/github/cs342-reflang/"
+ "~/github/cs342/" "~/github/class/" "~/github/cs342-typelang/" "~/github/cs572-project/" "~/github/cs342-reflang/" "~/github/mycs342"
  ;; others
  "~/github/Deckard/" "~/github/llvm" "~/github/llvm/tools/clang" "~/github/daikon/" "~/github/rtags/" "~/github/srcml/" "~/github/magit/" "~/github/llvm-clang-samples/"
  "~/github/ADW/" "~/github/daikon"
