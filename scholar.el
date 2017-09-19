@@ -21,7 +21,31 @@
   (if (string= system-type "darwin")
       (progn
         (setq TeX-view-program-selection '((output-pdf "Skim"))))
-    (setq TeX-view-program-selection '((output-pdf "PDF Tools")))))
+    (setq TeX-view-program-selection '((output-pdf "PDF Tools"))))
+  ;; supporting indentation of [] in LaTeX mode
+  (defun TeX-brace-count-line ()
+    "Count number of open/closed braces."
+    (save-excursion
+      (let ((count 0) (limit (line-end-position)) char)
+        (while (progn
+                 (skip-chars-forward "^{}[]\\\\" limit)
+                 (when (and (< (point) limit) (not (TeX-in-comment)))
+                   (setq char (char-after))
+                   (forward-char)
+                   (cond ((eq char ?\{)
+                          (setq count (+ count TeX-brace-indent-level)))
+                         ((eq char ?\})
+                          (setq count (- count TeX-brace-indent-level)))
+                         ((eq char ?\[)
+                          (setq count (+ count TeX-brace-indent-level)))
+                         ((eq char ?\])
+                          (setq count (- count TeX-brace-indent-level)))
+                         ((eq char ?\\)
+                          (when (< (point) limit)
+                            (forward-char)
+                            t))))))
+        count)))
+  )
 
 (load "~/.emacs.d/org-ref-conf")
 
