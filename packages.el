@@ -483,7 +483,7 @@ You need to kill the current *Python* buffer to take effect."
 ;; rtags frontend
 (use-package rtags
   ;; if I don't disable it, the org mode export of java will stop the process ..
-  ;; :disabled t
+  :disabled t
   ;; start rdm by rtags-start-process-unless-running
   ;; needs to build and install rtags first
   ;; TODO how to get this in my setup debian script?
@@ -599,5 +599,7 @@ You need to kill the current *Python* buffer to take effect."
     (set-face-foreground 'git-gutter:deleted "red")
     )
   )
+
+(use-package alert)
 
 ;;; packages.el ends here
