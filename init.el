@@ -23,12 +23,6 @@
 
 (load "~/.emacs.d/packages.el")
 
-(defun hebi-load-scholar-packages()
-  "Load scholar packages"
-  (interactive)
-  (load "~/.emacs.d/scholar.el"))
-;; i want to load by default ..
-(hebi-load-scholar-packages)
 
 
 ;; not sure if i want to load them. They should already have disabled
@@ -37,6 +31,13 @@
 
 
 (load "~/.emacs.d/org-conf.el")
+
+(defun hebi-load-scholar-packages()
+  "Load scholar packages"
+  (interactive)
+  (load "~/.emacs.d/scholar.el"))
+;; i want to load by default ..
+(hebi-load-scholar-packages)
 
 (load "~/.emacs.d/packages/helium-slice-highlighter.el")
 
@@ -74,6 +75,15 @@
 (defvar compilation-scroll-output)
 ;; (setq compilation-scroll-output t)
 (setq compilation-scroll-output 'first-error)
+
+;; tramp
+(require 'tramp)
+(setq tramp-default-method "ssh")
+;; use C-x C-f /-:: to connect
+;; (custom-set-variables
+;;  '(tramp-default-method "ssh" nil (tramp))
+;;  '(tramp-default-user "hebi" nil (tramp))
+;;  '(tramp-default-host "office.lihebi.com" nil (tramp)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Appearance
@@ -482,7 +492,7 @@
      ("" "hyperref" nil))))
  '(package-selected-packages
    (quote
-    (alert paredit wrap-region z3-mode json-mode org-ref helm-bibtex auctex ace-window benchmark-init rust-mode yaml-mode groovy-mode gradle-mode android-mode helpful firefox-controller bing-dict org fill-column-indicator flycheck-rtags shell-switcher dockerfile-mode srefactor sublimity smooth-scrolling cmake-ide color-theme-solarized god-mode bbdb pylint clang-format zenburn-theme solarized-theme sr-speedbar nyan-mode volatile-highlights rtags elpy visual-regexp virtual-regexp magit org-bullets yasnippet use-package tuareg string-inflection smex smartparens smart-mode-line slime skewer-mode scss-mode regex-tool rainbow-delimiters persp-projectile pdf-tools org-plus-contrib neotree multiple-cursors monokai-theme markdown-mode linum-off htmlize helm-projectile helm-gtags helm-dash guide-key goto-chg google-c-style go-mode git-gutter fuzzy flycheck flx fic-mode expand-region exec-path-from-shell etags-select ess edit-server ecb dired-k csv-mode company cmake-mode cider-eval-sexp-fu cider browse-kill-ring bison-mode ag ace-jump-mode)))
+    (racket-mode org emms alert paredit wrap-region z3-mode json-mode org-ref helm-bibtex auctex ace-window benchmark-init rust-mode yaml-mode groovy-mode gradle-mode android-mode helpful firefox-controller bing-dict fill-column-indicator flycheck-rtags shell-switcher dockerfile-mode srefactor sublimity smooth-scrolling cmake-ide color-theme-solarized god-mode bbdb pylint clang-format zenburn-theme solarized-theme sr-speedbar nyan-mode volatile-highlights rtags elpy visual-regexp virtual-regexp magit org-bullets yasnippet use-package tuareg string-inflection smex smartparens smart-mode-line slime skewer-mode scss-mode regex-tool rainbow-delimiters persp-projectile pdf-tools org-plus-contrib neotree multiple-cursors monokai-theme markdown-mode linum-off htmlize helm-projectile helm-gtags helm-dash guide-key goto-chg google-c-style go-mode git-gutter fuzzy flycheck flx fic-mode expand-region exec-path-from-shell etags-select ess edit-server ecb dired-k csv-mode company cmake-mode cider-eval-sexp-fu cider browse-kill-ring bison-mode ag ace-jump-mode)))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
  '(send-mail-function (quote sendmail-send-it))
