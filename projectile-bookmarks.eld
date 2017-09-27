@@ -4,7 +4,7 @@
  "~/.emacs.d/"
  "~/.hebi/" "~/.stumpwm.d/"
  ;; side
- "~/github/note/" "~/github/wiki/" "~/github/cheatsheet/" "~/github/wiki-dist/"
+ "~/github/note/" "~/github/wiki/" "~/github/cheatsheet/" "~/github/wiki-dist/" "~/.mpd"
  ;; research
  "~/github/bibliography/" "~/github/papers/" "~/github/proceedings/" "~/github/proceeding-papers/" "~/github/books/"
  ;; helium
