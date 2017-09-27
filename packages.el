@@ -602,4 +602,32 @@ You need to kill the current *Python* buffer to take effect."
 
 (use-package alert)
 
+(use-package emms
+  :config
+  (emms-all)
+  (emms-default-players)
+  (setq emms-source-file-default-directory "~/music")
+  (setq emms-tag-editor-rename-format "%a - %t")
+  ;; this is very buggy, emms-mark-mode will throw error "no first track",
+  ;; and never start emms at all
+  ;; (setq emms-playlist-default-major-mode 'emms-mark-mode)
+  ;; lyrics must be in lrc format
+  ;; lyrics can be placed in the same directory as music file
+  ;; or this folder: emms-lyrics-dir
+  ;; but since it can only be displayed on minibuffer or mode line, I don't want it right now
+  ;; (setq emms-lyrics-dir "~/music/lyrics")
+  ;; (emms-lyrics 1)
+  
+  (emms-mode-line 1)
+  (emms-playing-time 1)
+
+  (require 'emms-player-mpd)
+  (setq emms-player-mpd-server-name "localhost")
+  (setq emms-player-mpd-server-port "6600")
+  (add-to-list 'emms-info-functions 'emms-info-mpd)
+  (add-to-list 'emms-player-list 'emms-player-mpd)
+  )
+
+(use-package racket-mode)
+
 ;;; packages.el ends here
