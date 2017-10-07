@@ -172,7 +172,19 @@
   (wrap-region-add-wrapper "~" "~")
   (add-hook 'org-mode-hook 'wrap-region-mode))
 
-(use-package paredit)
+(use-package paredit
+  ;; I'm using paredit here
+  ;; smartparens is a package aims to replace paredit
+  ;; it did add some functionality, but I don't like
+  ;; 1. the presentation (document)
+  ;; 2. lack of wrap
+  ;; 3. paredit should work well,
+  ;;    the only downside might be it cannot be used outside lisp mode
+  
+  )
+
+
+
 (use-package volatile-highlights
   ;; show the change after undo, yank, etc.
   :init
@@ -565,12 +577,12 @@ You need to kill the current *Python* buffer to take effect."
                              "yas"
                              "GitGutter")
                            "\\|"))))
-(use-package smartparens
-  :diminish smartparens-mode
-  :config
-  (progn
-    (require 'smartparens-config)
-    (smartparens-global-mode 1)))
+;; (use-package smartparens
+;;   :diminish smartparens-mode
+;;   :config
+;;   (progn
+;;     (require 'smartparens-config)
+;;     (smartparens-global-mode 1)))
 
 (use-package git-gutter
   :init
