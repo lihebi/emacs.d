@@ -8,8 +8,8 @@
 ;;; Code:
 (setq package-archives
       (append package-archives
-              '(("melpa" . "http://melpa.milkbox.net/packages/"))
-              '(("org" . "http://orgmode.org/elpa/"))))
+              '(("org" . "http://orgmode.org/elpa/"))
+              '(("melpa" . "http://melpa.milkbox.net/packages/"))))
 (package-initialize)
 (setq package-enable-at-startup nil)
 
@@ -495,7 +495,7 @@ You need to kill the current *Python* buffer to take effect."
 ;; rtags frontend
 (use-package rtags
   ;; if I don't disable it, the org mode export of java will stop the process ..
-  :disabled t
+  ;; :disabled t
   ;; start rdm by rtags-start-process-unless-running
   ;; needs to build and install rtags first
   ;; TODO how to get this in my setup debian script?
@@ -577,12 +577,12 @@ You need to kill the current *Python* buffer to take effect."
                              "yas"
                              "GitGutter")
                            "\\|"))))
-;; (use-package smartparens
-;;   :diminish smartparens-mode
-;;   :config
-;;   (progn
-;;     (require 'smartparens-config)
-;;     (smartparens-global-mode 1)))
+(use-package smartparens
+  :diminish smartparens-mode
+  :config
+  (progn
+    (require 'smartparens-config)
+    (smartparens-global-mode 1)))
 
 (use-package git-gutter
   :init
@@ -641,5 +641,10 @@ You need to kill the current *Python* buffer to take effect."
   )
 
 (use-package racket-mode)
+
+(use-package geiser
+  :config
+  (setq geiser-active-implementations '(racket))
+  (setq geiser-mode-smart-tab-p t))
 
 ;;; packages.el ends here
