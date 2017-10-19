@@ -327,11 +327,11 @@
   ;; :defer t
   :bind
   (
-   ;; ("C-c n" . org-capture)
+   ("C-c n" . org-capture) ;; TODO
    ;; ("C-c o" . org-open-at-point)
    ("C-c o" . org-open-at-point-global)
    ("C-c t" . org-todo)
-   ;; ("C-c a" . org-agenda)
+   ("C-c a" . org-agenda)
    )
   :config
   (setup-ob)
@@ -390,7 +390,12 @@
         '(("TODO" . org-todo) ("CANCELED" . org-warning) ("STARTED" . (:foreground "white" :background "red"))))
 
   (setq org-agenda-files
-        '("~/github/note/TODO.org"))
+        '("~/github/note/TODO.org"
+          "~/github/note/org"))
+
+  ;; org capture
+  (setq org-directory "~/github/note/org")
+  (setq org-default-notes-file "~/github/note/org/default.org")
 
   
   (use-package org-plus-contrib)
