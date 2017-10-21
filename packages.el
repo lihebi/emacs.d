@@ -180,7 +180,15 @@
   ;; 2. lack of wrap
   ;; 3. paredit should work well,
   ;;    the only downside might be it cannot be used outside lisp mode
-  
+  :config
+  (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
+  (add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
+  (add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
+  (add-hook 'ielm-mode-hook             #'enable-paredit-mode)
+  (add-hook 'lisp-mode-hook             #'enable-paredit-mode)
+  (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
+  (add-hook 'scheme-mode-hook           #'enable-paredit-mode)  
+  (add-hook 'racket-mode-hook           #'enable-paredit-mode)  
   )
 
 
@@ -640,9 +648,15 @@ You need to kill the current *Python* buffer to take effect."
   (add-to-list 'emms-player-list 'emms-player-mpd)
   )
 
-(use-package racket-mode)
+(use-package racket-mode
+  :config
+  (add-hook 'racket-mode-hook
+            (lambda ()
+              (define-key racket-mode-map (kbd "C-c r") 'racket-run)))
+  (setq tab-always-indent 'complete))
 
 (use-package geiser
+  :disabled t
   :config
   (setq geiser-active-implementations '(racket))
   (setq geiser-mode-smart-tab-p t))
