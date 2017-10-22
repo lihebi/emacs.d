@@ -653,12 +653,53 @@ You need to kill the current *Python* buffer to take effect."
   (add-hook 'racket-mode-hook
             (lambda ()
               (define-key racket-mode-map (kbd "C-c r") 'racket-run)))
-  (setq tab-always-indent 'complete))
+  ;; (setq tab-always-indent 'complete)
+  )
 
 (use-package geiser
   :disabled t
   :config
   (setq geiser-active-implementations '(racket))
   (setq geiser-mode-smart-tab-p t))
+
+(use-package company
+  ;; my auto completion is freezing emacs!
+  ;; :disabled
+  :init
+  (add-hook 'after-init-hook 'global-company-mode)
+  :bind
+  (
+   ("C-;" . company-complete)
+   ;; ("TAB" . company-indent-or-complete-common)
+   )
+  :config
+  (setq company-idle-delay nil) ; do not automatically give me completion
+
+  (define-key company-active-map (kbd "C-n") #'company-select-next)
+  (define-key company-active-map (kbd "C-p") #'company-select-previous)
+  ;; (setq tab-always-indent 'complete)
+  ;; (define-key company-active-map (kbd "TAB") #'company-indent-or-complete-common)
+  (eval-after-load 'company
+    '(add-to-list 'company-backends 'company-irony))
+
+  ;; tab trigger
+  (define-key company-mode-map [remap indent-for-tab-command]
+    'company-indent-for-tab-command)
+
+  (setq tab-always-indent 'complete)
+
+  (defvar completion-at-point-functions-saved nil)
+
+  (defun company-indent-for-tab-command (&optional arg)
+    (interactive "P")
+    (let ((completion-at-point-functions-saved completion-at-point-functions)
+          (completion-at-point-functions '(company-complete-common-wrapper)))
+      (indent-for-tab-command arg)))
+
+  (defun company-complete-common-wrapper ()
+    (let ((completion-at-point-functions completion-at-point-functions-saved))
+      (company-complete-common)))  
+
+  )
 
 ;;; packages.el ends here

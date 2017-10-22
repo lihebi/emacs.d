@@ -41,20 +41,7 @@
    ("<f8>" . neotree-toggle))
   )
 
-(use-package company
-  ;; my auto completion is freezing emacs!
-  :disabled
-  :init
-  (add-hook 'after-init-hook 'global-company-mode)
-  :bind
-  (
-   ("C-;" . company-complete)
-   )
-  :config
-  (define-key company-active-map (kbd "C-n") #'company-select-next)
-  (define-key company-active-map (kbd "C-p") #'company-select-previous)
-  (eval-after-load 'company
-    '(add-to-list 'company-backends 'company-irony)))
+
 (use-package multiple-cursors
   :disabled
   :bind
