@@ -46,9 +46,11 @@
 ;; disabling erc because it is slow on startup
 ;; (load "~/.emacs.d/erc.el")
 
-(setq default-frame-alist '((font . "Source Code Pro-10")))
+;; (setq default-frame-alist '((font . "Source Code Pro-10")))
 ;; (set-face-attribute 'default nil :font "Source Code Pro-5")
 ;; (set-frame-font "Source Code Pro-10" nil t)
+
+(load "~/.emacs.d/local.el")
 
 ;; disabling theme
 ;; (load "~/.emacs.d/theme.el")
