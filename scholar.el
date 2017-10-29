@@ -52,6 +52,8 @@
 (use-package pdf-tools
   ;; :disabled t
   ;; :defer t
+  :init
+  ;; (setq pdf-info-epdfinfo-program "/home/hebi/.emacs.d/straight/build/pdf-tools/epdfinfo")
   :config
   (pdf-tools-install)
   (setq pdf-view-resize-factor 1.03)

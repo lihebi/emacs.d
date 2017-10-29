@@ -21,23 +21,21 @@
 
 (add-to-list 'load-path "~/.emacs.d/packages/") ; packages downloaded from internet. Maybe outdated. No such package in elpa.
 
-(load "~/.emacs.d/packages.el")
-
-
+;; (load "~/.emacs.d/try-package.el")
 
 ;; not sure if i want to load them. They should already have disabled
 ;; entry, so loading them should have no effect
 ;; (load "~/.emacs.d/packages-disabled.el")
 
+;; (load "~/.emacs.d/org-conf.el")
 
+(load "~/.emacs.d/try-straight.el")
+(load "~/.emacs.d/use-pkg.el")
 (load "~/.emacs.d/org-conf.el")
+(load "~/.emacs.d/scholar.el")
 
-(defun hebi-load-scholar-packages()
-  "Load scholar packages"
-  (interactive)
-  (load "~/.emacs.d/scholar.el"))
-;; i want to load by default ..
-(hebi-load-scholar-packages)
+
+;; (use-package org)
 
 (load "~/.emacs.d/packages/helium-slice-highlighter.el")
 

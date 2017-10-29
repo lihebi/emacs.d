@@ -79,7 +79,7 @@
       (reload-image-at-point))))
 
 (defun setup-latex()
-    ;; latex templates
+  ;; latex templates
   (require 'ox-latex)
   ;; (setq org-export-latex-listings t)
   (add-to-list 'org-latex-classes
@@ -286,7 +286,7 @@
 
 
 (defun setup-ob()
-    ;; my srcml converter
+  ;; my srcml converter
   (require 'ob-srcml)
   (require 'ob-clang)
   (require 'ob-ctags)
@@ -297,9 +297,15 @@
      (python . t)
      (ruby . t)
      ;; (shell . t)
-  ;;    ;; other babel languages
-     (plantuml . t)
-  ;;    ;; this should be capital C, the same as in #+begin_src C
+     ;;    ;; other babel languages
+     
+     ;; I don't like that when I was exporting the wiki, it keeps ask
+     ;; me to evaluate code or not. And I don't want to enable to
+     ;; execute arbitrary code without my grant, so, no evaluating.
+     
+     ;; (plantuml . t)
+     
+     ;;    ;; this should be capital C, the same as in #+begin_src C
      (C . t)
      (ctags . t)
      (dot . t)
@@ -308,7 +314,7 @@
      (lisp . t)
      (srcml . t)
      (clang . t)
-     (latex . t)
+     ;; (latex . t)
      )
    )
 
@@ -316,12 +322,16 @@
   ;; (defun my-org-confirm-babel-evaluate (lang body)
   ;;   (not (string= lang "R")))  ; don't ask for R
   ;; (setq org-confirm-babel-evaluate 'my-org-confirm-babel-evaluate)
-)
+  )
+
 
 
 ;; this org might not be installed automatically, don't know why
 ;; but install it from elpa manually. There're gnu and org version, use the org one.
 (use-package org
+  ;; :recipe (:host github
+  ;;                :repo "emacsmirror/org"
+  ;;                :files ("list/*.el" "contrib/lisp/*.el"))
   :init
   (setq org-plain-list-ordered-item-terminator '?.) ; remove using ?) causing a listing
   ;; :defer t
@@ -374,12 +384,14 @@
   ;; must have and only have one or more space at the beginning
   ;; the - will be turned into a utf8 Unicode bullet!
   ;; damn beautiful
-  (font-lock-add-keywords 'org-mode
-                          '(("^ +\\([-*]\\) "
-                             (0 (prog1 ()
-                                  (compose-region
-                                   (match-beginning 1)
-                                   (match-end 1) "•"))))))
+  
+  ;; (font-lock-add-keywords 'org-mode
+  ;;                         '(("^ +\\([-*]\\) "
+  ;;                            (0 (prog1 ()
+  ;;                                 (compose-region
+  ;;                                  (match-beginning 1)
+  ;;                                  (match-end 1) "•"))))))
+  
   ;; hide the // for slant
   ;; insert \ on them is the common trick to edit the hidden part
   ;; (setq org-hide-emphasis-markers t)
@@ -398,10 +410,9 @@
   (setq org-default-notes-file "~/github/note/org/default.org")
 
   
-  (use-package org-plus-contrib)
+  ;; (use-package org-plus-contrib)
   ;; highlight
   (setq org-src-fontify-natively t))
-
 
 
 (provide 'org-conf)

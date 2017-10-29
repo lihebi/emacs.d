@@ -371,7 +371,7 @@
   :disabled
   )
 (use-package helm-gtags
-  :disabled
+  ;; :disabled
   :bind
   ("M-." . helm-gtags-dwim)
   ("M-," . helm-gtags-pop-stack)
