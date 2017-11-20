@@ -34,6 +34,12 @@
 (load "~/.emacs.d/org-conf.el")
 (load "~/.emacs.d/scholar.el")
 
+(defun hebi-reload-org ()
+  "My org config seems not being loaded correctly, I have to
+manually load it."
+  (interactive)
+  (load "~/.emacs.d/org-conf.el"))
+
 
 ;; (use-package org)
 

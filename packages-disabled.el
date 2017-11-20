@@ -53,20 +53,6 @@
    ("C-S-<mouse-1>" . mc/add-cursor-on-click)
    )
   )
-(use-package flyspell
-  ;; disabling because Starting new Ispell process ... all the time
-  ;; when exporting html
-  :disabled
-  :init
-  :config
-  (progn
-    ;; (add-hook 'LaTeX-mode-hook '(flyspell-mode t))
-    ;; TODO not working for flyspell-mode
-    (add-hook 'LaTeX-mode-hook #'turn-on-flyspell)
-    (add-hook 'latex-mode-hook #'turn-on-flyspell)
-    (add-hook 'org-mode-hook #'turn-on-flyspell)
-    )
-  )
 (use-package helm-dash
   :disabled
   ;; look up dash too

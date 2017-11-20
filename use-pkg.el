@@ -668,6 +668,21 @@ You need to kill the current *Python* buffer to take effect."
       (company-complete-common)))  
 
   )
+;; require installing aspell-en package
+(use-package flyspell
+  ;; disabling because Starting new Ispell process ... all the time
+  ;; when exporting html
+  ;; :disabled
+  :init
+  :config
+  (progn
+    ;; (add-hook 'LaTeX-mode-hook '(flyspell-mode t))
+    ;; TODO not working for flyspell-mode
+    (add-hook 'LaTeX-mode-hook #'turn-on-flyspell)
+    (add-hook 'latex-mode-hook #'turn-on-flyspell)
+    (add-hook 'org-mode-hook #'turn-on-flyspell)
+    )
+  )
 
 (use-package scribble-mode)
 
