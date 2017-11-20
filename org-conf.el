@@ -290,6 +290,7 @@
   (require 'ob-srcml)
   (require 'ob-clang)
   (require 'ob-ctags)
+  (setq org-export-use-babel nil)
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((awk . t)
@@ -345,7 +346,8 @@
    )
   :config
   (setup-ob)
-  (setup-plantuml)
+  ;; disabling plantuml
+  ;; (setup-plantuml)
   (setup-latex)
   (setup-publish)
 
