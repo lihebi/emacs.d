@@ -247,8 +247,24 @@
 ;; (advice-add 'pdf-view-scroll-down-or-previous-page :around
 ;;             #'my-highlight-advice)
 
+(defun toggle-mode-line ()
+  "toggles the modeline on and off"
+  (interactive) 
+  (setq mode-line-format
+    (if (equal mode-line-format nil)
+        (default-value 'mode-line-format)) )
+  (redraw-display))
+
+(global-set-key [f12] 'toggle-mode-line)
 
 
+;; Hide the echo area. It seems that it can only work when emacs starts
+;; up, and cause a lot of trouble. Thus I'm not using it
+
+;; (setq initial-frame-alist (append '((minibuffer . nil)) initial-frame-alist))
+;; (setq default-frame-alist (append '((minibuffer . nil)) default-frame-alist))
+;; (setq minibuffer-auto-raise nil)
+;; (setq minibuffer-exit-hook '(lambda () (lower-frame)))
 
 (provide 'hebi)
 ;;; hebi.el ends here
