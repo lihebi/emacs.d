@@ -338,7 +338,8 @@
   ;; :defer t
   :bind
   (
-   ("C-c n" . org-capture) ;; TODO
+   ("C-c n" . org-capture)
+   ("C-c m" . org-capture-goto-target)
    ;; ("C-c o" . org-open-at-point)
    ("C-c o" . org-open-at-point-global)
    ("C-c t" . org-todo)
@@ -410,6 +411,21 @@
   ;; org capture
   (setq org-directory "~/github/note/org")
   (setq org-default-notes-file "~/github/note/org/default.org")
+
+  ;; typical command
+  ;; 1. org-capture: C-c n
+  ;; 2. org-capture-goto-target C-c m
+  ;; 3. org-agenda: C-c a
+  (setq org-capture-templates
+        '(("t" "GTD" entry
+           (file+headline "~/github/note/org/gtd.org" "Task")
+           "* TODO %?\n  %U\n  %i\n")
+          ("s" "Stack" entry
+           (file+headline "~/github/note/org/gtd.org" "Stack")
+           "* TODO %?\n  %U\n  %i\n")
+          ("b" "Bib" entry
+           (file+headline "~/github/note/org/gtd.org" "Bib")
+           "* TODO %?\n  %U\n  %i\n")))
 
   ;; try to use ATTR_* width
   (setq org-image-actual-width nil)
