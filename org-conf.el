@@ -411,6 +411,9 @@
   (setq org-directory "~/github/note/org")
   (setq org-default-notes-file "~/github/note/org/default.org")
 
+  ;; try to use ATTR_* width
+  (setq org-image-actual-width nil)
+  ;; (setq org-image-actual-width 300)
   
   ;; (use-package org-plus-contrib)
   ;; highlight
