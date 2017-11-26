@@ -54,7 +54,7 @@ manually load it."
 ;; (set-face-attribute 'default nil :font "Source Code Pro-5")
 ;; (set-frame-font "Source Code Pro-10" nil t)
 
-(load "~/.emacs.d/local.el")
+;; (load "~/.emacs.d/local.el")
 
 ;; disabling theme
 ;; (load "~/.emacs.d/theme.el")
@@ -62,6 +62,12 @@ manually load it."
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configuration
+
+;; if I just use the font name, the size should be read from Xresources
+(setq default-frame-alist '((font . "Source Code Pro")))
+;; (set-face-attribute 'default nil :font "Source Code Pro-13")
+;; (set-frame-font "Source Code Pro-10" nil t)
+
 
 (defvar gnus-init-file)
 (defvar gnus-startup-file)
