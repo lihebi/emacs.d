@@ -17,5 +17,5 @@
  "~/github/Deckard/" "~/github/llvm" "~/github/llvm/tools/clang" "~/github/daikon/" "~/github/rtags/" "~/github/srcml/" "~/github/magit/" "~/github/llvm-clang-samples/"
  "~/github/ADW/" "~/github/daikon"
 
- "~/github/reading"
+ "~/github/reading" "~/github/gcc"
  )
