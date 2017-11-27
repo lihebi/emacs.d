@@ -478,7 +478,6 @@ manually load it."
      ("#A41F99" . 85)
      ("#3E3D31" . 100))))
  '(magit-diff-use-overlays nil)
- '(org-agenda-files nil)
  '(org-file-apps
    (quote
     ((auto-mode . emacs)
