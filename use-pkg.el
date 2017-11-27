@@ -112,6 +112,7 @@
   (setq shell-switcher-mode t))
 
 (use-package string-inflection
+  :disabled t
   ;; cycle through CamelCase and under_line
   :bind
   ("C-c m" . string-inflection-cycle)
