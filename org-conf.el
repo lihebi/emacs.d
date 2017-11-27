@@ -405,7 +405,8 @@
         '(("TODO" . org-todo) ("CANCELED" . org-warning) ("STARTED" . (:foreground "white" :background "red"))))
 
   (setq org-agenda-files
-        '("~/github/note/TODO.org"
+        '(
+          ;; "~/github/note/TODO.org"
           "~/github/note/org"))
 
   ;; org capture
@@ -417,14 +418,35 @@
   ;; 2. org-capture-goto-target C-c m
   ;; 3. org-agenda: C-c a
   (setq org-capture-templates
-        '(("t" "GTD" entry
+        '(("t" "Task" entry
            (file+headline "~/github/note/org/gtd.org" "Task")
            "* TODO %?\n  %U\n  %i\n")
           ("s" "Stack" entry
            (file+headline "~/github/note/org/gtd.org" "Stack")
            "* TODO %?\n  %U\n  %i\n")
-          ("b" "Bib" entry
-           (file+headline "~/github/note/org/gtd.org" "Bib")
+          ("p" "Paper" entry
+           (file+headline "~/github/note/org/gtd.org" "Paper")
+           "* TODO %?\n  %U\n  %i\n")
+          ("b" "Buy" entry
+           (file+headline "~/github/note/org/gtd.org" "Buy")
+           "* TODO %?\n  %U\n  %i\n")
+          ("p" "Project" entry
+           (file+headline "~/github/note/org/gtd.org" "Project")
+           "* TODO %?\n  %U\n  %i\n")
+          ("w" "Wiki" entry
+           (file+headline "~/github/note/org/gtd.org" "Wiki")
+           "* TODO %?\n  %U\n  %i\n")
+          ("m" "Music" entry
+           (file+headline "~/github/note/org/gtd.org" "Music")
+           "* TODO %?\n  %U\n  %i\n")
+          ("r" "Research" entry
+           (file+headline "~/github/note/org/gtd.org" "Research")
+           "* TODO %?\n  %U\n  %i\n")
+          ("l" "Learn" entry
+           (file+headline "~/github/note/org/gtd.org" "Learn")
+           "* TODO %?\n  %U\n  %i\n")
+          ("i" "Idea" entry
+           (file+headline "~/github/note/org/gtd.org" "Idea")
            "* TODO %?\n  %U\n  %i\n")))
 
   ;; try to use ATTR_* width
