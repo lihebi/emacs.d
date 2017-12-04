@@ -8,10 +8,8 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; modes
-(use-package csv-mode
-  :mode)
-(use-package json-mode
-  :mode)
+(use-package csv-mode)
+(use-package json-mode)
 
 
 (use-package z3-mode
@@ -66,15 +64,11 @@
 (use-package go-mode
   :defer t
   )
-(use-package gradle-mode
-  :mode)
-(use-package groovy-mode
-  :mode)
-(use-package yaml-mode
-  :mode)
+(use-package gradle-mode)
+(use-package groovy-mode)
+(use-package yaml-mode)
 
-(use-package rust-mode
-  :mode)
+(use-package rust-mode)
 ;; (use-package racer)
 
 (use-package ess
