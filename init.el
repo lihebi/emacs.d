@@ -68,6 +68,7 @@ manually load it."
 ;; (set-face-attribute 'default nil :font "Source Code Pro-13")
 ;; (set-frame-font "Source Code Pro-10" nil t)
 
+(setq dired-listing-switches "-alh")
 
 (defvar gnus-init-file)
 (defvar gnus-startup-file)
