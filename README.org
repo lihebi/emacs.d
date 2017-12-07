@@ -3,3 +3,14 @@
 * TODO pdf-tools & straight
 pdf-tools epdfinfo executable get removed (by straight?) everytime
 emacs startup
+
+
+* Trouble Shooting
+
+** use-package is broken
+Checkout this version:
+
+#+begin_example
+git checkout 150090d4
+#+end_example
+
