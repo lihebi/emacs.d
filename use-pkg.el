@@ -150,8 +150,9 @@
   (add-hook 'lisp-mode-hook             #'enable-paredit-mode)
   (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
   (add-hook 'scheme-mode-hook           #'enable-paredit-mode)  
-  (add-hook 'racket-mode-hook           #'enable-paredit-mode)  
-  )
+  (add-hook 'racket-mode-hook           #'enable-paredit-mode)
+
+  (define-key paredit-mode-map (kbd "M-[") 'paredit-wrap-square))
 
 
 
