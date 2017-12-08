@@ -152,7 +152,8 @@
   (add-hook 'scheme-mode-hook           #'enable-paredit-mode)  
   (add-hook 'racket-mode-hook           #'enable-paredit-mode)
 
-  (define-key paredit-mode-map (kbd "M-[") 'paredit-wrap-square))
+  (define-key paredit-mode-map (kbd "M-[") 'paredit-wrap-square)
+  (define-key paredit-mode-map (kbd "M-{") 'paredit-wrap-curly))
 
 
 
