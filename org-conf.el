@@ -424,9 +424,9 @@
           ("s" "Stack" entry
            (file+headline "~/github/note/org/gtd.org" "Stack")
            "* TODO %?\n  %U\n  %i\n")
-          ("p" "Paper" entry
-           (file+headline "~/github/note/org/gtd.org" "Paper")
-           "* TODO %?\n  %U\n  %i\n")
+          ;; ("p" "Paper" entry
+          ;;  (file+headline "~/github/note/org/gtd.org" "Paper")
+          ;;  "* TODO %?\n  %U\n  %i\n")
           ("b" "Buy" entry
            (file+headline "~/github/note/org/gtd.org" "Buy")
            "* TODO %?\n  %U\n  %i\n")
