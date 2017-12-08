@@ -171,6 +171,9 @@ manually load it."
                   (kill-line 0)
                   (indent-according-to-mode)))
 
+
+;; M-^: back
+;; C-^ forward
 ;; join line
 (global-set-key (kbd "C-^")
                 (lambda()
