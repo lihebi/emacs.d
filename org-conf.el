@@ -417,37 +417,21 @@
   ;; 1. org-capture: C-c n
   ;; 2. org-capture-goto-target C-c m
   ;; 3. org-agenda: C-c a
+  (defun gen-template (key title)
+    `(,key ,title entry
+           (file+headline "~/github/note/org/gtd.org" ,title)
+           "* TODO %?\n  %U\n  %i\n"))
   (setq org-capture-templates
-        '(("t" "Task" entry
-           (file+headline "~/github/note/org/gtd.org" "Task")
-           "* TODO %?\n  %U\n  %i\n")
-          ("s" "Stack" entry
-           (file+headline "~/github/note/org/gtd.org" "Stack")
-           "* TODO %?\n  %U\n  %i\n")
-          ;; ("p" "Paper" entry
-          ;;  (file+headline "~/github/note/org/gtd.org" "Paper")
-          ;;  "* TODO %?\n  %U\n  %i\n")
-          ("b" "Buy" entry
-           (file+headline "~/github/note/org/gtd.org" "Buy")
-           "* TODO %?\n  %U\n  %i\n")
-          ("p" "Project" entry
-           (file+headline "~/github/note/org/gtd.org" "Project")
-           "* TODO %?\n  %U\n  %i\n")
-          ("w" "Wiki" entry
-           (file+headline "~/github/note/org/gtd.org" "Wiki")
-           "* TODO %?\n  %U\n  %i\n")
-          ("m" "Music" entry
-           (file+headline "~/github/note/org/gtd.org" "Music")
-           "* TODO %?\n  %U\n  %i\n")
-          ("r" "Research" entry
-           (file+headline "~/github/note/org/gtd.org" "Research")
-           "* TODO %?\n  %U\n  %i\n")
-          ("l" "Learn" entry
-           (file+headline "~/github/note/org/gtd.org" "Learn")
-           "* TODO %?\n  %U\n  %i\n")
-          ("i" "Idea" entry
-           (file+headline "~/github/note/org/gtd.org" "Idea")
-           "* TODO %?\n  %U\n  %i\n")))
+        `(,(gen-template "t" "Task")
+          ,(gen-template "s" "Stack")
+          ,(gen-template "b" "Buy")
+          ,(gen-template "p" "Project")
+          ,(gen-template "w" "Wiki")
+          ,(gen-template "r" "Research")
+          ,(gen-template "l" "Learn")
+          ,(gen-template "i" "Idea")
+          ;; ,(gen-template "m" "Music")
+          ,(gen-template "m" "Motto")))
 
   ;; try to use ATTR_* width
   (setq org-image-actual-width nil)
