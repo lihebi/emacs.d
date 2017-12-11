@@ -421,6 +421,7 @@
     `(,key ,title entry
            (file+headline "~/github/note/org/gtd.org" ,title)
            "* TODO %?\n  %U\n  %i\n"))
+  (setq org-reverse-note-order t)
   (setq org-capture-templates
         `(,(gen-template "t" "Task")
           ,(gen-template "s" "Stack")
