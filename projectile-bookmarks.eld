@@ -62,6 +62,8 @@
  "~/github/reading/c.rkt"
  ;; git clone https://github.com/racket/racket
  "~/github/reading/racket"
+ ;; git clone https://github.com/torvalds/linux
+ "~/github/reading/linux"
  
  "~/github/ADW/"
  "~/github/daikon"
