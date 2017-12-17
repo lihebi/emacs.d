@@ -483,6 +483,9 @@ manually load it."
      ("#A41F99" . 85)
      ("#3E3D31" . 100))))
  '(magit-diff-use-overlays nil)
+ '(org-agenda-files
+   (quote
+    ("~/github/bibliography/SoftwareEnginner/hebi.org" "/home/hebi/github/note/org/default.org" "/home/hebi/github/note/org/gtd.org")))
  '(org-file-apps
    (quote
     ((auto-mode . emacs)
