@@ -4,10 +4,6 @@
 
 ;;; Code:
 
-
-(setq user-full-name "Hebi Li")
-(setq user-mail-address "lihebi.com@gmail.com")
-
 (setq gnus-select-method
       '(nntp "news.gmane.org"))
 

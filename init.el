@@ -68,13 +68,22 @@ manually load it."
 
 (setq gnus-init-file "~/.emacs.d/gnus.el")
 ;; send mail using gmail smtp, no require for installation of sendmail or something
+(setq user-full-name "Hebi Li")
+(setq user-mail-address "hebi@iastate.edu")
+(setq send-mail-function 'smtpmail-send-it)
 (setq message-send-mail-function 'smtpmail-send-it
+      smtpmail-smtp-server "smtp.gmail.com"
+      ;; this default should not be necessary
+      smtpmail-default-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-service 587
+
+      ;; not sure if the following useful or not
       smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
       smtpmail-auth-credentials '(("smtp.gmail.com" 587 "hebi@iastate.edu" nil))
-      smtpmail-default-smtp-server "smtp.gmail.com"
-      smtpmail-smtp-server "smtp.gmail.com"
-      smtpmail-smtp-service 587
       starttls-use-gnutls t)
+(setq message-citation-line-function 'message-insert-formatted-citation-line)
+(setq message-citation-line-function 'message-insert-citation-line)
+
 
 
 ;; if I just use the font name, the size should be read from Xresources
