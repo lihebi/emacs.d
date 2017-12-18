@@ -35,8 +35,8 @@
            '((not gnus-thread-sort-by-number)))
 
 (add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
-(add-hook 'gnus-group-mode-hook 'hl-line-mode)
-(add-hook 'gnus-summary-mode-hook 'hl-line-mode)
+;; (add-hook 'gnus-group-mode-hook 'hl-line-mode)
+;; (add-hook 'gnus-summary-mode-hook 'hl-line-mode)
 
 
 ;; from https://eschulte.github.io/emacs-starter-kit/starter-kit-gnus.html
