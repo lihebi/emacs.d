@@ -34,6 +34,8 @@
 (load "~/.emacs.d/org-conf.el")
 (load "~/.emacs.d/scholar.el")
 
+
+
 (defun hebi-reload-org ()
   "My org config seems not being loaded correctly, I have to
 manually load it."
@@ -63,6 +65,18 @@ manually load it."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configuration
 
+
+(setq gnus-init-file "~/.emacs.d/gnus.el")
+;; send mail using gmail smtp, no require for installation of sendmail or something
+(setq message-send-mail-function 'smtpmail-send-it
+      smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
+      smtpmail-auth-credentials '(("smtp.gmail.com" 587 "hebi@iastate.edu" nil))
+      smtpmail-default-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-service 587
+      starttls-use-gnutls t)
+
+
 ;; if I just use the font name, the size should be read from Xresources
 (setq default-frame-alist '((font . "Source Code Pro")))
 ;; (set-face-attribute 'default nil :font "Source Code Pro-13")
@@ -71,15 +85,6 @@ manually load it."
 ;; remove because it cause wired color scheme in dired buffer
 ;; (setq dired-listing-switches "-alh")
 
-(defvar gnus-init-file)
-(defvar gnus-startup-file)
-(setq gnus-init-file "~/.emacs.d/gnus.el")
-(setq gnus-startup-file "~/.emacs.d/newsrc")
-(setq user-full-name "Hebi Li"
-      user-mail-address "lihebi.emacs@gmail.com")
-
-
-;; (load "~/.emacs.d/gnus.el")
 
 ;; stop adding newlines automatically.
 ;; This cause my scripts to add newlines everytime I insert them.
