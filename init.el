@@ -82,9 +82,6 @@ manually load it."
       smtpmail-auth-credentials '(("smtp.gmail.com" 587 "hebi@iastate.edu" nil))
       starttls-use-gnutls t)
 (setq message-citation-line-function 'message-insert-formatted-citation-line)
-(setq message-citation-line-function 'message-insert-citation-line)
-
-
 
 ;; if I just use the font name, the size should be read from Xresources
 (setq default-frame-alist '((font . "Source Code Pro")))
