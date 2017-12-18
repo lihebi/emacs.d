@@ -420,7 +420,8 @@
   (defun gen-template (key title)
     `(,key ,title entry
            (file+headline "~/github/note/org/gtd.org" ,title)
-           "* TODO %?\n  %U\n  %i\n"))
+           "* TODO %?\n  %U\n  %i\n"
+           :prepend t :empty-lines-before 1))
   (setq org-reverse-note-order t)
   (setq org-capture-templates
         `(,(gen-template "t" "Task")
