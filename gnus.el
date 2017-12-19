@@ -26,7 +26,7 @@
 ;; (setq gnus-startup-file "~/.emacs.d/newsrc")
 
 ;; make them always visible
-(setq gnus-permanently-visible-groups "INBOX\\|nnfolder\\+archive.*\\|nndraft:drafts")
+(setq gnus-permanently-visible-groups "INBOX\\|nnfolder\\+archive.*\\|nndraft:drafts\\|nnvirtual:cymail-virt")
 (setq gnus-thread-sort-functions
            '((not gnus-thread-sort-by-number)))
 
