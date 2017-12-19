@@ -685,4 +685,6 @@ You need to kill the current *Python* buffer to take effect."
 
 (use-package scribble-mode)
 
+(use-package hackernews)
+
 ;;; packages.el ends here
