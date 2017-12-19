@@ -28,7 +28,7 @@
 ;; make them always visible
 (setq gnus-permanently-visible-groups "INBOX\\|nnfolder\\+archive.*\\|nndraft:drafts\\|nnvirtual:cymail-virt")
 (setq gnus-thread-sort-functions
-           '((not gnus-thread-sort-by-number)))
+      '((not gnus-thread-sort-by-number)))
 
 (add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
 ;; (add-hook 'gnus-group-mode-hook 'hl-line-mode)
