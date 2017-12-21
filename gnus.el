@@ -34,19 +34,19 @@
 ;; (add-hook 'gnus-group-mode-hook 'hl-line-mode)
 ;; (add-hook 'gnus-summary-mode-hook 'hl-line-mode)
 
-(gnus-add-configuration
- '(article
-   (horizontal 1.0
-               (vertical 50 (group 1.0))
-               (vertical 1.0
-                         (summary 0.35 point)
-                         (article 1.0)))))
+;; (gnus-add-configuration
+;;  '(article
+;;    (horizontal 1.0
+;;                ;; (vertical 50 (group 1.0))
+;;                (vertical 1.0
+;;                          (summary 0.35 point)
+;;                          (article 1.0)))))
 
-(gnus-add-configuration
- '(summary
-   (horizontal 1.0
-               (vertical 50 (group 1.0))
-               (vertical 1.0 (summary 1.0 point)))))
+;; (gnus-add-configuration
+;;  '(summary
+;;    (horizontal 1.0
+;;                (vertical 50 (group 1.0))
+;;                (vertical 1.0 (summary 1.0 point)))))
 
 
 ;; from https://eschulte.github.io/emacs-starter-kit/starter-kit-gnus.html
