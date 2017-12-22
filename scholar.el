@@ -56,7 +56,7 @@
   ;; (setq pdf-info-epdfinfo-program "/home/hebi/.emacs.d/straight/build/pdf-tools/epdfinfo")
   :config
   ;; load this on demand!
-  ;; (pdf-tools-install)
+  (pdf-tools-install)
   (setq pdf-view-resize-factor 1.03)
   (defun pdf-view-fit-paper(number)
     ;; using P for horizontal reading
