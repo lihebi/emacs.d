@@ -149,7 +149,7 @@
   (add-hook 'ielm-mode-hook             #'enable-paredit-mode)
   (add-hook 'lisp-mode-hook             #'enable-paredit-mode)
   (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
-  (add-hook 'scheme-mode-hook           #'enable-paredit-mode)  
+  (add-hook 'scheme-mode-hook           #'enable-paredit-mode)
   (add-hook 'racket-mode-hook           #'enable-paredit-mode)
 
   (define-key paredit-mode-map (kbd "M-[") 'paredit-wrap-square)
@@ -509,7 +509,7 @@ You need to kill the current *Python* buffer to take effect."
   ;; c-mode-common-hook is also called by c++-mode
   (add-hook 'c-mode-common-hook #'my-flycheck-rtags-setup)
 
-  
+
   ;; :bind
   ;; (("C-M-." . rtags-find-symbol-at-point)
   ;;  ("C-M-," . rtags-location-stack-back))
@@ -604,7 +604,7 @@ You need to kill the current *Python* buffer to take effect."
   ;; but since it can only be displayed on minibuffer or mode line, I don't want it right now
   ;; (setq emms-lyrics-dir "~/music/lyrics")
   ;; (emms-lyrics 1)
-  
+
   (emms-mode-line 1)
   (emms-playing-time 1)
 
@@ -665,7 +665,7 @@ You need to kill the current *Python* buffer to take effect."
 
   (defun company-complete-common-wrapper ()
     (let ((completion-at-point-functions completion-at-point-functions-saved))
-      (company-complete-common)))  
+      (company-complete-common)))
 
   )
 ;; require installing aspell-en package
@@ -687,6 +687,52 @@ You need to kill the current *Python* buffer to take effect."
 (use-package scribble-mode)
 
 (use-package hackernews)
-(use-package haskell-mode)
+(use-package haskell-mode
+  :config
+  (progn
+    (eval-after-load "haskell-mode"
+      '(define-key haskell-mode-map (kbd "C-c C-c") 'haskell-compile))
+    (eval-after-load "haskell-cabal"
+      '(define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-compile))
+
+    ;; add dynamic because arch only has dynamic library installed
+    (setq haskell-compile-command "ghc -Wall -dynamic -ferror-spans -fforce-recomp -c %s")
+    ;; this is a workaround of ghci interface change:
+    ;; https://github.com/haskell/haskell-mode/issues/1553#issuecomment-342315820
+    (add-to-list 'haskell-process-args-ghci "-fshow-loaded-modules")
+
+    (require 'haskell-interactive-mode)
+    (require 'haskell-process)
+    (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+
+    (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
+    (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
+    (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
+    (define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
+    (define-key haskell-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
+    (define-key haskell-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
+    (define-key haskell-mode-map (kbd "C-c c") 'haskell-process-cabal)
+
+    (define-key haskell-cabal-mode-map (kbd "C-`") 'haskell-interactive-bring)
+    (define-key haskell-cabal-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
+    (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
+    (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)
+
+    (define-key haskell-mode-map (kbd "M-.") 'haskell-mode-jump-to-def)
+
+    ;; this is not working, I have no idea which checker is selected
+    (use-package flycheck-haskell)
+    (eval-after-load 'flycheck
+      '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))
+    ;; the default haskell-stack-ghc seems to be buggy (not using -dynamic)
+    ;; Using haskell-ghc is good
+    ;; wait, how to write this???
+    ;; (flycheck-select-checker 'haskell-ghc)
+    (add-to-list 'flycheck-ghc-args "-dynamic")
+    (add-hook 'haskell-mode-hook
+              (lambda ()
+                (flycheck-select-checker 'haskell-ghc)))
+
+    ))
 
 ;;; packages.el ends here
