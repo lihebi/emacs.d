@@ -11,4 +11,5 @@
 
 (straight-use-package 'use-package)
 
-(setq use-package-always-ensure t)
+;; (setq use-package-always-ensure t)
+(setq straight-use-package-by-default t)
