@@ -6,6 +6,7 @@
 ;;; Code:
 
 (use-package tex
+  :disabled t
   :ensure auctex
   :config
   (add-hook 'LaTeX-mode-hook
