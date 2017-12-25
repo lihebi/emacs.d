@@ -517,6 +517,7 @@ You need to kill the current *Python* buffer to take effect."
 
 (use-package google-c-style
   ;; c style used by google
+  :disabled t
   :defer t)
 (use-package clang-format)
 
