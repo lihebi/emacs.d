@@ -64,6 +64,10 @@
  "~/github/reading/racket"
  ;; git clone https://github.com/torvalds/linux
  "~/github/reading/linux"
+ ;; git clone https://github.com/skyhover/dyclone
+ "~/github/reading/dyclone"
+ ;; git clone https://github.com/skyhover/deckard
+ "~/github/reading/deckard"
  
  "~/github/ADW/"
  "~/github/daikon"
