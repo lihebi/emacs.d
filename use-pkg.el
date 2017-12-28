@@ -289,7 +289,7 @@
   :init
   (progn
     (projectile-global-mode)
-    (setq projectile-enable-caching t) ; enable catch
+    (setq projectile-enable-caching t)  ; enable catch
     )
   :config
   (setq projectile-switch-project-action 'projectile-dired)
@@ -297,8 +297,9 @@
   ;; when setting this to another file, emacs didn't load it
   ;; (setq projectile-known-projects-file "/home/hebi/.emacs.d/projectile-bookmarks.eld")
   ;; use this to load known projects
-  ;; (projectile-load-known-projects)
-  )
+  (defun hebi-reload-projectile-known-projects ()
+    (interactive)
+    (projectile-load-known-projects)))
 
 (use-package perspective
   :init
