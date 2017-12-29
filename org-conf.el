@@ -466,6 +466,10 @@
                       :underline "#A7A6AA" :foreground "#555555" :background "#E2E1D5")
   (set-face-attribute 'org-block-end-line nil :inherit 'org-meta-line
                       :overline "#A7A6AA" :foreground "#555555" :background "#E2E1D5")
+  (set-face-attribute 'org-document-title nil
+                      :family "Sans Serif" :height 1.8 :weight 'bold :foreground "black")
+  (set-face-attribute 'org-document-info-keyword nil
+                      :foreground "#008ED1" :background "#EAEAFF")
   )
 
 
