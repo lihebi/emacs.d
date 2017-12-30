@@ -383,22 +383,6 @@
                                          (interactive)
                                          (join-line -1)))
 
-  ;; better bullets for lists
-  ;; must have and only have one or more space at the beginning
-  ;; the - will be turned into a utf8 Unicode bullet!
-  ;; damn beautiful
-  
-  ;; (font-lock-add-keywords 'org-mode
-  ;;                         '(("^ +\\([-*]\\) "
-  ;;                            (0 (prog1 ()
-  ;;                                 (compose-region
-  ;;                                  (match-beginning 1)
-  ;;                                  (match-end 1) "•"))))))
-  
-  ;; hide the // for slant
-  ;; insert \ on them is the common trick to edit the hidden part
-  ;; (setq org-hide-emphasis-markers t)
-
   (setq org-todo-keywords
         '((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d)" "CANCELED(c)")))
   (setq org-todo-keyword-faces
@@ -421,7 +405,10 @@
     `(,key ,title entry
            (file+headline "~/github/note/org/gtd.org" ,title)
            "* TODO %?\n  %U\n  %i\n"
-           :prepend t :empty-lines-before 1))
+           :prepend t
+           ;; setting one line after does not help at all, it
+           ;; basically inserted a new line in the *edit* buffer
+           :empty-lines-before 1))
   (setq org-reverse-note-order t)
   (setq org-capture-templates
         `(,(gen-template "t" "Task")
@@ -442,7 +429,6 @@
   ;; (use-package org-plus-contrib)
   ;; highlight
   (setq org-src-fontify-natively t)
-  ;; seems not working
   (setq org-fontify-whole-heading-line t)
 
   ;; (ol1 '(:height 1.3 :weight bold :overline "#A7A7A7" :foreground "#3C3C3C" :background "#F0F0F0"))
