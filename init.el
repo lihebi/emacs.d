@@ -84,7 +84,7 @@ manually load it."
 (setq message-citation-line-function 'message-insert-formatted-citation-line)
 
 ;; if I just use the font name, the size should be read from Xresources
-(setq default-frame-alist '((font . "Source Code Pro")))
+;; (setq default-frame-alist '((font . "Source Code Pro")))
 ;; (set-face-attribute 'default nil :font "Source Code Pro-13")
 ;; (set-frame-font "Source Code Pro-10" nil t)
 
