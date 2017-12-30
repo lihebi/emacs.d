@@ -735,5 +735,6 @@ You need to kill the current *Python* buffer to take effect."
                 (flycheck-select-checker 'haskell-ghc)))
 
     ))
+(use-package sml-mode)
 
 ;;; packages.el ends here
