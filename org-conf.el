@@ -411,15 +411,14 @@
            :empty-lines-before 1))
   (setq org-reverse-note-order t)
   (setq org-capture-templates
-        `(,(gen-template "t" "Task")
+        `(,(gen-template "t" "Tmp")
           ,(gen-template "s" "Stack")
           ,(gen-template "b" "Buy")
           ,(gen-template "p" "Project")
           ,(gen-template "w" "Wiki")
-          ,(gen-template "r" "Research")
+          ,(gen-template "r" "Research Stack")
           ,(gen-template "l" "Learn")
           ,(gen-template "i" "Idea")
-          ;; ,(gen-template "m" "Music")
           ,(gen-template "m" "Motto")))
 
   ;; try to use ATTR_* width
