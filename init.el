@@ -494,6 +494,7 @@ manually load it."
      ("#A41F99" . 85)
      ("#3E3D31" . 100))))
  '(magit-diff-use-overlays nil)
+ '(org-adapt-indentation nil)
  '(org-agenda-files
    (quote
     ("~/github/bibliography/SoftwareEnginner/hebi.org" "/home/hebi/github/note/org/default.org" "/home/hebi/github/note/org/gtd.org")))
@@ -520,6 +521,7 @@ manually load it."
      ("" "capt-of" nil)
      ("" "float" nil)
      ("" "hyperref" nil))))
+ '(org-src-preserve-indentation t)
  '(package-selected-packages
    (quote
     (scribble-mode geiser racket-mode org emms alert paredit wrap-region z3-mode json-mode org-ref helm-bibtex auctex ace-window benchmark-init rust-mode yaml-mode groovy-mode gradle-mode android-mode helpful firefox-controller bing-dict fill-column-indicator flycheck-rtags shell-switcher dockerfile-mode srefactor sublimity smooth-scrolling cmake-ide color-theme-solarized god-mode bbdb pylint clang-format zenburn-theme solarized-theme sr-speedbar nyan-mode volatile-highlights rtags elpy visual-regexp virtual-regexp magit org-bullets yasnippet use-package tuareg string-inflection smex smartparens smart-mode-line slime skewer-mode scss-mode regex-tool rainbow-delimiters persp-projectile pdf-tools org-plus-contrib neotree multiple-cursors monokai-theme markdown-mode linum-off htmlize helm-projectile helm-gtags helm-dash guide-key goto-chg google-c-style go-mode git-gutter fuzzy flycheck flx fic-mode expand-region exec-path-from-shell etags-select ess edit-server ecb dired-k csv-mode company cmake-mode cider-eval-sexp-fu cider browse-kill-ring bison-mode ag ace-jump-mode)))
