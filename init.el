@@ -504,6 +504,9 @@ manually load it."
      ("\\.mm\\'" . default)
      ("\\.x?html?\\'" . default)
      ("\\.pdf\\'" . emacs))))
+ '(org-html-table-default-attributes
+   (quote
+    (:border "2" :cellspacing "2" :cellpadding "6" :rules "groups" :frame "border")))
  '(org-latex-default-packages-alist
    (quote
     (("AUTO" "inputenc" t)
