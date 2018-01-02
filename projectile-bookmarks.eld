@@ -22,6 +22,7 @@
  ;; helium
  "~/github/helium-paper/"
  "~/github/helium/"
+ "~/github/helium2/"
  "~/github/benchmark/"
  "~/github/helium-el/"
  "~/github/builder-paper/"
