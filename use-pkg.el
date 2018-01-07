@@ -50,6 +50,7 @@
             "UPDATE"
             "CONFIRM"
             "TRICK" "HACK"
+            "DOING"
             )
           )
     )
