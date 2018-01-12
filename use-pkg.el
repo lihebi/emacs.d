@@ -623,7 +623,9 @@ You need to kill the current *Python* buffer to take effect."
             (lambda ()
               (define-key racket-mode-map (kbd "C-c r") 'racket-run)))
   ;; (setq tab-always-indent 'complete)
-  )
+  ;; use C-\ to toggle the input method
+  (add-hook 'racket-mode-hook      #'racket-unicode-input-method-enable)
+  (add-hook 'racket-repl-mode-hook #'racket-unicode-input-method-enable))
 
 (use-package geiser
   :disabled t
