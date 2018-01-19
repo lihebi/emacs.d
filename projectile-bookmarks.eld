@@ -18,6 +18,7 @@
  "~/github/proceedings/"
  "~/github/proceeding-papers/"
  "~/github/books/"
+ "~/github/research"
  
  ;; helium
  "~/github/helium-paper/"
