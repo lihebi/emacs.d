@@ -370,6 +370,8 @@
             ;; otherwise will open in emacs
             ("\\.x?html?\\'" . "open %s")
             ("\\.pdf\\'" . "open %s")))))
+
+  (setq org-descriptive-links nil)
   
   ;; (add-hook 'org-mode-hook 'turn-on-auto-fill)
   (setq org-log-done 'time)
