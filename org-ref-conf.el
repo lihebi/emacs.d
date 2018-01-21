@@ -83,27 +83,31 @@ to rescan the bib files and update pdf and notes notation."
   (define-key bibtex-mode-map
     (kbd "C-c b")
     'org-ref-bibtex)
-  (let* ((bib-dir "~/github/bibliography")
-         (bib-files (find-files-by-ext bib-dir "bib"))
-         (bib-note-file (concat bib-dir "/notes.org"))
-         (bib-pdf-dir `("~/github/papers/" "~/github/books/" ,@(folder-dirs "~/github/proceeding-papers"))))
-    (setq reftex-default-bibliography bib-files) ; reftex
+  (let* ((bib-files (find-files-by-ext
+                     "~/github/research/bib"
+                     "bib"))
+         ;; (bib-note-file (concat bib-dir "/notes.org"))
+         (bib-pdf-dir
+          `("~/github/research/pdf"
+            "~/github/papers/"
+            "~/github/books/")))
+    (setq reftex-default-bibliography bib-files)    ; reftex
     (setq bibtex-completion-bibliography bib-files) ; bibtex
-    (setq org-ref-default-bibliography bib-files) ; org-ref
+    (setq org-ref-default-bibliography bib-files)   ; org-ref
     ;; notes
-    (setq org-ref-bibliography-notes bib-note-file)
-    (setq bibtex-completion-notes-path bib-note-file)
+    ;; (setq org-ref-bibliography-notes bib-note-file)
+    ;; (setq bibtex-completion-notes-path bib-note-file)
     ;; pdf
     (setq org-ref-pdf-directory bib-pdf-dir)
     (setq bibtex-completion-library-path bib-pdf-dir))
 
   (when (string= system-type "darwin")
-      (setq bibtex-completion-pdf-open-function
-            (lambda (fpath)
-              (start-process "open" "*open*" "open" fpath)))
-      (setq org-ref-open-pdf-function
-            (lambda (fpath)
-              (start-process "open" "*open*" "open" fpath))))
+    (setq bibtex-completion-pdf-open-function
+          (lambda (fpath)
+            (start-process "open" "*open*" "open" fpath)))
+    (setq org-ref-open-pdf-function
+          (lambda (fpath)
+            (start-process "open" "*open*" "open" fpath))))
 
   ;; disable to work on linux
   ;; (setq bibtex-completion-pdf-open-function
