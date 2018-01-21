@@ -266,5 +266,28 @@
 ;; (setq minibuffer-auto-raise nil)
 ;; (setq minibuffer-exit-hook '(lambda () (lower-frame)))
 
+
+
+;; download acm pdf
+
+(defun hebi-bibtex-key-at-point ()
+  (interactive)
+  (prin1 (bibtex-completion-key-at-point)))
+
+(defun hebi-bibtex-pdflink-at-point ()
+  (interactive)
+  (save-excursion
+    (bibtex-beginning-of-entry)
+    (re-search-forward "pdflink={\\(.*\\)}" nil 'move)
+    (prin1 (match-string-no-properties 1))))
+
+
+(defun hebi-bibtex-download-pdf ()
+  (interactive)
+  (let ((key (hebi-bibtex-key-at-point))
+        (pdflink (hebi-bibtex-pdflink-at-point)))
+    (url-copy-file pdflink (concat "~/tmp/" key ".pdf"))))
+
+
 (provide 'hebi)
 ;;; hebi.el ends here
