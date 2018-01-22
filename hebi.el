@@ -272,21 +272,37 @@
 
 (defun hebi-bibtex-key-at-point ()
   (interactive)
-  (prin1 (bibtex-completion-key-at-point)))
+  (bibtex-completion-key-at-point))
 
 (defun hebi-bibtex-pdflink-at-point ()
   (interactive)
   (save-excursion
     (bibtex-beginning-of-entry)
     (re-search-forward "pdflink={\\(.*\\)}" nil 'move)
-    (prin1 (match-string-no-properties 1))))
+    (match-string-no-properties 1)))
 
-
-(defun hebi-bibtex-download-pdf ()
+(defun hebi-bibtex-download-pdf-at-point ()
   (interactive)
   (let ((key (hebi-bibtex-key-at-point))
         (pdflink (hebi-bibtex-pdflink-at-point)))
-    (url-copy-file pdflink (concat "~/tmp/" key ".pdf"))))
+    (let ((f (concat "~/github/research/pdf/" key ".pdf")))
+      (when (not (file-exists-p f))
+        (url-copy-file pdflink f)))))
+
+(defun hebi-bibtex-download-all-pdf ()
+  (interactive)
+  ;; 1. create a buffer
+  ;; 2. sleep for 5 sec between each download
+  (save-excursion
+    (goto-char (point-min))
+    (hebi-download-next)))
+
+(defun hebi-download-next ()
+  (when (re-search-forward "@inproceedings" nil 'move)
+    (when (hebi-bibtex-download-pdf-at-point)
+      (prin1 "Sleep for 5 sec ..")
+      (sleep-for 10))
+    (hebi-download-next)))
 
 
 (provide 'hebi)
