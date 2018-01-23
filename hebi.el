@@ -286,7 +286,8 @@
   (let ((key (hebi-bibtex-key-at-point))
         (pdflink (hebi-bibtex-pdflink-at-point)))
     (let ((f (concat "~/github/research/pdf/" key ".pdf")))
-      (when (not (file-exists-p f))
+      (when (and (not (file-exists-p f))
+                 (not (string= pdflink "#f")))
         (url-copy-file pdflink f)))))
 
 (defun hebi-bibtex-download-all-pdf ()
