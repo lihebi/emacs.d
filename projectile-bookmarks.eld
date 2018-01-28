@@ -11,6 +11,7 @@
  "~/github/cheatsheet/"
  "~/github/wiki-dist/"
  "~/.mpd"
+ "~/github/hn"
 
  ;; research
  "~/github/bibliography/"
