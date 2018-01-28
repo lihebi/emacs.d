@@ -285,7 +285,7 @@
   (interactive)
   (let ((key (hebi-bibtex-key-at-point))
         (pdflink (hebi-bibtex-pdflink-at-point)))
-    (let ((f (concat "~/github/research/pdf/" key ".pdf")))
+    (let ((f (concat "~/github/research/pdf/auto/" key ".pdf")))
       (when (and (not (file-exists-p f))
                  (not (string= pdflink "#f")))
         (url-copy-file pdflink f)))))

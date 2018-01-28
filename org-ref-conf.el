@@ -83,12 +83,17 @@ to rescan the bib files and update pdf and notes notation."
   (define-key bibtex-mode-map
     (kbd "C-c b")
     'org-ref-bibtex)
-  (let* ((bib-files (find-files-by-ext
-                     "~/github/research/bib"
-                     "bib"))
+  (let* ((bib-files (append
+                     (find-files-by-ext
+                      "~/github/research/bib"
+                      "bib")
+                     (find-files-by-ext
+                      "~/github/research/manual-bib"
+                      "bib")))
          ;; (bib-note-file (concat bib-dir "/notes.org"))
          (bib-pdf-dir
-          `("~/github/research/pdf"
+          `("~/github/research/pdf/auto/"
+            "~/github/research/pdf/manual/"
             "~/github/papers/"
             "~/github/books/")))
     (setq reftex-default-bibliography bib-files)    ; reftex
