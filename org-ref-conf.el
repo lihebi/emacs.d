@@ -94,8 +94,9 @@ to rescan the bib files and update pdf and notes notation."
          (bib-pdf-dir
           `("~/github/research/pdf/auto/"
             "~/github/research/pdf/manual/"
-            "~/github/papers/"
-            "~/github/books/")))
+            ;; "~/github/papers/"
+            ;; "~/github/books/"
+            )))
     (setq reftex-default-bibliography bib-files)    ; reftex
     (setq bibtex-completion-bibliography bib-files) ; bibtex
     (setq org-ref-default-bibliography bib-files)   ; org-ref
