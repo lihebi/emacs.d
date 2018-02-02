@@ -86,9 +86,6 @@ to rescan the bib files and update pdf and notes notation."
   (let* ((bib-files (append
                      (find-files-by-ext
                       "~/github/research/bib"
-                      "bib")
-                     (find-files-by-ext
-                      "~/github/research/manual-bib"
                       "bib")))
          ;; (bib-note-file (concat bib-dir "/notes.org"))
          (bib-pdf-dir
