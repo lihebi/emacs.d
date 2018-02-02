@@ -497,7 +497,7 @@ manually load it."
  '(org-adapt-indentation nil)
  '(org-agenda-files
    (quote
-    ("~/github/bibliography/SoftwareEnginner/hebi.org" "/home/hebi/github/note/org/default.org" "/home/hebi/github/note/org/gtd.org")))
+    ("~/github/research/segment.org" "~/github/bibliography/SoftwareEnginner/hebi.org" "/home/hebi/github/note/org/default.org" "/home/hebi/github/note/org/gtd.org")))
  '(org-file-apps
    (quote
     ((auto-mode . emacs)
