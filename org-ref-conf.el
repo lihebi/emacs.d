@@ -76,6 +76,7 @@ to rescan the bib files and update pdf and notes notation."
   :init
   :config
   (global-set-key (kbd "C-c ]") 'org-ref-helm-insert-cite-link)
+  ;; (define-key tex-mode-map (kbd "C-c ]") 'org-ref-helm-insert-cite-link)
   ;; open pdf directly in bib file
   ;; (define-key bibtex-mode-map
   ;;   (kbd "C-c h o")
@@ -86,13 +87,14 @@ to rescan the bib files and update pdf and notes notation."
   (let* ((bib-files (append
                      (find-files-by-ext
                       "~/github/research/bib"
-                      "bib")))
+                      "bib")
+                     '("~/github/bibliography/book.bib")))
          ;; (bib-note-file (concat bib-dir "/notes.org"))
          (bib-pdf-dir
           `("~/github/research/pdf/auto/"
             "~/github/research/pdf/manual/"
             ;; "~/github/papers/"
-            ;; "~/github/books/"
+            "~/github/books/"
             )))
     (setq reftex-default-bibliography bib-files)    ; reftex
     (setq bibtex-completion-bibliography bib-files) ; bibtex
