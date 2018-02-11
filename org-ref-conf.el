@@ -84,6 +84,8 @@ to rescan the bib files and update pdf and notes notation."
   (define-key bibtex-mode-map
     (kbd "C-c b")
     'org-ref-bibtex)
+  ;; link message will freeze emacs in case of many bib files
+  (org-ref-cancel-link-messages)
   (let* ((bib-files (append
                      (find-files-by-ext
                       "~/github/research/bib"
