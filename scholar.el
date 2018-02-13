@@ -73,6 +73,11 @@
         (setq pdf-view-display-size 2.05)
         (image-set-window-hscroll 11)))
     (pdf-view-redisplay t))
+  (defun hebi-pdf-vert-22 ()
+    (interactive)
+    (setq pdf-view-display-size 2.05)
+    (image-set-window-hscroll 11)
+    (pdf-view-redisplay t))
   (define-key pdf-view-mode-map (kbd "P") 'pdf-view-fit-paper))
 
 ;;; scholar.el ends here
