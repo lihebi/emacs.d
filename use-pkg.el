@@ -409,6 +409,7 @@ You need to kill the current *Python* buffer to take effect."
     ;;       '("~/.emacs.d/snippets"                 ;; personal snippets
     ;;         ))
     (yas-global-mode 1))
+  (use-package yasnippet-snippets)
   :config
   ;;; use popup menu for yas-choose-value
   ;; it seems to be installed by default. But it is not marked built-in
