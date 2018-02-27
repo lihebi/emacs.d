@@ -4,6 +4,8 @@
 
 ;;; Code:
 
+(setq gnus-visible-headers "^From:\\|^Subject:")
+
 (setq gnus-select-method
       '(nntp "news.gmane.org"))
 
