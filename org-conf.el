@@ -212,6 +212,8 @@
          ;; "<style type=\"text/css\"> code {color: red;} </style>"
          "<link rel=\"stylesheet\" type=\"text/css\" href=\"assets/hebi.css\" />"
          "<link rel=\"stylesheet\" type=\"text/css\" href=\"assets/test.css\" />"
+         "<link rel=\"stylesheet\" type=\"text/css\" href=\"../assets/hebi.css\" />"
+         "<link rel=\"stylesheet\" type=\"text/css\" href=\"../assets/test.css\" />"
          ))
 
   ;; (setq org-publish-project-alist
@@ -274,10 +276,24 @@
            :headline-levels 4
            :html-extension "html"
            ;; experimental
-           :auto-sitemap t
+           :auto-sitemap t)
+          ("homepage-org"
+           :base-directory "~/github/homepage"
+           :base-extension "org"
+           :publishing-directory "~/github/homepage-dist"
+           :recursive t
+           :publishing-function org-html-publish-to-html
+           :headline-levels 4
+           :html-extension "html"
+           :auto-sitemap t)
+          ("homepage-static"
+           :base-directory "~/github/homepage/"
+           :base-extension "ttf\\|js\\|css\\|png\\|pdf"
+           :recursive t
+           :publishing-directory "~/github/homepage-dist/"
+           :publishing-function org-publish-attachment
            )
-          )
-        )
+          ("homepage" :components ("homepage-org" "homepage-static"))))
   ;; default is 'inline-css
   ;; which will output the color inside html tags
   ;; using 'css will only insert the class, and you need to provide you own css file.

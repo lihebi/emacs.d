@@ -10,6 +10,8 @@
  "~/github/wiki/"
  "~/github/cheatsheet/"
  "~/github/wiki-dist/"
+ "~/github/homepage/"
+ "~/github/homepage-dist/"
  "~/.mpd"
  "~/github/hn"
 
