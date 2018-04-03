@@ -133,6 +133,9 @@ to rescan the bib files and update pdf and notes notation."
   (setq bibtex-completion-display-formats
         '((t . "${year:4} ${author:36} ${title:*} ${=has-pdf=:1}${=has-note=:1} ${=type=:7} ${keywords:18}")))
   (setq bibtex-completion-additional-search-fields '(keywords))
+  (defun hebi-gen-bib ()
+    (interactive)
+    (insert (org-bibliography-complete-link)))
   )
 
 
