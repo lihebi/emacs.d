@@ -296,7 +296,7 @@
            :auto-sitemap t)
           ("homepage-static"
            :base-directory "~/github/homepage/"
-           :base-extension "ttf\\|js\\|css\\|png\\|pdf"
+           :base-extension "ttf\\|js\\|css\\|png\\|pdf\\|jpg"
            :recursive t
            :publishing-directory "~/github/homepage-dist/"
            :publishing-function org-publish-attachment
