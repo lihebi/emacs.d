@@ -215,6 +215,14 @@
          "<link rel=\"stylesheet\" type=\"text/css\" href=\"../assets/hebi.css\" />"
          "<link rel=\"stylesheet\" type=\"text/css\" href=\"../assets/test.css\" />"
          ))
+  (setq org-html-validation-link nil)
+  (setq org-export-time-stamp-file nil)
+  (setq org-export-with-author nil)
+  (setq org-export-with-date nil)
+  ;; (setq org-export-with-toc nil)
+  (setq org-export-with-timestamps t)
+  
+
 
   ;; (setq org-publish-project-alist
   ;;       '(
