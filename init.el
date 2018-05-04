@@ -83,8 +83,8 @@ manually load it."
  "拼音" "汉字拼音输入法" "py.txt")
 
 ;; 用 ; 暂时输入英文
-(require 'eim-extra)
-(global-set-key ";" 'eim-insert-ascii)
+;; (require 'eim-extra)
+;; (global-set-key ";" 'eim-insert-ascii)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
