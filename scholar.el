@@ -51,8 +51,8 @@
 (load "~/.emacs.d/org-ref-conf")
 
 (use-package pdf-tools
-  ;; :disabled t
-  :defer t
+  :disabled t
+  ;; :defer t
   :init
   ;; (setq pdf-info-epdfinfo-program "/home/hebi/.emacs.d/straight/build/pdf-tools/epdfinfo")
   :config
