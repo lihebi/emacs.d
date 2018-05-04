@@ -52,7 +52,7 @@
 
 (use-package pdf-tools
   ;; :disabled t
-  ;; :defer t
+  :defer t
   :init
   ;; (setq pdf-info-epdfinfo-program "/home/hebi/.emacs.d/straight/build/pdf-tools/epdfinfo")
   :config
