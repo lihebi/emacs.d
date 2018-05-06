@@ -108,7 +108,7 @@
                  ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
   (add-to-list 'org-latex-classes
                '("acmsmall" ;; acm computing survey(CSUR) journal format
-                 "\\documentclass{acmsmall}"
+                 "\\documentclass[acmsmall]{acmart}"
                  ("\\section{%s}" . "\\section*{%s}")
                  ("\\subsection{%s}" . "\\subsection*{%s}")
                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
