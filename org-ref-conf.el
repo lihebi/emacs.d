@@ -86,27 +86,61 @@ to rescan the bib files and update pdf and notes notation."
     'org-ref-bibtex)
   ;; link message will freeze emacs in case of many bib files
   (org-ref-cancel-link-messages)
-  (let* ((bib-files (append
-                     (find-files-by-ext
-                      "~/github/research/bib"
-                      "bib")
-                     '("~/github/bibliography/book.bib")))
-         ;; (bib-note-file (concat bib-dir "/notes.org"))
-         (bib-pdf-dir
-          `("~/github/research/pdf/auto/"
-            "~/github/research/pdf/manual/"
-            "~/github/papers/"
-            "~/github/books/"
-            )))
-    (setq reftex-default-bibliography bib-files)    ; reftex
-    (setq bibtex-completion-bibliography bib-files) ; bibtex
-    (setq org-ref-default-bibliography bib-files)   ; org-ref
-    ;; notes
-    ;; (setq org-ref-bibliography-notes bib-note-file)
-    ;; (setq bibtex-completion-notes-path bib-note-file)
-    ;; pdf
+  (let ((bib-pdf-dir
+         '("~/github/research/pdf/auto/"
+           "~/github/research/pdf/manual/"
+           "~/github/research/pdf/manual/book"
+           "~/github/research/pdf/manual/tian"
+           "~/github/research/pdf/manual/tmp"
+           "~/github/research/pdf/manual/paper"
+           "~/github/papers/"
+           "~/github/books/")))
     (setq org-ref-pdf-directory bib-pdf-dir)
     (setq bibtex-completion-library-path bib-pdf-dir))
+
+  ;; bibs
+  (defun set-bib (v)
+    (setq reftex-default-bibliography v)    ; reftex
+    (setq bibtex-completion-bibliography v) ; bibtex
+    (setq org-ref-default-bibliography v))  ; org-ref
+  (defun add-bib (v)
+    (setq reftex-default-bibliography
+          (remove-duplicates
+           (append reftex-default-bibliography v)))
+    (setq bibtex-completion-bibliography
+          (remove-duplicates
+           (append bibtex-completion-bibliography v)))
+    (setq org-ref-default-bibliography
+          (remove-duplicates
+           (append org-ref-default-bibliography v))))
+  (defun dir-bib-files (dir)
+    (directory-files dir t ".*\\.bib"))
+  (defun conf-bib-files (conf)
+    (let ((auto-bib-dir "~/github/research/bib/auto/"))
+      (dir-bib-files
+       (concat (file-name-as-directory auto-bib-dir)
+               conf))))
+  (defun hebi-load-bib (in)
+    (interactive
+     (list
+      (completing-read "choose one conf: "
+                       '("se" "pl" "os" "other" "manual" "unload"))))
+    (cond
+     ((member in '("se" "pl" "os" "other-conf"))
+      (let ((conf
+             (cond
+              ((string= in "se") '("ASE" "PASTE" "FSE" "ICSE" "ISSTA" "MSR"))
+              ((string= in "pl") '("CGO" "ASPLOS" "Onward"
+                                   "OOPSLA" "PLDI" "SIGPLAN" "POPL"
+                                   "Haskell" "ICFP" "LFP"))
+              ((string= in "os") '("OSDI" "SOSP"))
+              ((string= in "other") '("KDD" "STOC" "VLDB")))))
+        (add-bib (apply #'append (mapcar #'conf-bib-files conf)))))
+     ((member in '("manual"))
+      (add-bib (append (dir-bib-files "~/github/research/bib/manual/")
+                       '("~/github/bibliography/book.bib"))))
+     ((member in '("unload"))
+      (set-bib nil))))
 
   (when (string= system-type "darwin")
     (setq bibtex-completion-pdf-open-function
