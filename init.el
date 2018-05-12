@@ -30,9 +30,9 @@
 ;; (load "~/.emacs.d/org-conf.el")
 
 (load "~/.emacs.d/try-straight.el")
-(load "~/.emacs.d/scholar.el")
 (load "~/.emacs.d/use-pkg.el")
 (load "~/.emacs.d/org-conf.el")
+(load "~/.emacs.d/scholar.el")
 
 
 
