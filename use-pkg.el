@@ -740,5 +740,6 @@ You need to kill the current *Python* buffer to take effect."
 
     ))
 (use-package sml-mode)
+(use-package markdown-mode)
 
 ;;; packages.el ends here
