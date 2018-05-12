@@ -357,7 +357,9 @@
   ;; :recipe (:host github
   ;;                :repo "emacsmirror/org"
   ;;                :files ("list/*.el" "contrib/lisp/*.el"))
+  :straight org-plus-contrib
   :init
+  ;; (require 'org-macs)
   (setq org-plain-list-ordered-item-terminator '?.) ; remove using ?) causing a listing
   ;; :defer t
   :bind
@@ -451,7 +453,6 @@
   (setq org-image-actual-width nil)
   ;; (setq org-image-actual-width 300)
   
-  ;; (use-package org-plus-contrib)
   ;; highlight
   (setq org-src-fontify-natively t)
   (setq org-fontify-whole-heading-line t)
