@@ -1,4 +1,4 @@
-;;; gnus.el --- Gnus configure file
+;;; mail.el --- Mail configure file
 
 ;;; Commentary:
 
@@ -72,22 +72,6 @@
 
 (add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
 
-;; from https://eschulte.github.io/emacs-starter-kit/starter-kit-gnus.html
-;;; bbdb
-
-;; (use-package bbdb
-;;   :init
-;;   ;; (require 'bbdb-autoloads)
-;;   (setq
-;;    bbdb-file "~/.bbdb"
-;;    bbdb-offer-save 'auto
-;;    bbdb-notice-auto-save-file t
-;;    bbdb-expand-mail-aliases t
-;;    bbdb-canonicalize-redundant-nets-p t
-;;    bbdb-always-add-addresses t
-;;    bbdb-complete-name-allow-cycling t
-;;    ))
-
 (when window-system
   (setq gnus-sum-thread-tree-indent "  ")
   (setq gnus-sum-thread-tree-root "")          ;; "● ")
@@ -118,4 +102,4 @@
        "%B"
        "%s\n"))
 
-;;; gnus.el ends here
+;;; mail.el ends here
