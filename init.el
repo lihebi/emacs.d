@@ -33,8 +33,7 @@
 (load "~/.emacs.d/use-pkg.el")
 (load "~/.emacs.d/org-conf.el")
 (load "~/.emacs.d/scholar.el")
-
-
+(load "~/.emacs.d/mail.el")
 
 (defun hebi-reload-org ()
   "My org config seems not being loaded correctly, I have to
@@ -91,22 +90,6 @@ manually load it."
 ;; Configuration
 
 
-(setq gnus-init-file "~/.emacs.d/gnus.el")
-;; send mail using gmail smtp, no require for installation of sendmail or something
-(setq user-full-name "Hebi Li")
-(setq user-mail-address "hebi@iastate.edu")
-(setq send-mail-function 'smtpmail-send-it)
-(setq message-send-mail-function 'smtpmail-send-it
-      smtpmail-smtp-server "smtp.gmail.com"
-      ;; this default should not be necessary
-      smtpmail-default-smtp-server "smtp.gmail.com"
-      smtpmail-smtp-service 587
-
-      ;; not sure if the following useful or not
-      smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
-      smtpmail-auth-credentials '(("smtp.gmail.com" 587 "hebi@iastate.edu" nil))
-      starttls-use-gnutls t)
-(setq message-citation-line-function 'message-insert-formatted-citation-line)
 
 ;; if I just use the font name, the size should be read from Xresources
 ;; (setq default-frame-alist '((font . "Source Code Pro")))

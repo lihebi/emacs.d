@@ -4,13 +4,51 @@
 
 ;;; Code:
 
-(setq gnus-visible-headers "^From:\\|^Subject:")
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Send mail setting
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq user-full-name "Hebi Li")
+(setq user-mail-address "lihebi.com@gmail.com")
+
+;; (setq send-mail-function 'smtpmail-send-it)
+;; (setq message-send-mail-function 'smtpmail-send-it)
+(setq send-mail-function 'message-send-mail-with-sendmail)
+(setq message-send-mail-function 'message-send-mail-with-sendmail)
+;; we substitute sendmail with msmtp
+(setq sendmail-program "msmtp")
+;;need to tell msmtp which account we're using
+;; (setq message-sendmail-extra-arguments '("-a" "cymail"))
+;; it automatically add -f, which seems to be interpreted as --from on
+;; msmtp side, and it cannot be used together with
+;; --read-envelope-from
+(setq message-sendmail-f-is-evil 't)
+;; msmtp will decide which account to use based on the from field
+(setq message-sendmail-extra-arguments '("--read-envelope-from"))
+(setq gnus-posting-styles
+      '((".*"
+         (signature "Hebi")
+         (address "lihebi.com@gmail.com")
+         (name "Hebi Li"))
+        (".*cymail.*"
+         (address "hebi@iastate.edu")
+         (signature "Hebi"))
+        (".*lihebicom.*"
+         (address "lihebi.com@gmail.com")
+         (signature "Hebi"))))
+(setq message-citation-line-function 'message-insert-formatted-citation-line)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; read mail setting
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq gnus-visible-headers "^From:\\|^Subject:\\|^To:")
 
 (setq gnus-select-method
       '(nntp "news.gmane.org"))
 
 (setq gnus-secondary-select-methods
-      '((nnimap "gmail"
+      '((nnimap "lihebicom"
                 (nnimap-address "imap.gmail.com")
                 (nnimap-server-port "993")
                 (nnimap-stream ssl)
@@ -23,33 +61,16 @@
 
 (setq gnus-read-newsrc-file nil)
 (setq gnus-save-newsrc-file nil)
-;; this is no longer needed because I'm configuring gnus not read or
-;; write newsrc file
-;; (setq gnus-startup-file "~/.emacs.d/newsrc")
 
 ;; make them always visible
-(setq gnus-permanently-visible-groups "INBOX\\|nnfolder\\+archive.*\\|nndraft:drafts\\|nnvirtual:cymail-virt")
+(setq gnus-permanently-visible-groups
+      "INBOX\\|nnfolder\\+archive.*\\|nndraft:drafts\\|nnvirtual:cymail-virt\\|nnvirtual:lihebicom-virt")
+
+
 (setq gnus-thread-sort-functions
       '((not gnus-thread-sort-by-number)))
 
 (add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
-;; (add-hook 'gnus-group-mode-hook 'hl-line-mode)
-;; (add-hook 'gnus-summary-mode-hook 'hl-line-mode)
-
-;; (gnus-add-configuration
-;;  '(article
-;;    (horizontal 1.0
-;;                ;; (vertical 50 (group 1.0))
-;;                (vertical 1.0
-;;                          (summary 0.35 point)
-;;                          (article 1.0)))))
-
-;; (gnus-add-configuration
-;;  '(summary
-;;    (horizontal 1.0
-;;                (vertical 50 (group 1.0))
-;;                (vertical 1.0 (summary 1.0 point)))))
-
 
 ;; from https://eschulte.github.io/emacs-starter-kit/starter-kit-gnus.html
 ;;; bbdb
