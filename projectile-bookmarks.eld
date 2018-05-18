@@ -14,6 +14,7 @@
  "~/github/homepage-dist/"
  "~/.mpd"
  "~/github/hn"
+ "~/github/autoscholar"
 
  ;; research
  "~/github/bibliography/"
