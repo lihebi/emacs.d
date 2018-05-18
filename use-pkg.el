@@ -405,9 +405,6 @@ You need to kill the current *Python* buffer to take effect."
   :init
   (progn
     (defvar yas-snippet-dirs)
-    ;; (add-to-list 'yas-snippet-dirs
-    ;;       '("~/.emacs.d/snippets"                 ;; personal snippets
-    ;;         ))
     (yas-global-mode 1))
   (use-package yasnippet-snippets)
   :config
@@ -635,8 +632,6 @@ You need to kill the current *Python* buffer to take effect."
   (setq geiser-mode-smart-tab-p t))
 
 (use-package company
-  ;; my auto completion is freezing emacs!
-  ;; :disabled
   :init
   (add-hook 'after-init-hook 'global-company-mode)
   :bind
@@ -741,5 +736,83 @@ You need to kill the current *Python* buffer to take effect."
     ))
 (use-package sml-mode)
 (use-package markdown-mode)
+
+
+(use-package tex
+  :straight auctex
+  :defer t
+  :config
+  (setq TeX-open-quote "\"")
+  (setq TeX-close-quote "\"")
+  (add-hook 'LaTeX-mode-hook
+            '(lambda()
+               (define-key LaTeX-mode-map (kbd "C-c ]") 'helm-bibtex)))
+  ;; (add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
+  (add-hook 'LaTeX-mode-hook
+            '(lambda()
+               (add-to-list 'LaTeX-verbatim-environments "lstlisting")))
+  ;; (define-key LaTeX-mode-map (kbd "C-c t") 'reftex-toc)
+  (setq TeX-open-quote "\"")
+  (setq TeX-close-quote "\"")
+  (if (string= system-type "darwin")
+      (progn
+        (setq TeX-view-program-selection '((output-pdf "Skim"))))
+    (setq TeX-view-program-selection '((output-pdf "PDF Tools"))))
+  ;; supporting indentation of [] in LaTeX mode
+  (defun TeX-brace-count-line ()
+    "Count number of open/closed braces."
+    (save-excursion
+      (let ((count 0) (limit (line-end-position)) char)
+        (while (progn
+                 (skip-chars-forward "^{}[]\\\\" limit)
+                 (when (and (< (point) limit) (not (TeX-in-comment)))
+                   (setq char (char-after))
+                   (forward-char)
+                   (cond ((eq char ?\{)
+                          (setq count (+ count TeX-brace-indent-level)))
+                         ((eq char ?\})
+                          (setq count (- count TeX-brace-indent-level)))
+                         ((eq char ?\[)
+                          (setq count (+ count TeX-brace-indent-level)))
+                         ((eq char ?\])
+                          (setq count (- count TeX-brace-indent-level)))
+                         ((eq char ?\\)
+                          (when (< (point) limit)
+                            (forward-char)
+                            t))))))
+        count))))
+
+(use-package pdf-tools
+  ;; :disabled t
+  :defer t
+  :init
+  ;; (setq pdf-info-epdfinfo-program "/home/hebi/.emacs.d/straight/build/pdf-tools/epdfinfo")
+  :config
+  ;; load this on demand!
+  (pdf-tools-install)
+  (setq pdf-view-resize-factor 1.03)
+  (defun pdf-view-fit-paper(number)
+    ;; using P for horizontal reading
+    ;; using C-u P for vertical reading
+    (interactive "p")
+    (if (= number 1)
+        (progn
+          ;; landscape
+          (setq pdf-view-display-size 1.53)
+          (image-set-window-vscroll 6))
+      (progn
+        ;; portrait
+        (setq pdf-view-display-size 2.05)
+        (image-set-window-hscroll 11)))
+    (pdf-view-redisplay t))
+  (defun hebi-pdf-vert-22 ()
+    (interactive)
+    (setq pdf-view-display-size 2.05)
+    (image-set-window-hscroll 11)
+    (pdf-view-redisplay t))
+  (define-key pdf-view-mode-map (kbd "P") 'pdf-view-fit-paper))
+
+
+
 
 ;;; packages.el ends here
