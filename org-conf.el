@@ -266,6 +266,18 @@
                       :foreground "#008ED1" :background "#EAEAFF")
   )
 
+
+(defun folder-dirs (folder)
+  "find the folders inside another folder, except . and .."
+  (when (file-exists-p folder)
+    (delete-if-not
+     'file-directory-p
+     (mapcar (lambda(arg)
+               (file-name-as-directory
+                (concat (file-name-as-directory folder) arg)))
+             (delete-if (lambda (arg)
+                          (or (string= ".." arg) (string= "." arg)))
+                        (directory-files folder))))))
 (use-package org-ref
   :disabled
   :init
@@ -285,17 +297,19 @@ to rescan the bib files and update pdf and notes notation."
   (define-key bibtex-mode-map
     (kbd "C-c b")
     'org-ref-bibtex)
+
   ;; link message will freeze emacs in case of many bib files
   (org-ref-cancel-link-messages)
   (let ((bib-pdf-dir
-         '("~/github/research/pdf/auto/"
-           "~/github/research/pdf/manual/"
-           "~/github/research/pdf/manual/book"
-           "~/github/research/pdf/manual/tian"
-           "~/github/research/pdf/manual/tmp"
-           "~/github/research/pdf/manual/paper"
-           "~/github/papers/"
-           "~/github/books/")))
+         (append (folder-dirs "~/github/research/pdf/auto/")
+                 '("~/github/research/pdf/auto/"
+                   "~/github/research/pdf/manual/"
+                   "~/github/research/pdf/manual/book"
+                   "~/github/research/pdf/manual/tian"
+                   "~/github/research/pdf/manual/tmp"
+                   "~/github/research/pdf/manual/paper"
+                   "~/github/papers/"
+                   "~/github/books/"))))
     (setq org-ref-pdf-directory bib-pdf-dir)
     (setq bibtex-completion-library-path bib-pdf-dir))
 
@@ -321,13 +335,14 @@ to rescan the bib files and update pdf and notes notation."
       (dir-bib-files
        (concat (file-name-as-directory auto-bib-dir)
                conf))))
+
   (defun hebi-load-bib (in)
     (interactive
      (list
       (completing-read "choose one conf: "
-                       '("se" "pl" "os" "other" "manual" "unload"))))
+                       '("se" "pl" "os" "ai" "other" "manual" "unload"))))
     (cond
-     ((member in '("se" "pl" "os" "other-conf"))
+     ((member in '("se" "pl" "os" "ai" "other-conf"))
       (let ((conf
              (cond
               ((string= in "se") '("ASE" "PASTE" "FSE" "ICSE" "ISSTA" "MSR"))
@@ -335,7 +350,8 @@ to rescan the bib files and update pdf and notes notation."
                                    "OOPSLA" "PLDI" "SIGPLAN" "POPL"
                                    "Haskell" "ICFP" "LFP"))
               ((string= in "os") '("OSDI" "SOSP"))
-              ((string= in "other") '("KDD" "STOC" "VLDB")))))
+              ((string= in "other") '("KDD" "STOC" "VLDB"))
+              ((string= in "ai") '("NIPS" "ICML" "ACML" "AISTATS" "COLT" "IJCAI" "UAI" "AAAI")))))
         (add-bib (apply #'append (mapcar #'conf-bib-files conf)))))
      ((member in '("manual"))
       (add-bib (append (dir-bib-files "~/github/research/bib/manual/")
