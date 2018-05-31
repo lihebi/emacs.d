@@ -351,7 +351,7 @@ to rescan the bib files and update pdf and notes notation."
                                    "Haskell" "ICFP" "LFP"))
               ((string= in "os") '("OSDI" "SOSP"))
               ((string= in "other") '("KDD" "STOC" "VLDB"))
-              ((string= in "ai") '("NIPS" "ICML" "ACML" "AISTATS" "COLT" "IJCAI" "UAI" "AAAI")))))
+              ((string= in "ai") '("NIPS" "ICML" "ACML" "AISTATS" "COLT" "IJCAI" "UAI" "AAAI" "JMLR")))))
         (add-bib (apply #'append (mapcar #'conf-bib-files conf)))))
      ((member in '("manual"))
       (add-bib (append (dir-bib-files "~/github/research/bib/manual/")
