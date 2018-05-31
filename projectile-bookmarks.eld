@@ -15,6 +15,7 @@
  "~/.mpd"
  "~/github/hn"
  "~/github/autoscholar"
+ "~/github/autoscholar.wiki"
 
  ;; research
  "~/github/bibliography/"
