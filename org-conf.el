@@ -371,7 +371,43 @@ to rescan the bib files and update pdf and notes notation."
   (setq bibtex-completion-additional-search-fields '(keywords))
   (defun hebi-gen-bib ()
     (interactive)
-    (insert (org-bibliography-complete-link))))
+    (insert (org-bibliography-complete-link)))
+
+  ;; we have so many bib files, thus this function is very costy to
+  ;; execute, about 0.2s. The time consuming part is opening the files
+  ;; and inserting into the temp buffer. Thus, let me create a
+  ;; dedicated buffer for it and load once, and subsequent calls will
+  ;; use this buffer instead of create a new one.
+
+  (defun hebi-load-bibtex-buffer ()
+    (interactive)
+    (message "Loading hebi-bibtex buffer. This is costy, should
+    only do once")
+    (with-current-buffer (get-buffer-create "hebi-bibtex")
+      (kill-region (point-min)
+                   (point-max))
+      (mapc #'insert-file-contents
+            (bibtex-completion-normalize-bibliography 'bibtex))))
+
+  ;; with-current-buffer will call save-current-buffer, which although
+  ;; in C code, still cost a lot of time. But this function already
+  ;; saved 100+ times the time spent
+  (defun bibtex-completion-get-entry1 (entry-key &optional do-not-find-pdf)
+    (when (not (get-buffer "hebi-bibtex"))
+      (hebi-load-bibtex-buffer))
+    (with-current-buffer "hebi-bibtex"
+      (goto-char (point-min))
+      (if (re-search-forward (concat "^[ \t]*@\\(" parsebib--bibtex-identifier
+                                     "\\)[[:space:]]*[\(\{][[:space:]]*"
+                                     (regexp-quote entry-key) "[[:space:]]*,")
+                             nil t)
+          (let ((entry-type (match-string 1)))
+            (reverse (bibtex-completion-prepare-entry
+                      (parsebib-read-entry entry-type (point) bibtex-completion-string-hash-table) nil do-not-find-pdf)))
+        (progn
+          (display-warning :warning (concat "Bibtex-completion couldn't find entry with key \"" entry-key "\"."))
+          nil))))
+  )
 
 (provide 'org-conf)
 ;;; org-conf.el ends here
