@@ -286,10 +286,16 @@
   (let ((key (hebi-bibtex-key-at-point))
         (pdflink (hebi-bibtex-pdflink-at-point)))
     (let ((conf (second (split-string key "-"))))
-      (let ((f (concat "~/github/research/pdf/auto/" conf "/" key ".pdf")))
+      (let* ((dir (concat "~/github/research/pdf/auto/" conf "/"))
+             (f (concat dir key ".pdf")))
+        (when (not (file-exists-p dir))
+          (make-directory dir))
         (when (and (not (file-exists-p f))
                    (not (string= pdflink "#f")))
           (url-copy-file pdflink f))))))
+
+(defun doi-utils-get-bibtex-entry-pdf ()
+  (hebi-bibtex-download-pdf-at-point))
 
 (second (split-string "2017-IJCAI-Commonsense-Single" "-"))
 
