@@ -279,7 +279,6 @@
                           (or (string= ".." arg) (string= "." arg)))
                         (directory-files folder))))))
 (use-package org-ref
-  :disabled
   :init
   :config
   (use-package helm-bibtex
@@ -358,6 +357,7 @@ to rescan the bib files and update pdf and notes notation."
                        '("~/github/bibliography/book.bib"))))
      ((member in '("unload"))
       (set-bib nil))))
+  (hebi-load-bib "manual")
 
   (when (string= system-type "darwin")
     (setq bibtex-completion-pdf-open-function
