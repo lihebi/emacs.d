@@ -321,7 +321,6 @@
   ;; C-c C-k (elpy-shell-kill)
   ;; C-c C-K (elpy-shell-kill-all)
   ;; very slow on startup
-  :disabled
   :init
   (defvar python-shell-interpreter)
   (defvar python-shell-interpreter-args)
