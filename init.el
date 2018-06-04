@@ -29,10 +29,14 @@
 
 ;; (load "~/.emacs.d/org-conf.el")
 
+(when (not (fboundp 'make-variable-frame-local))
+  (defun make-variable-frame-local (variable) variable))
+
 (load "~/.emacs.d/try-straight.el")
 (load "~/.emacs.d/use-pkg.el")
 (load "~/.emacs.d/org-conf.el")
 (load "~/.emacs.d/mail.el")
+
 
 (defun hebi-reload-org ()
   "My org config seems not being loaded correctly, I have to
