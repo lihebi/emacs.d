@@ -304,9 +304,10 @@ manually load it."
 (setq inhibit-startup-message t)
 
 (setq show-trailing-whitespace t)
-(global-linum-mode 1)                   ; set nu
-(line-number-mode t)                    ; mode line settings
-(column-number-mode t)
+;; (global-linum-mode 1)                   ; set nu
+(global-display-line-numbers-mode t)
+;; (line-number-mode t)                    ; mode line settings
+;; (column-number-mode t)
 (size-indication-mode t)
 
 ;; ignore the bell
