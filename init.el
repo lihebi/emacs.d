@@ -45,10 +45,6 @@ manually load it."
   (load "~/.emacs.d/org-conf.el"))
 
 
-;; (use-package org)
-
-(load "~/.emacs.d/packages/helium-slice-highlighter.el")
-
 (load "~/.emacs.d/hebi.el")
 
 ;; disabling erc because it is slow on startup

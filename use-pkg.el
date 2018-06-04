@@ -1,11 +1,3 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(use-package benchmark-init
-  ;; enable only when i want to debug the init time
-  ;; :disabled t
-  :config
-  (benchmark-init/activate))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; modes
 (use-package csv-mode)
