@@ -552,31 +552,20 @@ You need to kill the current *Python* buffer to take effect."
 
 (use-package git-gutter
   :init
-  (progn
+   (progn
     (global-git-gutter-mode t)
-    (git-gutter:linum-setup)
-    )
+    (git-gutter:linum-setup))
   :bind
-  (
-   ("C-x C-g" . git-gutter:toggle))
+  (("C-x C-g" . git-gutter:toggle))
   :config
   (progn
     (custom-set-variables
-     '(git-gutter:modified-sign "  ") ;; two space
-     '(git-gutter:added-sign "++")    ;; multiple character is OK
+     '(git-gutter:modified-sign "  ")
+     '(git-gutter:added-sign "++")
      '(git-gutter:deleted-sign "--"))
-
-    ;; (custom-set-variables
-    ;;  '(git-gutter:window-width 2)
-    ;;  '(git-gutter:modified-sign "☁")
-    ;;  '(git-gutter:added-sign "☀")
-    ;;  '(git-gutter:deleted-sign "☂"))
-
-    (set-face-background 'git-gutter:modified "purple") ; background color
-    (set-face-foreground 'git-gutter:added "green") ; foreground not working ...
-    (set-face-foreground 'git-gutter:deleted "red")
-    )
-  )
+    (set-face-background 'git-gutter:modified "purple")
+    (set-face-foreground 'git-gutter:added "green")
+    (set-face-foreground 'git-gutter:deleted "red")))
 
 (use-package alert)
 
