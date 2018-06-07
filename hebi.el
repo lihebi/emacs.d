@@ -317,7 +317,7 @@
 (defun hebi-copy-pdf-to-tmp ()
   (interactive)
   (let ((file (buffer-file-name (current-buffer))))
-    (copy-file file "~/tmp")))
+    (copy-file file "~/tmp/")))
 
 
 (provide 'hebi)
