@@ -16,6 +16,7 @@
  "~/github/hn"
  "~/github/autoscholar"
  "~/github/autoscholar.wiki"
+ "~/github/StricklandOS"
 
  ;; research
  "~/github/bibliography/"
