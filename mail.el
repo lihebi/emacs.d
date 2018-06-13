@@ -11,8 +11,16 @@
 (setq user-full-name "Hebi Li")
 (setq user-mail-address "lihebi.com@gmail.com")
 
+;; These are the configure to use Emacs to send the mail directly
+;;
+;; (setq smtpmail-smtp-server "smtp.gmail.com")
+;; (setq smtpmail-smtp-service 587)
 ;; (setq send-mail-function 'smtpmail-send-it)
 ;; (setq message-send-mail-function 'smtpmail-send-it)
+
+;; To use the msmtp version, you must configure the .msmtprc file for
+;; the correct authinfo to use. It will read the evolope FROM field to
+;; decide which account to use.
 (setq send-mail-function 'message-send-mail-with-sendmail)
 (setq message-send-mail-function 'message-send-mail-with-sendmail)
 ;; we substitute sendmail with msmtp
