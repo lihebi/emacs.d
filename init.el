@@ -39,6 +39,14 @@
 (load "~/.emacs.d/org-conf.el")
 (load "~/.emacs.d/mail.el")
 
+(use-package exwm
+  :config
+  (require 'exwm)
+  (require 'exwm-config)
+  (exwm-config-default)
+  (require 'exwm-systemtray)
+  (exwm-systemtray-enable))
+
 
 (defun hebi-reload-org ()
   "My org config seems not being loaded correctly, I have to
