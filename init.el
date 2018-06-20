@@ -75,7 +75,56 @@
       (start-process-shell-command cmd nil cmd)))
   (exwm-input-set-key (kbd "<XF86AudioLowerVolume>") 'volume-down)
   (exwm-input-set-key (kbd "<XF86AudioRaiseVolume>") 'volume-up)
-  (exwm-input-set-key (kbd "<XF86AudioMute>") 'volume-mute))
+  (exwm-input-set-key (kbd "<XF86AudioMute>") 'volume-mute)
+
+
+  (defun xinput-id-cmd (&rest rests)
+    (concat "xinput list"
+            ;; "|" "egrep \"slave.*pointer\""
+            (apply #'concat rests)
+            "|" "grep -v XTEST"
+            "|" "sed -e 's/^.*id=//' -e 's/\\s.*$//'"))
+
+  (defun get-pointer-ids ()
+    (mapcar #'string-to-number
+            (split-string
+             (shell-command-to-string
+              (xinput-id-cmd "| egrep \"slave.*pointer\"")))))
+  
+  ;; (get-pointer-ids)
+  (defun get-touchpad-ids ()
+    (mapcar #'string-to-number
+            (split-string
+             (shell-command-to-string
+              (xinput-id-cmd "| egrep \"TouchPad\"")))))
+  ;; (get-touchpad-ids)
+
+  (defun xinput-set-natural-scroll (id)
+    (let ((cmd (format "xinput set-prop %s \"%s\" %s"
+                       id "libinput Natural Scrolling Enabled" 1)))
+      (shell-command cmd)))
+
+  (defun xinput-disable (id)
+    (shell-command
+     (format "xinput disable %s" id)))
+  (defun xinput-enable (id)
+    (shell-command
+     (format "xinput enable %s" id)))
+
+  ;; (xinput-set-natural-scroll 10)
+  (defun natural-scrolling ()
+    (interactive)
+    (mapcar #'xinput-set-natural-scroll (get-pointer-ids)))
+
+  (defun disable-touchpad ()
+    (interactive)
+    (mapcar #'xinput-disable (get-touchpad-ids)))
+  (defun enable-touchpad ()
+    (interactive)
+    (mapcar #'xinput-enable (get-touchpad-ids)))
+  (natural-scrolling))
+
+
 
 (defun hebi-reload-org ()
   "My org config seems not being loaded correctly, I have to
