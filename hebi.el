@@ -319,6 +319,20 @@
   (let ((file (buffer-file-name (current-buffer))))
     (copy-file file "~/tmp/")))
 
+(defun hebi-trans (word)
+  "Translate WORD into chinese, return result."
+  (interactive "sWord: ")
+  (shell-command
+   (concat "trans"
+           " -show-original-phonetics Y"
+           " -show-translation-phonetics n"
+           " -show-languages n"
+           " -show-prompt-message n"
+           ;; " -show-dictionary n"
+           " -no-theme"
+           " -no-ansi"
+           " :zh"
+           " " word)))
 
 (provide 'hebi)
 ;;; hebi.el ends here
