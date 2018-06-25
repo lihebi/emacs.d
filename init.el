@@ -40,6 +40,7 @@
 (load "~/.emacs.d/mail.el")
 
 (use-package exwm
+  :disabled
   :config
   (require 'exwm)
   (require 'exwm-config)
