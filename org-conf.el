@@ -339,9 +339,9 @@ to rescan the bib files and update pdf and notes notation."
     (interactive
      (list
       (completing-read "choose one conf: "
-                       '("se" "pl" "os" "ai" "other" "manual" "unload"))))
+                       '("se" "pl" "os" "ai" "ai-small" "other" "manual" "unload"))))
     (cond
-     ((member in '("se" "pl" "os" "ai" "other-conf"))
+     ((member in '("se" "pl" "os" "ai" "other-conf" "ai-small"))
       (let ((conf
              (cond
               ((string= in "se") '("ASE" "PASTE" "FSE" "ICSE" "ISSTA" "MSR"))
@@ -350,7 +350,11 @@ to rescan the bib files and update pdf and notes notation."
                                    "Haskell" "ICFP" "LFP"))
               ((string= in "os") '("OSDI" "SOSP"))
               ((string= in "other") '("KDD" "STOC" "VLDB"))
-              ((string= in "ai") '("NIPS" "ICML" "ACML" "AISTATS" "COLT" "IJCAI" "UAI" "AAAI" "JMLR" "ML")))))
+              ((string= in "ai") '("NIPS" "ICML" "ACML" "AISTATS" "COLT" "IJCAI" "UAI" "AAAI" "JMLR" "ML"))
+              ((string= in "ai-small") '("NIPS" "ICML" "AAAI"))
+              ((string= in "nips") '("NIPS"))
+              ((string= in "icml") '("ICML"))
+              ((string= in "aaai") '("AAAI")))))
         (add-bib (apply #'append (mapcar #'conf-bib-files conf)))))
      ((member in '("manual"))
       (add-bib (append (dir-bib-files "~/github/research/bib/manual/")
@@ -367,7 +371,7 @@ to rescan the bib files and update pdf and notes notation."
           (lambda (fpath)
             (start-process "open" "*open*" "open" fpath))))
   (setq bibtex-completion-display-formats
-        '((t . "${year:4} ${author:36} ${title:*} ${=has-pdf=:1}${=has-note=:1} ${=type=:7} ${keywords:18}")))
+        '((t . "${=key=:15}    ${author:36} ${title:*} ${=has-pdf=:1}${=has-note=:1} ${=type=:7} ${keywords:18}")))
   (setq bibtex-completion-additional-search-fields '(keywords))
   (defun hebi-gen-bib ()
     (interactive)
@@ -407,6 +411,9 @@ to rescan the bib files and update pdf and notes notation."
         (progn
           (display-warning :warning (concat "Bibtex-completion couldn't find entry with key \"" entry-key "\"."))
           nil))))
+
+  ;; There is a performance problem. In bibtex-completion-init, remove
+  ;; the first mapc for "rm-watch" fixes it.
   )
 
 (provide 'org-conf)
