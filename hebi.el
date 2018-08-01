@@ -305,14 +305,15 @@
   ;; 2. sleep for 5 sec between each download
   (save-excursion
     (goto-char (point-min))
-    (hebi-download-next)))
+    (while (hebi-download-next)
+      t)))
 
 (defun hebi-download-next ()
   (when (re-search-forward "@inproceedings" nil 'move)
     (when (hebi-bibtex-download-pdf-at-point)
       (prin1 "Sleep for 10 sec ..")
       (sleep-for 10))
-    (hebi-download-next)))
+    t))
 
 (defun hebi-copy-pdf-to-tmp ()
   (interactive)
