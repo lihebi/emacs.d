@@ -32,6 +32,17 @@
 (when (not (fboundp 'make-variable-frame-local))
   (defun make-variable-frame-local (variable) variable))
 
+
+;; melpa should be set up no matter I'm using package.el or
+;; straight.el
+(setq package-archives
+      (append package-archives
+              '(("org" . "http://orgmode.org/elpa/"))
+              '(("melpa" . "http://melpa.milkbox.net/packages/"))))
+(package-initialize)
+(setq package-enable-at-startup nil)
+
+;; loading files
 (load "~/.emacs.d/try-straight.el")
 (global-display-line-numbers-mode t)
 (column-number-mode t)
