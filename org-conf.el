@@ -298,7 +298,7 @@ to rescan the bib files and update pdf and notes notation."
     'org-ref-bibtex)
 
   ;; link message will freeze emacs in case of many bib files
-  (org-ref-cancel-link-messages)
+  ;; (org-ref-cancel-link-messages)
   (let ((bib-pdf-dir
          (append (folder-dirs "~/github/research/pdf/auto/")
                  '("~/github/research/pdf/auto/"
@@ -328,7 +328,9 @@ to rescan the bib files and update pdf and notes notation."
           (remove-duplicates
            (append org-ref-default-bibliography v))))
   (defun dir-bib-files (dir)
-    (directory-files dir t ".*\\.bib"))
+    (if (file-exists-p dir)
+        (directory-files dir t ".*\\.bib")
+      '()))
   (defun conf-bib-files (conf)
     (let ((auto-bib-dir "~/github/research/bib/auto/"))
       (dir-bib-files
