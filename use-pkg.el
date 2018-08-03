@@ -793,7 +793,7 @@ You need to kill the current *Python* buffer to take effect."
     (pdf-view-redisplay t))
   (define-key pdf-view-mode-map (kbd "P") 'pdf-view-fit-paper))
 
-
+(use-package guix)
 
 
 ;;; packages.el ends here
