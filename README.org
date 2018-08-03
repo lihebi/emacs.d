@@ -14,3 +14,55 @@ Checkout this version:
 git checkout 150090d4
 #+end_example
 
+
+** Compile pdf-tools on GuixSD
+
+Make the following changes to configure.ac in pdf-tools:
+
+ADD:
+
+#+BEGIN_EXAMPLE diff
+modified   server/configure.ac
+@@ -22,6 +22,7 @@ HAVE_POPPLER_ANNOT_MARKUP="no (requires poppler-glib >= 0.26)"
+ PKG_CHECK_MODULES([png], [libpng])
+ PKG_CHECK_MODULES([glib], [glib-2.0])
+ PKG_CHECK_MODULES([poppler], [poppler])
++PKG_CHECK_MODULES([cairo], [cairo])
+ PKG_CHECK_MODULES([poppler_glib], [poppler-glib >= 0.16.0])
+ PKG_CHECK_EXISTS([poppler-glib >= 0.19.4], [HAVE_POPPLER_ANNOT_WRITE=yes])
+ PKG_CHECK_EXISTS([poppler-glib >= 0.22], [HAVE_POPPLER_FIND_OPTS=yes])
+@@ -91,6 +92,8 @@ AC_COMPILE_IFELSE([AC_LANG_PROGRAM([
+         AC_MSG_RESULT([no]))
+ AC_LANG_POP([C])
+ CFLAGS=$SAVED_CFLAGS
++CFLAGS="$glib_CFLAGS $cairo_CFLAGS $poppler_CFLAGS $poppler_LIBS $poppler_glib_CFLAGS"
++LDFLAGS="$poppler_glib_LIBS $cairo_LIBS $glib_LIBS $glib_LIBS -lgobject-2.0"
+ 
+ # Checks for typedefs, structures, and compiler characteristics.
+ AC_TYPE_SIZE_T
+#+END_EXAMPLE
+
+Since poppler is named as "poppler" instead of "poppler-glib",
+pkg-config will not find it. Thus, we need to specify it in ENV
+variable.
+
+#+BEGIN_EXAMPLE
+export poppler_glib_CFLAGS="-I/gnu/store/lk7qa3appvxh6v7iphvkm0v40rv4vbw9-poppler-0.63.0/include/poppler/glib"
+export poppler_glib_LIBS="-L/gnu/store/lk7qa3appvxh6v7iphvkm0v40rv4vbw9-poppler-0.63.0/lib -lpoppler-glib -lpoppler"
+#+END_EXAMPLE
+
+Also, you will need the following packages, and set up the environment
+=PKG_CONFIG_PATH= as instructed.
+
+- pkg-config
+- libpng
+- python
+- python2
+- glib
+- poppler
+- cairo
+- autobuild
+- autoconf
+- automake
+- glibc
+- gcc
