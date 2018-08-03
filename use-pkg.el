@@ -765,12 +765,16 @@ You need to kill the current *Python* buffer to take effect."
 
 (use-package pdf-tools
   ;; :disabled t
-  :defer t
+  ;; :defer t
   :init
+  ;; FIXME why emacs keeps remove the build directory?
   ;; (setq pdf-info-epdfinfo-program "/home/hebi/.emacs.d/straight/build/pdf-tools/epdfinfo")
+  (setq pdf-info-epdfinfo-program "/home/hebi/.emacs.d/epdfinfo")
   :config
-  ;; load this on demand!
-  ;; (pdf-tools-install)
+  ;; This seems also sets the default viewing mode of pdf, and it
+  ;; seems to honor the pdf-info-epdfinfo-program variable, i.e. put
+  ;; the executable there, and don't build if exist
+  (pdf-tools-install)
   (setq pdf-view-resize-factor 1.03)
   (defun pdf-view-fit-paper(number)
     ;; using P for horizontal reading
