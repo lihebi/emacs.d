@@ -556,8 +556,8 @@ You need to kill the current *Python* buffer to take effect."
     (global-git-gutter-mode t)
     ;; (git-gutter:linum-setup)
     )
-  :bind
-  (("C-x C-g" . git-gutter:toggle))
+  ;; :bind
+  ;; (("C-x C-g" . git-gutter:toggle))
   :config
   (progn
     (custom-set-variables
