@@ -43,6 +43,24 @@
                  ("\\paragraph{%s}" . "\\paragraph*{%s}")
                  ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
   (add-to-list 'org-latex-classes
+               '("nips"
+                 "\\documentclass{article}
+\\usepackage[preprint]{nips_2018}
+\\usepackage[utf8]{inputenc} % allow utf-8 input
+\\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\\usepackage{hyperref}       % hyperlinks
+\\usepackage{url}            % simple URL typesetting
+\\usepackage{booktabs}       % professional-quality tables
+\\usepackage{amsfonts}       % blackboard math symbols
+\\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\\usepackage{microtype}      % microtypography
+"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+  (add-to-list 'org-latex-classes
                '("acmsmall" ;; acm computing survey(CSUR) journal format
                  "\\documentclass[acmsmall]{acmart}"
                  ("\\section{%s}" . "\\section*{%s}")
