@@ -182,6 +182,8 @@
   (setup-latex)
   (setup-publish)
 
+  (require 'org-drill)
+
   (setq org-descriptive-links nil)
   ;; (add-hook 'org-mode-hook 'turn-on-auto-fill)
   (setq org-log-done 'time)

@@ -368,16 +368,14 @@ You need to kill the current *Python* buffer to take effect."
   ;; helm-semantic-or-imenu
   ;; srefactor-refactor-at-point
   :bind
-  (
-   ("M-x" . helm-M-x)
+  (("M-x" . helm-M-x)
    ;; C-j enter directory
    ;; C-l up directory
    ;; C-u C-x C-f open history
    ("C-x C-f" . helm-find-files)
    ("M-y" . helm-show-kill-ring)
    ("C-x b" . helm-mini)
-   ("C-h SPC" . helm-all-mark-rings)
-   )
+   ("C-h SPC" . helm-all-mark-rings))
   :config
   ;; helm-semantic-or-imenu (C-x c i)
   ;; it shows the outline!
@@ -386,8 +384,7 @@ You need to kill the current *Python* buffer to take effect."
         helm-imenu-fuzzy-match t)
   (setq helm-M-x-fuzzy-match t)
   (setq helm-buffers-fuzzy-matching t
-        helm-recentf-fuzzy-match t)
-  )
+        helm-recentf-fuzzy-match t))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
