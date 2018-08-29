@@ -100,7 +100,7 @@ manually load it."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configuration
 
-
+(setq mouse-yank-at-point t)
 
 ;; if I just use the font name, the size should be read from Xresources
 ;; (setq default-frame-alist '((font . "Source Code Pro")))
