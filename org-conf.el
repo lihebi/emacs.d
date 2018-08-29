@@ -235,7 +235,7 @@
   ;; 3. org-agenda: C-c a
   (defun gen-template (key title)
     `(,key ,title entry
-           (file+headline "~/github/note/org/gtd.org" ,title)
+           (file+headline "~/github/note/gtd.org" ,title)
            "* TODO %?\n  %U\n  %i\n"
            :prepend t
            ;; setting one line after does not help at all, it
