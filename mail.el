@@ -50,7 +50,7 @@
 ;; read mail setting
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(setq gnus-visible-headers "^From:\\|^Subject:\\|^To:")
+(setq gnus-visible-headers "^From:\\|^Subject:\\|^To:\\|^Cc:\\|^Date:\\|^User-Agent:")
 
 (setq gnus-select-method
       '(nntp "news.gmane.org"))
