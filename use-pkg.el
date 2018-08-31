@@ -797,4 +797,15 @@ You need to kill the current *Python* buffer to take effect."
 (use-package guix)
 
 
+;; usage: create ~/.virtualenvs, and run mkvirtualenv (in eshell),
+;; with a name. M-x venv-workon will activate it, while
+;; venv-deactivate stop it. It works with both eshell and python.el
+(use-package virtualenvwrapper
+  :config
+  ;; if you want interactive shell support
+  (venv-initialize-interactive-shells)
+  ;; if you want eshell support
+  (venv-initialize-eshell))
+
+
 ;;; packages.el ends here
