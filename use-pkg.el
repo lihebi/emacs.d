@@ -426,14 +426,19 @@ You need to kill the current *Python* buffer to take effect."
     (setq yas-prompt-functions '(yas-popup-isearch-prompt yas-ido-prompt yas-no-prompt))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; C++
+;; In order to use flycheck, the checkers need to be installed. To
+;; verify a checker is properly installed, use
+;; flycheck-verify-checker.
+;;
+;; python: pylint
+;;
+;; Seems that the xref-find-definitions also rely on pylint (or maybe
+;; just virtualenv .. when ipython is not installed system-wise)
 (use-package flycheck
   :init
   (add-hook 'after-init-hook #'global-flycheck-mode)
   :bind
-  (
-   ("C-c c" . flycheck-buffer)
-   )
+  (("C-c c" . flycheck-buffer))
   :config
   ;; (setq flycheck-clang-args '"--std=c++11")
   ;; (setq flycheck-clang-args nil)
@@ -441,18 +446,15 @@ You need to kill the current *Python* buffer to take effect."
   ;; Instead, include this in .dir-locals.el
   ;; ((c++-mode . ((flycheck-clang-args . ("--std=c++11")))))
   (add-hook 'c++-mode-hook '(lambda()
-                              (setq flycheck-clang-args "--std=c++11")
-                              ))
+                              (setq flycheck-clang-args "--std=c++11")))
   (add-hook 'c++-mode-hook #'(lambda () (setq flycheck-gcc-language-standard "c++11")))
   (add-hook 'c-mode-hook '(lambda()
-                            (setq flycheck-clang-args "")
-                            ))
+                            (setq flycheck-clang-args "")))
   ;; Add include path
   ;; I found this information by:
   ;; M-x describe-checker => found c/c++-clang
   ;; Click on it, goes to the description, along with the configurable part.
-  (setq flycheck-clang-include-path (list ".."))
-  )
+  (setq flycheck-clang-include-path (list "..")))
 
 ;; rtags frontend
 (use-package rtags
@@ -800,6 +802,8 @@ You need to kill the current *Python* buffer to take effect."
 ;; usage: create ~/.virtualenvs, and run mkvirtualenv (in eshell),
 ;; with a name. M-x venv-workon will activate it, while
 ;; venv-deactivate stop it. It works with both eshell and python.el
+;;
+;; The pip might not work properly. Try python -m pip instead.
 (use-package virtualenvwrapper
   :config
   ;; if you want interactive shell support
