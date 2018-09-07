@@ -273,6 +273,7 @@
   :config
   (progn
     (exec-path-from-shell-copy-env "INFOPATH") ;; load $INFOPATH
+    (exec-path-from-shell-copy-env "LD_LIBRARY_PATH")
     (exec-path-from-shell-initialize) ;; by default only load $PATH $MANPATH
     (message "%s: %s" "exec-path-from-shell post config" (getenv "PATH"))))
 
@@ -282,8 +283,10 @@
   :init
   (progn
     (projectile-global-mode)
-    (setq projectile-enable-caching t)  ; enable catch
-    )
+    ; enable catch
+    (setq projectile-enable-caching t))
+  :bind
+  (("C-c p c" . projectile-compile-project))
   :config
   (setq projectile-switch-project-action 'projectile-dired)
   (setq projectile-track-known-projects-automatically nil)
@@ -330,9 +333,9 @@
         ;; must use simple prompt to avoid encoding problem for ipython
         python-shell-interpreter-args
         ;; "-i"
-        "--simple-prompt -i"
-        )
+        "--simple-prompt -i")
   (setq python-shell-prompt-detect-failure-warning nil)
+  (setq elpy-rpc-python-command "python3")
   ;; this fix the python3 warnning problem
   (setq python-shell-completion-native-enable nil)
   (defun hebi-elpy-use-python2 ()
