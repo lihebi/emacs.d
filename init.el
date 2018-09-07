@@ -19,13 +19,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; (require 'dash)
 
-(add-to-list 'load-path "~/.emacs.d/packages/") ; packages downloaded from internet. Maybe outdated. No such package in elpa.
+;; packages downloaded from internet. Maybe outdated. No such package in elpa.
+(add-to-list 'load-path "~/.emacs.d/packages/")
 
 ;; (load "~/.emacs.d/try-package.el")
-
-;; not sure if i want to load them. They should already have disabled
-;; entry, so loading them should have no effect
-;; (load "~/.emacs.d/packages-disabled.el")
 
 ;; (load "~/.emacs.d/org-conf.el")
 
@@ -56,46 +53,11 @@ manually load it."
   (interactive)
   (load "~/.emacs.d/org-conf.el"))
 
-
 (load "~/.emacs.d/hebi.el")
-
-;; disabling erc because it is slow on startup
-;; (load "~/.emacs.d/erc.el")
 
 (setq default-frame-alist '((font . "Source Code Pro-12")))
 ;; (set-face-attribute 'default nil :font "Source Code Pro-12")
 ;; (set-frame-font "Source Code Pro-10" nil t)
-
-;; (load "~/.emacs.d/local.el")
-
-;; disabling theme
-;; (load "~/.emacs.d/theme.el")
-
-
-
-;; wubi
-;; setup: https://github.com/wenbinye/emacs-eim
-;; set-input-method, eim-wb
-;;
-;; starting from z, use pinyin as input and show wb code
-;; eim-describe-char show code at point
-
-(add-to-list 'load-path "~/.emacs.d/emacs-eim")
-(autoload 'eim-use-package "eim" "Another emacs input method")
-;; Tooltip 暂时还不好用
-(setq eim-use-tooltip nil)
-
-(register-input-method
- "eim-wb" "euc-cn" 'eim-use-package
- "五笔" "汉字五笔输入法" "wb.txt")
-(register-input-method
- "eim-py" "euc-cn" 'eim-use-package
- "拼音" "汉字拼音输入法" "py.txt")
-
-;; 用 ; 暂时输入英文
-;; (require 'eim-extra)
-;; (global-set-key ";" 'eim-insert-ascii)
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configuration

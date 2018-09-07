@@ -660,9 +660,7 @@ You need to kill the current *Python* buffer to take effect."
     ;; TODO not working for flyspell-mode
     (add-hook 'LaTeX-mode-hook #'turn-on-flyspell)
     (add-hook 'latex-mode-hook #'turn-on-flyspell)
-    (add-hook 'org-mode-hook #'turn-on-flyspell)
-    )
-  )
+    (add-hook 'org-mode-hook #'turn-on-flyspell)))
 
 (use-package scribble-mode)
 
@@ -810,6 +808,31 @@ You need to kill the current *Python* buffer to take effect."
   (venv-initialize-interactive-shells)
   ;; if you want eshell support
   (venv-initialize-eshell))
+
+;; M-x set-input-method eim-wb
+;; toggle-input-method
+;;
+;; starting from z, use pinyin as input and show wb code
+;; eim-describe-char show code at point
+(use-package emacs-eim
+  :straight
+  (emacs-eim :type git :host github :repo "wenbinye/emacs-eim"
+             :files ("*.txt" :defaults))
+  ;; no require, otherwise use-package error: cannot load
+  :no-require t
+  :init
+  (autoload 'eim-use-package "eim" "Another emacs input method")
+  :config
+  ;; 用 ; 暂时输入英文
+  ;; (require 'eim-extra)
+  ;; (global-set-key ";" 'eim-insert-ascii)
+  (setq eim-use-tooltip nil)
+  (register-input-method
+   "eim-wb" "euc-cn" 'eim-use-package
+   "五笔" "汉字五笔输入法" "wb.txt")
+  (register-input-method
+   "eim-py" "euc-cn" 'eim-use-package
+   "拼音" "汉字拼音输入法" "py.txt"))
 
 
 ;;; packages.el ends here
