@@ -837,5 +837,9 @@ You need to kill the current *Python* buffer to take effect."
    "eim-py" "euc-cn" 'eim-use-package
    "拼音" "汉字拼音输入法" "py.txt"))
 
+;; M-x simple-mpc
+;; Need mpc client installed.
+(use-package simple-mpc)
+
 
 ;;; packages.el ends here
