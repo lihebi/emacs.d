@@ -380,7 +380,8 @@ to rescan the bib files and update pdf and notes notation."
         (add-bib (apply #'append (mapcar #'conf-bib-files conf)))))
      ((member in '("manual"))
       (add-bib (append (dir-bib-files "~/github/research/bib/manual/")
-                       '("~/github/bibliography/book.bib"))))
+                       ;; '("~/github/bibliography/book.bib")
+                       )))
      ((member in '("unload"))
       (set-bib nil))))
   (hebi-load-bib "manual")
@@ -413,7 +414,8 @@ to rescan the bib files and update pdf and notes notation."
       (kill-region (point-min)
                    (point-max))
       (mapc #'insert-file-contents
-            (bibtex-completion-normalize-bibliography 'bibtex))))
+            (seq-filter #'file-exists-p
+                        (bibtex-completion-normalize-bibliography 'bibtex)))))
 
   ;; with-current-buffer will call save-current-buffer, which although
   ;; in C code, still cost a lot of time. But this function already
