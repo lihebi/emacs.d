@@ -670,6 +670,7 @@ You need to kill the current *Python* buffer to take effect."
   (progn
     ;; (add-hook 'LaTeX-mode-hook '(flyspell-mode t))
     ;; TODO not working for flyspell-mode
+    (setq ispell-program-name "aspell")
     (add-hook 'LaTeX-mode-hook #'turn-on-flyspell)
     (add-hook 'latex-mode-hook #'turn-on-flyspell)
     (add-hook 'org-mode-hook #'turn-on-flyspell)))
