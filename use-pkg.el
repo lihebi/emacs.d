@@ -272,9 +272,18 @@
   ;; :if window-system
   :config
   (progn
+    (exec-path-from-shell-initialize) ;; by default only load $PATH $MANPATH
+    
     (exec-path-from-shell-copy-env "INFOPATH") ;; load $INFOPATH
     (exec-path-from-shell-copy-env "LD_LIBRARY_PATH")
-    (exec-path-from-shell-initialize) ;; by default only load $PATH $MANPATH
+    (exec-path-from-shell-copy-env "LIBRARY_PATH")
+    (exec-path-from-shell-copy-env "CPATH")
+    (exec-path-from-shell-copy-env "ACLOCAL_PATH")
+    (exec-path-from-shell-copy-env "PKG_CONFIG_PATH")
+    (exec-path-from-shell-copy-env "CMAKE_PREFIX_PATH")
+    (exec-path-from-shell-copy-env "PYTHONPATH")
+    (exec-path-from-shell-copy-env "C_INCLUDE_PATH")
+    (exec-path-from-shell-copy-env "CPLUS_INCLUDE_PATH")
     (message "%s: %s" "exec-path-from-shell post config" (getenv "PATH"))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
