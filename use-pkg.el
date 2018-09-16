@@ -298,7 +298,7 @@
   (("C-c p c" . projectile-compile-project))
   :config
   (setq projectile-switch-project-action 'projectile-dired)
-  (setq projectile-track-known-projects-automatically nil)
+  ;; (setq projectile-track-known-projects-automatically nil)
   ;; when setting this to another file, emacs didn't load it
   ;; (setq projectile-known-projects-file "/home/hebi/.emacs.d/projectile-bookmarks.eld")
   ;; use this to load known projects
