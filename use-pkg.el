@@ -272,9 +272,18 @@
   ;; :if window-system
   :config
   (progn
+    (exec-path-from-shell-initialize) ;; by default only load $PATH $MANPATH
+    
     (exec-path-from-shell-copy-env "INFOPATH") ;; load $INFOPATH
     (exec-path-from-shell-copy-env "LD_LIBRARY_PATH")
-    (exec-path-from-shell-initialize) ;; by default only load $PATH $MANPATH
+    (exec-path-from-shell-copy-env "LIBRARY_PATH")
+    (exec-path-from-shell-copy-env "CPATH")
+    (exec-path-from-shell-copy-env "ACLOCAL_PATH")
+    (exec-path-from-shell-copy-env "PKG_CONFIG_PATH")
+    (exec-path-from-shell-copy-env "CMAKE_PREFIX_PATH")
+    (exec-path-from-shell-copy-env "PYTHONPATH")
+    (exec-path-from-shell-copy-env "C_INCLUDE_PATH")
+    (exec-path-from-shell-copy-env "CPLUS_INCLUDE_PATH")
     (message "%s: %s" "exec-path-from-shell post config" (getenv "PATH"))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -289,7 +298,7 @@
   (("C-c p c" . projectile-compile-project))
   :config
   (setq projectile-switch-project-action 'projectile-dired)
-  (setq projectile-track-known-projects-automatically nil)
+  ;; (setq projectile-track-known-projects-automatically nil)
   ;; when setting this to another file, emacs didn't load it
   ;; (setq projectile-known-projects-file "/home/hebi/.emacs.d/projectile-bookmarks.eld")
   ;; use this to load known projects
@@ -661,6 +670,7 @@ You need to kill the current *Python* buffer to take effect."
   (progn
     ;; (add-hook 'LaTeX-mode-hook '(flyspell-mode t))
     ;; TODO not working for flyspell-mode
+    (setq ispell-program-name "aspell")
     (add-hook 'LaTeX-mode-hook #'turn-on-flyspell)
     (add-hook 'latex-mode-hook #'turn-on-flyspell)
     (add-hook 'org-mode-hook #'turn-on-flyspell)))

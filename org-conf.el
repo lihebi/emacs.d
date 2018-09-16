@@ -210,6 +210,8 @@
   ;; the forbidden, by default, is ,'", but I want all of them actually. By the way why these are forbidden?
   (setcar (nthcdr 2 org-emphasis-regexp-components) " \t\r\n")
   (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
+  ;; original value is t
+  ;; (setq org-adapt-indentation t)
   (setq org-export-backends (append '(man) org-export-backends))
   (define-key org-mode-map (kbd "C-j") (lambda()
                                          (interactive)
@@ -221,9 +223,7 @@
         '(("TODO" . org-todo) ("CANCELED" . org-warning) ("STARTED" . (:foreground "white" :background "red"))))
 
   (setq org-agenda-files
-        '(
-          ;; "~/github/note/TODO.org"
-          "~/github/note/org"))
+        '("~/github/note/org"))
 
   ;; org capture
   (setq org-directory "~/github/note/org")
@@ -283,8 +283,7 @@
   (set-face-attribute 'org-document-title nil
                       :family "Sans Serif" :height 1.8 :weight 'bold :foreground "black")
   (set-face-attribute 'org-document-info-keyword nil
-                      :foreground "#008ED1" :background "#EAEAFF")
-  )
+                      :foreground "#008ED1" :background "#EAEAFF"))
 
 
 (defun folder-dirs (folder)
