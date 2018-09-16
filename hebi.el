@@ -319,6 +319,10 @@
   (interactive)
   (let ((file (buffer-file-name (current-buffer))))
     (copy-file file "~/tmp/")))
+(defun hebi-move-pdf-to-research-manual ()
+  (interactive)
+  (let ((file (buffer-file-name (current-buffer))))
+    (rename-file file "~/github/research/pdf/manual/")))
 
 (defun hebi-trans (word)
   "Translate WORD into chinese, return result."
@@ -334,6 +338,38 @@
            " -no-ansi"
            " :zh"
            " " word)))
+
+(defun hebi-upload-to-remarkable ()
+  (interactive)
+  (let ((file (buffer-file-name (current-buffer))))
+    (shell-command
+     ;; TODO remote file name
+     (concat "curl 'http://10.11.99.1/upload'"
+             " -H 'Origin: http://10.11.99.1'"
+             " -H 'Accept: */*'"
+             " -H 'Referer: http://10.11.99.1/'"
+             " -H 'Connection: keep-alive'"
+             " -F \"file=@" file ";filename="
+             (file-name-nondirectory file)
+             ";type=application/pdf\""))))
+
+;; (use-package request)
+
+;; ;;.1/' -H ': ' -F "file=@1710.11469.pdf;filename=my_new_awesome_name.pdf;type=application/pdf" 
+;; (request
+;;  "http://10.11.99.1/upload"
+;;  :type "POST"
+;;  :headers '(("Origin" . "http://10.11.99.1")
+;;             ("Accept" . "*/*")
+;;             ("Referer" . "http://10.11.99.1/")
+;;             ("Connection" . "keep-alive"))
+;;  :files '(("myfile.pdf" . ("17.pdf" :file "/home/hebi/Downloads/1710.11469.pdf")))
+;;  ;; :data '(("file" . "/home/hebi/Downloads/1710.11469.pdf")
+;;  ;;         ("filename" . "myname")
+;;  ;;         ("type" . "application/pdf"))
+;;  :sync t)
+
+
 
 (provide 'hebi)
 ;;; hebi.el ends here
