@@ -41,7 +41,12 @@
 
 ;; loading files
 (load "~/.emacs.d/try-straight.el")
-(global-display-line-numbers-mode t)
+
+;; FIXME
+(if (version< emacs-version "26")
+    (global-linum-mode)
+  (global-display-line-numbers-mode t))
+
 (column-number-mode t)
 (load "~/.emacs.d/use-pkg.el")
 (load "~/.emacs.d/org-conf.el")
