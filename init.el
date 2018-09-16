@@ -472,7 +472,6 @@ manually load it."
      ("#A41F99" . 85)
      ("#3E3D31" . 100))))
  '(magit-diff-use-overlays nil)
- '(org-adapt-indentation nil)
  '(org-agenda-files
    (quote
     ("~/github/research/segment.org" "~/github/bibliography/SoftwareEnginner/hebi.org" "/home/hebi/github/note/org/default.org" "/home/hebi/github/note/org/gtd.org")))
