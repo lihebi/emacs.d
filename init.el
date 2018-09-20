@@ -432,6 +432,7 @@ manually load it."
 
 (add-to-list 'auto-mode-alist '("\\.cc\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.ino\\'" . c-mode))
 
 ;; font
 ;; see:
