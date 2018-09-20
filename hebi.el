@@ -319,39 +319,53 @@
   (interactive)
   (let ((file (buffer-file-name (current-buffer))))
     (copy-file file "~/tmp/")))
-(defun hebi-move-pdf-to-research-manual ()
-  (interactive)
-  (let ((file (buffer-file-name (current-buffer))))
-    (rename-file file "~/github/research/pdf/manual/")))
+
+(defun hebi-move-pdf-to-research-manual (newname)
+  (interactive
+   (let* ((file (buffer-file-name (current-buffer)))
+          (filename (file-name-nondirectory file)))
+     (list (read-string (format "As filename (%s): " filename)))))
+  (rename-file (buffer-file-name (current-buffer))
+               (concat "~/github/research/pdf/manual/" newname)))
+
 
 (defun hebi-trans (word)
   "Translate WORD into chinese, return result."
-  (interactive "sWord: ")
-  (shell-command
-   (concat "trans"
-           " -show-original-phonetics Y"
-           " -show-translation-phonetics n"
-           " -show-languages n"
-           " -show-prompt-message n"
-           ;; " -show-dictionary n"
-           " -no-theme"
-           " -no-ansi"
-           " :zh"
-           " " word)))
+  (interactive
+   ;; "sWord: "
+   (list
+    ;; get current word, use as default
+    ;; prompt minibuffer
+    (let ((cur (current-word)))
+      (read-string (format "Word (%s): " cur)
+                            nil nil
+                            cur))))
+  (let ((res (string-trim
+              (shell-command-to-string
+               (concat "trans"
+                       " -b"
+                       " :zh"
+                       " " word)))))
+    (prin1 res)
+    (kill-new res)))
+
+(global-set-key (kbd "C-c h t") 'hebi-trans)
 
 (defun hebi-upload-to-remarkable ()
   (interactive)
   (let ((file (buffer-file-name (current-buffer))))
-    (shell-command
-     ;; TODO remote file name
-     (concat "curl 'http://10.11.99.1/upload'"
-             " -H 'Origin: http://10.11.99.1'"
-             " -H 'Accept: */*'"
-             " -H 'Referer: http://10.11.99.1/'"
-             " -H 'Connection: keep-alive'"
-             " -F \"file=@" file ";filename="
-             (file-name-nondirectory file)
-             ";type=application/pdf\""))))
+    (when (string= (file-name-extension file) "pdf")
+      (shell-command
+       ;; TODO remote file name
+       (concat "curl 'http://10.11.99.1/upload'"
+               " -H 'Origin: http://10.11.99.1'"
+               " -H 'Accept: */*'"
+               " -H 'Referer: http://10.11.99.1/'"
+               " -H 'Connection: keep-alive'"
+               " -F \"file=@" file ";filename="
+               (file-name-nondirectory file)
+               ";type=application/pdf\"")))))
+(global-set-key (kbd "C-c h m") 'hebi-upload-to-remarkable)
 
 ;; (use-package request)
 
