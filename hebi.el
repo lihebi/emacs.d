@@ -297,8 +297,6 @@
 (defun doi-utils-get-bibtex-entry-pdf ()
   (hebi-bibtex-download-pdf-at-point))
 
-(second (split-string "2017-IJCAI-Commonsense-Single" "-"))
-
 (defun hebi-bibtex-download-all-pdf ()
   (interactive)
   ;; 1. create a buffer

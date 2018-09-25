@@ -851,5 +851,9 @@ You need to kill the current *Python* buffer to take effect."
 ;; Need mpc client installed.
 (use-package simple-mpc)
 
+(use-package smart-scholar
+  :straight (smart-scholar :type git :host github
+                           :repo "lihebi/smart-scholar.el"))
+
 
 ;;; packages.el ends here
