@@ -311,13 +311,14 @@ to rescan the bib files and update pdf and notes notation."
       (interactive)
       (setq bibtex-completion-bibliography-hash "")))
 
+  ;; link message will freeze emacs in case of many bib files
+  (org-ref-cancel-link-messages)
+
   (global-set-key (kbd "C-c ]") 'org-ref-helm-insert-cite-link)
   (define-key bibtex-mode-map
     (kbd "C-c b")
     'org-ref-bibtex)
 
-  ;; link message will freeze emacs in case of many bib files
-  ;; (org-ref-cancel-link-messages)
   (let ((bib-pdf-dir
          (append (folder-dirs "~/github/research/pdf/auto/")
                  '("~/github/research/pdf/auto/"
