@@ -89,6 +89,12 @@
   (setq gnus-sum-thread-tree-leaf-with-other "├─► ")
   (setq gnus-sum-thread-tree-single-leaf     "╰─► "))
 
+(gnus-add-configuration
+ '(article
+   (horizontal 1.0
+             (summary 0.5 point)
+             (article 1.0))))
+
 (setq gnus-user-date-format-alist
       (quote (((gnus-seconds-today) .
                "Today      @ %H:%M")
