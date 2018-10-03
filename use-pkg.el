@@ -855,5 +855,11 @@ You need to kill the current *Python* buffer to take effect."
   :straight (smart-scholar :type git :host github
                            :repo "lihebi/smart-scholar.el"))
 
+(use-package space-repetition
+  :straight (space-repetition :type git :host github
+                              :repo "lihebi/space-repetition.el"))
+
+(use-package pamparam)
+
 
 ;;; packages.el ends here
