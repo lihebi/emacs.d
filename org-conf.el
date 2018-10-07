@@ -286,17 +286,9 @@
                       :foreground "#008ED1" :background "#EAEAFF"))
 
 
-(defun folder-dirs (folder)
-  "find the folders inside another folder, except . and .."
-  (when (file-exists-p folder)
-    (delete-if-not
-     'file-directory-p
-     (mapcar (lambda(arg)
-               (file-name-as-directory
-                (concat (file-name-as-directory folder) arg)))
-             (delete-if (lambda (arg)
-                          (or (string= ".." arg) (string= "." arg)))
-                        (directory-files folder))))))
+
+;; FIXME There is a performance problem. In bibtex-completion-init,
+;; remove the first mapc for "rm-watch" fixes it.
 (use-package org-ref
   :init
   :config
@@ -320,72 +312,12 @@ to rescan the bib files and update pdf and notes notation."
     'org-ref-bibtex)
 
   (let ((bib-pdf-dir
-         (append (folder-dirs "~/github/research/pdf/auto/")
-                 '("~/github/research/pdf/auto/"
-                   "~/github/research/pdf/manual/"
-                   "~/github/research/pdf/manual/book"
-                   "~/github/research/pdf/manual/tian"
-                   "~/github/research/pdf/manual/tmp"
-                   "~/github/research/pdf/manual/paper"
-                   "~/github/papers/"
-                   "~/github/books/"))))
+         '("~/github/research/pdf/manual/"
+           "~/github/papers/"
+           "~/github/books/")))
     (setq org-ref-pdf-directory bib-pdf-dir)
     (setq bibtex-completion-library-path bib-pdf-dir))
-
-  ;; bibs
-  (defun set-bib (v)
-    (setq reftex-default-bibliography v)    ; reftex
-    (setq bibtex-completion-bibliography v) ; bibtex
-    (setq org-ref-default-bibliography v))  ; org-ref
-  (defun add-bib (v)
-    (setq reftex-default-bibliography
-          (remove-duplicates
-           (append reftex-default-bibliography v)))
-    (setq bibtex-completion-bibliography
-          (remove-duplicates
-           (append bibtex-completion-bibliography v)))
-    (setq org-ref-default-bibliography
-          (remove-duplicates
-           (append org-ref-default-bibliography v))))
-  (defun dir-bib-files (dir)
-    (if (file-exists-p dir)
-        (directory-files dir t ".*\\.bib")
-      '()))
-  (defun conf-bib-files (conf)
-    (let ((auto-bib-dir "~/github/research/bib/auto/"))
-      (dir-bib-files
-       (concat (file-name-as-directory auto-bib-dir)
-               conf))))
-
-  (defun hebi-load-bib (in)
-    (interactive
-     (list
-      (completing-read "choose one conf: "
-                       '("se" "pl" "os" "ai" "ai-small" "other" "manual" "unload"))))
-    (cond
-     ((member in '("se" "pl" "os" "ai" "other-conf" "ai-small"))
-      (let ((conf
-             (cond
-              ((string= in "se") '("ASE" "PASTE" "FSE" "ICSE" "ISSTA" "MSR"))
-              ((string= in "pl") '("CGO" "ASPLOS" "Onward"
-                                   "OOPSLA" "PLDI" "SIGPLAN" "POPL"
-                                   "Haskell" "ICFP" "LFP"))
-              ((string= in "os") '("OSDI" "SOSP"))
-              ((string= in "other") '("KDD" "STOC" "VLDB"))
-              ((string= in "ai") '("NIPS" "ICML" "ACML" "AISTATS" "COLT" "IJCAI" "UAI" "AAAI" "JMLR" "ML"))
-              ((string= in "ai-small") '("NIPS" "ICML" "AAAI"))
-              ((string= in "nips") '("NIPS"))
-              ((string= in "icml") '("ICML"))
-              ((string= in "aaai") '("AAAI")))))
-        (add-bib (apply #'append (mapcar #'conf-bib-files conf)))))
-     ((member in '("manual"))
-      (add-bib (append (dir-bib-files "~/github/research/bib/manual/")
-                       ;; '("~/github/bibliography/book.bib")
-                       )))
-     ((member in '("unload"))
-      (set-bib nil))))
-  (hebi-load-bib "manual")
-
+  
   (when (string= system-type "darwin")
     (setq bibtex-completion-pdf-open-function
           (lambda (fpath)
@@ -398,47 +330,22 @@ to rescan the bib files and update pdf and notes notation."
   (setq bibtex-completion-additional-search-fields '(keywords))
   (defun hebi-gen-bib ()
     (interactive)
-    (insert (org-bibliography-complete-link)))
+    (insert (org-bibliography-complete-link))))
 
-  ;; we have so many bib files, thus this function is very costy to
-  ;; execute, about 0.2s. The time consuming part is opening the files
-  ;; and inserting into the temp buffer. Thus, let me create a
-  ;; dedicated buffer for it and load once, and subsequent calls will
-  ;; use this buffer instead of create a new one.
-
-  (defun hebi-load-bibtex-buffer ()
-    (interactive)
-    (message "Loading hebi-bibtex buffer. This is costy, should
-    only do once")
-    (with-current-buffer (get-buffer-create "hebi-bibtex")
-      (kill-region (point-min)
-                   (point-max))
-      (mapc #'insert-file-contents
-            (seq-filter #'file-exists-p
-                        (bibtex-completion-normalize-bibliography 'bibtex)))))
-
-  ;; with-current-buffer will call save-current-buffer, which although
-  ;; in C code, still cost a lot of time. But this function already
-  ;; saved 100+ times the time spent
-  (defun bibtex-completion-get-entry1 (entry-key &optional do-not-find-pdf)
-    (when (not (get-buffer "hebi-bibtex"))
-      (hebi-load-bibtex-buffer))
-    (with-current-buffer "hebi-bibtex"
-      (goto-char (point-min))
-      (if (re-search-forward (concat "^[ \t]*@\\(" parsebib--bibtex-identifier
-                                     "\\)[[:space:]]*[\(\{][[:space:]]*"
-                                     (regexp-quote entry-key) "[[:space:]]*,")
-                             nil t)
-          (let ((entry-type (match-string 1)))
-            (reverse (bibtex-completion-prepare-entry
-                      (parsebib-read-entry entry-type (point) bibtex-completion-string-hash-table) nil do-not-find-pdf)))
-        (progn
-          (display-warning :warning (concat "Bibtex-completion couldn't find entry with key \"" entry-key "\"."))
-          nil))))
-
-  ;; There is a performance problem. In bibtex-completion-init, remove
-  ;; the first mapc for "rm-watch" fixes it.
-  )
+(use-package smart-scholar
+  :straight (smart-scholar :type git :host github
+                           :repo "lihebi/smart-scholar.el")
+  :config
+  (setq smart-scholar-html-dir "~/github/smart-scholar-dist/html")
+  (setq smart-scholar-pdf-dir "~/github/smart-scholar-pdfs")
+  (setq smart-scholar-bib-dir "~/github/smart-scholar-dist/bib")
+  (setq smart-scholar-manual-bib-dir "~/github/research/bib/")
+  ;; setup initial pdf dirs
+  (set-org-ref-pdfdir)
+  ;; must be evaluated AFTER org package, because I'm overwriting
+  ;; doi-utils-get-bibtex-entry-pdf function
+  (defun doi-utils-get-bibtex-entry-pdf ()
+    (smart-scholar-bibtex-download-pdf-at-point)))
 
 (provide 'org-conf)
 ;;; org-conf.el ends here

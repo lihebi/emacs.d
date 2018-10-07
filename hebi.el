@@ -266,53 +266,6 @@
 ;; (setq minibuffer-auto-raise nil)
 ;; (setq minibuffer-exit-hook '(lambda () (lower-frame)))
 
-
-
-;; download acm pdf
-
-(defun hebi-bibtex-key-at-point ()
-  (interactive)
-  (bibtex-completion-key-at-point))
-
-(defun hebi-bibtex-pdflink-at-point ()
-  (interactive)
-  (save-excursion
-    (bibtex-beginning-of-entry)
-    (re-search-forward "pdflink={\\(.*\\)}" nil 'move)
-    (match-string-no-properties 1)))
-
-(defun hebi-bibtex-download-pdf-at-point ()
-  (interactive)
-  (let ((key (hebi-bibtex-key-at-point))
-        (pdflink (hebi-bibtex-pdflink-at-point)))
-    (let ((conf (second (split-string key "-"))))
-      (let* ((dir (concat "~/github/research/pdf/auto/" conf "/"))
-             (f (concat dir key ".pdf")))
-        (when (not (file-exists-p dir))
-          (make-directory dir))
-        (when (and (not (file-exists-p f))
-                   (not (string= pdflink "#f")))
-          (url-copy-file pdflink f))))))
-
-(defun doi-utils-get-bibtex-entry-pdf ()
-  (hebi-bibtex-download-pdf-at-point))
-
-(defun hebi-bibtex-download-all-pdf ()
-  (interactive)
-  ;; 1. create a buffer
-  ;; 2. sleep for 5 sec between each download
-  (save-excursion
-    (goto-char (point-min))
-    (while (hebi-download-next)
-      t)))
-
-(defun hebi-download-next ()
-  (when (re-search-forward "@inproceedings" nil 'move)
-    (when (hebi-bibtex-download-pdf-at-point)
-      (prin1 "Sleep for 10 sec ..")
-      (sleep-for 10))
-    t))
-
 (defun hebi-copy-pdf-to-tmp ()
   (interactive)
   (let ((file (buffer-file-name (current-buffer))))

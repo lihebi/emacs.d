@@ -618,9 +618,8 @@ You need to kill the current *Python* buffer to take effect."
   (add-hook 'racket-repl-mode-hook #'racket-unicode-input-method-enable))
 
 (use-package geiser
-  :disabled t
   :config
-  (setq geiser-active-implementations '(racket))
+  ;; (setq geiser-active-implementations '(racket))
   (setq geiser-mode-smart-tab-p t))
 
 (use-package company
@@ -851,15 +850,12 @@ You need to kill the current *Python* buffer to take effect."
 ;; Need mpc client installed.
 (use-package simple-mpc)
 
-(use-package smart-scholar
-  :straight (smart-scholar :type git :host github
-                           :repo "lihebi/smart-scholar.el"))
 
 (use-package space-repetition
   :straight (space-repetition :type git :host github
                               :repo "lihebi/space-repetition.el"))
 
-(use-package pamparam)
+;; (use-package pamparam)
 
 
 ;;; packages.el ends here

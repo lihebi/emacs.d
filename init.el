@@ -101,7 +101,11 @@ manually load it."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (global-hl-line-mode)
-(setq browse-url-browser-function 'browse-url-conkeror)
+
+;; (setq browse-url-browser-function
+;;       'browse-url-default-browser
+;;       ;; 'browse-url-conkeror
+;;       )
 
 (when (not window-system)
   (menu-bar-mode -1))
