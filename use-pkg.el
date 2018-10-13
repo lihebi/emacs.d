@@ -851,9 +851,13 @@ You need to kill the current *Python* buffer to take effect."
 (use-package simple-mpc)
 
 
-(use-package space-repetition
-  :straight (space-repetition :type git :host github
-                              :repo "lihebi/space-repetition.el"))
+(use-package simple-drill
+  :straight (simple-drill :type git :host github
+                          :repo "lihebi/simple-drill.el"))
+
+(use-package hn-master
+  :straight (hn-master :type git :host github
+                       :repo "lihebi/hn-master.el"))
 
 ;; (use-package pamparam)
 
