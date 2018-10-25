@@ -277,7 +277,7 @@
           (filename (file-name-nondirectory file)))
      (list (read-string (format "As filename (%s): " filename)))))
   (rename-file (buffer-file-name (current-buffer))
-               (concat "~/github/research/pdf/manual/" newname)))
+               (concat "~/github/smart-scholar-pdfs/manual/" newname)))
 
 
 (defun hebi-trans (word)
