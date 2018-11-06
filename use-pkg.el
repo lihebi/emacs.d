@@ -360,6 +360,7 @@ You need to kill the current *Python* buffer to take effect."
           python-shell-interpreter-args "--simple-prompt -i"))
   :config
   ;; (setq python-shell-interpreter "python3")
+  (setq comint-scroll-to-bottom-on-output t)
   (elpy-enable))
 
 (use-package pylint
