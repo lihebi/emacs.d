@@ -43,6 +43,18 @@
                  ("\\paragraph{%s}" . "\\paragraph*{%s}")
                  ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
   (add-to-list 'org-latex-classes
+               '("naacl"
+                 "\\documentclass[11pt,a4paper]{article}
+\\usepackage[hyperref]{naaclhlt2019}
+\\usepackage{times}
+\\usepackage{latexsym}
+"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+  (add-to-list 'org-latex-classes
                '("nips"
                  "\\documentclass{article}
 \\usepackage[preprint]{nips_2018}
