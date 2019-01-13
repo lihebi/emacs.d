@@ -352,6 +352,7 @@ to rescan the bib files and update pdf and notes notation."
   (setq smart-scholar-pdf-dir "~/github/smart-scholar-pdfs")
   (setq smart-scholar-bib-dir "~/github/smart-scholar-dist/bib")
   (setq smart-scholar-manual-bib-dir "~/github/research/bib/")
+  (smart-scholar-load-manual)
   ;; setup initial pdf dirs
   (set-org-ref-pdfdir)
   ;; must be evaluated AFTER org package, because I'm overwriting
