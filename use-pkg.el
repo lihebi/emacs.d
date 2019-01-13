@@ -840,11 +840,24 @@ You need to kill the current *Python* buffer to take effect."
 
 (use-package simple-drill
   :straight (simple-drill :type git :host github
-                          :repo "lihebi/simple-drill.el"))
+                          :repo "lihebi/simple-drill.el")
+  :config
+  (setq simple-drill-history-file "~/.emacs.d/simple-drill-history.el"))
 
-(use-package hn-master
-  :straight (hn-master :type git :host github
-                       :repo "lihebi/hn-master.el"))
+(use-package hn
+  :straight (hn :type git :host github
+                :repo "lihebi/hn.el")
+  :config
+  (setq hn-hl-users '("okanesen" "wilsonfiifi"))
+  (setq hn-hl-keywords '("lisp" "linux"
+                         "Show HN"
+                         "\\bML\\b" "\\bAI\\b"
+                         "Tensorflow"))
+  (setq hn-fields '(star score comment user title)))
+
+;; C-c C-c runs the command arduino-upload
+;; It runs arduino --upload xxx.ino
+(use-package arduino-mode)
 
 ;; (use-package pamparam)
 
