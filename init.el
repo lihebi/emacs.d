@@ -47,6 +47,9 @@
     (global-linum-mode)
   (global-display-line-numbers-mode t))
 
+;; Info-default-directory-list
+(setq Info-additional-directory-list '("/home/hebi/.guix-profile/share/info/"))
+
 (column-number-mode t)
 (load "~/.emacs.d/use-pkg.el")
 (load "~/.emacs.d/org-conf.el")
