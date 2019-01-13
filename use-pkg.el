@@ -20,11 +20,9 @@
 
 
 (use-package bison-mode
-  :defer t
-  )
+  :defer t)
 (use-package cmake-mode
-  :defer t
-  )
+  :defer t)
 (use-package dockerfile-mode
   :defer t)
 
@@ -42,21 +40,15 @@
             "UPDATE"
             "CONFIRM"
             "TRICK" "HACK"
-            "DOING"
-            )
-          )
-    )
+            "DOING")))
   :config
   (progn
     (add-hook 'prog-mode-hook 'fic-mode)
     (add-hook 'latex-mode-hook 'fic-mode)
-    (add-hook 'markdown-mode-hook 'fic-mode)
-    )
-  )
+    (add-hook 'markdown-mode-hook 'fic-mode)))
 
 (use-package go-mode
-  :defer t
-  )
+  :defer t)
 (use-package gradle-mode)
 (use-package groovy-mode)
 (use-package yaml-mode)
@@ -85,8 +77,7 @@
   (setq inferior-lisp-program "/usr/bin/sbcl")
   (setq slime-contribs '(slime-fancy))
   (use-package slime-company)
-  (slime-setup '(slime-fancy slime-company))
-  )
+  (slime-setup '(slime-fancy slime-company)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; libs
@@ -102,8 +93,7 @@
   :disabled t
   ;; cycle through CamelCase and under_line
   :bind
-  ("C-c m" . string-inflection-cycle)
-  )
+  ("C-c m" . string-inflection-cycle))
 
 (use-package visual-regexp
   ;; use
@@ -166,29 +156,25 @@
 ;; not sure if these wierd binding is what I want
 (use-package expand-region
   :bind
-  (
-   ("s-e" . er/expand-region))
-  )
+  (("s-e" . er/expand-region)))
 (use-package windmove
   :defer t
   :bind
   (("<f2> <right>" . windmove-right)
    ("<f2> <left>" . windmove-left)
    ("<f2> <up>" . windmove-up)
-   ("<f2> <down>" . windmove-down)
-   ))
+   ("<f2> <down>" . windmove-down)))
 (use-package smex
   ;; use ido in M-x
   :defer t
   :bind
   (("M-x" . smex)
    ("M-X" . smex-major-mode-commands)
-   ("C-c C-c M-x" . execute-extended-command) ; my old M-x
-   )
+   ; my old M-x
+   ("C-c C-c M-x" . execute-extended-command))
   :init
   (progn
-    (smex-initialize))
-  )
+    (smex-initialize)))
 ;; These two packages are used in fuzzy complete
 (use-package fuzzy)
 (use-package flx)
