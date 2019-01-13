@@ -12,10 +12,15 @@
 
 (defun hebi-add-keyword ()
   "Add keyword for current buffer."
+  ;; ((HEBI: hello) world)
+  ;; multiline (HEBI: sfd)
+  ;; jdfsi )
+  ;; TODO multiple lines
   (font-lock-add-keywords
    nil
-   '(("(HEBI: .*)" 0 'my-face prepend)
-     )))
+   '(("(HEBI: [^)]*)" 0 'my-face prepend))))
+
+
 
 (add-hook 'prog-mode-hook 'hebi-add-keyword)
 (add-hook 'latex-mode-hook 'hebi-add-keyword)
