@@ -358,7 +358,16 @@ to rescan the bib files and update pdf and notes notation."
   ;; must be evaluated AFTER org package, because I'm overwriting
   ;; doi-utils-get-bibtex-entry-pdf function
   (defun doi-utils-get-bibtex-entry-pdf ()
-    (smart-scholar-bibtex-download-pdf-at-point)))
+    (smart-scholar-bibtex-download-pdf-at-point))
+  ;; Stay the same position after project publishing. The original
+  ;; code uses save-window-excursion, and jumps to top eveytime.
+  (defun my-org-project-advice (orig-fun &rest args)
+    (save-excursion
+      (apply orig-fun args)))
+  (advice-add 'org-publish-current-file
+              :around #'my-org-project-advice)
+  (advice-add 'org-publish-current-project
+              :around #'my-org-project-advice))
 
 (provide 'org-conf)
 ;;; org-conf.el ends here
