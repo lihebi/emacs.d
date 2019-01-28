@@ -311,6 +311,10 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; python
+;; currently 7.2.0 ipython is not working, see:
+;; https://github.com/jorgenschaefer/elpy/issues/1517 and
+;; https://github.com/ipython/ipython/issues/11541
+;; So downgrade to 7.1.1: pip3 install ipython==7.1.1
 (use-package elpy
   ;; C-c C-z (elpy-shell-switch-to-shell)
   ;; C-c C-c (elpy-shell-send-region-or-buffer)
@@ -318,7 +322,6 @@
   ;; C-M-x (python-shell-send-defun)
   ;; C-c C-k (elpy-shell-kill)
   ;; C-c C-K (elpy-shell-kill-all)
-  ;; very slow on startup
   :init
   (defvar python-shell-interpreter)
   (defvar python-shell-interpreter-args)

@@ -56,47 +56,47 @@
         score 0 level 0)
  "aerodynamic"
  (trans "空气动力学的" note nil date
-        (23611 49782 284337 812000)
+        (23623 51875 159753 229000)
         score 0 level 0)
  "alight"
  (trans "落" note nil date
-        (23611 49817 128420 602000)
+        (23623 51869 687646 118000)
         score 0 level 0)
  "sporadically"
  (trans "偶尔" note nil date
-        (23611 51166 181849 312000)
+        (23623 51890 835516 66000)
         score 0 level 0)
  "breeze"
  (trans "微风" note nil date
-        (23611 51492 545920 751000)
+        (23623 51880 104383 719000)
         score 0 level 0)
  "insulator"
  (trans "绝缘子" note nil date
-        (23611 51933 944206 185000)
-        score 0 level 0)
+        (23623 51883 631256 244000)
+        score 2 level 1)
  "triboelectric"
  (trans "摩擦" note nil date
-        (23611 51956 855497 718000)
+        (23623 51896 801750 750000)
         score 0 level 0)
  "surmise"
  (trans "推测" note nil date
-        (23611 52012 108986 533000)
+        (23627 27308 566800 71000)
         score 0 level 0)
  "arena"
  (trans "竞技场" note nil date
-        (23611 52068 734781 268000)
+        (23627 27313 683829 48000)
         score 0 level 0)
  "misty"
  (trans "蒙蒙" note nil date
-        (23611 52093 787683 989000)
-        score 0 level 0)
+        (23627 27320 479766 257000)
+        score 2 level 1)
  "strand"
  (trans "缕" note nil date
-        (23611 52764 471619 282000)
+        (23627 27325 859746 70000)
         score 0 level 0)
  "centrifugal"
  (trans "离心" note nil date
-        (23611 52811 269897 451000)
+        (23627 27333 567912 550000)
         score 0 level 0)
  "butler"
  (trans "男管家" note nil date
@@ -128,7 +128,7 @@
         score 2 level 1)
  "dismal"
  (trans "惨淡" note nil date
-        (23616 535 295351 405000)
+        (23627 30309 21606 5000)
         score 0 level 0)
  "nibble"
  (trans "蚕食" note nil date
@@ -173,4 +173,164 @@
  "hark"
  (trans "重提" note nil date
         (23623 50428 100411 294000)
+        score 0 level 0)
+ "hairy"
+ (trans "毛茸茸" note nil date
+        (23623 51848 176401 405000)
+        score 0 level 0)
+ "prospect"
+ (trans "展望" note nil date
+        (23623 51856 488437 588000)
+        score 0 level 0)
+ "veritable"
+ (trans "名副其实" note nil date
+        (23623 51929 542256 498000)
+        score 0 level 0)
+ "parlance"
+ (trans "说法" note nil date
+        (23623 51958 356788 506000)
+        score 0 level 0)
+ "cascade"
+ (trans "级联" note nil date
+        (23623 54999 596760 503000)
+        score 0 level 0)
+ "carnival"
+ (trans "狂欢" note nil date
+        (23624 39040 575207 313000)
+        score 0 level 0)
+ "reciprocal"
+ (trans "倒数" note nil date
+        (23624 43623 226315 979000)
+        score 0 level 0)
+ "geyser"
+ (trans "喷泉" note nil date
+        (23624 55968 420905 44000)
+        score 0 level 0)
+ "clump"
+ (trans "丛" note nil date
+        (23624 56017 857801 523000)
+        score 0 level 0)
+ "rummage"
+ (trans "临检" note nil date
+        (23624 58601 221193 299000)
+        score 0 level 0)
+ "misnomer"
+ (trans "用词不当" note nil date
+        (23624 60908 196430 436000)
+        score 0 level 0)
+ "comprise"
+ (trans "包括" note nil date
+        (23624 65371 196939 544000)
+        score 0 level 0)
+ "lucrative"
+ (trans "有利可图" note nil date
+        (23625 2309 119347 281000)
+        score 0 level 0)
+ "clamp"
+ (trans "钳" note nil date
+        (23626 990 46818 896000)
+        score 0 level 0)
+ "supposition"
+ (trans "假想" note nil date
+        (23626 5717 48063 722000)
+        score 0 level 0)
+ "superposition"
+ (trans "叠加" note nil date
+        (23626 5721 979521 149000)
+        score 0 level 0)
+ "redemption"
+ (trans "赎回" note nil date
+        (23626 8027 859847 292000)
+        score 0 level 0)
+ "hurtle"
+ (trans "呼啸而过" note nil date
+        (23626 8077 582928 85000)
+        score 0 level 0)
+ "disparity"
+ (trans "差距" note nil date
+        (23626 8342 639697 805000)
+        score 0 level 0)
+ "harsh"
+ (trans "苛刻" note nil date
+        (23626 8359 247497 463000)
+        score 0 level 0)
+ "fatigue"
+ (trans "疲劳" note nil date
+        (23626 8385 885026 367000)
+        score 0 level 0)
+ "tribute"
+ (trans "贡" note nil date
+        (23627 26205 852855 635000)
+        score 0 level 0)
+ "consensus"
+ (trans "共识" note nil date
+        (23627 27302 910810 297000)
+        score 0 level 0)
+ "curate"
+ (trans "策划" note nil date
+        (23627 27621 412728 342000)
+        score 0 level 0)
+ "evangelize"
+ (trans "传福音" note nil date
+        (23627 27647 92215 564000)
+        score 0 level 0)
+ "undermine"
+ (trans "破坏" note nil date
+        (23627 28275 996387 708000)
+        score 0 level 0)
+ "underline"
+ (trans "强调" note nil date
+        (23627 28282 110481 714000)
+        score 0 level 0)
+ "endeavour"
+ (trans "努力" note nil date
+        (23627 28779 323667 410000)
+        score 0 level 0)
+ "strain"
+ (trans "劳损" note nil date
+        (23627 28942 15937 885000)
+        score 0 level 0)
+ "disclose"
+ (trans "透露" note nil date
+        (23627 28997 420946 505000)
+        score 0 level 0)
+ "shred"
+ (trans "切碎" note nil date
+        (23627 29141 960425 500000)
+        score 0 level 0)
+ "grassroot"
+ (trans "基层" note nil date
+        (23627 29315 39446 571000)
+        score 0 level 0)
+ "atop"
+ (trans "在顶上" note nil date
+        (23627 29662 74417 800000)
+        score 0 level 0)
+ "aversion"
+ (trans "厌恶" note nil date
+        (23627 29692 629065 15000)
+        score 0 level 0)
+ "ritual"
+ (trans "仪式" note nil date
+        (23627 29762 849731 591000)
+        score 0 level 0)
+ "insular"
+ (trans "岛" note nil date
+        (23627 30149 601848 669000)
+        score 0 level 0)
+ "poach"
+ (trans "偷猎" note nil date
+        (23627 30624 675881 291000)
+        score 0 level 0)
+ "underway"
+ (trans "进行" note nil date
+        (23627 39289 66216 11000)
+        score 0 level 0)
+ "assay"
+ (trans "化验" note nil date
+        (23630 5593 15923 609000)
+        score 0 level 0)
+ "affiliate"
+ (trans "子公司" note nil date
+        (23630 12044 974614 681000)
         score 0 level 0))
