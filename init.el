@@ -62,6 +62,7 @@ manually load it."
   (load "~/.emacs.d/org-conf.el"))
 
 (load "~/.emacs.d/hebi.el")
+(load "~/.emacs.d/lookup.el")
 
 (setq default-frame-alist '((font . "Source Code Pro-12")))
 ;; (set-face-attribute 'default nil :font "Source Code Pro-12")
