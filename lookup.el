@@ -46,6 +46,7 @@
       (next-line))))
 
 ;; https://github.com/mozillazg/pinyin-data
+;; TODO clone this repo
 ;; using kMandarin_8105.txt as it is the most common ones
 ;; support only one tone for now
 
