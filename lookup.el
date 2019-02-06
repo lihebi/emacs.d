@@ -3,23 +3,25 @@
 
 ;; read pinyin file pychr.txt, build table
 
-(defvar word-to-py
+(defvar *word-to-py*
   (make-hash-table :test 'equal))
-;; (setq word-to-py
+;; (setq *word-to-py*
 ;;       (make-hash-table :test 'equal))
 
-;; (hash-table-size word-to-py)
+;; (hash-table-size *word-to-py*)
 
 (defun add-word (word py)
   (puthash
    word
    ;; assume no duplicate
-   (cons py (gethash word word-to-py))
+   (cons py (gethash word *word-to-py*))
    ;; py
-   word-to-py))
+   *word-to-py*))
 
 (defun query-word (word)
-  (gethash word word-to-py))
+  (gethash word *word-to-py*))
+
+;; (hash-table-size *word-to-py*)
 
 ;; (add-word "别" "bie")
 ;; (add-word "宾" "bin")
@@ -48,8 +50,10 @@
 ;; support only one tone for now
 
 (defun read-dict-8105 ()
+  (message "Reading dict ..")
   (with-temp-buffer
-    (insert-file-contents "pinyin-data/kMandarin_8105.txt")
+    (insert-file-contents
+     (locate-user-emacs-file "pinyin-data/kMandarin_8105.txt"))
     (while (not (= (point) (point-max)))
       (let ((line (thing-at-point 'line t)))
         (when (not (string-prefix-p "#" line))
@@ -59,20 +63,28 @@
             ;; (prin1 word)
             ;; (prin1 py)
             (add-word word py))))
-      (next-line))))
+      (next-line)))
+  (message (format "Done. Read %s words." (hash-table-size *word-to-py*))))
+;; (read-dict-8105)
 
-(defun hebi-word-to-py ()
-  (interactive)
-  (when (hash-table-empty-p word-to-py)
+(defun hebi-word-to-py (arg)
+  (interactive "P")
+  (when (hash-table-empty-p *word-to-py*)
     ;; (read-dict-pychr)
     (read-dict-8105))
-  (prin1 (query-word (char-to-string
-                      (char-before (point))))))
+  (let ((res (query-word (char-to-string
+                          (char-before (point))))))
+    (if arg
+        (insert (format "%s" res))
+      (message (format "%s" res)))))
 
 (global-set-key (kbd "C-c h p") 'hebi-word-to-py)
 
 ;; !!!!
 (string-to-char "且")
 (char-to-string #x4e14)
+;; (query-word "言")
 
 ;; (query-word "且")
+;; (query-word "五")
+
