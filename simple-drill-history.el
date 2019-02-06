@@ -333,4 +333,40 @@
  "affiliate"
  (trans "子公司" note nil date
         (23630 12044 974614 681000)
+        score 0 level 0)
+ "shunt"
+ (trans "分流" note nil date
+        (23640 36598 731714 222000)
+        score 0 level 0)
+ "alleviate"
+ (trans "缓和" note nil date
+        (23640 36675 627198 494000)
+        score 0 level 0)
+ "bushing"
+ (trans "衬套" note nil date
+        (23640 58581 85633 580000)
+        score 0 level 0)
+ "scrutinize"
+ (trans "细察" note nil date
+        (23640 58613 621555 198000)
+        score 0 level 0)
+ "crook"
+ (trans "弯曲" note nil date
+        (23640 58637 574184 423000)
+        score 0 level 0)
+ "pushrod"
+ (trans "推杆" note nil date
+        (23640 58787 836838 104000)
+        score 0 level 0)
+ "formidable"
+ (trans "强大" note nil date
+        (23641 64239 894065 819000)
+        score 0 level 0)
+ "archaeological"
+ (trans "考古学的" note nil date
+        (23642 4118 567569 966000)
+        score 0 level 0)
+ "per se"
+ (trans "by or in itself" note nil date
+        (23642 32458 205964 387000)
         score 0 level 0))
