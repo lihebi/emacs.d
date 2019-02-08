@@ -74,7 +74,7 @@
 (use-package slime
   :defer t
   :config
-  (setq inferior-lisp-program "/usr/bin/sbcl")
+  (setq inferior-lisp-program "sbcl")
   (setq slime-contribs '(slime-fancy))
   (use-package slime-company)
   (slime-setup '(slime-fancy slime-company)))
