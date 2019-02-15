@@ -58,7 +58,7 @@
   ;; must load this first
   (use-package color-theme)
   :config
-  (defun hebi-dark()
+  (defun hebi-dark ()
     (interactive)
     (set-frame-parameter nil 'background-mode 'dark)
     (set-terminal-parameter nil 'background-mode 'dark)
@@ -91,6 +91,7 @@
 
 
 ;; (use-package zenburn-theme)
+;; (use-package monokai-theme)
 
 ;; (load-theme 'adwaita)
 ;; (load-theme 'deeper-blue)
