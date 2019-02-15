@@ -369,4 +369,12 @@
  "per se"
  (trans "by or in itself" note nil date
         (23642 32458 205964 387000)
+        score 0 level 0)
+ "parachute"
+ (trans "降落伞" note nil date
+        (23650 18618 633991 617000)
+        score 0 level 0)
+ "forge"
+ (trans "锻造" note nil date
+        (23650 18789 300164 414000)
         score 0 level 0))
