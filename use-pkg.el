@@ -185,7 +185,10 @@
 
 (use-package dired-k
   ;; k (https://github.com/rimraf/k) is a ls alternative to show git status
-  ;; dired-k is run in teh hook of dired, or as revert-buffer, so that when dired, it will load dired-k to show some fancy staff
+  ;;
+  ;; dired-k is run in teh hook of dired, or as revert-buffer, so that
+  ;; when dired, it will load dired-k to show some fancy staff
+  ;; :disabled
   :config
   ;; You can use dired-k alternative to revert-buffer
   (define-key dired-mode-map (kbd "g") 'dired-k)
@@ -263,6 +266,7 @@
     (exec-path-from-shell-copy-env "LD_LIBRARY_PATH")
     (exec-path-from-shell-copy-env "LIBRARY_PATH")
     (exec-path-from-shell-copy-env "CPATH")
+    (exec-path-from-shell-copy-env "CLASSPATH")
     (exec-path-from-shell-copy-env "ACLOCAL_PATH")
     (exec-path-from-shell-copy-env "PKG_CONFIG_PATH")
     (exec-path-from-shell-copy-env "CMAKE_PREFIX_PATH")
@@ -718,6 +722,18 @@ You need to kill the current *Python* buffer to take effect."
 (use-package markdown-mode)
 
 
+;; To make the citation works:
+;;
+;; 1. in orgmode, run hebi-gen-bib. This will insert bib file links at
+;; the end of the org file.
+;;
+;; 2. In latex file, C-c TAB (translated from C-c <tab>) runs the
+;; command tex-bibtex-file (found in latex-mode-map).  This is defined
+;; in tex-mode instead of auctex.
+;;
+;; Of course you need to run pdflatex or org-latex-export-to-pdf again
+
+;; (use-package ebib)
 (use-package tex
   :straight auctex
   :defer t
