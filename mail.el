@@ -35,15 +35,15 @@
 (setq message-sendmail-extra-arguments '("--read-envelope-from"))
 (setq gnus-posting-styles
       '((".*"
-         (signature "Hebi")
+         ;; (signature "Hebi")
          (address "lihebi.com@gmail.com")
          (name "Hebi Li"))
         (".*cymail.*"
-         (address "hebi@iastate.edu")
-         (signature "Hebi"))
+         ;; (signature "Hebi")
+         (address "hebi@iastate.edu"))
         (".*lihebicom.*"
-         (address "lihebi.com@gmail.com")
-         (signature "Hebi"))))
+         ;; (signature "Hebi")
+         (address "lihebi.com@gmail.com"))))
 (setq message-citation-line-function 'message-insert-formatted-citation-line)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
