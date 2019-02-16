@@ -221,6 +221,9 @@
   (setq org-yank-folded-subtrees nil)
   ;; the forbidden, by default, is ,'", but I want all of them actually. By the way why these are forbidden?
   (setcar (nthcdr 2 org-emphasis-regexp-components) " \t\r\n")
+  ;; How many newlines allowed inside a marking, defaults to 1
+  (setcar (nthcdr 4 org-emphasis-regexp-components) 8)
+  ;; Need to evalute this after setting the above
   (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
   ;; original value is t
   ;; (setq org-adapt-indentation t)
