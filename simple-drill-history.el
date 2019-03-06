@@ -80,11 +80,11 @@
         score 0 level 0)
  "surmise"
  (trans "推测" note nil date
-        (23627 27308 566800 71000)
+        (23661 57829 444445 318000)
         score 0 level 0)
  "arena"
  (trans "竞技场" note nil date
-        (23627 27313 683829 48000)
+        (23661 57835 333352 803000)
         score 0 level 0)
  "misty"
  (trans "蒙蒙" note nil date
@@ -240,23 +240,23 @@
         score 0 level 0)
  "redemption"
  (trans "赎回" note nil date
-        (23626 8027 859847 292000)
+        (23661 57806 559678 925000)
         score 0 level 0)
  "hurtle"
  (trans "呼啸而过" note nil date
-        (23626 8077 582928 85000)
+        (23661 57812 54347 887000)
         score 0 level 0)
  "disparity"
  (trans "差距" note nil date
-        (23626 8342 639697 805000)
+        (23661 57816 382379 209000)
         score 0 level 0)
  "harsh"
  (trans "苛刻" note nil date
-        (23626 8359 247497 463000)
-        score 0 level 0)
+        (23661 57820 263489 218000)
+        score 1 level 0)
  "fatigue"
  (trans "疲劳" note nil date
-        (23626 8385 885026 367000)
+        (23661 57824 468483 425000)
         score 0 level 0)
  "tribute"
  (trans "贡" note nil date
@@ -432,7 +432,7 @@
         score 0 level 0)
  "footage"
  (trans "镜头" note nil date
-        (23660 53640 112974 689000)
+        (23670 54803 72671 644000)
         score 0 level 0)
  "schizophrenia"
  (trans "精神分裂症" note nil date
@@ -445,4 +445,52 @@
  "missile"
  (trans "导弹" note nil date
         (23661 49055 435485 146000)
+        score 0 level 0)
+ "fecundity"
+ (trans "肥沃" note nil date
+        (23661 57799 278102 198000)
+        score 0 level 0)
+ "accommodation"
+ (trans "住所" note nil date
+        (23662 57165 17213 278000)
+        score 0 level 0)
+ "furnace"
+ (trans "炉" note nil date
+        (23662 58087 516385 104000)
+        score 0 level 0)
+ "Portugal"
+ (trans "葡萄牙" note nil date
+        (23662 58689 627650 6000)
+        score 0 level 0)
+ "wick"
+ (trans "灯芯" note nil date
+        (23663 192 714330 802000)
+        score 0 level 0)
+ "proctor"
+ (trans "监考" note nil date
+        (23663 8220 126094 19000)
+        score 0 level 0)
+ "hefty"
+ (trans "沉重" note nil date
+        (23663 27345 574007 760000)
+        score 0 level 0)
+ "lest"
+ (trans "免得" note nil date
+        (23670 54473 303885 219000)
+        score 0 level 0)
+ "boggle"
+ (trans "惊奇" note nil date
+        (23670 55895 173029 99000)
+        score 0 level 0)
+ "indifferent"
+ (trans "冷漠" note nil date
+        (23670 62776 271028 549000)
+        score 0 level 0)
+ "spoof"
+ (trans "欺骗" note nil date
+        (23680 6981 430205 374000)
+        score 0 level 0)
+ "arcane"
+ (trans "神秘" note nil date
+        (23680 8258 106457 684000)
         score 0 level 0))
