@@ -92,12 +92,12 @@
         score 2 level 1)
  "strand"
  (trans "缕" note nil date
-        (23627 27325 859746 70000)
+        (23681 18654 244376 161000)
         score 0 level 0)
  "centrifugal"
  (trans "离心" note nil date
-        (23627 27333 567912 550000)
-        score 0 level 0)
+        (23681 18659 770231 302000)
+        score 1 level 0)
  "butler"
  (trans "男管家" note nil date
         (23655 2791 78092 500000)
@@ -128,7 +128,7 @@
         score 2 level 2)
  "dismal"
  (trans "惨淡" note nil date
-        (23627 30309 21606 5000)
+        (23681 18664 62253 909000)
         score 0 level 0)
  "nibble"
  (trans "蚕食" note nil date
@@ -260,52 +260,52 @@
         score 0 level 0)
  "tribute"
  (trans "贡" note nil date
-        (23627 26205 852855 635000)
+        (23681 18674 795944 414000)
         score 0 level 0)
  "consensus"
  (trans "共识" note nil date
-        (23627 27302 910810 297000)
-        score 0 level 0)
+        (23681 18677 461087 277000)
+        score 2 level 1)
  "curate"
  (trans "策划" note nil date
-        (23627 27621 412728 342000)
+        (23681 18682 686941 61000)
         score 0 level 0)
  "evangelize"
  (trans "传福音" note nil date
-        (23627 27647 92215 564000)
+        (23681 18689 219684 208000)
         score 0 level 0)
  "undermine"
  (trans "破坏" note nil date
-        (23627 28275 996387 708000)
+        (23681 18695 125736 391000)
         score 0 level 0)
  "underline"
  (trans "强调" note nil date
-        (23627 28282 110481 714000)
-        score 0 level 0)
+        (23681 18699 567710 763000)
+        score 1 level 0)
  "endeavour"
  (trans "努力" note nil date
-        (23627 28779 323667 410000)
+        (23681 18715 944534 90000)
         score 0 level 0)
  "strain"
  (trans "劳损" note nil date
-        (23627 28942 15937 885000)
+        (23681 18726 572101 894000)
         score 0 level 0)
  "disclose"
  (trans "透露" note nil date
-        (23627 28997 420946 505000)
-        score 0 level 0)
+        (23681 18733 735207 782000)
+        score 2 level 1)
  "shred"
  (trans "切碎" note nil date
-        (23627 29141 960425 500000)
+        (23681 18740 341931 604000)
         score 0 level 0)
  "grassroot"
  (trans "基层" note nil date
-        (23627 29315 39446 571000)
+        (23681 18748 729926 380000)
         score 0 level 0)
  "atop"
  (trans "在顶上" note nil date
-        (23627 29662 74417 800000)
-        score 0 level 0)
+        (23681 18753 334790 741000)
+        score 2 level 1)
  "aversion"
  (trans "厌恶" note nil date
         (23627 29692 629065 15000)
@@ -493,4 +493,8 @@
  "arcane"
  (trans "神秘" note nil date
         (23680 8258 106457 684000)
+        score 0 level 0)
+ "detain"
+ (trans "拘留" note nil date
+        (23681 18644 623785 948000)
         score 0 level 0))
