@@ -868,13 +868,16 @@ You need to kill the current *Python* buffer to take effect."
                 :repo "lihebi/hn.el")
   :config
   (setq hn-hl-users '("okanesen" "wilsonfiifi"))
+  (setq hn-tags '("pl" "os" "hardware" "ai"))
   (setq hn-hl-keywords '("lisp" "racket"
                          "emacs" "linux"
                          "Show HN"
                          "\\bML\\b" "\\bAI\\b" "Machine Learning" "Artificial Intelligence" "Deep Learning"
                          "Tensorflow"
                          "postmarketOS"))
-  (setq hn-fields '(star score time comment user title)))
+  (setq hn-fields
+        ;; '(star score time comment user title)
+        '(star score comment tag title)))
 
 ;; C-c C-c runs the command arduino-upload
 ;; It runs arduino --upload xxx.ino
