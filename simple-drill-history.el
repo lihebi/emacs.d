@@ -1,7 +1,7 @@
 ("pretty"
  (trans "漂亮" note nil date
-        (23611 48488 731125 454000)
-        score 2 level 4)
+        (23689 28080 869793 160000)
+        score 2 level 5)
  "old"
  (trans "旧" note nil date
         (23656 52187 766941 170000)
@@ -88,8 +88,8 @@
         score 0 level 0)
  "misty"
  (trans "蒙蒙" note nil date
-        (23627 27320 479766 257000)
-        score 2 level 1)
+        (23689 28068 357105 72000)
+        score 1 level 1)
  "strand"
  (trans "缕" note nil date
         (23681 18654 244376 161000)
@@ -308,32 +308,32 @@
         score 2 level 1)
  "aversion"
  (trans "厌恶" note nil date
-        (23627 29692 629065 15000)
+        (23689 28046 170361 779000)
         score 0 level 0)
  "ritual"
  (trans "仪式" note nil date
-        (23627 29762 849731 591000)
+        (23689 28054 239023 167000)
         score 0 level 0)
  "insular"
  (trans "岛" note nil date
-        (23627 30149 601848 669000)
+        (23689 28057 915186 967000)
         score 0 level 0)
  "poach"
  (trans "偷猎" note nil date
-        (23627 30624 675881 291000)
+        (23689 28061 925896 921000)
         score 0 level 0)
  "underway"
  (trans "进行" note nil date
-        (23627 39289 66216 11000)
+        (23689 28065 209938 682000)
         score 0 level 0)
  "assay"
  (trans "化验" note nil date
-        (23630 5593 15923 609000)
+        (23689 28072 551853 456000)
         score 0 level 0)
  "affiliate"
  (trans "子公司" note nil date
-        (23630 12044 974614 681000)
-        score 0 level 0)
+        (23689 28076 481924 352000)
+        score 1 level 0)
  "shunt"
  (trans "分流" note nil date
         (23640 36598 731714 222000)
@@ -497,4 +497,8 @@
  "detain"
  (trans "拘留" note nil date
         (23681 18644 623785 948000)
+        score 0 level 0)
+ "rant"
+ (trans "胡言乱语" note nil date
+        (23689 28041 510624 560000)
         score 0 level 0))
