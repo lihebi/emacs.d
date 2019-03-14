@@ -10,19 +10,26 @@
 
 (defvar my-face 'my-face)
 
-(defun hebi-add-keyword ()
-  "Add keyword for current buffer."
+
+(defun hebi-add-keyword-to-mode (mode)
   ;; ((HEBI: hello) world)
   ;; multiline (HEBI: sfd)
   ;; jdfsi )
   ;; TODO multiple lines
   (font-lock-add-keywords
-   nil
+   mode
    '(("(HEBI: [^)]*)" 0 'my-face prepend))))
 
+(hebi-add-keyword-to-mode 'fundamental-mode)
+(hebi-add-keyword-to-mode 'prog-mode)
 
+(defun hebi-add-keyword ()
+  (interactive)
+  "Add keyword for current buffer. Use in the hook of a mode."
+  (hebi-add-keyword-to-mode nil))
 
 (add-hook 'prog-mode-hook 'hebi-add-keyword)
+(add-hook 'text-mode-hook 'hebi-add-keyword)
 (add-hook 'latex-mode-hook 'hebi-add-keyword)
 (add-hook 'markdown-mode-hook 'hebi-add-keyword)
 ;; R mode is not a prog-mode ..
