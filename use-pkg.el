@@ -868,7 +868,7 @@ You need to kill the current *Python* buffer to take effect."
                 :repo "lihebi/hn.el")
   :config
   (setq hn-hl-users '("okanesen" "wilsonfiifi"))
-  (setq hn-tags '("pl" "os" "hardware" "ai"))
+  (setq hn-tags '("pl" "os" "hw" "ai"))
   (setq hn-hl-keywords '("lisp" "racket"
                          "emacs" "linux"
                          "Show HN"

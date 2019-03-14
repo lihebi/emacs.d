@@ -92,6 +92,8 @@
 
 ;; (use-package zenburn-theme)
 ;; (use-package monokai-theme)
+;; (disable-theme 'monokai)
+;; (load-theme 'monokai)
 
 ;; (load-theme 'adwaita)
 ;; (load-theme 'deeper-blue)
