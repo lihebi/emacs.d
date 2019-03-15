@@ -530,7 +530,7 @@ You need to kill the current *Python* buffer to take effect."
   ;; (use-package rich-minority)
   :config
   (setq sml/no-confirm-load-theme t) ; do not warn me for loading a theme
-  (setq sml/theme 'light)
+  (setq sml/theme 'respectful)
   (sml/setup)
   (setq sml/name-width 15)
   ;; highlight God-mode in minor mode
@@ -607,6 +607,12 @@ You need to kill the current *Python* buffer to take effect."
             (lambda ()
               (define-key racket-mode-map (kbd "C-c r") 'racket-run)))
   ;; (setq tab-always-indent 'complete)
+  ;;
+  ;; geiser does not need that, it has a dedicated function "C-c C-\"
+  ;; to insert lambda
+  ;;
+  ;; (add-hook 'scheme-mode-hook #'racket-unicode-input-method-enable)
+  ;;
   ;; use C-\ to toggle the input method
   (add-hook 'racket-mode-hook      #'racket-unicode-input-method-enable)
   (add-hook 'racket-repl-mode-hook #'racket-unicode-input-method-enable))
@@ -884,6 +890,23 @@ You need to kill the current *Python* buffer to take effect."
 (use-package arduino-mode)
 
 ;; (use-package pamparam)
+
+(use-package monokai-theme
+  :disabled
+  :config
+  :init
+  (load-theme 'monokai t)
+  (enable-theme 'monokai))
+(use-package zenburn-theme
+  :disabled)
+
+(use-package color-theme-sanityinc-tomorrow
+  :config
+  ;; (color-theme-sanityinc-tomorrow-night)
+  ;; (color-theme-sanityinc-tomorrow-day)
+  ;; (color-theme-sanityinc-tomorrow-blue)
+  ;; (color-theme-sanityinc-tomorrow-eighties)
+  (load-theme 'sanityinc-tomorrow-bright t))
 
 
 ;;; packages.el ends here
