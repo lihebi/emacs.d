@@ -259,6 +259,11 @@
 (use-package exec-path-from-shell
   ;; when start emacs from desktop env instead of shell, the PATH is aweful.
   ;; :if window-system
+  ;;
+  ;; I'm disabling it, as it is mostly useful on Mac. On Linux, I can
+  ;; now use gdm to load .bash_profile, all applications started from
+  ;; there should automatically get those variables
+  :disabled
   :config
   (progn
     (exec-path-from-shell-initialize) ;; by default only load $PATH $MANPATH
@@ -274,6 +279,7 @@
     (exec-path-from-shell-copy-env "C_INCLUDE_PATH")
     (exec-path-from-shell-copy-env "CPLUS_INCLUDE_PATH")
     (exec-path-from-shell-copy-env "GUIX_LOCPATH")
+    (exec-path-from-shell-copy-env "GUIX_PACKAGE_PATH")
     (message "%s: %s" "exec-path-from-shell post config" (getenv "PATH"))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
