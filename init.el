@@ -263,6 +263,7 @@ manually load it."
 ;; (setq-default save-place t)
 ;; 25 setup
 (save-place-mode 1)
+(setq browse-url-browser-function 'browse-url-chromium)
 (set-mouse-color "red")
 
 ;; auto refresh buffers when file changes
