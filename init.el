@@ -51,16 +51,11 @@
 (setq Info-additional-directory-list '("/home/hebi/.guix-profile/share/info/"))
 
 (column-number-mode t)
+
 (load "~/.emacs.d/use-pkg.el")
 (load "~/.emacs.d/org-conf.el")
+
 (load "~/.emacs.d/mail.el")
-
-(defun hebi-reload-org ()
-  "My org config seems not being loaded correctly, I have to
-manually load it."
-  (interactive)
-  (load "~/.emacs.d/org-conf.el"))
-
 (load "~/.emacs.d/hebi.el")
 (load "~/.emacs.d/lookup.el")
 
