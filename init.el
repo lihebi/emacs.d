@@ -71,6 +71,7 @@ manually load it."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configuration
 
+(setq browse-url-browser-function 'browse-url-chromium)
 (setq mouse-yank-at-point t)
 
 ;; if I just use the font name, the size should be read from Xresources
@@ -106,11 +107,6 @@ manually load it."
 
 (global-hl-line-mode)
 
-;; (setq browse-url-browser-function
-;;       'browse-url-default-browser
-;;       ;; 'browse-url-conkeror
-;;       )
-
 (when (not window-system)
   (menu-bar-mode -1))
 (menu-bar-mode -1)
@@ -127,32 +123,6 @@ manually load it."
 ;; (set-frame-parameter (selected-frame) 'alpha '(<active> [<inactive>]))
 ;; (set-frame-parameter (selected-frame) 'alpha '(90 90))
 ;; (add-to-list 'default-frame-alist '(alpha 90 90))
-
-;; dired-x omiting
-
-;; (add-hook 'dired-load-hook
-;;           (lambda ()
-;;             (load "dired-x")
-;;             ;; Set dired-x global variables here.  For example:
-;;             ;; (setq dired-guess-shell-gnutar "gtar")
-;;             ;; (setq dired-x-hands-off-my-keys nil)
-;;             ))
-;; (add-hook 'dired-mode-hook
-;;           (lambda ()
-;;             ;; Set dired-x buffer-local variables here.  For example:
-;;             (dired-omit-mode 1)
-;;             ))
-
-
-
-;; (setq browse-url-browser-function 'browse-url-generic
-;;       browse-url-generic-program
-;;       ;; "conkeror"
-;;       "chromium"
-;;       )
-
-
-
 
 ;; tooltip
 (setq tooltip-delay 0.01)
@@ -263,7 +233,6 @@ manually load it."
 ;; (setq-default save-place t)
 ;; 25 setup
 (save-place-mode 1)
-(setq browse-url-browser-function 'browse-url-chromium)
 (set-mouse-color "red")
 
 ;; auto refresh buffers when file changes
