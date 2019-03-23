@@ -261,6 +261,11 @@
   (setq org-directory "~/github/note/org")
   (setq org-default-notes-file "~/github/note/org/default.org")
 
+  (set-face-attribute 'org-level-1 nil
+                      :height 2.0 :weight 'bold)
+  (set-face-attribute 'org-level-2 nil
+                      :height 1.3 :weight 'bold)
+
   ;; typical command
   ;; 1. org-capture: C-c n
   ;; 2. org-capture-goto-target C-c m
