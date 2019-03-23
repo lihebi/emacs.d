@@ -116,8 +116,10 @@
   (defvar org-html-head)
   (setq org-html-head
         (concat
+         "<link rel=\"stylesheet\" type=\"text/css\" href=\"assets/org.css\" />"
          "<link rel=\"stylesheet\" type=\"text/css\" href=\"assets/hebi.css\" />"
          "<link rel=\"stylesheet\" type=\"text/css\" href=\"assets/test.css\" />"
+         "<link rel=\"stylesheet\" type=\"text/css\" href=\"../assets/org.css\" />"
          "<link rel=\"stylesheet\" type=\"text/css\" href=\"../assets/hebi.css\" />"
          "<link rel=\"stylesheet\" type=\"text/css\" href=\"../assets/test.css\" />"))
   (setq org-html-validation-link nil)
@@ -126,6 +128,21 @@
   (setq org-export-with-date nil)
   ;; (setq org-export-with-toc nil)
   (setq org-export-with-timestamps t)
+
+
+  ;; Define a fixed theme for code blocks of html exports, instead of
+  ;; inline css based on current theme.
+  (setq org-html-htmlize-output-type 'css)
+  ;; use org-html-htmlize-generate-css to generate for the current
+  ;; theme. But this generated theme is not working, e.g. it does not
+  ;; have org-keyword.  I end up using:
+  ;;
+  ;; https://www.reddit.com/r/emacs/comments/47903g/use_a_different_theme_when_publishing_org_files/
+  ;;
+  ;; https://cdn.rawgit.com/kaushalmodi/.emacs.d/master/misc/css/leuven_theme.css
+  ;;
+  ;; This is the default option:
+  ;; (setq org-html-htmlize-font-prefix "org-")
   
   ;; see also: http://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html
   (setq org-publish-project-alist
