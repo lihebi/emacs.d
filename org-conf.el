@@ -335,8 +335,9 @@ to rescan the bib files and update pdf and notes notation."
 
   (let ((bib-pdf-dir
          '("~/github/research/pdf/manual/"
-           "~/github/papers/"
-           "~/github/books/")))
+           ;; "~/github/papers/"
+           ;; "~/github/books/"
+           )))
     (setq org-ref-pdf-directory bib-pdf-dir)
     (setq bibtex-completion-library-path bib-pdf-dir))
   
@@ -358,9 +359,8 @@ to rescan the bib files and update pdf and notes notation."
   :straight (smart-scholar :type git :host github
                            :repo "lihebi/smart-scholar.el")
   :config
-  (setq smart-scholar-html-dir "~/github/smart-scholar-dist/html")
   (setq smart-scholar-pdf-dir "~/github/smart-scholar-pdfs")
-  (setq smart-scholar-bib-dir "~/github/smart-scholar-dist/bib")
+  (setq smart-scholar-bib-dir "~/github/biber-dist")
   (setq smart-scholar-manual-bib-dir "~/github/research/bib/")
   (smart-scholar-load-manual)
   ;; setup initial pdf dirs
