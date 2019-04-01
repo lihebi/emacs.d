@@ -66,6 +66,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configuration
 
+;;keep cursor at same position when scrolling
+;; (setq scroll-preserve-screen-position nil)
+;;scroll window up/down by one line
+(global-set-key (kbd "M-n") (kbd "C-u 1 C-v"))
+(global-set-key (kbd "M-p") (kbd "C-u 1 M-v"))
+
 (setq browse-url-browser-function 'browse-url-chromium)
 (setq mouse-yank-at-point t)
 
