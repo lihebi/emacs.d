@@ -607,6 +607,13 @@ You need to kill the current *Python* buffer to take effect."
   (add-to-list 'emms-player-list 'emms-player-mpd)
   )
 
+;; (use-package geiser
+;;   :disabled t
+;;   :config
+;;   (setq geiser-active-implementations '(racket))
+;;   (setq geiser-mode-smart-tab-p t))
+
+
 (use-package racket-mode
   :config
   (add-hook 'racket-mode-hook
@@ -623,10 +630,6 @@ You need to kill the current *Python* buffer to take effect."
   (add-hook 'racket-mode-hook      #'racket-unicode-input-method-enable)
   (add-hook 'racket-repl-mode-hook #'racket-unicode-input-method-enable))
 
-(use-package geiser
-  :config
-  ;; (setq geiser-active-implementations '(racket))
-  (setq geiser-mode-smart-tab-p t))
 
 (use-package company
   :init
