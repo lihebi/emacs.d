@@ -607,13 +607,13 @@ You need to kill the current *Python* buffer to take effect."
   (add-to-list 'emms-player-list 'emms-player-mpd)
   )
 
-;; (use-package geiser
-;;   :disabled t
-;;   :config
-;;   (setq geiser-active-implementations '(racket))
-;;   (setq geiser-mode-smart-tab-p t))
 
-
+(use-package guix)
+(use-package geiser
+  ;; geiser is not the REPL I want for racket
+  :config
+  (setq geiser-active-implementations '(guile))
+  (setq geiser-mode-smart-tab-p t))
 (use-package racket-mode
   :config
   (add-hook 'racket-mode-hook
@@ -628,7 +628,9 @@ You need to kill the current *Python* buffer to take effect."
   ;;
   ;; use C-\ to toggle the input method
   (add-hook 'racket-mode-hook      #'racket-unicode-input-method-enable)
-  (add-hook 'racket-repl-mode-hook #'racket-unicode-input-method-enable))
+  (add-hook 'racket-repl-mode-hook #'racket-unicode-input-method-enable)
+  ;; reinforce the racket-mode selection. otherwise it is occupied by geiser
+  (add-to-list 'auto-mode-alist '("\\.rkt\\'" . racket-mode)))
 
 
 (use-package company
@@ -826,8 +828,6 @@ You need to kill the current *Python* buffer to take effect."
     (image-set-window-hscroll 11)
     (pdf-view-redisplay t))
   (define-key pdf-view-mode-map (kbd "P") 'pdf-view-fit-paper))
-
-(use-package guix)
 
 
 ;; usage: create ~/.virtualenvs, and run mkvirtualenv (in eshell),
