@@ -152,12 +152,12 @@
         score 1 level 0)
  "mustache"
  (trans "胡子" note nil date
-        (23656 52148 534657 28000)
-        score 0 level 0)
+        (23715 36168 632125 610000)
+        score 1 level 0)
  "triumph"
  (trans "胜利" note nil date
-        (23656 52193 419874 192000)
-        score 2 level 1)
+        (23715 36180 254386 47000)
+        score 2 level 2)
  "shrouded"
  (trans "笼罩" note nil date
         (23660 45764 339180 377000)
@@ -396,11 +396,11 @@
         score 0 level 0)
  "swerve"
  (trans "转弯" note nil date
-        (23656 52106 711461 893000)
+        (23715 36173 842546 648000)
         score 0 level 0)
  "arse"
  (trans "烧" note nil date
-        (23656 62196 704092 142000)
+        (23715 36177 316464 207000)
         score 0 level 0)
  "puffer"
  (trans "河豚" note nil date
@@ -529,4 +529,24 @@
  "thrust"
  (trans "推力" note nil date
         (23711 47764 616241 995000)
+        score 0 level 0)
+ "at odds"
+ (trans "in conflict" note nil date
+        (23714 32345 144498 672000)
+        score 0 level 0)
+ "at variance"
+ (trans "in conflict" note nil date
+        (23714 32350 314408 596000)
+        score 0 level 0)
+ "conundrum"
+ (trans "难题" note nil date
+        (23715 36153 41488 167000)
+        score 0 level 0)
+ "gratis"
+ (trans "免费" note nil date
+        (23715 36321 900372 329000)
+        score 0 level 0)
+ "afoot"
+ (trans "在进行中" note nil date
+        (23715 49922 858150 836000)
         score 0 level 0))
