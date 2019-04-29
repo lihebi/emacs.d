@@ -66,6 +66,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Configuration
 
+;; active buffer gets red mode line
+(custom-set-faces
+ '(mode-line ((t (:background "dark red" :foreground "white"))))
+ '(mode-line-inactive ((t (:background "black")))))
+
+
 ;;keep cursor at same position when scrolling
 ;; (setq scroll-preserve-screen-position nil)
 ;;scroll window up/down by one line
