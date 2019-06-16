@@ -549,4 +549,8 @@
  "afoot"
  (trans "在进行中" note nil date
         (23715 49922 858150 836000)
+        score 0 level 0)
+ "conspiracy"
+ (trans "阴谋" note nil date
+        (23754 27374 949214 450000)
         score 0 level 0))
