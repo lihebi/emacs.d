@@ -889,17 +889,19 @@ You need to kill the current *Python* buffer to take effect."
   :straight (hn :type git :host github
                 :repo "lihebi/hn.el")
   :config
-  (setq hn-hl-users '("okanesen" "wilsonfiifi"))
-  (setq hn-tags '("pl" "os" "hw" "ai"))
-  (setq hn-hl-keywords '("lisp" "racket"
+  (setq hn-hl-users '("okanesen" "wilsonfiifi" "neilv"))
+  (setq hn-tags '("pl" "os" "hw" "ai" "space"))
+  (setq hn-hl-keywords '("lisp" "racket" "scheme"
+                         "haskell" "ocaml"
                          "emacs" "linux"
                          "Show HN"
                          "\\bML\\b" "\\bAI\\b" "Machine Learning" "Artificial Intelligence" "Deep Learning"
                          "Tensorflow"
                          "postmarketOS"))
   (setq hn-fields
-        ;; '(star score time comment user title)
-        '(star score comment tag title)))
+        '(star time score comment tag user title)
+        ;; '(star score comment tag title)
+        ))
 
 ;; C-c C-c runs the command arduino-upload
 ;; It runs arduino --upload xxx.ino
@@ -923,6 +925,8 @@ You need to kill the current *Python* buffer to take effect."
   ;; (color-theme-sanityinc-tomorrow-blue)
   ;; (color-theme-sanityinc-tomorrow-eighties)
   (load-theme 'sanityinc-tomorrow-bright t))
+
+(use-package request)
 
 
 ;;; packages.el ends here
