@@ -15,10 +15,9 @@
   ;; ((HEBI: hello) world)
   ;; multiline (HEBI: sfd)
   ;; jdfsi )
-  ;; TODO multiple lines
   (font-lock-add-keywords
    mode
-   '(("(HEBI: [^)]*)" 0 'my-face prepend))))
+   '(("(HEBI: [^)]*\n?[^)]*)" 0 'my-face prepend))))
 
 (hebi-add-keyword-to-mode 'fundamental-mode)
 (hebi-add-keyword-to-mode 'prog-mode)
