@@ -528,6 +528,7 @@ You need to kill the current *Python* buffer to take effect."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Appearance
 (use-package smart-mode-line
+  :disabled
   :init
   ;; this is actually required by smart-mode-line
   ;; don't need to explicitly load use-package it, just as a reference
@@ -827,6 +828,12 @@ You need to kill the current *Python* buffer to take effect."
     (setq pdf-view-display-size 2.05)
     (image-set-window-hscroll 11)
     (pdf-view-redisplay t))
+  ;; C-c C-r m
+  ;; pdf-view-midnight-minor-mode
+  (setq pdf-view-midnight-colors
+        ;; '("white" . "black")
+        ;; '("#839496" . "#002b36")
+        '("white" . "#002b36"))
   (define-key pdf-view-mode-map (kbd "P") 'pdf-view-fit-paper))
 
 
