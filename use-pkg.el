@@ -889,7 +889,9 @@ You need to kill the current *Python* buffer to take effect."
   :straight (hn :type git :host github
                 :repo "lihebi/hn.el")
   :config
-  (setq hn-hl-users '("okanesen" "wilsonfiifi" "neilv"))
+  (setq hn-hl-users '("okanesen" "wilsonfiifi"
+                      "neilv" "FigBug"
+                      "logicprog"))
   (setq hn-tags '("pl" "os" "hw" "ai" "space"))
   (setq hn-hl-keywords '("lisp" "racket" "scheme"
                          "haskell" "ocaml"
@@ -899,7 +901,8 @@ You need to kill the current *Python* buffer to take effect."
                          "Tensorflow"
                          "postmarketOS"))
   (setq hn-fields
-        '(star time score comment tag user title)
+        ;; '(star time score comment tag user title)
+        '(star time tag score comment title)
         ;; '(star score comment tag title)
         ))
 
