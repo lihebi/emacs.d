@@ -891,7 +891,7 @@ You need to kill the current *Python* buffer to take effect."
   :config
   (setq hn-hl-users '("okanesen" "wilsonfiifi"
                       "neilv" "FigBug"
-                      "logicprog"))
+                      "logicprog" "dreamcompiler"))
   (setq hn-tags '("pl" "os" "hw" "ai" "space"))
   (setq hn-hl-keywords '("lisp" "racket" "scheme"
                          "haskell" "ocaml"
@@ -900,6 +900,7 @@ You need to kill the current *Python* buffer to take effect."
                          "\\bML\\b" "\\bAI\\b" "Machine Learning" "Artificial Intelligence" "Deep Learning"
                          "Tensorflow"
                          "postmarketOS"))
+  (setq hn-top-dir "/home/hebi/github/hn-top/")
   (setq hn-fields
         ;; '(star time score comment tag user title)
         '(star time tag score comment title)
