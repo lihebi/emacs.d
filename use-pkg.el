@@ -890,14 +890,18 @@ You need to kill the current *Python* buffer to take effect."
                 :repo "lihebi/hn.el")
   :config
   (setq hn-hl-users '("okanesen" "wilsonfiifi"
-                      "neilv" "FigBug"
+                      "neilv" "FigBug" "gumby" "skybrian"
                       "logicprog" "dreamcompiler"))
   (setq hn-tags '("pl" "os" "hw" "ai" "space"))
   (setq hn-hl-keywords '("lisp" "racket" "scheme"
                          "haskell" "ocaml"
+                         "\\brust\\b" "julia"
+                         "WebAssembly" "wasm"
                          "emacs" "linux"
                          "Show HN"
-                         "\\bML\\b" "\\bAI\\b" "Machine Learning" "Artificial Intelligence" "Deep Learning"
+                         "Raspberry Pi"
+                         "\\bML\\b" "\\bAI\\b"
+                         "Machine Learning" "Artificial Intelligence" "Deep Learning"
                          "Tensorflow"
                          "postmarketOS"))
   (setq hn-top-dir "/home/hebi/github/hn-top/")
