@@ -244,14 +244,14 @@
   :bind
   (
    ("C-c h SPC" . ace-jump-mode)
-   ("C-x SPC" . ace-jump-mode-pop-mark)
-   )
-  )
+   ("C-x SPC" . ace-jump-mode-pop-mark)))
+
 (use-package ace-window
+  ;; C-u M-o switch window
   :bind
   (
-   ("C-c h w" . ace-window))
-  )
+   ;; ("C-c h w" . ace-window)
+   ("M-o" . ace-window)))
 
 (use-package helpful
   ;; try this with helpful-function then -map
@@ -612,10 +612,14 @@ You need to kill the current *Python* buffer to take effect."
 (use-package guix)
 (use-package geiser
   ;; geiser is not the REPL I want for racket
+  :disabled
   :config
-  (setq geiser-active-implementations '(guile))
+  ;; (setq geiser-active-implementations '(guile))
+  (setq geiser-active-implementations '(racket))
   (setq geiser-mode-smart-tab-p t))
+
 (use-package racket-mode
+  ;; :disabled
   :config
   (add-hook 'racket-mode-hook
             (lambda ()
@@ -883,7 +887,7 @@ You need to kill the current *Python* buffer to take effect."
   :straight (simple-drill :type git :host github
                           :repo "lihebi/simple-drill.el")
   :config
-  (setq simple-drill-history-file "~/.emacs.d/simple-drill-history.el"))
+  (setq simple-drill-history-file "~/github/history-files/simple-drill-history.el"))
 
 (use-package hn
   :straight (hn :type git :host github
@@ -904,6 +908,8 @@ You need to kill the current *Python* buffer to take effect."
                          "Machine Learning" "Artificial Intelligence" "Deep Learning"
                          "Tensorflow"
                          "postmarketOS"))
+  (setq hn-history-dir "/home/hebi/github/history-files/hn")
+  (setq hn-export-json-file "/home/hebi/github/homepage-dist/assets/hn.json")
   (setq hn-top-dir "/home/hebi/github/hn-top/")
   (setq hn-fields
         ;; '(star time score comment tag user title)
