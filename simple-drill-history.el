@@ -24,7 +24,7 @@
         score 2 level 5)
  "prominence"
  (trans "突出物" note nil date
-        (23694 33183 363231 405000)
+        (23892 25205 371110 533000)
         score 0 level 0)
  "prevailing"
  (trans "优势" note nil date
@@ -32,15 +32,15 @@
         score 1 level 0)
  "commensurate"
  (trans "相称" note nil date
-        (23694 33203 608231 339000)
+        (23892 25212 235041 958000)
         score 0 level 0)
  "putative"
  (trans "假定" note nil date
-        (23694 33216 562418 180000)
+        (23892 25216 659048 367000)
         score 0 level 0)
  "meteorological"
  (trans "气象" note nil date
-        (23694 33232 802383 63000)
+        (23892 25221 507056 770000)
         score 0 level 0)
  "auspicious"
  (trans "吉祥" note nil date
@@ -88,7 +88,7 @@
         score 0 level 0)
  "misty"
  (trans "蒙蒙" note nil date
-        (23689 28068 357105 72000)
+        (23892 25201 315109 356000)
         score 1 level 1)
  "strand"
  (trans "缕" note nil date
@@ -500,7 +500,7 @@
         score 0 level 0)
  "rant"
  (trans "胡言乱语" note nil date
-        (23689 28041 510624 560000)
+        (23892 25196 51105 856000)
         score 0 level 0)
  "slick"
  (trans "华而不实的" note nil date
@@ -1121,4 +1121,32 @@
  "tactic"
  (trans "战术" note nil date
         (23891 7927 575402 247000)
+        score 0 level 0)
+ "pedantry"
+ (trans "学究气" note nil date
+        (23892 23826 131431 267000)
+        score 0 level 0)
+ "obsessed"
+ (trans "痴迷" note nil date
+        (23892 24861 291115 751000)
+        score 0 level 0)
+ "perpetual"
+ (trans "永动的" note nil date
+        (23892 25183 627261 942000)
+        score 0 level 0)
+ "frantic"
+ (trans "疯狂的" note nil date
+        (23892 28725 51605 915000)
+        score 0 level 0)
+ "fuss"
+ (trans "小题大作" note nil date
+        (23892 28916 883353 12000)
+        score 0 level 0)
+ "modus"
+ (trans "作案" note nil date
+        (23892 29624 155369 250000)
+        score 0 level 0)
+ "operandi"
+ (trans "手法" note nil date
+        (23892 29632 995440 559000)
         score 0 level 0))
