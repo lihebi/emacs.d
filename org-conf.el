@@ -14,7 +14,7 @@
 ;; used for fontify code in exporting of org
 (use-package htmlize)
 
-(defun setup-latex()
+(defun setup-latex ()
   ;; latex templates
   (require 'ox-latex)
   ;; (setq org-export-latex-listings t)
@@ -98,11 +98,21 @@
                  ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
   (require 'ox-latex)
-  (add-to-list 'org-latex-packages-alist '("" "listings"))
+
+  ;; (add-to-list 'org-latex-packages-alist '("" "listings"))
   (add-to-list 'org-latex-packages-alist '("" "color"))
-  ;; (add-to-list 'org-latex-packages-alist '("newfloat" "minted"))
-  ;; (setq org-latex-listings 'minted)
-  (setq org-latex-listings 'listings))
+  (add-to-list 'org-latex-packages-alist '("newfloat" "minted"))
+  
+  (setq org-latex-listings 'minted)
+  ;; (setq org-latex-listings 'listings)
+  (setq org-latex-minted-options
+        '(("frame" "lines")
+          ("linenos" "true")
+          ("xleftmargin" "0.2\\textwidth")
+          ("xrightmargin" "0.2\\textwidth")))
+  (setq org-latex-default-figure-position "H")
+  (setq org-latex-pdf-process '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+                                "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f")))
 
 (defun setup-publish()
   ;; set the default export headline toc level
