@@ -929,16 +929,20 @@ You need to kill the current *Python* buffer to take effect."
   :init
   (load-theme 'monokai t)
   (enable-theme 'monokai))
+
 (use-package zenburn-theme
   :disabled)
 
 (use-package color-theme-sanityinc-tomorrow
+  ;; :disabled
   :config
   ;; (color-theme-sanityinc-tomorrow-night)
   ;; (color-theme-sanityinc-tomorrow-day)
+  (load-theme 'sanityinc-tomorrow-day t)
   ;; (color-theme-sanityinc-tomorrow-blue)
   ;; (color-theme-sanityinc-tomorrow-eighties)
-  (load-theme 'sanityinc-tomorrow-bright t))
+  ;; (load-theme 'sanityinc-tomorrow-bright t)
+  )
 
 (use-package request)
 
