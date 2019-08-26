@@ -108,8 +108,8 @@
   (setq org-latex-minted-options
         '(("frame" "lines")
           ("linenos" "true")
-          ("xleftmargin" "0.2\\textwidth")
-          ("xrightmargin" "0.2\\textwidth")))
+          ("xleftmargin" "0.1\\textwidth")
+          ("xrightmargin" "0.1\\textwidth")))
   (setq org-latex-default-figure-position "H")
   (setq org-latex-pdf-process '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
                                 "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f")))
@@ -198,7 +198,7 @@
            :auto-sitemap t)
           ("homepage-static"
            :base-directory "~/github/homepage/"
-           :base-extension "ttf\\|js\\|css\\|png\\|pdf\\|jpg"
+           :base-extension "ttf\\|js\\|css\\|png\\|pdf\\|jpg\\|json"
            :recursive t
            :publishing-directory "~/github/homepage-dist/"
            :publishing-function org-publish-attachment)
