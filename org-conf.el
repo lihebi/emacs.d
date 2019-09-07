@@ -122,6 +122,7 @@
   ;; also note that in org-publish-project-alist, the headline is set to 4
   ;; this may need some change in the future.
   (setq org-export-headline-levels 6)
+  (setq org-html-link-home "/")
 
   (defvar org-html-head)
   (setq org-html-head
