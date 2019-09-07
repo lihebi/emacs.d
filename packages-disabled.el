@@ -92,7 +92,7 @@
 (use-package rainbow-delimiters
   ;; different colors for different level of parens
   :disabled
-  :defer t
+  ;; :defer t
   :init
   (progn
     (add-hook 'emacs-lisp-mode-hook #'rainbow-delimiters-mode)

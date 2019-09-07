@@ -205,7 +205,7 @@
            :publishing-function org-publish-attachment)
           ("homepage" :components ("homepage-org" "homepage-static")))))
 
-(defun setup-ob()
+(defun setup-ob ()
   (require 'ob-clang)
   (require 'ob-ctags)
   (setq org-export-use-babel nil)

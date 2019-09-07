@@ -325,6 +325,7 @@
 ;; https://github.com/jorgenschaefer/elpy/issues/1517 and
 ;; https://github.com/ipython/ipython/issues/11541
 ;; So downgrade to 7.1.1: pip3 install ipython==7.1.1
+
 (use-package elpy
   ;; C-c C-z (elpy-shell-switch-to-shell)
   ;; C-c C-c (elpy-shell-send-region-or-buffer)
@@ -610,6 +611,7 @@ You need to kill the current *Python* buffer to take effect."
 
 
 (use-package guix)
+
 (use-package geiser
   ;; geiser is not the REPL I want for racket
   :disabled
@@ -679,7 +681,7 @@ You need to kill the current *Python* buffer to take effect."
 (use-package flyspell
   ;; disabling because Starting new Ispell process ... all the time
   ;; when exporting html
-  ;; :disabled
+  :disabled
   :init
   :config
   (progn
@@ -896,14 +898,19 @@ You need to kill the current *Python* buffer to take effect."
   (setq hn-hl-users '("okanesen" "wilsonfiifi"
                       "neilv" "FigBug" "gumby" "skybrian"
                       "logicprog" "dreamcompiler"))
+  ;; I need to have a list of "bad" users as well
+  (setq hn-bad-users '("codegladiator"))
   (setq hn-tags '("pl" "os" "hw" "ai" "space"))
-  (setq hn-hl-keywords '("lisp" "racket" "scheme"
+  (setq hn-hl-keywords '("lisp" "racket" "scheme" "clojure"
                          "haskell" "ocaml"
                          "\\brust\\b" "julia"
                          "WebAssembly" "wasm"
                          "emacs" "linux"
                          "Idris"
-                         "Show HN"
+                         "RISC"
+                         "Guix" "Nix"
+                         ;; "Show HN"
+                         ;; "Ask HN"
                          "Raspberry Pi"
                          "\\bML\\b" "\\bAI\\b"
                          "Machine Learning" "Artificial Intelligence" "Deep Learning"
