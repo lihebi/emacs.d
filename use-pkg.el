@@ -130,6 +130,7 @@
   (add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
   (add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
   (add-hook 'ielm-mode-hook             #'enable-paredit-mode)
+  (add-hook 'clojure-mode-hook          #'enable-paredit-mode)
   (add-hook 'lisp-mode-hook             #'enable-paredit-mode)
   (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
   (add-hook 'scheme-mode-hook           #'enable-paredit-mode)
@@ -897,6 +898,7 @@ You need to kill the current *Python* buffer to take effect."
   :config
   (setq hn-hl-users '("okanesen" "wilsonfiifi"
                       "neilv" "FigBug" "gumby" "skybrian"
+                      "coldtea"
                       "logicprog" "dreamcompiler"))
   ;; I need to have a list of "bad" users as well
   (setq hn-bad-users '("codegladiator"))
@@ -905,6 +907,8 @@ You need to kill the current *Python* buffer to take effect."
                          "haskell" "ocaml"
                          "\\brust\\b" "julia"
                          "WebAssembly" "wasm"
+                         "functional"
+                         "BSD"
                          "emacs" "linux"
                          "Idris"
                          "RISC"
@@ -913,6 +917,7 @@ You need to kill the current *Python* buffer to take effect."
                          ;; "Ask HN"
                          "Raspberry Pi"
                          "\\bML\\b" "\\bAI\\b"
+                         "nlp"
                          "Machine Learning" "Artificial Intelligence" "Deep Learning"
                          "Tensorflow"
                          "postmarketOS"))
@@ -953,6 +958,11 @@ You need to kill the current *Python* buffer to take effect."
   )
 
 (use-package request)
+
+(use-package alda-mode)
+(use-package cider
+  :config
+  (setq cider-prompt-for-symbol nil))
 
 
 ;;; packages.el ends here

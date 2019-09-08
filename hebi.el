@@ -143,7 +143,7 @@
 ;; although the event is mouse-1, the command called is not this
 ;; it is an "up event" that calls the dired-mouse-find-file
 ;; and that is bound to mouse-2, not know why, but this works
-(define-key dired-mode-map [mouse-2] 'dired-mouse-find-file)
+;; (define-key dired-mode-map [mouse-2] 'dired-mouse-find-file)
 
 
 
