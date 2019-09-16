@@ -410,6 +410,9 @@ You need to kill the current *Python* buffer to take effect."
     (yas-global-mode 1))
   (use-package yasnippet-snippets)
   :config
+  ;; https://guix.gnu.org/manual/en/html_node/The-Perfect-Setup.html
+  ;; FIXME tangled code
+  (add-to-list 'yas-snippet-dirs "~/git/reading/guix/etc/snippets")
   ;;; use popup menu for yas-choose-value
   ;; it seems to be installed by default. But it is not marked built-in
   (use-package popup
@@ -615,10 +618,12 @@ You need to kill the current *Python* buffer to take effect."
 
 (use-package geiser
   ;; geiser is not the REPL I want for racket
-  :disabled
+  ;; :disabled
   :config
-  ;; (setq geiser-active-implementations '(guile))
-  (setq geiser-active-implementations '(racket))
+  (setq geiser-active-implementations '(guile))
+  ;; https://guix.gnu.org/manual/en/html_node/The-Perfect-Setup.html
+  ;; FIXME why the variable is undefined?
+  ;; (add-to-list 'geiser-guile-load-path "~/git/reading/guix")
   (setq geiser-mode-smart-tab-p t))
 
 (use-package racket-mode
@@ -890,7 +895,7 @@ You need to kill the current *Python* buffer to take effect."
   :straight (simple-drill :type git :host github
                           :repo "lihebi/simple-drill.el")
   :config
-  (setq simple-drill-history-file "~/github/history-files/simple-drill-history.el"))
+  (setq simple-drill-history-file "~/git/history-files/simple-drill-history.el"))
 
 (use-package hn
   :straight (hn :type git :host github
@@ -899,6 +904,7 @@ You need to kill the current *Python* buffer to take effect."
   (setq hn-hl-users '("okanesen" "wilsonfiifi"
                       "neilv" "FigBug" "gumby" "skybrian"
                       "coldtea"
+                      "rekado" ;; Guix hacker
                       "logicprog" "dreamcompiler"))
   ;; I need to have a list of "bad" users as well
   (setq hn-bad-users '("codegladiator"))
@@ -921,9 +927,10 @@ You need to kill the current *Python* buffer to take effect."
                          "Machine Learning" "Artificial Intelligence" "Deep Learning"
                          "Tensorflow"
                          "postmarketOS"))
-  (setq hn-history-dir "/home/hebi/github/history-files/hn")
-  (setq hn-export-json-file "/home/hebi/github/homepage-dist/assets/hn.json")
-  (setq hn-top-dir "/home/hebi/github/hn-top/")
+  (setq hn-history-dir (expand-file-name "~/git/history-files/hn"))
+  ;; FIXME can I just use the ~ in the path name without manually expanding?
+  (setq hn-export-json-file "~/git/homepage-dist/assets/hn.json")
+  (setq hn-top-dir "~/git/hn-top/")
   (setq hn-fields
         ;; '(star time score comment tag user title)
         '(star time tag score comment title)
@@ -951,7 +958,7 @@ You need to kill the current *Python* buffer to take effect."
   :config
   ;; (color-theme-sanityinc-tomorrow-night)
   ;; (color-theme-sanityinc-tomorrow-day)
-  (load-theme 'sanityinc-tomorrow-day t)
+  ;; (load-theme 'sanityinc-tomorrow-day t)
   ;; (color-theme-sanityinc-tomorrow-blue)
   ;; (color-theme-sanityinc-tomorrow-eighties)
   ;; (load-theme 'sanityinc-tomorrow-bright t)

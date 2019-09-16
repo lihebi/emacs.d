@@ -174,7 +174,7 @@
   ;; check two things
   ;; 1. anything to stage, commmit, push?
   ;; 2. anything to pull?
-  ;; (setq repo "~/github/test-dirty")
+  ;; (setq repo "~/git/test-dirty")
   ;; TODO make the buffer readonly just like magit buffer
   ;; TODO allow refresh by g
   ;; TODO allow better switch buffer support
@@ -191,30 +191,6 @@
             (shell-command (concat "cd " repo " && git remote update")))
         (insert (shell-command-to-string (concat "cd " repo "&& git status -uno | grep -E 'behind|diverge'"))))
       (insert "\n"))))
-
-;; TODO these repos and projectile bookmarks are duplicate, should
-;; only get one copy
-(setq hebi-repo-list
-      '("~/github/note"
-        "~/github/wiki"
-        ;; "~/github/test-dirty"
-        ;; "~/github/test-stage"
-        "~/github/bibliography"
-        "~/github/helium"
-        "~/github/builder-paper"
-        "~/github/helium-paper"
-        "~/.emacs.d"
-        "~/.hebi"
-        "~/.stumpwm.d"
-        "~/github/leetcode"
-        "~/github/docker-files"
-        "~/github/benchmark"
-        "~/github/papers"
-        "~/github/arch-server"
-        "~/github/arch-desktop"
-        "~/github/arch-helium"
-        ))
-
 
 (defun hebi-build-rate()
   "calculate build rate"
@@ -288,7 +264,7 @@
           (filename (file-name-nondirectory file)))
      (list (read-string (format "As filename (%s): " filename)))))
   (rename-file (buffer-file-name (current-buffer))
-               (concat "~/github/smart-scholar-pdfs/manual/" newname)))
+               (concat "~/git/smart-scholar-pdfs/manual/" newname)))
 
 
 (defun hebi-trans (word)

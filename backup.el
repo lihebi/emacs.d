@@ -38,3 +38,23 @@
                     :family "Sans Serif" :height 1.8 :weight 'bold :foreground "black")
 (set-face-attribute 'org-document-info-keyword nil
                     :foreground "#008ED1" :background "#EAEAFF")
+(setq hebi-repo-list
+      '("~/github/note"
+        "~/github/wiki"
+        ;; "~/github/test-dirty"
+        ;; "~/github/test-stage"
+        "~/github/bibliography"
+        "~/github/helium"
+        "~/github/builder-paper"
+        "~/github/helium-paper"
+        "~/.emacs.d"
+        "~/.hebi"
+        "~/.stumpwm.d"
+        "~/github/leetcode"
+        "~/github/docker-files"
+        "~/github/benchmark"
+        "~/github/papers"
+        "~/github/arch-server"
+        "~/github/arch-desktop"
+        "~/github/arch-helium"
+        ))

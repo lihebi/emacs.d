@@ -158,9 +158,9 @@
   ;; see also: http://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html
   (setq org-publish-project-alist
         '(("wiki-org"
-           :base-directory "~/github/wiki/"
+           :base-directory "~/git/wiki/"
            :base-extension "org"
-           :publishing-directory "~/github/wiki-dist/"
+           :publishing-directory "~/git/wiki-dist/"
            :recursive t
            :publishing-function org-html-publish-to-html
            :headline-levels 4
@@ -168,10 +168,10 @@
            ;; experimental
            :auto-sitemap t)
           ("wiki-static"
-           :base-directory "~/github/wiki/"
+           :base-directory "~/git/wiki/"
            :base-extension "ttf\\|js\\|css\\|png"
            :recursive t
-           :publishing-directory "~/github/wiki-dist/"
+           :publishing-directory "~/git/wiki-dist/"
            :publishing-function org-publish-attachment)
           ;; this is still TODO
           ;; the C-c C-e Pp cannot publish wiki-static
@@ -179,9 +179,9 @@
           ;; but it's fine for now
           ("wiki" :components ("wiki-org" "wiki-static"))
           ("note"
-           :base-directory "~/github/note/"
+           :base-directory "~/git/note/"
            :base-extension "org"
-           :publishing-directory "~/github/note-dist/"
+           :publishing-directory "~/git/note-dist/"
            :recursive t
            :publishing-function org-html-publish-to-html
            :headline-levels 4
@@ -189,19 +189,19 @@
            ;; experimental
            :auto-sitemap t)
           ("homepage-org"
-           :base-directory "~/github/homepage"
+           :base-directory "~/git/homepage"
            :base-extension "org"
-           :publishing-directory "~/github/homepage-dist"
+           :publishing-directory "~/git/homepage-dist"
            :recursive t
            :publishing-function org-html-publish-to-html
            :headline-levels 4
            :html-extension "html"
            :auto-sitemap t)
           ("homepage-static"
-           :base-directory "~/github/homepage/"
+           :base-directory "~/git/homepage/"
            :base-extension "ttf\\|js\\|css\\|png\\|pdf\\|jpg\\|json"
            :recursive t
-           :publishing-directory "~/github/homepage-dist/"
+           :publishing-directory "~/git/homepage-dist/"
            :publishing-function org-publish-attachment)
           ("homepage" :components ("homepage-org" "homepage-static")))))
 
@@ -240,7 +240,7 @@
   (setup-latex)
   (setup-publish)
 
-  (require 'org-drill)
+  ;; (require 'org-drill)
 
   (setq org-descriptive-links nil)
   ;; (add-hook 'org-mode-hook 'turn-on-auto-fill)
@@ -266,11 +266,11 @@
         '(("TODO" . org-todo) ("CANCELED" . org-warning) ("STARTED" . (:foreground "white" :background "red"))))
 
   (setq org-agenda-files
-        '("~/github/note/org"))
+        '("~/git/note/org"))
 
   ;; org capture
-  (setq org-directory "~/github/note/org")
-  (setq org-default-notes-file "~/github/note/org/default.org")
+  (setq org-directory "~/git/note/org")
+  (setq org-default-notes-file "~/git/note/org/default.org")
 
   (set-face-attribute 'org-level-1 nil
                       :height 2.0 :weight 'bold)
@@ -283,7 +283,7 @@
   ;; 3. org-agenda: C-c a
   (defun gen-template (key title)
     `(,key ,title entry
-           (file+headline "~/github/note/gtd.org" ,title)
+           (file+headline "~/git/note/gtd.org" ,title)
            "* TODO %?\n  %U\n  %i\n"
            :prepend t
            ;; setting one line after does not help at all, it
@@ -345,9 +345,9 @@ to rescan the bib files and update pdf and notes notation."
     'org-ref-bibtex)
 
   (let ((bib-pdf-dir
-         '("~/github/research/pdf/manual/"
-           ;; "~/github/papers/"
-           ;; "~/github/books/"
+         '("~/git/research/pdf/manual/"
+           ;; "~/git/papers/"
+           ;; "~/git/books/"
            )))
     (setq org-ref-pdf-directory bib-pdf-dir)
     (setq bibtex-completion-library-path bib-pdf-dir))
@@ -370,9 +370,9 @@ to rescan the bib files and update pdf and notes notation."
   :straight (smart-scholar :type git :host github
                            :repo "lihebi/smart-scholar.el")
   :config
-  (setq smart-scholar-pdf-dir "~/github/smart-scholar-pdfs")
-  (setq smart-scholar-bib-dir "~/github/biber-dist")
-  (setq smart-scholar-manual-bib-dir "~/github/research/bib/")
+  (setq smart-scholar-pdf-dir "~/git/smart-scholar-pdfs")
+  (setq smart-scholar-bib-dir "~/git/biber-dist")
+  (setq smart-scholar-manual-bib-dir "~/git/research/bib/")
   (smart-scholar-load-manual)
   ;; setup initial pdf dirs
   (set-org-ref-pdfdir)
