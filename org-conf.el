@@ -127,12 +127,15 @@
   (defvar org-html-head)
   (setq org-html-head
         (concat
-         "<link rel=\"stylesheet\" type=\"text/css\" href=\"assets/org.css\" />"
-         "<link rel=\"stylesheet\" type=\"text/css\" href=\"assets/hebi.css\" />"
-         "<link rel=\"stylesheet\" type=\"text/css\" href=\"assets/test.css\" />"
-         "<link rel=\"stylesheet\" type=\"text/css\" href=\"../assets/org.css\" />"
-         "<link rel=\"stylesheet\" type=\"text/css\" href=\"../assets/hebi.css\" />"
-         "<link rel=\"stylesheet\" type=\"text/css\" href=\"../assets/test.css\" />"))
+         ;; FIXME using absolute path would make local file access
+         ;; unusable.  I probably want to put it in a webserver.
+         "<link rel=\"stylesheet\" type=\"text/css\" href=\"/assets/org.css\" />"
+         "<link rel=\"stylesheet\" type=\"text/css\" href=\"/assets/hebi.css\" />"
+         ;; "<link rel=\"stylesheet\" type=\"text/css\" href=\"assets/org.css\" />"
+         ;; "<link rel=\"stylesheet\" type=\"text/css\" href=\"assets/hebi.css\" />"
+         ;; "<link rel=\"stylesheet\" type=\"text/css\" href=\"../assets/org.css\" />"
+         ;; "<link rel=\"stylesheet\" type=\"text/css\" href=\"../assets/hebi.css\" />"
+         ))
   (setq org-html-validation-link nil)
   (setq org-export-time-stamp-file nil)
   (setq org-export-with-author nil)
@@ -191,7 +194,9 @@
           ("homepage-org"
            :base-directory "~/git/homepage"
            :base-extension "org"
-           :publishing-directory "~/git/homepage-dist"
+           ;; CAUTION I need to create the directory and chown to
+           ;; user:group
+           :publishing-directory "/src/www"
            :recursive t
            :publishing-function org-html-publish-to-html
            :headline-levels 4
@@ -199,9 +204,9 @@
            :auto-sitemap t)
           ("homepage-static"
            :base-directory "~/git/homepage/"
+           :publishing-directory "/src/www"
            :base-extension "ttf\\|js\\|css\\|png\\|pdf\\|jpg\\|json"
            :recursive t
-           :publishing-directory "~/git/homepage-dist/"
            :publishing-function org-publish-attachment)
           ("homepage" :components ("homepage-org" "homepage-static")))))
 
