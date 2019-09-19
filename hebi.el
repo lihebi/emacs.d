@@ -43,6 +43,33 @@
  'bibtex-mode
  '(("\\btitle[[:space:]]*=[[:space:]]*{\\(.*\\)}" 1 'my-face prepend)))
 
+;; (font-lock-add-keywords
+;;  'c-mode
+;;  '(("\\<\\(FIXME\\):" 1 font-lock-warning-face prepend)
+;;    ("\\<\\(and\\|or\\|not\\)\\>" . font-lock-keyword-face)))
+
+;; (font-lock-add-keywords
+;;  'emacs-lisp-mode
+;;  '(("Ludovic" 0 'my-face prepend)))
+
+;; The gnus-summary-mode is very weird, when adding keywords, the
+;; default face for read marking is gone. It is not defined using
+;; define-derived-mode as usual, that could be the reason
+;;
+;; (defun hebi-gnus-add-keywords ()
+;;   "Add keywords for highlighting."
+;;   (font-lock-add-keywords
+;;    nil
+;;    '(("Ludovic" . 'my-face))
+;;    t))
+
+;; (add-hook 'gnus-summary-mode-hook 'hebi-gnus-add-keywords)
+;; (remove-hook 'gnus-summary-mode-hook 'hebi-gnus-add-keywords)
+
+;; Not working
+;; (font-lock-add-keywords
+;;  'gnus-summary-mode
+;;  '(("Ludovic" 0 'my-face prepend)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
