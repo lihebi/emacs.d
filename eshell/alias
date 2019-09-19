@@ -1,5 +1,0 @@
-alias nil  $*
-alias emacs find-file
-alias l ls
-alias la ls -a
-alias ll ls -l
