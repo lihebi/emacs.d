@@ -473,55 +473,6 @@ You need to kill the current *Python* buffer to take effect."
   ;; Click on it, goes to the description, along with the configurable part.
   (setq flycheck-clang-include-path (list "..")))
 
-;; rtags frontend
-(use-package rtags
-  ;; if I don't disable it, the org mode export of java will stop the process ..
-  :disabled t
-  ;; start rdm by rtags-start-process-unless-running
-  ;; needs to build and install rtags first
-  ;; TODO how to get this in my setup debian script?
-  ;; how to index the current project and how to switch project?
-  ;; Useful Commands
-  ;; (rtags-find-symbol-at-point)
-  ;; (rtags-find-references-at-point)
-  ;; (rtags-find-symbol)
-  ;; (rtags-find-references)
-  ;; (rtags-location-stack-back)
-  :config
-  (add-hook 'c-mode-common-hook 'rtags-start-process-unless-running)
-  (add-hook 'c++-mode-common-hook 'rtags-start-process-unless-running)
-  ;; this open the keybinding with prefix C-c r
-  (rtags-enable-standard-keybindings)
-  (defvar antlr-mode-map)
-  ;; (rtags-enable-standard-keybindings antlr-mode-map)
-  (define-key c-mode-base-map (kbd "C-c r n") 'rtags-next-match)
-
-  ;; company
-  ;; not tested
-  (setq rtags-autostart-diagnostics t)
-  ;; (rtags-diagnostics)
-
-  ;; FIXME this code is outside company block, but it starts company mode
-  ;; (setq rtags-completions-enabled t)
-  ;; (push 'company-rtags company-backends)
-  ;; (global-company-mode)
-
-  ;; flycheck
-  (use-package flycheck-rtags)
-
-  (defun my-flycheck-rtags-setup ()
-    (flycheck-select-checker 'rtags)
-    (setq-local flycheck-highlighting-mode nil) ;; RTags creates more accurate overlays.
-    (setq-local flycheck-check-syntax-automatically nil))
-  ;; c-mode-common-hook is also called by c++-mode
-  (add-hook 'c-mode-common-hook #'my-flycheck-rtags-setup)
-
-
-  ;; :bind
-  ;; (("C-M-." . rtags-find-symbol-at-point)
-  ;;  ("C-M-," . rtags-location-stack-back))
-  )
-
 (use-package google-c-style
   ;; c style used by google
   :disabled t
@@ -701,53 +652,8 @@ You need to kill the current *Python* buffer to take effect."
 (use-package scribble-mode)
 
 (use-package hackernews)
-(use-package haskell-mode
-  :config
-  (progn
-    (eval-after-load "haskell-mode"
-      '(define-key haskell-mode-map (kbd "C-c C-c") 'haskell-compile))
-    (eval-after-load "haskell-cabal"
-      '(define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-compile))
+(use-package haskell-mode)
 
-    ;; add dynamic because arch only has dynamic library installed
-    (setq haskell-compile-command "ghc -Wall -dynamic -ferror-spans -fforce-recomp -c %s")
-    ;; this is a workaround of ghci interface change:
-    ;; https://github.com/haskell/haskell-mode/issues/1553#issuecomment-342315820
-    (add-to-list 'haskell-process-args-ghci "-fshow-loaded-modules")
-
-    (require 'haskell-interactive-mode)
-    (require 'haskell-process)
-    (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-
-    (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
-    (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
-    (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
-    (define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
-    (define-key haskell-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
-    (define-key haskell-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
-    (define-key haskell-mode-map (kbd "C-c c") 'haskell-process-cabal)
-
-    (define-key haskell-cabal-mode-map (kbd "C-`") 'haskell-interactive-bring)
-    (define-key haskell-cabal-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
-    (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
-    (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)
-
-    (define-key haskell-mode-map (kbd "M-.") 'haskell-mode-jump-to-def)
-
-    ;; this is not working, I have no idea which checker is selected
-    (use-package flycheck-haskell)
-    (eval-after-load 'flycheck
-      '(add-hook 'flycheck-mode-hook #'flycheck-haskell-setup))
-    ;; the default haskell-stack-ghc seems to be buggy (not using -dynamic)
-    ;; Using haskell-ghc is good
-    ;; wait, how to write this???
-    ;; (flycheck-select-checker 'haskell-ghc)
-    (add-to-list 'flycheck-ghc-args "-dynamic")
-    (add-hook 'haskell-mode-hook
-              (lambda ()
-                (flycheck-select-checker 'haskell-ghc)))
-
-    ))
 (use-package sml-mode)
 (use-package markdown-mode)
 
@@ -970,6 +876,5 @@ You need to kill the current *Python* buffer to take effect."
 (use-package cider
   :config
   (setq cider-prompt-for-symbol nil))
-
 
 ;;; packages.el ends here
