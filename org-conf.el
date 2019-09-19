@@ -196,7 +196,7 @@
            :base-extension "org"
            ;; CAUTION I need to create the directory and chown to
            ;; user:group
-           :publishing-directory "/src/www"
+           :publishing-directory "/srv/www"
            :recursive t
            :publishing-function org-html-publish-to-html
            :headline-levels 4
@@ -204,7 +204,7 @@
            :auto-sitemap t)
           ("homepage-static"
            :base-directory "~/git/homepage/"
-           :publishing-directory "/src/www"
+           :publishing-directory "/srv/www"
            :base-extension "ttf\\|js\\|css\\|png\\|pdf\\|jpg\\|json"
            :recursive t
            :publishing-function org-publish-attachment)
