@@ -873,9 +873,13 @@ You need to kill the current *Python* buffer to take effect."
 
 (use-package request)
 
-(use-package alda-mode)
-(use-package cider
-  :config
-  (setq cider-prompt-for-symbol nil))
+;; FIXME one of these packages will make org-ref links unusable! How??
+;; This is another example that the dynamic scoping of elisp is
+;; programatic, different packages can interfere with each other!
+
+;; (use-package alda-mode)
+;; (use-package cider
+;;   :config
+;;   (setq cider-prompt-for-symbol nil))
 
 ;;; packages.el ends here
