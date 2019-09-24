@@ -836,7 +836,7 @@ You need to kill the current *Python* buffer to take effect."
                          "postmarketOS"))
   (setq hn-history-dir (expand-file-name "~/git/history-files/hn"))
   ;; FIXME can I just use the ~ in the path name without manually expanding?
-  (setq hn-export-json-file "~/git/homepage-dist/assets/hn.json")
+  (setq hn-export-json-file "/srv/www/assets/hn.json")
   (setq hn-top-dir "~/git/hn-top/")
   (setq hn-fields
         ;; '(star time score comment tag user title)
