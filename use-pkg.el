@@ -882,4 +882,6 @@ You need to kill the current *Python* buffer to take effect."
 ;;   :config
 ;;   (setq cider-prompt-for-symbol nil))
 
+(use-package julia-mode)
+
 ;;; packages.el ends here
