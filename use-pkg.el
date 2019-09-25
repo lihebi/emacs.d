@@ -720,7 +720,7 @@ You need to kill the current *Python* buffer to take effect."
   :init
   ;; FIXME why emacs keeps remove the build directory?
   ;; (setq pdf-info-epdfinfo-program "/home/hebi/.emacs.d/straight/build/pdf-tools/epdfinfo")
-  (setq pdf-info-epdfinfo-program "/home/hebi/.emacs.d/epdfinfo")
+  (setq pdf-info-epdfinfo-program "~/.emacs.d/epdfinfo")
   :config
   ;; This seems also sets the default viewing mode of pdf, and it
   ;; seems to honor the pdf-info-epdfinfo-program variable, i.e. put

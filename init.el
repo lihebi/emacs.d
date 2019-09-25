@@ -48,7 +48,7 @@
   (global-display-line-numbers-mode t))
 
 ;; Info-default-directory-list
-(setq Info-additional-directory-list '("/home/hebi/.guix-profile/share/info/"))
+(setq Info-additional-directory-list '("~/.guix-profile/share/info/"))
 
 (column-number-mode t)
 
