@@ -283,6 +283,10 @@
     (exec-path-from-shell-copy-env "GUIX_PACKAGE_PATH")
     (message "%s: %s" "exec-path-from-shell post config" (getenv "PATH"))))
 
+(when (string= system-type "darwin")
+  (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
+  (setq exec-path (append exec-path '("/usr/local/bin"))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; projectile
 (use-package projectile
