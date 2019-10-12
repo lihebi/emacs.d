@@ -805,12 +805,40 @@ You need to kill the current *Python* buffer to take effect."
 ;; Need mpc client installed.
 (use-package simple-mpc)
 
-
 (use-package simple-drill
   :straight (simple-drill :type git :host github
                           :repo "lihebi/simple-drill.el")
   :config
   (setq simple-drill-history-file "~/git/history-files/simple-drill-history.el"))
+
+(use-package repo-tracker
+  :straight (repo-tracker :type git :host github
+                          :repo "lihebi/repo-tracker.el")
+  :requires magit
+  :config
+  (setq repo-tracker-repos '("~/git/homepage"
+                             "~/git/note"
+                             "~/git/research"
+                             "~/git/scratch/"
+                             "~/git/AdvAE-paper"
+                             "~/git/AdvAE"
+                             "~/git/biber"
+                             "~/git/biber-dist"
+                             "~/git/guix-channel"
+                             "~/git/hbkb"
+                             "~/git/history-files"
+                             "~/git/rackematic"
+                             ;; configs
+                             "~/.hebi"
+                             "~/.stumpwm.d"
+                             "~/.emacs.d"
+                             ;; emacs packages
+                             "~/.emacs.d/straight/repos/smart-scholar.el"
+                             "~/.emacs.d/straight/repos/simple-drill.el"
+                             "~/.emacs.d/straight/repos/scribble-mode.el/"
+                             "~/.emacs.d/straight/repos/hn.el/"
+                             "~/.emacs.d/straight/repos/repo-tracker.el/"
+                             )))
 
 (use-package hn
   :straight (hn :type git :host github
