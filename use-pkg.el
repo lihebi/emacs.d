@@ -456,6 +456,7 @@ You need to kill the current *Python* buffer to take effect."
 ;; Seems that the xref-find-definitions also rely on pylint (or maybe
 ;; just virtualenv .. when ipython is not installed system-wise)
 (use-package flycheck
+  :disabled
   :init
   (add-hook 'after-init-hook #'global-flycheck-mode)
   :bind
