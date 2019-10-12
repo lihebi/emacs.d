@@ -919,6 +919,40 @@ You need to kill the current *Python* buffer to take effect."
 ;;   :config
 ;;   (setq cider-prompt-for-symbol nil))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Julia configuration
+;; M-. not working, see https://github.com/tpapp/julia-repl/issues/50
 (use-package julia-mode)
+(use-package julia-repl
+  :config
+  (add-hook 'julia-mode-hook 'julia-repl-mode))
 
-;;; packages.el ends here
+(use-package dumb-jump
+  ;; trying to use it for julia, but does not work
+  :disabled)
+;; for lsp-julia
+(use-package lsp-mode
+  :disabled)
+;; for find-symbol
+(use-package lsp-julia
+  :disabled
+  :straight (lsp-julia :type git :host github
+                       :repo "non-Jedi/lsp-julia")
+  :config
+  ;; I need to install several julia packages
+  ;; LanguageServer.jl, StaticLint.jl
+  ;; To use it, simply run M-x lsp
+  ;; Then M-. should work
+  (add-hook 'julia-mode-hook #'lsp-mode))
+
+;; There does not seem to be a working find-def function in eglot
+(use-package eglot
+  :disabled)
+(use-package eglot-julia
+  ;; https://github.com/lihebi/eglot-julia
+  :disabled
+  :straight (eglot-julia :type git :host github
+                         :repo "lihebi/eglot-julia"))
+
+
+;;; use-pkg.el ends here
