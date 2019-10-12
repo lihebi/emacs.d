@@ -317,6 +317,19 @@
 (global-set-key (kbd "C-c h t") 'hebi-trans)
 
 (defun hebi-upload-to-remarkable ()
+  ;; According to
+  ;; https://support.remarkable.com/hc/en-us/articles/115005700389-7-4-Transfer-files-with-a-USB-cable-to-reMarkable
+  ;; I need to enable USB web interface in storage setting. Otherwise
+  ;; the curl request will be refused.
+  ;;
+  ;; I forget where I get this, but some useful scripts:
+  ;; https://github.com/reHackable/awesome-reMarkable
+  ;;
+  ;; TODO I would love to crop the paper before sending it to
+  ;; remarkable, so that I don't need to crop on the device. The
+  ;; https://github.com/GjjvdBurg/arxiv2remarkable uses pdfcrop. I
+  ;; tried it, it works, but the quality of the cropping seems to be
+  ;; bad
   (interactive)
   (let ((file (buffer-file-name (current-buffer))))
     (when (string= (file-name-extension file) "pdf")
