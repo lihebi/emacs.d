@@ -919,6 +919,8 @@ You need to kill the current *Python* buffer to take effect."
 ;;   :config
 ;;   (setq cider-prompt-for-symbol nil))
 
+(use-package scala-mode)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Julia configuration
 ;; M-. not working, see https://github.com/tpapp/julia-repl/issues/50
