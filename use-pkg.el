@@ -654,7 +654,12 @@ You need to kill the current *Python* buffer to take effect."
     (add-hook 'latex-mode-hook #'turn-on-flyspell)
     (add-hook 'org-mode-hook #'turn-on-flyspell)))
 
-(use-package scribble-mode)
+;; this is not the scribble mode
+;; (use-package scribble-mode)
+
+(use-package scribble
+  :straight (scribble-mode :type git :host github
+                           :repo "lihebi/scribble-mode.el"))
 
 (use-package hackernews)
 (use-package haskell-mode)
