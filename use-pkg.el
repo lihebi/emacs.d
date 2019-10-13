@@ -150,10 +150,17 @@
 (use-package nyan-mode
   :config
   (nyan-mode))
+
 (use-package linum-off
   ;; this is used to speed up pdf reading
+  :straight (linum-off :type git :host github
+                       :repo "lihebi/linum-off")
   :config
-  (setq linum-disabled-modes-list (append linum-disabled-modes-list '(doc-view-mode))))
+  (add-to-list 'linum-disabled-modes-list 'doc-view-mode)
+  ;; it only checks major mode
+  ;; (add-to-list 'linum-disabled-modes-list 'comint-mode)
+  (add-to-list 'linum-disabled-modes-list 'julia-true-repl-mode))
+
 ;; not sure if these wierd binding is what I want
 (use-package expand-region
   :bind
