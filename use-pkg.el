@@ -933,8 +933,11 @@ You need to kill the current *Python* buffer to take effect."
 ;; M-. not working, see https://github.com/tpapp/julia-repl/issues/50
 (use-package julia-mode)
 (use-package julia-repl
+  :straight (julia-repl :type git :host github
+                        :repo "lihebi/julia-repl")
   :config
-  (add-hook 'julia-mode-hook 'julia-repl-mode))
+  (add-hook 'julia-mode-hook 'julia-repl-mode)
+  (setq julia-repl-switches "-i --color=yes"))
 
 (use-package dumb-jump
   ;; trying to use it for julia, but does not work
