@@ -943,11 +943,12 @@ You need to kill the current *Python* buffer to take effect."
   ;; trying to use it for julia, but does not work
   :disabled)
 ;; for lsp-julia
-(use-package lsp-mode
-  :disabled)
+(use-package lsp-mode)
 ;; for find-symbol
 (use-package lsp-julia
-  :disabled
+  ;; currently lsp-mode won't start automatically (and it is slow, so
+  ;; probably just start on-demand). To start the connection, run M-x
+  ;; lsp, after a while, M-. should work.
   :straight (lsp-julia :type git :host github
                        :repo "non-Jedi/lsp-julia")
   :config
@@ -955,11 +956,29 @@ You need to kill the current *Python* buffer to take effect."
   ;; LanguageServer.jl, StaticLint.jl
   ;; To use it, simply run M-x lsp
   ;; Then M-. should work
-  (add-hook 'julia-mode-hook #'lsp-mode))
+  (setq lsp-julia-default-environment "~/.julia/environments/v1.2")
+  (add-hook 'julia-mode-hook #'lsp-mode)
+  ;; The julia-ls is crashing on TAB, I'm disabling these to avoid
+  ;; this temporarily. Probably related:
+  ;; https://github.com/julia-vscode/LanguageServer.jl/issues/389
+  (setq lsp-enable-completion-at-point nil)
+  (setq lsp-enable-folding nil)
+  (setq lsp-enable-indentation nil)
+  (setq lsp-enable-on-type-formatting nil)
+  ;; showing debug information
+  (setq lsp-log-io t))
 
 ;; There does not seem to be a working find-def function in eglot
 (use-package eglot
-  :disabled)
+  ;; It is still not working, this time the eglot connection to
+  ;; backend LSP seems to be very unstable. The progress is tracked at:
+  ;;
+  ;; - https://discourse.julialang.org/t/using-languageserver-jl-with-eglot-in-emacs/
+  ;; - https://github.com/julia-vscode/LanguageServer.jl/issues/389
+  :disabled
+  :config
+  (add-hook 'julia-mode-hook 'eglot-ensure)
+  (setq eglot-connect-timeout 50))
 (use-package eglot-julia
   ;; https://github.com/lihebi/eglot-julia
   :disabled
