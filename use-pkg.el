@@ -830,7 +830,11 @@ You need to kill the current *Python* buffer to take effect."
 (use-package repo-tracker
   :straight (repo-tracker :type git :host github
                           :repo "lihebi/repo-tracker.el")
-  :requires magit
+  ;; Although it requires magit, I load magit with :defer, so adding
+  ;; this seems to make this package :defer too, thus config not
+  ;; loaded.
+  ;;
+  ;; :requires magit
   :config
   (setq repo-tracker-repos '("~/git/homepage"
                              "~/git/note"
