@@ -608,7 +608,14 @@ You need to kill the current *Python* buffer to take effect."
   (add-hook 'racket-mode-hook      #'racket-unicode-input-method-enable)
   (add-hook 'racket-repl-mode-hook #'racket-unicode-input-method-enable)
   ;; reinforce the racket-mode selection. otherwise it is occupied by geiser
-  (add-to-list 'auto-mode-alist '("\\.rkt\\'" . racket-mode)))
+  (add-to-list 'auto-mode-alist '("\\.rkt\\'" . racket-mode))
+
+  (defun racket-visit-definition (&optional prefix)
+    "Testing my simple visit definition without asking y-or-n eveytime buffer changes."
+    (interactive "P")
+    (pcase (racket--symbol-at-point-or-prompt prefix "Visit definition of: ")
+      (`nil nil)
+      (str (racket--do-visit-def-or-mod 'def str)))))
 
 
 (use-package company
