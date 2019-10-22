@@ -151,15 +151,17 @@
   :config
   (nyan-mode))
 
+;; this is used to speed up pdf reading
 (use-package linum-off
-  ;; this is used to speed up pdf reading
+  ;; My fork adds support for display-line-numbers-mode
   :straight (linum-off :type git :host github
                        :repo "lihebi/linum-off")
   :config
   (add-to-list 'linum-disabled-modes-list 'doc-view-mode)
   ;; it only checks major mode
   ;; (add-to-list 'linum-disabled-modes-list 'comint-mode)
-  (add-to-list 'linum-disabled-modes-list 'julia-true-repl-mode))
+  (add-to-list 'linum-disabled-modes-list 'julia-true-repl-mode)
+  (delete 'org-mode linum-disabled-modes-list))
 
 ;; not sure if these wierd binding is what I want
 (use-package expand-region
