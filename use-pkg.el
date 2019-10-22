@@ -944,10 +944,14 @@ You need to kill the current *Python* buffer to take effect."
 ;; Julia configuration
 ;; M-. not working, see https://github.com/tpapp/julia-repl/issues/50
 (use-package julia-mode)
+;; this package can implement "flash the sexp"
+(use-package eval-sexp-fu)
 (use-package julia-repl
   :straight (julia-repl :type git :host github
                         :repo "lihebi/julia-repl")
   :config
+  ;; (setq julia-repl-term-type 'term)
+  (setq julia-repl-term-type 'comint)
   (add-hook 'julia-mode-hook 'julia-repl-mode)
   (setq julia-repl-switches "-i --color=yes"))
 
@@ -996,6 +1000,8 @@ You need to kill the current *Python* buffer to take effect."
   :disabled
   :straight (eglot-julia :type git :host github
                          :repo "lihebi/eglot-julia"))
+
+(use-package coffee-mode)
 
 
 ;;; use-pkg.el ends here
