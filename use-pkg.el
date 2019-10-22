@@ -848,6 +848,13 @@ You need to kill the current *Python* buffer to take effect."
                              "~/git/hbkb"
                              "~/git/history-files"
                              "~/git/rackematic"
+                             "~/git/helium"
+                             "~/git/helium2"
+                             "~/git/emane"
+                             "~/git/emane-tutorial"
+                             "~/git/causal-vae"
+                             "~/git/deep-causal-paper"
+                             "~/git/rackenet"
                              ;; configs
                              "~/.hebi"
                              "~/.stumpwm.d"
@@ -858,6 +865,7 @@ You need to kill the current *Python* buffer to take effect."
                              "~/.emacs.d/straight/repos/scribble-mode.el/"
                              "~/.emacs.d/straight/repos/hn.el/"
                              "~/.emacs.d/straight/repos/repo-tracker.el/"
+                             "~/.emacs.d/straight/repos/julia-repl/"
                              )))
 
 (use-package hn
