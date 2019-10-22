@@ -893,9 +893,10 @@ You need to kill the current *Python* buffer to take effect."
   (setq hn-top-dir "~/git/hn-top/")
   (setq hn-fields
         ;; '(star time score comment tag user title)
-        '(star time tag score comment title)
+        '(star time score comment title)
         ;; '(star score comment tag title)
         ))
+
 
 ;; C-c C-c runs the command arduino-upload
 ;; It runs arduino --upload xxx.ino
