@@ -897,11 +897,13 @@ You need to kill the current *Python* buffer to take effect."
 ;; (use-package pamparam)
 
 (use-package monokai-theme
+  ;; this package is very weird, the theme is loaded automatically.
   :disabled
   :config
-  :init
-  (load-theme 'monokai t)
-  (enable-theme 'monokai))
+  ;; :init
+  ;; (load-theme 'monokai t)
+  ;; (enable-theme 'monokai)
+  )
 
 (use-package zenburn-theme
   :disabled)
