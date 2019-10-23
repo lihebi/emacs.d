@@ -64,20 +64,19 @@
 (when (not (string= system-type "darwin"))
   (use-package pdf-tools
     :init
-    ;; FIXME why emacs keeps remove the build directory?
-    ;; (setq pdf-info-epdfinfo-program "/home/hebi/.emacs.d/straight/build/pdf-tools/epdfinfo")
+    ;; (setq pdf-info-epdfinfo-program
+    ;; "/home/hebi/.emacs.d/straight/build/pdf-tools/epdfinfo")
+    ;;
+    ;; Emacs keeps remove the build directory, so I'm outputing the
+    ;; epdfinfo file here
     (setq pdf-info-epdfinfo-program "~/.emacs.d/epdfinfo")
     :config
-    ;; This seems also sets the default viewing mode of pdf, and it
-    ;; seems to honor the pdf-info-epdfinfo-program variable, i.e. put
-    ;; the executable there, and don't build if exist
-    ;;
-    ;; I'm disalbing the query, disabling the system dependency
-    ;; installation, and disable errors. Thus, this will be silent. To
-    ;; build the epdfinfo binary, call this command
-    ;; interactively. Still, this will try to build the package, which
-    ;; increase overhead for building VM.
-    (pdf-tools-install t t t nil)
+    ;; This will NOT check epdfinfo, but merely sets the default
+    ;; viewing mode of pdf. I do not want to build it at startup time
+    ;; because that can be very annoying especially inside VM. To
+    ;; build it, call pdf-tool-install manually, which honors the
+    ;; pdf-info-epdfinfo-program variable
+    (pdf-tools-install-noverify)
     (setq pdf-view-resize-factor 1.03)
     (defun pdf-view-fit-paper(number)
       ;; using P for horizontal reading
