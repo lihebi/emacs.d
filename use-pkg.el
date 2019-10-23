@@ -855,6 +855,7 @@ You need to kill the current *Python* buffer to take effect."
                              "~/git/causal-vae"
                              "~/git/deep-causal-paper"
                              "~/git/rackenet"
+                             "~/git/heavy-ball"
                              ;; configs
                              "~/.hebi"
                              "~/.stumpwm.d"
