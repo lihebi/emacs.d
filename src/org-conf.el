@@ -211,8 +211,8 @@
           ("homepage" :components ("homepage-org" "homepage-static")))))
 
 (defun setup-ob ()
-  (require 'ob-clang)
-  (require 'ob-ctags)
+  ;; (require 'ob-clang)
+  ;; (require 'ob-ctags)
   (setq org-export-use-babel nil)
   (org-babel-do-load-languages
    'org-babel-load-languages
@@ -222,12 +222,12 @@
      (ruby . t)
      ;; this should be capital C, the same as in #+begin_src C
      (C . t)
-     (ctags . t)
+     ;; (ctags . t)
+     ;; (clang . t)
+     ;; (srcml . t)
      (dot . t)
      (sqlite . t)
-     (lisp . t)
-     (srcml . t)
-     (clang . t))))
+     (lisp . t))))
 
 (use-package org
   :straight org-plus-contrib
