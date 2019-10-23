@@ -5,6 +5,8 @@
 
 ;;; Code:
 
+(define-obsolete-function-alias 'org-define-error 'define-error)
+
 ;; To make the citation works:
 ;;
 ;; 1. in orgmode, run hebi-gen-bib. This will insert bib file links at
