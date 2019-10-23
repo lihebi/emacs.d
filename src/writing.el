@@ -71,7 +71,13 @@
     ;; This seems also sets the default viewing mode of pdf, and it
     ;; seems to honor the pdf-info-epdfinfo-program variable, i.e. put
     ;; the executable there, and don't build if exist
-    (pdf-tools-install)
+    ;;
+    ;; I'm disalbing the query, disabling the system dependency
+    ;; installation, and disable errors. Thus, this will be silent. To
+    ;; build the epdfinfo binary, call this command
+    ;; interactively. Still, this will try to build the package, which
+    ;; increase overhead for building VM.
+    (pdf-tools-install t t t nil)
     (setq pdf-view-resize-factor 1.03)
     (defun pdf-view-fit-paper(number)
       ;; using P for horizontal reading

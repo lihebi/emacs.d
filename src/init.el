@@ -26,4 +26,4 @@
 ;; (load "~/.emacs.d/src/mac.el")
 
 ;; TODO move this to a package
-(load "~/.emacs.d/src/lookup.el")
+;; (load "~/.emacs.d/src/lookup.el")
