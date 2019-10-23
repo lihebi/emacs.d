@@ -17,11 +17,13 @@
 (load "~/.emacs.d/src/edit.el")
 (load "~/.emacs.d/src/mail.el")
 (load "~/.emacs.d/src/prog.el")
-(load "~/.emacs.d/src/remote.el")
 (load "~/.emacs.d/src/theme.el")
 (load "~/.emacs.d/src/apps.el")
 (load "~/.emacs.d/src/writing.el")
 (load "~/.emacs.d/src/experimental.el")
+
+;; (load "~/.emacs.d/src/remote.el")
+;; (load "~/.emacs.d/src/mac.el")
 
 ;; TODO move this to a package
 (load "~/.emacs.d/src/lookup.el")

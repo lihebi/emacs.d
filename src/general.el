@@ -122,16 +122,6 @@
 
 ;; when doing search, C-s then C-w mutiple times can search word at point
 
-;; Mac Settings
-;; use command as meta
-(setq mac-command-modifier 'meta)
-;; (setq mac-option-modifier 'super)
-;; use option as hyper
-;; option still use as meta
-;; (setq mac-option-modifier 'hyper)
-;; (setq ns-function-modifier 'hyper)
-
-
 ;; FIXME Do I still use ido-mode? Is this in the same place as helm?
 
 (ido-mode t)                            ; ido: interactively do
@@ -165,18 +155,6 @@
   (add-to-list 'linum-disabled-modes-list 'julia-true-repl-mode)
   (delete 'org-mode linum-disabled-modes-list))
 
-(use-package smex
-  ;; use ido in M-x
-  :defer t
-  :bind
-  (("M-x" . smex)
-   ("M-X" . smex-major-mode-commands)
-   ; my old M-x
-   ("C-c C-c M-x" . execute-extended-command))
-  :init
-  (progn
-    (smex-initialize)))
-
 
 (use-package dired-k
   ;; k (https://github.com/rimraf/k) is a ls alternative to show git status
@@ -188,45 +166,13 @@
   ;; You can use dired-k alternative to revert-buffer
   (define-key dired-mode-map (kbd "g") 'dired-k)
   ;; always execute dired-k when dired buffer is opened
-  (add-hook 'dired-initial-position-hook 'dired-k)
   ;; (add-hook 'dired-after-readin-hook #'dired-k-no-revert)
-  )
+  (add-hook 'dired-initial-position-hook 'dired-k))
 
 
 (use-package magit
   :defer t
-  :bind (
-         ("C-x g" . magit-status)))
-
-(use-package exec-path-from-shell
-  ;; when start emacs from desktop env instead of shell, the PATH is aweful.
-  ;; :if window-system
-  ;;
-  ;; I'm disabling it, as it is mostly useful on Mac. On Linux, I can
-  ;; now use gdm to load .bash_profile, all applications started from
-  ;; there should automatically get those variables
-  :disabled
-  :config
-  (progn
-    (exec-path-from-shell-initialize) ;; by default only load $PATH $MANPATH
-    ;; (exec-path-from-shell-copy-env "INFOPATH") ;; load $INFOPATH
-    (exec-path-from-shell-copy-env "LD_LIBRARY_PATH")
-    (exec-path-from-shell-copy-env "LIBRARY_PATH")
-    (exec-path-from-shell-copy-env "CPATH")
-    (exec-path-from-shell-copy-env "CLASSPATH")
-    (exec-path-from-shell-copy-env "ACLOCAL_PATH")
-    (exec-path-from-shell-copy-env "PKG_CONFIG_PATH")
-    (exec-path-from-shell-copy-env "CMAKE_PREFIX_PATH")
-    (exec-path-from-shell-copy-env "PYTHONPATH")
-    (exec-path-from-shell-copy-env "C_INCLUDE_PATH")
-    (exec-path-from-shell-copy-env "CPLUS_INCLUDE_PATH")
-    (exec-path-from-shell-copy-env "GUIX_LOCPATH")
-    (exec-path-from-shell-copy-env "GUIX_PACKAGE_PATH")
-    (message "%s: %s" "exec-path-from-shell post config" (getenv "PATH"))))
-
-(when (string= system-type "darwin")
-  (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
-  (setq exec-path (append exec-path '("/usr/local/bin"))))
+  :bind (("C-x g" . magit-status)))
 
 (use-package helm
   ;; Now I would love to summary the C++ IDE commonly used commands and features
@@ -258,3 +204,20 @@
   (setq helm-buffers-fuzzy-matching t
         helm-recentf-fuzzy-match t))
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Disabled
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package smex
+  ;; use ido in M-x
+  :defer t
+  :disabled
+  :bind
+  (("M-x" . smex)
+   ("M-X" . smex-major-mode-commands)
+   ; my old M-x
+   ("C-c C-c M-x" . execute-extended-command))
+  :init
+  (progn
+    (smex-initialize)))

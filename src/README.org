@@ -1,0 +1,6 @@
+#+TITLE: Implementation details
+
+* TODO-list
+
+** DONE produce a slim by default config for use in VMs
+   CLOSED: [2019-10-23 Wed 11:33]

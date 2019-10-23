@@ -1,4 +1,3 @@
-
 (setq default-frame-alist '((font . "Source Code Pro-13")))
 ;; (set-face-attribute 'default nil :font "Source Code Pro-13")
 ;; (set-frame-font "Source Code Pro-10" nil t)
@@ -37,6 +36,52 @@
   :config
   (nyan-mode))
 
+(use-package git-gutter
+  :init
+  (progn
+    (global-git-gutter-mode t)
+    ;; (git-gutter:linum-setup)
+    )
+  ;; :bind
+  ;; (("C-x C-g" . git-gutter:toggle))
+  :config
+  (progn
+    (custom-set-variables
+     '(git-gutter:modified-sign "  ")
+     '(git-gutter:added-sign "++")
+     '(git-gutter:deleted-sign "--"))
+    (set-face-background 'git-gutter:modified "purple")
+    (set-face-foreground 'git-gutter:added "green")
+    (set-face-foreground 'git-gutter:deleted "red")))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Disabled
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package monokai-theme
+  ;; this package is very weird, the theme is loaded automatically.
+  :disabled
+  :config
+  ;; :init
+  ;; (load-theme 'monokai t)
+  ;; (enable-theme 'monokai)
+  )
+
+(use-package zenburn-theme
+  :disabled)
+
+(use-package color-theme-sanityinc-tomorrow
+  :disabled
+  :config
+  ;; (color-theme-sanityinc-tomorrow-night)
+  ;; (color-theme-sanityinc-tomorrow-day)
+  ;; (load-theme 'sanityinc-tomorrow-day t)
+  ;; (color-theme-sanityinc-tomorrow-blue)
+  ;; (color-theme-sanityinc-tomorrow-eighties)
+  ;; (load-theme 'sanityinc-tomorrow-bright t)
+  )
+
 (use-package smart-mode-line
   :disabled
   :init
@@ -66,43 +111,3 @@
                              "GitGutter")
                            "\\|"))))
 
-(use-package git-gutter
-  :init
-  (progn
-    (global-git-gutter-mode t)
-    ;; (git-gutter:linum-setup)
-    )
-  ;; :bind
-  ;; (("C-x C-g" . git-gutter:toggle))
-  :config
-  (progn
-    (custom-set-variables
-     '(git-gutter:modified-sign "  ")
-     '(git-gutter:added-sign "++")
-     '(git-gutter:deleted-sign "--"))
-    (set-face-background 'git-gutter:modified "purple")
-    (set-face-foreground 'git-gutter:added "green")
-    (set-face-foreground 'git-gutter:deleted "red")))
-
-(use-package monokai-theme
-  ;; this package is very weird, the theme is loaded automatically.
-  :disabled
-  :config
-  ;; :init
-  ;; (load-theme 'monokai t)
-  ;; (enable-theme 'monokai)
-  )
-
-(use-package zenburn-theme
-  :disabled)
-
-(use-package color-theme-sanityinc-tomorrow
-  ;; :disabled
-  :config
-  ;; (color-theme-sanityinc-tomorrow-night)
-  ;; (color-theme-sanityinc-tomorrow-day)
-  ;; (load-theme 'sanityinc-tomorrow-day t)
-  ;; (color-theme-sanityinc-tomorrow-blue)
-  ;; (color-theme-sanityinc-tomorrow-eighties)
-  ;; (load-theme 'sanityinc-tomorrow-bright t)
-  )

@@ -1,9 +1,5 @@
 #+TITLE: emacs.d
 
-* TODO pdf-tools & straight
-pdf-tools epdfinfo executable get removed (by straight?) everytime
-emacs startup
-
 
 * Trouble Shooting
 

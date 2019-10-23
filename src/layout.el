@@ -33,14 +33,6 @@
                                 (other-window 1)))
 
 
-(use-package windmove
-  :defer t
-  :bind
-  (("<f2> <right>" . windmove-right)
-   ("<f2> <left>" . windmove-left)
-   ("<f2> <up>" . windmove-up)
-   ("<f2> <down>" . windmove-down)))
-
 (use-package popwin
   ;; use a separate window for buffers like *completion*,
   ;; close them use C-g
@@ -51,13 +43,11 @@
 
 
 (use-package projectile
-  :init
-  (progn
-    (projectile-global-mode)
-    ; enable catch
-    (setq projectile-enable-caching t))
-  :bind
-  (("C-c p c" . projectile-compile-project))
+  :init (progn
+          (projectile-global-mode)
+          ;; enable catch
+          (setq projectile-enable-caching t))
+  :bind (("C-c p c" . projectile-compile-project))
   :config
   (setq projectile-switch-project-action 'projectile-dired)
   ;; (setq projectile-track-known-projects-automatically nil)
@@ -70,17 +60,31 @@
 
 (use-package perspective
   :init
-  :bind
-  (("C-c s" . persp-switch))
-  :config
-  (progn
-    (persp-mode)
-    (setq projectile-switch-project-action 'projectile-dired)
-    )
-  )
+  :bind (("C-c s" . persp-switch))
+  :config (progn
+            (persp-mode)
+            (setq projectile-switch-project-action 'projectile-dired)))
 
 (use-package persp-projectile
+  :bind (("C-c h s" . projectile-persp-switch-project)))
+
+(use-package ace-window
+  ;; C-u M-o switch window
   :bind
-  (
-   ("C-c h s" . projectile-persp-switch-project))
-  )
+  (("M-o" . ace-window)))
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Disabled
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package windmove
+  :defer t
+  :disabled
+  :bind
+  (("<f2> <right>" . windmove-right)
+   ("<f2> <left>" . windmove-left)
+   ("<f2> <up>" . windmove-up)
+   ("<f2> <down>" . windmove-down)))
+

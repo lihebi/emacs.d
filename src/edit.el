@@ -72,24 +72,6 @@
   :config
   (setq shell-switcher-mode t))
 
-(use-package string-inflection
-  :disabled t
-  ;; cycle through CamelCase and under_line
-  :bind
-  ("C-c m" . string-inflection-cycle))
-
-(use-package visual-regexp
-  ;; use
-  ;; vr/query-replace
-  ;; vr/replace
-  :config
-  ;; commenting out these keybindings
-  ;; need to remember to use vr/xxx when doing replacing
-  ;; (define-key global-map (kbd "C-c r") 'vr/replace)
-  ;; (define-key global-map (kbd "C-c q") 'vr/query-replace)
-  ;; ;; if you use multiple-cursors, this is for you:
-  ;; (define-key global-map (kbd "C-c m") 'vr/mc-mark)
-  )
 
 ;; insert-pair-alist
 (use-package wrap-region
@@ -129,23 +111,6 @@
   :init
   (volatile-highlights-mode t))
 
-;; These two packages are used in fuzzy complete
-(use-package fuzzy)
-(use-package flx)
-
-
-
-;; not sure if these wierd binding is what I want
-(use-package expand-region
-  :bind
-  (("s-e" . er/expand-region)))
-
-(use-package browse-kill-ring
-  :defer t
-  :config
-  (browse-kill-ring-default-keybindings))
-
-
 
 (use-package goto-chg
   ;; goto last change in this buffer
@@ -168,11 +133,6 @@
 
     (guide-key-mode 1)))
 
-
-
-(use-package regex-tool
-  :defer t)
-
 (use-package ag
   :defer t)
 
@@ -182,14 +142,6 @@
   (
    ("C-c h SPC" . ace-jump-mode)
    ("C-x SPC" . ace-jump-mode-pop-mark)))
-
-(use-package ace-window
-  ;; C-u M-o switch window
-  :bind
-  (
-   ;; ("C-c h w" . ace-window)
-   ("M-o" . ace-window)))
-
 
 (use-package yasnippet
   :init
@@ -230,6 +182,62 @@
          )))
     (setq yas-prompt-functions '(yas-popup-isearch-prompt yas-ido-prompt yas-no-prompt))))
 
+(use-package smartparens
+  :diminish smartparens-mode
+  :config
+  (progn
+    (require 'smartparens-config)
+    (smartparens-global-mode 1)))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Disabled
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package string-inflection
+  :disabled t
+  ;; cycle through CamelCase and under_line
+  :bind
+  ("C-c m" . string-inflection-cycle))
+
+(use-package visual-regexp
+  ;; use
+  ;; vr/query-replace
+  ;; vr/replace
+  :disabled
+  :config
+  ;; commenting out these keybindings
+  ;; need to remember to use vr/xxx when doing replacing
+  ;; (define-key global-map (kbd "C-c r") 'vr/replace)
+  ;; (define-key global-map (kbd "C-c q") 'vr/query-replace)
+  ;; ;; if you use multiple-cursors, this is for you:
+  ;; (define-key global-map (kbd "C-c m") 'vr/mc-mark)
+  )
+
+;; These two packages are used in fuzzy complete
+(use-package fuzzy
+  :disabled)
+(use-package flx
+  :disabled)
+
+
+
+;; not sure if these wierd binding is what I want
+(use-package expand-region
+  :bind
+  :disabled
+  (("s-e" . er/expand-region)))
+
+(use-package browse-kill-ring
+  :defer t
+  :disabled
+  :config
+  (browse-kill-ring-default-keybindings))
+
+(use-package regex-tool
+  :defer t
+  :disabled)
+
 ;; In order to use flycheck, the checkers need to be installed. To
 ;; verify a checker is properly installed, use
 ;; flycheck-verify-checker.
@@ -260,15 +268,8 @@
   ;; M-x describe-checker => found c/c++-clang
   ;; Click on it, goes to the description, along with the configurable part.
   (setq flycheck-clang-include-path (list "..")))
-
-(use-package smartparens
-  :diminish smartparens-mode
-  :config
-  (progn
-    (require 'smartparens-config)
-    (smartparens-global-mode 1)))
-
 (use-package company
+  :disabled
   :init
   (add-hook 'after-init-hook 'global-company-mode)
   :bind

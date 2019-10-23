@@ -57,38 +57,10 @@
     (add-hook 'latex-mode-hook 'fic-mode)
     (add-hook 'markdown-mode-hook 'fic-mode)))
 
-(use-package csv-mode)
 (use-package json-mode)
-
-(use-package z3-mode
-  :defer t
-  :config
-  ;; add-hook will keep adding ... consider reset it when debugging
-  ;; (setq z3-mode-hook nil)
-  (setq z3-solver-cmd "/usr/bin/z3")
-  ;; the actual command running:
-  ;; z3 -v:1 -smt2 xxx.smt
-  (add-hook 'z3-mode-hook #'(lambda()
-                              (prin1 "hello")
-                              ;; turn off slime mode
-                              (slime-mode 0)
-                              (prin1 "done"))))
-
-(use-package bison-mode
-  :defer t)
-(use-package cmake-mode
-  :defer t)
 (use-package dockerfile-mode
   :defer t)
-
-(use-package go-mode
-  :defer t)
-(use-package gradle-mode)
-(use-package groovy-mode)
-(use-package yaml-mode)
-
 (use-package rust-mode)
-;; (use-package racer)
 
 (use-package slime
   :defer t
@@ -97,26 +69,6 @@
   (setq slime-contribs '(slime-fancy))
   (use-package slime-company)
   (slime-setup '(slime-fancy slime-company)))
-
-(use-package ess
-  ;; R
-  ;; but cannot be defered, or the command is not found.
-  ;; to use: M-x R
-  ;; R-mode
-  ;; this is disabled because very slow on startup, but it is very useful
-  :disabled t
-  :config
-  (setq comint-prompt-read-only t)
-  (setq comint-scroll-to-bottom-on-input t)
-  (setq comint-scroll-to-bottom-on-output t)
-  (setq comint-move-point-for-output t))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; python
-;; currently 7.2.0 ipython is not working, see:
-;; https://github.com/jorgenschaefer/elpy/issues/1517 and
-;; https://github.com/ipython/ipython/issues/11541
-;; So downgrade to 7.1.1: pip3 install ipython==7.1.1
 
 (use-package elpy
   ;; C-c C-z (elpy-shell-switch-to-shell)
@@ -154,30 +106,6 @@ You need to kill the current *Python* buffer to take effect."
   ;; (setq python-shell-interpreter "python3")
   (setq comint-scroll-to-bottom-on-output t)
   (elpy-enable))
-
-;; usage: create ~/.virtualenvs, and run mkvirtualenv (in eshell),
-;; with a name. M-x venv-workon will activate it, while
-;; venv-deactivate stop it. It works with both eshell and python.el
-;;
-;; The pip might not work properly. Try python -m pip instead.
-(use-package virtualenvwrapper
-  :config
-  ;; if you want interactive shell support
-  (venv-initialize-interactive-shells)
-  ;; if you want eshell support
-  (venv-initialize-eshell))
-
-
-(use-package pylint
-  ;; have to use this for org mode to find "pylint" when exporting html
-  :disabled t
-)
-
-(use-package google-c-style
-  ;; c style used by google
-  :disabled t
-  :defer t)
-(use-package clang-format)
 
 (use-package geiser
   ;; geiser is not the REPL I want for racket
@@ -223,13 +151,104 @@ You need to kill the current *Python* buffer to take effect."
                            :repo "lihebi/scribble-mode.el"))
 
 (use-package haskell-mode)
-(use-package sml-mode)
 (use-package markdown-mode)
+
+;; this package can implement "flash the sexp"
+(use-package eval-sexp-fu)
+
+(use-package julia-mode)
+(use-package julia-repl
+  :straight (julia-repl :type git :host github
+                        :repo "lihebi/julia-repl")
+  :config
+  ;; (setq julia-repl-term-type 'term)
+  (setq julia-repl-term-type 'comint)
+  (add-hook 'julia-mode-hook 'julia-repl-mode)
+  (setq julia-repl-switches "-i --color=yes"))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Disabled
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package csv-mode
+  :disabled)
+(use-package z3-mode
+  :disabled
+  :defer t
+  :config
+  ;; add-hook will keep adding ... consider reset it when debugging
+  ;; (setq z3-mode-hook nil)
+  (setq z3-solver-cmd "/usr/bin/z3")
+  ;; the actual command running:
+  ;; z3 -v:1 -smt2 xxx.smt
+  (add-hook 'z3-mode-hook #'(lambda()
+                              (prin1 "hello")
+                              ;; turn off slime mode
+                              (slime-mode 0)
+                              (prin1 "done"))))
+(use-package coffee-mode
+  :disabled)
+(use-package bison-mode
+  :defer t
+  :disabled)
+(use-package cmake-mode
+  :defer t
+  :disabled)
+(use-package go-mode
+  :defer t
+  :disabled)
+(use-package gradle-mode
+  :disabled)
+(use-package groovy-mode
+  :disabled)
+(use-package yaml-mode
+  :disabled)
+(use-package ess
+  ;; R
+  ;; but cannot be defered, or the command is not found.
+  ;; to use: M-x R
+  ;; R-mode
+  ;; this is disabled because very slow on startup, but it is very useful
+  :disabled t
+  :config
+  (setq comint-prompt-read-only t)
+  (setq comint-scroll-to-bottom-on-input t)
+  (setq comint-scroll-to-bottom-on-output t)
+  (setq comint-move-point-for-output t))
+
+;; usage: create ~/.virtualenvs, and run mkvirtualenv (in eshell),
+;; with a name. M-x venv-workon will activate it, while
+;; venv-deactivate stop it. It works with both eshell and python.el
+;;
+;; The pip might not work properly. Try python -m pip instead.
+(use-package virtualenvwrapper
+  :disabled
+  :config
+  ;; if you want interactive shell support
+  (venv-initialize-interactive-shells)
+  ;; if you want eshell support
+  (venv-initialize-eshell))
+
+
+(use-package pylint
+  ;; have to use this for org mode to find "pylint" when exporting html
+  :disabled)
+
+(use-package google-c-style
+  ;; c style used by google
+  :disabled t
+  :defer t)
+(use-package clang-format
+  :disabled)
+(use-package sml-mode
+  :disabled)
 
 
 ;; C-c C-c runs the command arduino-upload
 ;; It runs arduino --upload xxx.ino
-(use-package arduino-mode)
+(use-package arduino-mode
+  :disabled)
 
 
 ;; FIXME one of these packages will make org-ref links unusable! How??
@@ -241,32 +260,18 @@ You need to kill the current *Python* buffer to take effect."
 ;;   :config
 ;;   (setq cider-prompt-for-symbol nil))
 
-
-
-(use-package scala-mode)
-
-
-;; Julia configuration
-;; M-. not working, see https://github.com/tpapp/julia-repl/issues/50
-(use-package julia-mode)
-;; this package can implement "flash the sexp"
-(use-package eval-sexp-fu)
-(use-package julia-repl
-  :straight (julia-repl :type git :host github
-                        :repo "lihebi/julia-repl")
-  :config
-  ;; (setq julia-repl-term-type 'term)
-  (setq julia-repl-term-type 'comint)
-  (add-hook 'julia-mode-hook 'julia-repl-mode)
-  (setq julia-repl-switches "-i --color=yes"))
+(use-package scala-mode
+  :disabled)
 
 (use-package dumb-jump
   ;; trying to use it for julia, but does not work
   :disabled)
 ;; for lsp-julia
-(use-package lsp-mode)
+(use-package lsp-mode
+  :disabled)
 ;; for find-symbol
 (use-package lsp-julia
+  :disabled
   ;; currently lsp-mode won't start automatically (and it is slow, so
   ;; probably just start on-demand). To start the connection, run M-x
   ;; lsp, after a while, M-. should work.
@@ -306,6 +311,3 @@ You need to kill the current *Python* buffer to take effect."
   :straight (eglot-julia :type git :host github
                          :repo "lihebi/eglot-julia"))
 
-
-
-(use-package coffee-mode)
