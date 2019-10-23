@@ -30,3 +30,79 @@
  '(mode-line ((t (:background "dark red" :foreground "white"))))
  '(mode-line-inactive ((t (:background "black")))))
 
+
+
+;; a must-have package, show the position you are in this buffer
+(use-package nyan-mode
+  :config
+  (nyan-mode))
+
+(use-package smart-mode-line
+  :disabled
+  :init
+  ;; this is actually required by smart-mode-line
+  ;; don't need to explicitly load use-package it, just as a reference
+  ;; actually the rm-blacklist is offered by it
+  ;; it also offers the rm-text-properties variable
+  ;; (use-package rich-minority)
+  :config
+  (setq sml/no-confirm-load-theme t) ; do not warn me for loading a theme
+  (setq sml/theme 'respectful)
+  (sml/setup)
+  (setq sml/name-width 15)
+  ;; highlight God-mode in minor mode
+  (add-to-list 'rm-text-properties
+               '("\\` God\\'" 'face 'font-lock-warning-face))
+  (setq rm-blacklist
+        (format "^ \\(%s\\)$"
+                (mapconcat #'identity
+                           '("FlyC.*"
+                             "Projectile.*"
+                             "hebi-keys"
+                             "PgLn"
+                             "company"
+                             "Undo-Tree"
+                             "yas"
+                             "GitGutter")
+                           "\\|"))))
+
+(use-package git-gutter
+  :init
+  (progn
+    (global-git-gutter-mode t)
+    ;; (git-gutter:linum-setup)
+    )
+  ;; :bind
+  ;; (("C-x C-g" . git-gutter:toggle))
+  :config
+  (progn
+    (custom-set-variables
+     '(git-gutter:modified-sign "  ")
+     '(git-gutter:added-sign "++")
+     '(git-gutter:deleted-sign "--"))
+    (set-face-background 'git-gutter:modified "purple")
+    (set-face-foreground 'git-gutter:added "green")
+    (set-face-foreground 'git-gutter:deleted "red")))
+
+(use-package monokai-theme
+  ;; this package is very weird, the theme is loaded automatically.
+  :disabled
+  :config
+  ;; :init
+  ;; (load-theme 'monokai t)
+  ;; (enable-theme 'monokai)
+  )
+
+(use-package zenburn-theme
+  :disabled)
+
+(use-package color-theme-sanityinc-tomorrow
+  ;; :disabled
+  :config
+  ;; (color-theme-sanityinc-tomorrow-night)
+  ;; (color-theme-sanityinc-tomorrow-day)
+  ;; (load-theme 'sanityinc-tomorrow-day t)
+  ;; (color-theme-sanityinc-tomorrow-blue)
+  ;; (color-theme-sanityinc-tomorrow-eighties)
+  ;; (load-theme 'sanityinc-tomorrow-bright t)
+  )

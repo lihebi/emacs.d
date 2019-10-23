@@ -32,3 +32,55 @@
                                 (split-window-right)
                                 (other-window 1)))
 
+
+(use-package windmove
+  :defer t
+  :bind
+  (("<f2> <right>" . windmove-right)
+   ("<f2> <left>" . windmove-left)
+   ("<f2> <up>" . windmove-up)
+   ("<f2> <down>" . windmove-down)))
+
+(use-package popwin
+  ;; use a separate window for buffers like *completion*,
+  ;; close them use C-g
+  :defer t
+  :config
+  (popwin-mode 1)
+  (push '("*Hebi Output*" :noselect t :tail t) popwin:special-display-config))
+
+
+(use-package projectile
+  :init
+  (progn
+    (projectile-global-mode)
+    ; enable catch
+    (setq projectile-enable-caching t))
+  :bind
+  (("C-c p c" . projectile-compile-project))
+  :config
+  (setq projectile-switch-project-action 'projectile-dired)
+  ;; (setq projectile-track-known-projects-automatically nil)
+  ;; when setting this to another file, emacs didn't load it
+  ;; (setq projectile-known-projects-file "/home/hebi/.emacs.d/projectile-bookmarks.eld")
+  ;; use this to load known projects
+  (defun hebi-reload-projectile-known-projects ()
+    (interactive)
+    (projectile-load-known-projects)))
+
+(use-package perspective
+  :init
+  :bind
+  (("C-c s" . persp-switch))
+  :config
+  (progn
+    (persp-mode)
+    (setq projectile-switch-project-action 'projectile-dired)
+    )
+  )
+
+(use-package persp-projectile
+  :bind
+  (
+   ("C-c h s" . projectile-persp-switch-project))
+  )

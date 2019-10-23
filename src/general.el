@@ -150,3 +150,111 @@
 
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "M-z") 'zap-up-to-char)
+
+
+
+;; this is used to speed up pdf reading
+(use-package linum-off
+  ;; My fork adds support for display-line-numbers-mode
+  :straight (linum-off :type git :host github
+                       :repo "lihebi/linum-off")
+  :config
+  (add-to-list 'linum-disabled-modes-list 'doc-view-mode)
+  ;; it only checks major mode
+  ;; (add-to-list 'linum-disabled-modes-list 'comint-mode)
+  (add-to-list 'linum-disabled-modes-list 'julia-true-repl-mode)
+  (delete 'org-mode linum-disabled-modes-list))
+
+(use-package smex
+  ;; use ido in M-x
+  :defer t
+  :bind
+  (("M-x" . smex)
+   ("M-X" . smex-major-mode-commands)
+   ; my old M-x
+   ("C-c C-c M-x" . execute-extended-command))
+  :init
+  (progn
+    (smex-initialize)))
+
+
+(use-package dired-k
+  ;; k (https://github.com/rimraf/k) is a ls alternative to show git status
+  ;;
+  ;; dired-k is run in teh hook of dired, or as revert-buffer, so that
+  ;; when dired, it will load dired-k to show some fancy staff
+  ;; :disabled
+  :config
+  ;; You can use dired-k alternative to revert-buffer
+  (define-key dired-mode-map (kbd "g") 'dired-k)
+  ;; always execute dired-k when dired buffer is opened
+  (add-hook 'dired-initial-position-hook 'dired-k)
+  ;; (add-hook 'dired-after-readin-hook #'dired-k-no-revert)
+  )
+
+
+(use-package magit
+  :defer t
+  :bind (
+         ("C-x g" . magit-status)))
+
+(use-package exec-path-from-shell
+  ;; when start emacs from desktop env instead of shell, the PATH is aweful.
+  ;; :if window-system
+  ;;
+  ;; I'm disabling it, as it is mostly useful on Mac. On Linux, I can
+  ;; now use gdm to load .bash_profile, all applications started from
+  ;; there should automatically get those variables
+  :disabled
+  :config
+  (progn
+    (exec-path-from-shell-initialize) ;; by default only load $PATH $MANPATH
+    ;; (exec-path-from-shell-copy-env "INFOPATH") ;; load $INFOPATH
+    (exec-path-from-shell-copy-env "LD_LIBRARY_PATH")
+    (exec-path-from-shell-copy-env "LIBRARY_PATH")
+    (exec-path-from-shell-copy-env "CPATH")
+    (exec-path-from-shell-copy-env "CLASSPATH")
+    (exec-path-from-shell-copy-env "ACLOCAL_PATH")
+    (exec-path-from-shell-copy-env "PKG_CONFIG_PATH")
+    (exec-path-from-shell-copy-env "CMAKE_PREFIX_PATH")
+    (exec-path-from-shell-copy-env "PYTHONPATH")
+    (exec-path-from-shell-copy-env "C_INCLUDE_PATH")
+    (exec-path-from-shell-copy-env "CPLUS_INCLUDE_PATH")
+    (exec-path-from-shell-copy-env "GUIX_LOCPATH")
+    (exec-path-from-shell-copy-env "GUIX_PACKAGE_PATH")
+    (message "%s: %s" "exec-path-from-shell post config" (getenv "PATH"))))
+
+(when (string= system-type "darwin")
+  (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
+  (setq exec-path (append exec-path '("/usr/local/bin"))))
+
+(use-package helm
+  ;; Now I would love to summary the C++ IDE commonly used commands and features
+  ;; From my helm M-x history
+  ;; helm-projectile
+  ;; helm-register
+  ;; helm-all-mark-rings
+  ;; helm-man-woman
+  ;; helm-show-kill-ring
+
+  ;; helm-semantic-or-imenu
+  ;; srefactor-refactor-at-point
+  :bind
+  (("M-x" . helm-M-x)
+   ;; C-j enter directory
+   ;; C-l up directory
+   ;; C-u C-x C-f open history
+   ("C-x C-f" . helm-find-files)
+   ("M-y" . helm-show-kill-ring)
+   ("C-x b" . helm-mini)
+   ("C-h SPC" . helm-all-mark-rings))
+  :config
+  ;; helm-semantic-or-imenu (C-x c i)
+  ;; it shows the outline!
+  ;; the actual worker is semantic, so be sure to enable it
+  (setq helm-semantic-fuzzy-match t
+        helm-imenu-fuzzy-match t)
+  (setq helm-M-x-fuzzy-match t)
+  (setq helm-buffers-fuzzy-matching t
+        helm-recentf-fuzzy-match t))
+

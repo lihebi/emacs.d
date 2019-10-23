@@ -1,9 +1,105 @@
-;;; org.el --- org package load and config
+;;; writing.el --- tex/org package load and config
 
 ;;; Commentary:
 ;; No Comments!
 
 ;;; Code:
+
+;; To make the citation works:
+;;
+;; 1. in orgmode, run hebi-gen-bib. This will insert bib file links at
+;; the end of the org file.
+;;
+;; 2. In latex file, C-c TAB (translated from C-c <tab>) runs the
+;; command tex-bibtex-file (found in latex-mode-map).  This is defined
+;; in tex-mode instead of auctex.
+;;
+;; Of course you need to run pdflatex or org-latex-export-to-pdf again
+
+;; (use-package ebib)
+(use-package tex
+  :straight auctex
+  :defer t
+  :config
+  (setq TeX-open-quote "\"")
+  (setq TeX-close-quote "\"")
+  (add-hook 'LaTeX-mode-hook
+            '(lambda()
+               (define-key LaTeX-mode-map (kbd "C-c ]") 'helm-bibtex)))
+  ;; (add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
+  (add-hook 'LaTeX-mode-hook
+            '(lambda()
+               (add-to-list 'LaTeX-verbatim-environments "lstlisting")))
+  ;; (define-key LaTeX-mode-map (kbd "C-c t") 'reftex-toc)
+  (setq TeX-open-quote "\"")
+  (setq TeX-close-quote "\"")
+  (if (string= system-type "darwin")
+      (progn
+        (setq TeX-view-program-selection '((output-pdf "Skim"))))
+    (setq TeX-view-program-selection '((output-pdf "PDF Tools"))))
+  ;; supporting indentation of [] in LaTeX mode
+  (defun TeX-brace-count-line ()
+    "Count number of open/closed braces."
+    (save-excursion
+      (let ((count 0) (limit (line-end-position)) char)
+        (while (progn
+                 (skip-chars-forward "^{}[]\\\\" limit)
+                 (when (and (< (point) limit) (not (TeX-in-comment)))
+                   (setq char (char-after))
+                   (forward-char)
+                   (cond ((eq char ?\{)
+                          (setq count (+ count TeX-brace-indent-level)))
+                         ((eq char ?\})
+                          (setq count (- count TeX-brace-indent-level)))
+                         ((eq char ?\[)
+                          (setq count (+ count TeX-brace-indent-level)))
+                         ((eq char ?\])
+                          (setq count (- count TeX-brace-indent-level)))
+                         ((eq char ?\\)
+                          (when (< (point) limit)
+                            (forward-char)
+                            t))))))
+        count))))
+
+(when (not (string= system-type "darwin"))
+  (use-package pdf-tools
+    :init
+    ;; FIXME why emacs keeps remove the build directory?
+    ;; (setq pdf-info-epdfinfo-program "/home/hebi/.emacs.d/straight/build/pdf-tools/epdfinfo")
+    (setq pdf-info-epdfinfo-program "~/.emacs.d/epdfinfo")
+    :config
+    ;; This seems also sets the default viewing mode of pdf, and it
+    ;; seems to honor the pdf-info-epdfinfo-program variable, i.e. put
+    ;; the executable there, and don't build if exist
+    (pdf-tools-install)
+    (setq pdf-view-resize-factor 1.03)
+    (defun pdf-view-fit-paper(number)
+      ;; using P for horizontal reading
+      ;; using C-u P for vertical reading
+      (interactive "p")
+      (if (= number 1)
+          (progn
+            ;; landscape
+            (setq pdf-view-display-size 1.53)
+            (image-set-window-vscroll 6))
+        (progn
+          ;; portrait
+          (setq pdf-view-display-size 2.05)
+          (image-set-window-hscroll 11)))
+      (pdf-view-redisplay t))
+    (defun hebi-pdf-vert-22 ()
+      (interactive)
+      (setq pdf-view-display-size 2.05)
+      (image-set-window-hscroll 11)
+      (pdf-view-redisplay t))
+    ;; C-c C-r m
+    ;; pdf-view-midnight-minor-mode
+    (setq pdf-view-midnight-colors
+          ;; '("white" . "black")
+          ;; '("#839496" . "#002b36")
+          '("white" . "#002b36"))
+    (define-key pdf-view-mode-map (kbd "P") 'pdf-view-fit-paper)))
+
 
 
 ;; the headerline bullets
@@ -384,8 +480,7 @@ to rescan the bib files and update pdf and notes notation."
   ;; must be evaluated AFTER org package, because I'm overwriting
   ;; doi-utils-get-bibtex-entry-pdf function
   (defun doi-utils-get-bibtex-entry-pdf ()
-    (smart-scholar-bibtex-download-pdf-at-point))
-  )
+    (smart-scholar-bibtex-download-pdf-at-point)))
 
-(provide 'org-conf)
-;;; org-conf.el ends here
+(provide 'writing)
+;;; writing.el ends here

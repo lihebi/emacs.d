@@ -598,4 +598,9 @@
     ))
 
 
+(use-package alert)
+
+
+
+
 ;;; packages-disabled.el ends here
