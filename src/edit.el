@@ -156,6 +156,7 @@
   ;;; use popup menu for yas-choose-value
   ;; it seems to be installed by default. But it is not marked built-in
   (use-package popup
+    :disabled
     :config
     ;; (require 'popup)
     ;; add some shotcuts in popup menu mode
