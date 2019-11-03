@@ -48,3 +48,5 @@ history
 transient
 request
 eshell/
+
+elpy/

@@ -77,6 +77,10 @@
   ;; C-M-x (python-shell-send-defun)
   ;; C-c C-k (elpy-shell-kill)
   ;; C-c C-K (elpy-shell-kill-all)
+  ;;
+  ;; elpy current xref-goto-definition is not working. It turns out to be rpc
+  ;; problem, mostly no virtualenv. So run elpy-rpc-reinstall-virtualenv to
+  ;; solve the problem.
   :init
   (defvar python-shell-interpreter)
   (defvar python-shell-interpreter-args)
