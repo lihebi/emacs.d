@@ -16,6 +16,8 @@
   (global-display-line-numbers-mode t))
 
 
+(setq-default fill-column 80)
+
 (column-number-mode t)
 
 (setq browse-url-browser-function 'browse-url-chromium)
