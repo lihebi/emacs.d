@@ -87,6 +87,10 @@
   ;; elpy current xref-goto-definition is not working. It turns out to be rpc
   ;; problem, mostly no virtualenv. So run elpy-rpc-reinstall-virtualenv to
   ;; solve the problem.
+  ;;
+  ;; Just found that python3 supports unicode as variable name. Just
+  ;; set-input-method TeX and \theta in Emacs. Also, ε and ϵ seems to be the
+  ;; same thing.
   :init
   (defvar python-shell-interpreter)
   (defvar python-shell-interpreter-args)
@@ -164,7 +168,9 @@ You need to kill the current *Python* buffer to take effect."
 (use-package markdown-mode)
 
 ;; this package can implement "flash the sexp"
-(use-package eval-sexp-fu)
+(use-package eval-sexp-fu
+  ;; FIXME weird error when using with elpy
+  :disabled)
 
 (use-package julia-mode)
 (use-package julia-repl
