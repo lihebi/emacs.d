@@ -74,7 +74,8 @@
   :straight (elpy-utils :type git :host github
                         :repo "lihebi/elpy-utils.el")
   :config
-  (add-hook 'elpy-mode-hook #'elpy-utils-enable))
+  (add-hook 'elpy-mode-hook #'elpy-utils-enable)
+  (setq elpy-utils-scale 1.0))
 
 (use-package elpy
   ;; C-c C-z (elpy-shell-switch-to-shell)
