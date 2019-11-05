@@ -70,6 +70,12 @@
   (use-package slime-company)
   (slime-setup '(slime-fancy slime-company)))
 
+(use-package elpy-utils
+  :straight (elpy-utils :type git :host github
+                        :repo "lihebi/elpy-utils.el")
+  :config
+  (add-hook 'elpy-mode-hook #'elpy-utils-enable))
+
 (use-package elpy
   ;; C-c C-z (elpy-shell-switch-to-shell)
   ;; C-c C-c (elpy-shell-send-region-or-buffer)
