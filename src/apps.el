@@ -15,32 +15,47 @@
   ;;
   ;; :requires magit
   :config
-  (setq repo-tracker-repos '("~/git/homepage"
+  (setq repo-tracker-repos '(
+                             ;; notes
+                             "~/git/homepage"
                              "~/git/note"
                              "~/git/research"
                              "~/git/scratch/"
-                             "~/git/AdvAE-paper"
-                             "~/git/AdvAE"
-                             "~/git/biber"
-                             "~/git/biber-dist"
-                             "~/git/guix-channel"
+                             "~/git/wallpaper"
+                             "~/git/wiki2/"
+                             ;; hardware
                              "~/git/hbkb"
-                             "~/git/history-files"
                              "~/git/rackematic"
-                             "~/git/helium"
-                             "~/git/helium2"
+                             "~/git/rackenet"
+                             "~/git/smart-scholar-pdfs"
+                             ;; emane
                              "~/git/emane"
                              "~/git/emane-tutorial"
+                             "~/git/heavy-ball"
+                             ;; AI papers
+                             "~/git/AdvAE-paper"
+                             "~/git/AdvAE"
                              "~/git/causal-vae"
+                             "~/git/visual-defense-paper"
                              "~/git/deep-causal-paper"
                              "~/git/rackenet"
-                             "~/git/heavy-ball"
+                             "~/git/robust-itadv"
+                             "~/git/anti-rouge"
+                             "~/git/rouge-paper"
+                             "~/git/"
+                             ;; other research
+                             "~/git/helium"
+                             "~/git/helium2"
                              ;; configs
+                             "~/git/history-files"
+                             "~/git/guix-channel"
                              "~/.hebi"
                              "~/.stumpwm.d"
                              "~/.emacs.d"
                              ;; emacs packages
                              "~/.emacs.d/straight/repos/smart-scholar.el"
+                             "~/git/biber"
+                             "~/git/biber-dist"
                              "~/.emacs.d/straight/repos/simple-drill.el"
                              "~/.emacs.d/straight/repos/scribble-mode.el/"
                              "~/.emacs.d/straight/repos/hn.el/"
@@ -56,6 +71,8 @@
                       "neilv" "FigBug" "gumby" "skybrian"
                       "coldtea"
                       "rekado" ;; Guix hacker
+                      "pjc50" ;; about startup
+                      "pg" ;; PG!!!
                       "logicprog" "dreamcompiler"))
   ;; I need to have a list of "bad" users as well
   (setq hn-bad-users '("codegladiator"))
@@ -77,7 +94,8 @@
                          "\\bML\\b" "\\bAI\\b"
                          "nlp"
                          "Machine Learning" "Artificial Intelligence" "Deep Learning"
-                         "Tensorflow"
+                         "Neural Network"
+                         "Tensorflow" "pytorch" "torch" "lua"
                          "postmarketOS"))
   (setq hn-history-dir (expand-file-name "~/git/history-files/hn"))
   ;; FIXME can I just use the ~ in the path name without manually expanding?
