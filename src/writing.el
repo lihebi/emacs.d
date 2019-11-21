@@ -224,20 +224,22 @@
   ;; default is 3, but I want to show everything by default
   ;; also note that in org-publish-project-alist, the headline is set to 4
   ;; this may need some change in the future.
-  (setq org-export-headline-levels 6)
+  ;;
+  ;; UPDATE toc:6 works, but org-export-headline-levels does not
+  (setq org-export-headline-levels 3)
   (setq org-html-link-home "/")
 
   (defvar org-html-head)
   (setq org-html-head
         (concat
-         ;; FIXME using absolute path would make local file access
-         ;; unusable.  I probably want to put it in a webserver.
          "<link rel=\"stylesheet\" type=\"text/css\" href=\"/assets/org.css\" />"
          "<link rel=\"stylesheet\" type=\"text/css\" href=\"/assets/hebi.css\" />"
-         ;; "<link rel=\"stylesheet\" type=\"text/css\" href=\"assets/org.css\" />"
-         ;; "<link rel=\"stylesheet\" type=\"text/css\" href=\"assets/hebi.css\" />"
-         ;; "<link rel=\"stylesheet\" type=\"text/css\" href=\"../assets/org.css\" />"
-         ;; "<link rel=\"stylesheet\" type=\"text/css\" href=\"../assets/hebi.css\" />"
+         ;; FIXME using absolute path would make local file access
+         ;; unusable.  I probably want to put it in a webserver.
+         "<link rel=\"stylesheet\" type=\"text/css\" href=\"assets/org.css\" />"
+         "<link rel=\"stylesheet\" type=\"text/css\" href=\"assets/hebi.css\" />"
+         "<link rel=\"stylesheet\" type=\"text/css\" href=\"../assets/org.css\" />"
+         "<link rel=\"stylesheet\" type=\"text/css\" href=\"../assets/hebi.css\" />"
          ))
   (setq org-html-validation-link nil)
   (setq org-export-time-stamp-file nil)
