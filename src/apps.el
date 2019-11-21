@@ -61,6 +61,7 @@
                              "~/.emacs.d/straight/repos/hn.el/"
                              "~/.emacs.d/straight/repos/repo-tracker.el/"
                              "~/.emacs.d/straight/repos/julia-repl/"
+                             "~/.emacs.d/straight/repos/elpy-utils.el/"
                              )))
 
 (use-package hn
