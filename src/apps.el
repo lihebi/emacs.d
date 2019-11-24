@@ -49,6 +49,7 @@
                              ;; configs
                              "~/git/history-files"
                              "~/git/guix-channel"
+                             "~/git/nixos"
                              "~/.hebi"
                              "~/.stumpwm.d"
                              "~/.emacs.d"
