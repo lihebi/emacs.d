@@ -328,3 +328,5 @@ You need to kill the current *Python* buffer to take effect."
   :straight (eglot-julia :type git :host github
                          :repo "lihebi/eglot-julia"))
 
+
+(use-package nix-mode)
