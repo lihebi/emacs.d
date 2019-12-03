@@ -10,7 +10,7 @@
 (defvar hebi-yellow-face 'hebi-yellow-face)
 (defvar hebi-cyan-face 'hebi-cyan-face)
 (defface hebi-red-face
-  '((t :background "black" :foreground "red"))
+  '((t :foreground "red"))
   ""
   :group 'hebi-faces)
 
