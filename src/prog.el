@@ -183,6 +183,18 @@ You need to kill the current *Python* buffer to take effect."
   (add-hook 'julia-mode-hook 'julia-repl-mode)
   (setq julia-repl-switches "-i --color=yes"))
 
+(use-package ess
+  ;; R
+  ;; but cannot be defered, or the command is not found.
+  ;; to use: M-x R
+  ;; R-mode
+  ;; this is disabled because very slow on startup, but it is very useful
+  :config
+  (setq inferior-R-args "--no-restore-history --no-save ")
+  (setq comint-prompt-read-only t)
+  (setq comint-scroll-to-bottom-on-input t)
+  (setq comint-scroll-to-bottom-on-output t)
+  (setq comint-move-point-for-output t))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Disabled
@@ -221,18 +233,6 @@ You need to kill the current *Python* buffer to take effect."
   :disabled)
 (use-package yaml-mode
   :disabled)
-(use-package ess
-  ;; R
-  ;; but cannot be defered, or the command is not found.
-  ;; to use: M-x R
-  ;; R-mode
-  ;; this is disabled because very slow on startup, but it is very useful
-  :disabled t
-  :config
-  (setq comint-prompt-read-only t)
-  (setq comint-scroll-to-bottom-on-input t)
-  (setq comint-scroll-to-bottom-on-output t)
-  (setq comint-move-point-for-output t))
 
 ;; usage: create ~/.virtualenvs, and run mkvirtualenv (in eshell),
 ;; with a name. M-x venv-workon will activate it, while
