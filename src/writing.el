@@ -322,6 +322,7 @@
      (emacs-lisp . t)
      (python . t)
      (ruby . t)
+     (R . t)
      ;; this should be capital C, the same as in #+begin_src C
      (C . t)
      ;; (ctags . t)
