@@ -155,7 +155,7 @@
   ;; bad
   (interactive)
   (let ((file (buffer-file-name (current-buffer))))
-    (when (string= (file-name-extension file) "pdf")
+    (when (member (file-name-extension file) '("pdf" "epub"))
       (shell-command
        ;; TODO remote file name
        (concat "curl 'http://10.11.99.1/upload'"
