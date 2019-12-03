@@ -35,7 +35,7 @@
                              ;; AI papers
                              "~/git/AdvAE-paper"
                              "~/git/AdvAE"
-                             "~/git/causal-vae"
+                             "~/git/interventional-loss"
                              "~/git/visual-defense-paper"
                              "~/git/deep-causal-paper"
                              "~/git/rackenet"
