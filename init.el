@@ -47,12 +47,6 @@
      ("#F309DF" . 85)
      ("#3C3D37" . 100))))
  '(magit-diff-use-overlays nil)
- '(org-file-apps
-   (quote
-    ((auto-mode . emacs)
-     ("\\.mm\\'" . default)
-     ("\\.x?html?\\'" . default)
-     ("\\.pdf\\'" . emacs))))
  '(org-html-table-default-attributes
    (quote
     (:border "2" :cellspacing "2" :cellpadding "6" :rules "groups" :frame "border")))
