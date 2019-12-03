@@ -347,9 +347,12 @@
   (setup-latex)
   (setup-publish)
 
+  (setq org-adapt-indentation nil)
+  (setq org-export-with-priority t)
   ;; (require 'org-drill)
 
-  (setq org-descriptive-links nil)
+  ;; only display link name
+  (setq org-descriptive-links t)
   ;; (add-hook 'org-mode-hook 'turn-on-auto-fill)
   (setq org-log-done 'time)
   (setq org-startup-folded nil)
