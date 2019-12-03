@@ -232,14 +232,11 @@
   (defvar org-html-head)
   (setq org-html-head
         (concat
+         ;; for local usage, I would rather point to my git dir
+         "<link rel=\"stylesheet\" type=\"text/css\" href=\"/home/hebi/git/homepage/assets/org.css\" />"
+         "<link rel=\"stylesheet\" type=\"text/css\" href=\"/home/hebi/git/homepage/assets/hebi.css\" />"
          "<link rel=\"stylesheet\" type=\"text/css\" href=\"/assets/org.css\" />"
          "<link rel=\"stylesheet\" type=\"text/css\" href=\"/assets/hebi.css\" />"
-         ;; FIXME using absolute path would make local file access
-         ;; unusable.  I probably want to put it in a webserver.
-         "<link rel=\"stylesheet\" type=\"text/css\" href=\"assets/org.css\" />"
-         "<link rel=\"stylesheet\" type=\"text/css\" href=\"assets/hebi.css\" />"
-         "<link rel=\"stylesheet\" type=\"text/css\" href=\"../assets/org.css\" />"
-         "<link rel=\"stylesheet\" type=\"text/css\" href=\"../assets/hebi.css\" />"
          ))
   (setq org-html-validation-link nil)
   (setq org-export-time-stamp-file nil)
