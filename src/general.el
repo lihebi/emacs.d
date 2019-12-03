@@ -143,7 +143,7 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "M-z") 'zap-up-to-char)
 
-
+(defun hebi-show-message-buffer () (interactive) (switch-to-buffer "*Messages*"))
 
 ;; this is used to speed up pdf reading
 (use-package linum-off
