@@ -148,6 +148,9 @@
 ;;
 ;; starting from z, use pinyin as input and show wb code
 ;; eim-describe-char show code at point
+;;
+;; There seems to be another interesting project:
+;; https://github.com/tumashu/pyim
 (use-package emacs-eim
   :disabled
   :straight
