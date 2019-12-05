@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: ruby packages
+# key: ruby
+# --
+$1 = {
+  dependencies = [];
+  groups = ["default"];
+  platforms = [];
+  source = {
+    remotes = ["https://rubygems.org"];
+    sha256 = "$2";
+    type = "gem";
+  };
+  version = "$3";
+};
