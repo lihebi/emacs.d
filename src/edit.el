@@ -68,6 +68,7 @@
 (global-set-key (kbd "RET") 'newline-and-indent)
 
 
+;; it looks like this is not widely used. I'll try vterm.
 (use-package shell-switcher
   :config
   (setq shell-switcher-mode t))
@@ -321,3 +322,12 @@
     (add-hook 'LaTeX-mode-hook #'turn-on-flyspell)
     (add-hook 'latex-mode-hook #'turn-on-flyspell)
     (add-hook 'org-mode-hook #'turn-on-flyspell)))
+
+
+;; On NixOS, it cannot be built
+;; https://github.com/akermu/emacs-libvterm/issues/115 Thus, I'm installing it
+;; with Nix. In that case, vterm is automatically available. However, keeping
+;; this use-package will download and build another copy and ultimately no
+;; commands can be used in that terminal. Thus disabled.
+(use-package vterm
+  :disabled)
