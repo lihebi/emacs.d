@@ -138,8 +138,6 @@ You need to kill the current *Python* buffer to take effect."
   (add-hook 'racket-mode-hook
             (lambda ()
               (define-key racket-mode-map (kbd "C-c r") 'racket-run)))
-  ;; (setq tab-always-indent 'complete)
-  ;;
   ;; geiser does not need that, it has a dedicated function "C-c C-\"
   ;; to insert lambda
   ;;

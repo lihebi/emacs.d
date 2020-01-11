@@ -29,6 +29,8 @@
 (global-set-key (kbd "<C-return>") 'open-line-below)
 (global-set-key (kbd "<C-S-return>") 'open-line-above)
 
+;; this is general to all languages, and is not specific to company
+(setq tab-always-indent 'complete)
 
 (defun unpop-to-mark-command ()
   "Unpop off mark ring. Does nothing if mark ring is empty."
@@ -292,8 +294,6 @@
   ;; tab trigger
   (define-key company-mode-map [remap indent-for-tab-command]
     'company-indent-for-tab-command)
-
-  (setq tab-always-indent 'complete)
 
   (defvar completion-at-point-functions-saved nil)
 
