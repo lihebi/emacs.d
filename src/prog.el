@@ -194,6 +194,13 @@ You need to kill the current *Python* buffer to take effect."
   (setq comint-scroll-to-bottom-on-input t)
   (setq comint-scroll-to-bottom-on-output t)
   (setq comint-move-point-for-output t))
+(use-package lua-mode)
+(use-package scala-mode)
+(use-package graphviz-dot-mode)
+(use-package cmake-mode
+  :defer t)
+
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Disabled
@@ -218,9 +225,6 @@ You need to kill the current *Python* buffer to take effect."
 (use-package coffee-mode
   :disabled)
 (use-package bison-mode
-  :defer t
-  :disabled)
-(use-package cmake-mode
   :defer t
   :disabled)
 (use-package go-mode
@@ -275,9 +279,6 @@ You need to kill the current *Python* buffer to take effect."
 ;; (use-package cider
 ;;   :config
 ;;   (setq cider-prompt-for-symbol nil))
-
-(use-package scala-mode
-  :disabled)
 
 (use-package dumb-jump
   ;; trying to use it for julia, but does not work
