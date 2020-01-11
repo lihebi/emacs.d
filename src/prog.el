@@ -179,6 +179,7 @@ You need to kill the current *Python* buffer to take effect."
   ;; (setq julia-repl-term-type 'term)
   (setq julia-repl-term-type 'comint)
   (add-hook 'julia-mode-hook 'julia-repl-mode)
+  (setq julia-utils-scale 1.0)
   (setq julia-repl-switches "-i --color=yes"))
 
 (use-package ess
