@@ -36,8 +36,11 @@
                              "~/git/AdvAE-paper"
                              "~/git/AdvAE"
                              "~/git/interventional-loss"
+                             "~/git/supervised-causal-paper"
                              "~/git/visual-defense-paper"
                              "~/git/deep-causal-paper"
+                             "~/git/schematic-paper"
+                             "~/git/papers"
                              "~/git/rackenet"
                              "~/git/robust-itadv"
                              "~/git/anti-rouge"
@@ -75,6 +78,7 @@
                       "rekado" ;; Guix hacker
                       "pjc50" ;; about startup
                       "pg" ;; PG!!!
+                      "TeMPOraL" ;; lisp
                       "logicprog" "dreamcompiler"))
   ;; I need to have a list of "bad" users as well
   (setq hn-bad-users '("codegladiator"))
@@ -85,7 +89,7 @@
                          "WebAssembly" "wasm"
                          "functional"
                          "BSD"
-                         "emacs" "linux"
+                         "emacs" "linux" "unix"
                          "vim"
                          "Idris"
                          "RISC"
