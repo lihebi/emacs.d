@@ -35,6 +35,9 @@
   ;; (define-key LaTeX-mode-map (kbd "C-c t") 'reftex-toc)
   (setq TeX-open-quote "\"")
   (setq TeX-close-quote "\"")
+  ;; for minted
+  (setq LaTeX-command "latex -shell-escape")
+  ;; (setq LaTeX-command "xelatex -shell-escape")
   (if (string= system-type "darwin")
       (progn
         (setq TeX-view-program-selection '((output-pdf "Skim"))))
