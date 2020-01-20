@@ -440,6 +440,8 @@
   :init
   :config
   (use-package helm-bibtex
+    ;; FIXME helm-bibtex is the command to use, and it hard coded 500 as max
+    ;; number of candidates
     :config
     (setq bibtex-completion-cite-prompt-for-optional-arguments nil)
     ;; (setq bibtex-completion-cite-default-as-initial-input t)
