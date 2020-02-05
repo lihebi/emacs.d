@@ -145,6 +145,12 @@
 
 (defun hebi-show-message-buffer () (interactive) (switch-to-buffer "*Messages*"))
 
+
+;; C-x C-f /-::
+(setq tramp-default-method "ssh"
+      tramp-default-user "hebi"
+      tramp-default-host "office.lihebi.com")
+
 ;; this is used to speed up pdf reading
 (use-package linum-off
   ;; My fork adds support for display-line-numbers-mode
