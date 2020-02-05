@@ -347,7 +347,7 @@
          ("C-c t" . org-todo)
          ("C-c a" . org-agenda))
   :config
-  (setup-ob)
+  ;; (setup-ob)
   (setup-latex)
   (setup-publish)
 

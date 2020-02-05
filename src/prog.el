@@ -124,7 +124,7 @@ You need to kill the current *Python* buffer to take effect."
 
 (use-package geiser
   ;; geiser is not the REPL I want for racket
-  ;; :disabled
+  :disabled
   :config
   (setq geiser-active-implementations '(guile))
   ;; https://guix.gnu.org/manual/en/html_node/The-Perfect-Setup.html
