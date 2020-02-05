@@ -88,7 +88,9 @@
 
 
 (use-package paredit
-  :disabled
+  ;; download from mirror
+  :straight (paredit :type git :host github
+                     :repo "emacsmirror/paredit")
   ;; I'm using paredit here
   ;; smartparens is a package aims to replace paredit
   ;; it did add some functionality, but I don't like
