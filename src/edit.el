@@ -88,6 +88,7 @@
 
 
 (use-package paredit
+  :disabled
   ;; I'm using paredit here
   ;; smartparens is a package aims to replace paredit
   ;; it did add some functionality, but I don't like

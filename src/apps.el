@@ -1,4 +1,5 @@
-(use-package guix)
+(use-package guix
+  :disabled)
 
 (use-package simple-drill
   :straight (simple-drill :type git :host github

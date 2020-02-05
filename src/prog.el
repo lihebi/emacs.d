@@ -198,6 +198,7 @@ You need to kill the current *Python* buffer to take effect."
 (use-package scala-mode)
 (use-package graphviz-dot-mode)
 (use-package cmake-mode
+  :disabled
   :defer t)
 
 
