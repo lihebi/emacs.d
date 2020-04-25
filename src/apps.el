@@ -38,6 +38,7 @@
                              "~/git/AdvAE"
                              "~/git/interventional-loss"
                              "~/git/supervised-causal-paper"
+                             "~/git/myinvase"
                              "~/git/visual-defense-paper"
                              "~/git/deep-causal-paper"
                              "~/git/schematic-paper"
@@ -50,6 +51,9 @@
                              ;; other research
                              "~/git/helium"
                              "~/git/helium2"
+                             "~/git/corona"
+                             "~/git/BHDL"
+                             "~/git/leetcode"
                              ;; configs
                              "~/git/history-files"
                              "~/git/guix-channel"
