@@ -112,6 +112,8 @@
    (let* ((file (buffer-file-name (current-buffer)))
           (filename (file-name-nondirectory file)))
      (list (read-string (format "As filename (%s): " filename)))))
+  (when (not (file-exists-p "~/git/smart-scholar-pdfs/manual/"))
+    (mkdir "~/git/smart-scholar-pdfs/manual/" t))
   (rename-file (buffer-file-name (current-buffer))
                (concat "~/git/smart-scholar-pdfs/manual/" newname)))
 

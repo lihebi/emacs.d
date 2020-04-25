@@ -7,6 +7,16 @@
         (save-buffers-kill-emacs))
     (message "Canceled exit")))
 
+(defun hebi-proxy-on ()
+  (interactive)
+  (setq url-proxy-services
+        '(("http"     . "localhost:8888")
+          ("https"    . "localhost:8888"))))
+
+(defun hebi-proxy-off ()
+  (interactive)
+  (setq url-proxy-services nil))
+
 (when window-system
   (global-set-key (kbd "C-x C-c") 'ask-before-closing))
 
@@ -20,7 +30,10 @@
 
 (column-number-mode t)
 
-(setq browse-url-browser-function 'browse-url-chromium)
+(setq browse-url-browser-function
+      ;; 'browse-url-chromium
+      'browse-url-default-browser)
+
 (setq mouse-yank-at-point t)
 
 ;; stop adding newlines automatically.
@@ -182,6 +195,12 @@
   :defer t
   :bind (("C-x g" . magit-status)))
 
+;; for emacs-27
+;; (setq completion-styles '(flex))
+;; for emacs-26
+;; (setq completion-styles '(helm-flex basic partial-completion emacs22))
+(setq completion-styles '(basic partial-completion emacs22 helm-flex))
+
 (use-package helm
   ;; Now I would love to summary the C++ IDE commonly used commands and features
   ;; From my helm M-x history
@@ -195,6 +214,7 @@
   ;; srefactor-refactor-at-point
   :bind
   (("M-x" . helm-M-x)
+
    ;; C-j enter directory
    ;; C-l up directory
    ;; C-u C-x C-f open history

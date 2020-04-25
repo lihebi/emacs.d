@@ -71,6 +71,7 @@
                              "~/.emacs.d/straight/repos/repo-tracker.el/"
                              "~/.emacs.d/straight/repos/julia-repl/"
                              "~/.emacs.d/straight/repos/elpy-utils.el/"
+                             "~/.emacs.d/straight/repos/lefdef-mode/"
                              )))
 
 (use-package hn

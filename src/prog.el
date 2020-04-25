@@ -205,7 +205,7 @@ You need to kill the current *Python* buffer to take effect."
   :disabled
   :defer t)
 
-
+(use-package typescript-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Disabled
