@@ -165,6 +165,10 @@ You need to kill the current *Python* buffer to take effect."
 
 (use-package haskell-mode)
 (use-package markdown-mode)
+(use-package lefdef-mode
+  :straight (lefdef-mode :type git
+                         :host github
+                         :repo "lihebi/lefdef-mode"))
 
 ;; this package can implement "flash the sexp"
 (use-package eval-sexp-fu
