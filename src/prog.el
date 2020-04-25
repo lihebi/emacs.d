@@ -276,14 +276,20 @@ You need to kill the current *Python* buffer to take effect."
   :disabled)
 
 
-;; FIXME one of these packages will make org-ref links unusable! How??
-;; This is another example that the dynamic scoping of elisp is
-;; programatic, different packages can interfere with each other!
+;; FIXME cider! will make org-ref links unusable! How??  This is another example
+;; that the dynamic scoping of elisp is programatic, different packages can
+;; interfere with each other!
+(use-package cider
+  :disabled
+  :config
+  (setq cider-prompt-for-symbol nil))
 
-;; (use-package alda-mode)
-;; (use-package cider
-;;   :config
-;;   (setq cider-prompt-for-symbol nil))
+(use-package alda-mode
+  :disabled)
+
+;; OCaml
+(use-package tuareg
+  :disabled)
 
 (use-package dumb-jump
   ;; trying to use it for julia, but does not work
