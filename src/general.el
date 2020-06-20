@@ -10,8 +10,16 @@
 (defun hebi-proxy-on ()
   (interactive)
   (setq url-proxy-services
-        '(("http"     . "localhost:8888")
-          ("https"    . "localhost:8888"))))
+        '(("http"
+           .
+           ;; "localhost:8888"
+           "localhost:58591"
+           )
+          ("https"
+           .
+           ;; "localhost:8888"
+           "localhost:58591"
+           ))))
 
 (defun hebi-proxy-off ()
   (interactive)
