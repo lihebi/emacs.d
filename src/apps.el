@@ -52,7 +52,7 @@
                              "~/git/helium"
                              "~/git/helium2"
                              "~/git/corona"
-                             "~/git/BHDL"
+                             "~/git/bhdl"
                              "~/git/leetcode"
                              ;; configs
                              "~/git/history-files"
