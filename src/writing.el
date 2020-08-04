@@ -377,7 +377,8 @@
   (setq org-todo-keywords
         '((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d)" "CANCELED(c)")))
   (setq org-todo-keyword-faces
-        '(("TODO" . org-todo) ("CANCELED" . org-warning) ("STARTED" . (:foreground "white" :background "red"))))
+        '(("TODO" . org-todo) ("CANCELED" . org-warning)
+          ("STARTED" . org-todo)))
 
   (setq org-agenda-files
         '("~/git/note/org"))
