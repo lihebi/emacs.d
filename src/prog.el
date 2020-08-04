@@ -124,17 +124,21 @@ You need to kill the current *Python* buffer to take effect."
 
 (use-package geiser
   ;; geiser is not the REPL I want for racket
-  :disabled
+  ;; :disabled
   :config
-  (setq geiser-active-implementations '(guile))
+  (setq geiser-active-implementations '(guile racket))
   ;; https://guix.gnu.org/manual/en/html_node/The-Perfect-Setup.html
   ;; FIXME why the variable is undefined?
   ;; (add-to-list 'geiser-guile-load-path "~/git/reading/guix")
   (setq geiser-mode-smart-tab-p t))
 
 (use-package racket-mode
-  ;; :disabled
+  :disabled
+  :bind (("C-c C-d" . racket-xp-documentation)
+         ("M-." . racket-xp-visit-definition))
   :config
+  ;; (setq racket-images-max-width 640)
+  (setq racket-imagemagick-props '(:max-width 640))
   (add-hook 'racket-mode-hook
             (lambda ()
               (define-key racket-mode-map (kbd "C-c r") 'racket-run)))
