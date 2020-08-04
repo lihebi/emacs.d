@@ -37,6 +37,7 @@
                              "~/git/AdvAE-paper"
                              "~/git/AdvAE"
                              "~/git/interventional-loss"
+                             "~/git/DAG-EQ"
                              "~/git/supervised-causal-paper"
                              "~/git/myinvase"
                              "~/git/visual-defense-paper"
